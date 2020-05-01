@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(FiadoresSeeder::class);
+        $this->call(ProprietariosSeeder::class);
         $this->call(InquilinosSeeder::class);
         // $this->call(UserSeeder::class);
         // Ask for db migration refresh, default is no

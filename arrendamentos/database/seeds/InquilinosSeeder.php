@@ -16,7 +16,7 @@ class InquilinosSeeder extends Seeder
     public function run()
     {
 
-        Inquilinos::create([
+     /*   Inquilinos::create([
             'nome'      => 'Tomas ',
             'data_nascimento' => '1996-07-28',
             'idade' => '24',
@@ -37,7 +37,7 @@ class InquilinosSeeder extends Seeder
             'certidao_permanente' => 'certidao',
             'num_funcionarios' => '4'
 
-        ]);
+        ]);*/
 
     }
 }
