@@ -5,10 +5,13 @@ use App\Permission;
 use App\Role;
 use App\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 
 class DatabaseSeeder extends Seeder
 {
+
+
     /**
      * Seed the application's database.
      *
@@ -16,6 +19,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
         $this->call(Imoveis_ficheirosSeeder::class);
         $this->call(proprietarios_imoveisSeeder::class);
         $this->call(contratos_inquilinosSeeder::class);

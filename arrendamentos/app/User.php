@@ -50,6 +50,12 @@ use Spatie\Permission\Traits\HasRoles;
  */
 class User extends Authenticatable implements MustVerifyEmail, HasMedia
 {
+
+    public function inquilinos()
+    {
+        return $this->hasMany('App\Inquilinos');
+    }
+
     use Notifiable, Impersonate, HasRoles, InteractsWithMedia;
 
     /**
