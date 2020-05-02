@@ -17,6 +17,11 @@ class Inquilinos extends Model
          return $this->hasMany('App\Fiadores');
      }
 
+     public function contratos()
+     {
+         return $this->belongsToMany('App\Contratos');
+     }
+
 
 
 

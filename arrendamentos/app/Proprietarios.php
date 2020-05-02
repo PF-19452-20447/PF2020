@@ -10,4 +10,10 @@ class Proprietarios extends Model
     {
         return $this->belongsTo('App\Users', 'foreign_key');
     }
+
+    public function imoveis()
+    {
+        return $this->belongsToMany('App\Imoveis');
+    }
+
 }
