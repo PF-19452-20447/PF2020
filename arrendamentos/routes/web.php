@@ -27,7 +27,7 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
-Route::get('/inquilinos', 'InquilinosController@show');
+Route::get('/inquilinos/{id}', 'InquilinosController@show');
 
 Route::get('/', 'HomeController@index')->name('home');
 

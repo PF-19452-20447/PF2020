@@ -17,9 +17,11 @@ use Illuminate\Http\Request;
 
 class InquilinosController extends Controller
 {
-    public function show($name)
+    public function show($id)
     {
-        $inquilinos = DB::table('inquilinos')->where('name', $name)->first();
+        $inquilinos = DB::table('inquilinos')->where('id', $id)->first();
+
+        dd($inquilinos);
 
         return view('inquilinos.index', ['inquilinos' => $inquilinos]);
     }
