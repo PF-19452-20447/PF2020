@@ -54,7 +54,15 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     public function inquilinos()
     {
         return $this->hasMany('App\Inquilinos');
+
     }
+
+   public function proprietarios()
+
+   {
+        return $this->hasMany('App\Proprietarios');
+    }
+
 
     use Notifiable, Impersonate, HasRoles, InteractsWithMedia;
 
@@ -63,6 +71,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
      *
      * @var array
      */
+
     protected $fillable = [
         'name', 'email', 'password',
     ];

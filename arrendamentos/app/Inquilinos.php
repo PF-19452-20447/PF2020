@@ -10,4 +10,14 @@ class Inquilinos extends Model
     {
         return $this->belongsTo('App\Users', 'foreign_key');
     }
+
+    public function fiadores()
+
+    {
+         return $this->hasMany('App\Fiadores');
+     }
+
+
+
+
 }
