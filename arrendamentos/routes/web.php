@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,8 @@ Route::get('/', function () {
 });*/
 
 Auth::routes(['verify' => true]);
+
+Route::get('/inquilinos', 'InquilinosController@show');
 
 Route::get('/', 'HomeController@index')->name('home');
 

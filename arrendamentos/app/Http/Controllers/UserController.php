@@ -9,6 +9,7 @@ use App\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use App\DataTables\UserDataTable;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
 class UserController extends Controller
@@ -44,8 +45,10 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validatedAttributes = $this->validateUser($request, null, true);
+        $userAttributes = $request->except('roles', 'permissions');
+        $userAttributes['password'] = Hash::make($userAttributes['password']);
 
-        if($user = User::create($request->except('roles', 'permissions'))) {
+        if($user = User::create($userAttributes)) {
             event(new Registered($user));
 
             $this->syncPermissions($request, $user);
@@ -95,8 +98,13 @@ class UserController extends Controller
     {
         $validatedAttributes = $this->validateUser($request, $user);
 
+        $userAttributes = $request->except('roles', 'permissions');
+        if(!empty($userAttributes['password'])){
+            $userAttributes['password'] = Hash::make($userAttributes['password']);
+        }
+
         //$user->update($validatedAttributes);      // até posso meter isto tudo inline com o request()->validate
-        $user->fill($request->except('roles', 'permissions'));      // até posso meter isto tudo inline com o request()->validate
+        $user->fill($userAttributes);      // até posso meter isto tudo inline com o request()->validate
 
         // Handle the user roles
         $this->syncPermissions($request, $user);
