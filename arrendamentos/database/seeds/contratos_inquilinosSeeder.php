@@ -12,9 +12,9 @@ class contratos_inquilinosSeeder extends Seeder
      */
     public function run()
     {
-      /*  contrato_inquilino::create([
+        contrato_inquilino::create([
             'contrato_id' => '1',
             'inquilino_id' => '1'
-        ]);*/
+        ]);
     }
 }

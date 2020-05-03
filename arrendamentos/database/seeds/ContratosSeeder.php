@@ -12,7 +12,7 @@ class ContratosSeeder extends Seeder
      */
     public function run()
     {
-       /* Contratos::create([
+        Contratos::create([
             'valor_renda' => '100000',
             'tipo_contrato' => 'anual',
             'inicio_contrato' => '2019-07-12 11:21:33',
@@ -26,6 +26,6 @@ class ContratosSeeder extends Seeder
             'caucao' => '100',
             'metodo_pagamento' => '1',
             'rendas_avanco' => 'Nao tem rendas em avanço'
-        ]);*/
+        ]);
     }
 }

@@ -12,7 +12,7 @@ class ProprietariosSeeder extends Seeder
      */
     public function run()
     {
-       /* Proprietarios::create([
+       Proprietarios::create([
             'nome'      => 'Manuela',
             'data_nascimento' => '1993-01-31',
             'idade' => '28',
@@ -29,6 +29,6 @@ class ProprietariosSeeder extends Seeder
             'certidao_permanente' => 'certidao',
             'num_funcionarios' => '2'
 
-        ]);*/
+        ]);
     }
 }
