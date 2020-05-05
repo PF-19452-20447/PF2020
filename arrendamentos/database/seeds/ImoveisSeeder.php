@@ -12,7 +12,7 @@ class ImoveisSeeder extends Seeder
      */
     public function run()
     {
-        Imoveis::create([
+      /*  Imoveis::create([
             'tipo'      => 'apartamento',
             'tipologia' => 'T3',
             'área' => '100',
@@ -35,6 +35,6 @@ class ImoveisSeeder extends Seeder
             'terraco' => '0',
             'churrasqueira' => '0',
             'ar_condicionado' => '1'
-        ]);
+        ]);*/
     }
 }

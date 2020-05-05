@@ -12,9 +12,9 @@ class Imoveis_ficheirosSeeder extends Seeder
      */
     public function run()
     {
-        imoveis_ficheiros::create([
+       /* imoveis_ficheiros::create([
             'imovel_id' => '1',
             'ficheiro_id' => '1'
-        ]);
+        ]);*/
     }
 }

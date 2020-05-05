@@ -19,18 +19,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(InquilinosSeeder::class);
-        $this->call(ProprietariosSeeder::class);
-        $this->call(FiadoresSeeder::class);
-        $this->call(ImoveisSeeder::class);
-        $this->call(proprietarios_imoveisSeeder::class);
-        $this->call(FinancasSeeder::class);
-        $this->call(FicheirosSeeder::class);
+
         $this->call(Imoveis_ficheirosSeeder::class);
-        $this->call(ContratosSeeder::class);
+        $this->call(proprietarios_imoveisSeeder::class);
         $this->call(contratos_inquilinosSeeder::class);
         $this->call(RendasSeeder::class);
-
+        $this->call(FicheirosSeeder::class);
+        $this->call(ContratosSeeder::class);
+        $this->call(FinancasSeeder::class);
+        $this->call(ImoveisSeeder::class);
+        $this->call(FiadoresSeeder::class);
+        $this->call(ProprietariosSeeder::class);
+        $this->call(InquilinosSeeder::class);
         // $this->call(UserSeeder::class);
         // Ask for db migration refresh, default is no
         if ($this->command->confirm('Do you wish to refresh migration before seeding, it will clear all old data ?')) {
