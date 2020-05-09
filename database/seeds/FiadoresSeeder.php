@@ -12,7 +12,7 @@ class FiadoresSeeder extends Seeder
      */
     public function run()
     {
-       /* Fiadores::create([
+        Fiadores::create([
             'nome' => 'Elsa',
             'data_nascimento' => '1997-06-24',
             'idade' => '24',
@@ -29,6 +29,6 @@ class FiadoresSeeder extends Seeder
             'certidao_permanente' => 'certidao',
             'num_funcionarios' => '2'
 
-        ]);*/
+        ]);
     }
 }

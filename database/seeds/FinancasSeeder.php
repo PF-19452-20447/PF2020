@@ -12,7 +12,7 @@ class FinancasSeeder extends Seeder
      */
     public function run()
     {
-       /* Financas::create([
+        Financas::create([
             'valor_avaliacao' => '10000',
             'data_avaliacao' => '2020-03-20 12:34:54',
             'encargos' => 'tem encargos',
@@ -25,6 +25,6 @@ class FinancasSeeder extends Seeder
             'seguros' => 'Com seguros',
             'documentos_anexar' => 'Nada a anexar',
             'notas' => 'Para já nada a anotar',
-        ]);*/
+        ]);
     }
 }

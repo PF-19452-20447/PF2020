@@ -18,11 +18,6 @@ use Illuminate\Support\Facades\Auth;
     return view('welcome');
     //return view('home');
     //return view('index');
-});
-Route::get('/', function () {
-    return view('welcome');
-    //return view('home');
-    //return view('index');
 });*/
 
 Auth::routes(['verify' => true]);

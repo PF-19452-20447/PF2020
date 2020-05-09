@@ -12,7 +12,7 @@ class RendasSeeder extends Seeder
      */
     public function run()
     {
-      /*  Rendas::create([
+        Rendas::create([
             'valor_a_pagar' => '1000000',
             'data_pagamento' => '2020-11-02',
             'metodo_pagamento' => '1',
@@ -22,6 +22,6 @@ class RendasSeeder extends Seeder
             'data_limite_pagamento' => '2020-11-02',
             'notas' => 'Nao ha notas',
             'data_recibo' => '2020-11-04'
-        ]);*/
+        ]);
     }
 }
