@@ -6,23 +6,28 @@ use Illuminate\Database\Eloquent\Model;
 
 class Inquilinos extends Model
 {
-    public function users()
-    {
-        return $this->belongsTo('App\Users', 'foreign_key');
-    }
+    protected $fillable = [
 
-    public function fiadores()
+        'nome',
+        'data_nascimento',
+        'idade',
+        'NIF',
+        'CC' ,
+        'email' ,
+        'telefone',
+        'morada',
+        'IBAN' ,
+        'tipo_particular_empresa',
+        'profissao',
+        'vencimento',
+        'tipo_contrato' ,
+        'notas',
+        'cae' ,
+        'capital_social' ,
+        'setor_actividade' ,
+        'certidao_permanente',
+        'num_funcionarios'
 
-    {
-         return $this->hasMany('App\Fiadores');
-     }
-
-     public function contratos()
-     {
-         return $this->belongsToMany('App\Contratos');
-     }
-
-
-
+    ];
 
 }
