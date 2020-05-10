@@ -16,4 +16,7 @@ class Proprietarios extends Model
         return $this->belongsToMany('App\Imoveis');
     }
 
+    protected $fillable = [
+        'name', 'detail'
+    ];
 }
