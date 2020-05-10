@@ -27,7 +27,7 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
-Route::get('/inquilinos/{id}', 'InquilinosController@show');
+//Route::get('/inquilinos/{id}', 'InquilinosController@show');
 
 Route::get('/', 'HomeController@index')->name('home');
 
@@ -42,6 +42,20 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/users/{user}', 'UserController@destroy')->name('users.destroy');
     Route::delete('/users/{user}/delete', 'UserController@delete')->name('users.delete');
     Route::impersonate();
+
+// inquilinos
+
+//Route::get('/inquilinos', 'InquilinosController@index')->name('inquilinos.index');
+//Route::post('/inquilinos', 'InquilinosController@store')->name('inquilinos.store');
+//Route::get('/inquilinos/create', 'InquilinosController@create')->name('inquilinos.create');
+//Route::get('/inquilinos/{inquilino}', 'InquilinosController@show')->name('inquilinos.show');
+//Route::get('/inquilinos/{inquilino}/edit', 'InquilinosController@edit')->name('inquilinos.edit');
+//Route::put('/inquilinos/{inquilino}', 'InquilinosController@update')->name('inquilinos.update');
+//Route::delete('/inquilinos/{inquilino}', 'InquilinosController@destroy')->name('inquilinos.destroy');
+//Route::delete('/inquilinos/{inquilino}/delete', 'InquilinosController@delete')->name('inquilinos.delete');
+//Route::impersonate();
+
+Route::resource('inquilinos','InquilinosController');
 
     /*Route::get('/roles', 'RoleController@index')->name('roles.index');
     Route::post('/roles', 'RoleController@store')->name('roles.store');
