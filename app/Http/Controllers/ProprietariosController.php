@@ -38,8 +38,21 @@ class ProprietariosController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'detail' => 'required',
+            'nome' => 'required',
+            'data_nascimento' => 'required',
+            'idade' => 'required',
+            'NIF' => 'required',
+            'CC' => 'required',
+            'email' => 'required',
+            'telefone' => 'required',
+            'morada' => 'required',
+            'IBAN' => 'required',
+            'tipo_particular_empresa' => 'required',
+            'cae' => 'required',
+            'capital_social' => 'required',
+            'setor_actividade' => 'required',
+            'certidao_permanente' => 'required',
+            'num_funcionarios' => 'required'
         ]);
 
         Proprietarios::create($request->all());
@@ -54,8 +67,9 @@ class ProprietariosController extends Controller
      * @param  \App\Proprietarios  $proprietarios
      * @return \Illuminate\Http\Response
      */
-    public function show(Proprietarios $proprietarios)
+    public function show($id)
     {
+        $proprietarios = Proprietarios::findOrFail($id);
         return view('proprietarios.show',compact('proprietarios'));
     }
 
@@ -65,8 +79,9 @@ class ProprietariosController extends Controller
      * @param  \App\Proprietarios  $proprietarios
      * @return \Illuminate\Http\Response
      */
-    public function edit(Proprietarios $proprietarios)
+    public function edit($id)
     {
+        $proprietarios = Proprietarios::findOrfail($id);
         return view('proprietarios.edit',compact('proprietarios'));
     }
 
@@ -77,17 +92,37 @@ class ProprietariosController extends Controller
      * @param  \App\Proprietarios  $proprietarios
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Proprietarios $proprietarios)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required',
-            'detail' => 'required',
+        $proprietario = Proprietarios::findOrfail($id);
+        $this->validate($request,[
+
+            'nome' => 'required',
+            'data_nascimento' => 'required',
+            'idade' => 'required',
+            'NIF' => 'required',
+            'CC' => 'required',
+            'email' => 'required',
+            'telefone' => 'required',
+            'morada' => 'required',
+            'IBAN' => 'required',
+            'tipo_particular_empresa' => 'required',
+            'cae' => 'required',
+            'capital_social' => 'required',
+            'setor_actividade' => 'required',
+            'certidao_permanente' => 'required',
+            'num_funcionarios' => 'required'
+
         ]);
 
-        $proprietarios->update($request->all());
+        $input = $request->all();
+
+        $proprietario->fill($input)->save();
+
+        $request->session()->flash('proprietarios', $input);
 
         return redirect()->route('proprietarios.index')
-                        ->with('success','Proprietário modificado com sucesso.');
+            ->with('success','Proprietário modificado com sucesso.');
     }
 
     /**
@@ -96,9 +131,10 @@ class ProprietariosController extends Controller
      * @param  \App\Proprietarios  $proprietarios
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Proprietarios $proprietarios)
+    public function destroy($id)
     {
-        $proprietarios->delete();
+        $proprietario = Proprietarios::findOrfail($id);
+        $proprietario->delete();
 
         return redirect()->route('proprietarios.index')
                         ->with('success','Proprietário eliminado com sucesso.');
