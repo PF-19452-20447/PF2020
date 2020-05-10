@@ -23,6 +23,8 @@ Breadcrumbs::for('users.edit', function ($trail, $user) {
     $trail->push(__('Update'), route('users.edit', $user));
 });
 
+
+
 // Home > Role
 Breadcrumbs::for('roles.index', function ($trail) {
     $trail->parent('home');
