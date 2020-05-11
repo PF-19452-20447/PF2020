@@ -66,7 +66,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Email:</strong>
-                <input type="text" name="email" class="form-control" placeholder="Email">
+                <input type="email" name="email" class="form-control" placeholder="Email">
             </div>
         </div>
         {{-- Campo do Telefone --}}
@@ -114,8 +114,8 @@
         {{-- Campo do Setor de Actividade --}}
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Sector de Actividade:</strong>
-                <input type="text" name="sector_actividade" class="form-control" placeholder="Sector de Actividade">
+                <strong>Setor de Actividade:</strong>
+                <input type="text" name="setor_actividade" class="form-control" placeholder="Sector de Actividade">
             </div>
         </div>
         {{-- Campo da Certidão Permanente --}}
