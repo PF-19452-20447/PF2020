@@ -98,9 +98,12 @@ class UserController extends Controller
     {
         $validatedAttributes = $this->validateUser($request, $user);
 
-        $userAttributes = $request->except('roles', 'permissions');
+
         if(!empty($userAttributes['password'])){
+            $userAttributes = $request->except('roles', 'permissions');
             $userAttributes['password'] = Hash::make($userAttributes['password']);
+        }else{
+            $userAttributes = $request->except('roles', 'permissions', 'password');
         }
 
         //$user->update($validatedAttributes);      // até posso meter isto tudo inline com o request()->validate
