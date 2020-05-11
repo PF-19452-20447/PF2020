@@ -23,7 +23,6 @@
             <th>No</th>
             <th>Nome</th>
             <th>Email</th>
-            <th>Telefone</th>
             <th width="280px">Action</th>
         </tr>
         @foreach ($proprietarios as $proprietario)
@@ -31,7 +30,6 @@
             <td>{{ $proprietario->id }}</td>
             <td>{{ $proprietario->nome }}</td>
             <td>{{ $proprietario->email }}</td>
-            <td>{{ $proprietario->telefone }}</td>
             <td>
                 <form action="{{ route('proprietarios.destroy',$proprietario->id) }}" method="POST">
 
