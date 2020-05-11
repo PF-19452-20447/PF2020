@@ -41,6 +41,24 @@ Breadcrumbs::for('roles.edit', function ($trail, $model) {
     $trail->push(__('Update'), route('roles.edit', $model));
 });
 
+// Home > Settings
+Breadcrumbs::for('settings.index', function ($trail) {
+    $trail->parent('home');
+    $trail->push(__('Settings'), route('settings.index'));
+});
+Breadcrumbs::for('settings.create', function ($trail) {
+    $trail->parent('settings.index');
+    $trail->push(__('Create'), route('settings.create'));
+});
+Breadcrumbs::for('settings.show', function ($trail, $model) {
+    $trail->parent('settings.index');
+    $trail->push($model->name, route('settings.show', $model));
+});
+Breadcrumbs::for('settings.edit', function ($trail, $model) {
+    $trail->parent('settings.show', $model);
+    $trail->push(__('Update'), route('settings.edit', $model));
+});
+
 /*
 // Home > Blog
 Breadcrumbs::for('blog', function ($trail) {
