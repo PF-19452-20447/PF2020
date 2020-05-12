@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Inquilinos extends Model
+class Inquilino extends Model
 {
     protected $fillable = [
 

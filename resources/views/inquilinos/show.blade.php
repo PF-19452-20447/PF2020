@@ -1,5 +1,8 @@
-@extends('inquilinos.layout')
+@extends('layouts.app')
 
+@section('breadcrumbs')
+    {{ Breadcrumbs::render('inquilinos.show', $inquilino) }}
+@endsection
 @section('content')
 
     <div class="row">
@@ -8,7 +11,7 @@
 
             <div class="pull-left">
 
-                <h2> Show {{ $inquilinos->nome }}</h2>
+                <h2> Show {{ $inquilino->nome }}</h2>
 
             </div>
 
@@ -28,7 +31,7 @@
 
             <div class="form-group">
 
-                <h3 class="col-md-4 text-right">Nome:{{ $inquilinos->nome }}</h3>
+                <h3 class="col-md-4 text-right">Nome:{{ $inquilino->nome }}</h3>
             </div>
 
         </div>
@@ -39,7 +42,7 @@
 
             <div class="form-group">
 
-                <h3 class="col-md-4 text-right">Data de Nascimento:{{ $inquilinos->data_nascimento }}</h3>
+                <h3 class="col-md-4 text-right">Data de Nascimento:{{ $inquilino->data_nascimento }}</h3>
 
             </div>
 
@@ -49,7 +52,7 @@
 
             <div class="form-group">
 
-                <h3 class="col-md-4 text-right">Idade:{{ $inquilinos->idade }}</h3>
+                <h3 class="col-md-4 text-right">Idade:{{ $inquilino->idade }}</h3>
 
             </div>
 
@@ -58,7 +61,7 @@
 
             <div class="form-group">
 
-                <h3 class="col-md-4 text-right">NIF:{{ $inquilinos->NIF }}</h3>
+                <h3 class="col-md-4 text-right">NIF:{{ $inquilino->NIF }}</h3>
 
             </div>
 
@@ -67,7 +70,7 @@
 
             <div class="form-group">
 
-                <h3 class="col-md-4 text-right">CC:{{ $inquilinos->CC }}</h3>
+                <h3 class="col-md-4 text-right">CC:{{ $inquilino->CC }}</h3>
 
             </div>
 
@@ -76,7 +79,7 @@
 
             <div class="form-group">
 
-                <h3 class="col-md-4 text-right">Email:{{ $inquilinos->email }}</h3>
+                <h3 class="col-md-4 text-right">Email:{{ $inquilino->email }}</h3>
 
             </div>
 
@@ -85,7 +88,7 @@
 
             <div class="form-group">
 
-                <h3 class="col-md-4 text-right">Telefone:{{ $inquilinos->telefone }}</h3>
+                <h3 class="col-md-4 text-right">Telefone:{{ $inquilino->telefone }}</h3>
 
             </div>
 
@@ -94,7 +97,7 @@
 
             <div class="form-group">
 
-                <h3 class="col-md-4 text-right">Morada:{{ $inquilinos->morada }}</h3>
+                <h3 class="col-md-4 text-right">Morada:{{ $inquilino->morada }}</h3>
 
             </div>
 
@@ -103,7 +106,7 @@
 
             <div class="form-group">
 
-                <h3 class="col-md-4 text-right">IBAN:{{ $inquilinos->IBAN }}</h3>
+                <h3 class="col-md-4 text-right">IBAN:{{ $inquilino->IBAN }}</h3>
 
             </div>
 
@@ -112,7 +115,7 @@
 
             <div class="form-group">
 
-                <h3 class="col-md-4 text-right">Tipo particular de empresa:{{ $inquilinos->tipo_particular_empresa }}</h3>
+                <h3 class="col-md-4 text-right">Tipo particular de empresa:{{ $inquilino->tipo_particular_empresa }}</h3>
 
             </div>
 
@@ -121,7 +124,7 @@
 
             <div class="form-group">
 
-                <h3 class="col-md-4 text-right">Profissão:{{ $inquilinos->profissao }}</h3>
+                <h3 class="col-md-4 text-right">Profissão:{{ $inquilino->profissao }}</h3>
 
             </div>
 
@@ -130,7 +133,7 @@
 
             <div class="form-group">
 
-                <h3 class="col-md-4 text-right">Vencimento:{{ $inquilinos->vencimento }}</h3>
+                <h3 class="col-md-4 text-right">Vencimento:{{ $inquilino->vencimento }}</h3>
 
             </div>
 
@@ -139,7 +142,7 @@
 
             <div class="form-group">
 
-                <h3 class="col-md-4 text-right">Tipo de Contrato:{{ $inquilinos->tipo_contrato }}</h3>
+                <h3 class="col-md-4 text-right">Tipo de Contrato:{{ $inquilino->tipo_contrato }}</h3>
 
             </div>
 
@@ -148,7 +151,7 @@
 
             <div class="form-group">
 
-                <h3 class="col-md-4 text-right">Notas:{{ $inquilinos->notas }}</h3>
+                <h3 class="col-md-4 text-right">Notas:{{ $inquilino->notas }}</h3>
 
             </div>
 
@@ -157,7 +160,7 @@
 
             <div class="form-group">
 
-                <h3 class="col-md-4 text-right">CAE:{{ $inquilinos->cae }}</h3>
+                <h3 class="col-md-4 text-right">CAE:{{ $inquilino->cae }}</h3>
 
             </div>
 
@@ -167,7 +170,7 @@
 
             <div class="form-group">
 
-                <h3 class="col-md-4 text-right">Capital Social:{{ $inquilinos->capital_social }}</h3>
+                <h3 class="col-md-4 text-right">Capital Social:{{ $inquilino->capital_social }}</h3>
 
             </div>
 
@@ -176,7 +179,7 @@
 
             <div class="form-group">
 
-                <h3 class="col-md-4 text-right">Setor de Actividade:{{ $inquilinos->setor_actividade }}</h3>
+                <h3 class="col-md-4 text-right">Setor de Actividade:{{ $inquilino->setor_actividade }}</h3>
 
             </div>
 
@@ -185,7 +188,7 @@
 
             <div class="form-group">
 
-                <h3 class="col-md-4 text-right">Certidão Permanente:{{ $inquilinos->certidao_permanente }}</h3>
+                <h3 class="col-md-4 text-right">Certidão Permanente:{{ $inquilino->certidao_permanente }}</h3>
 
             </div>
 
@@ -194,7 +197,7 @@
 
             <div class="form-group">
 
-                <h3 class="col-md-4 text-right">Nº Funcionários:{{ $inquilinos->num_funcionarios }}</h3>
+                <h3 class="col-md-4 text-right">Nº Funcionários:{{ $inquilino->num_funcionarios }}</h3>
 
             </div>
 

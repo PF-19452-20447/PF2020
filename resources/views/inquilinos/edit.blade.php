@@ -1,4 +1,4 @@
-@extends('inquilinos.layout')
+@extends('layouts.app')
 
 
 
@@ -10,7 +10,7 @@
 
             <div class="pull-left">
 
-                <h2>Edit {{ $inquilinos->nome }}</h2>
+                <h2>Edit {{ $inquilino->nome }}</h2>
 
             </div>
 
@@ -48,7 +48,7 @@
 
 <br />
 
-    <form action="{{ route('inquilinos.update',$inquilinos->id) }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('inquilinos.update',$inquilino->id) }}" method="post" enctype="multipart/form-data">
 
         @csrf
         @method('PATCH')
@@ -60,7 +60,7 @@
                 <div class="form-group">
                     <label class="col-md-4 text-right">Nome:</label>
                     <div class="col-md-8">
-                        <input type="text" name="nome" value="{{ $inquilinos->nome }}" class="form-control input-lg">
+                        <input type="text" name="nome" value="{{ $inquilino->nome }}" class="form-control input-lg">
                     </div>
                 </div>
             </div>
@@ -72,7 +72,7 @@
 
                     <label class="col-md-4 text-right">Data de Nascimento:</label>
                     <div class="col-md-8">
-                        <input type="date" name="data_nascimento" value="{{ $inquilinos->data_nascimento }}" class="form-control input-lg">
+                        <input type="date" name="data_nascimento" value="{{ $inquilino->data_nascimento }}" class="form-control input-lg">
                     </div>
                 </div>
             </div>
@@ -84,7 +84,7 @@
 
                     <label class="col-md-4 text-right">Idade:</label>
                     <div class="col-md-8">
-                        <input type="number" min="1" name="idade" value="{{ $inquilinos->idade }}" class="form-control input-lg">
+                        <input type="number" min="1" name="idade" value="{{ $inquilino->idade }}" class="form-control input-lg">
                     </div>
                 </div>
             </div>
@@ -96,7 +96,7 @@
 
                     <label class="col-md-4 text-right">NIF:</label>
                     <div class="col-md-8">
-                        <input type="text" name="NIF" value="{{ $inquilinos->NIF }}" class="form-control input-lg">
+                        <input type="text" name="NIF" value="{{ $inquilino->NIF }}" class="form-control input-lg">
                     </div>
                 </div>
             </div>
@@ -108,7 +108,7 @@
 
                     <label class="col-md-4 text-right">CC:</label>
                     <div class="col-md-8">
-                        <input type="text" name="CC" value="{{ $inquilinos->CC }}" class="form-control input-lg">
+                        <input type="text" name="CC" value="{{ $inquilino->CC }}" class="form-control input-lg">
                     </div>
                 </div>
             </div>
@@ -120,7 +120,7 @@
 
                     <label class="col-md-4 text-right">Email:</label>
                     <div class="col-md-8">
-                        <input type="email" name="email" value="{{ $inquilinos->email }}" class="form-control input-lg">
+                        <input type="email" name="email" value="{{ $inquilino->email }}" class="form-control input-lg">
                     </div>
                 </div>
             </div>
@@ -132,7 +132,7 @@
 
                     <label class="col-md-4 text-right">Telefone:</label>
                     <div class="col-md-8">
-                        <input type="text" name="telefone" value="{{ $inquilinos->telefone }}" class="form-control input-lg">
+                        <input type="text" name="telefone" value="{{ $inquilino->telefone }}" class="form-control input-lg">
                     </div>
                 </div>
             </div>
@@ -144,7 +144,7 @@
 
                     <label class="col-md-4 text-right">Morada:</label>
                     <div class="col-md-8">
-                        <input type="text" name="morada" value="{{ $inquilinos->morada }}" class="form-control input-lg">
+                        <input type="text" name="morada" value="{{ $inquilino->morada }}" class="form-control input-lg">
                     </div>
                 </div>
             </div>
@@ -156,7 +156,7 @@
 
                     <label class="col-md-4 text-right">IBAN:</label>
                     <div class="col-md-8">
-                        <input type="text" name="IBAN" value="{{ $inquilinos->IBAN }}" class="form-control input-lg">
+                        <input type="text" name="IBAN" value="{{ $inquilino->IBAN }}" class="form-control input-lg">
                     </div>
                 </div>
             </div>
@@ -168,7 +168,7 @@
 
                     <label class="col-md-4 text-right">Tipo particular de empresa:</label>
                     <div class="col-md-8">
-                        <input type="number" min="1" name="tipo_particular_empresa" value="{{ $inquilinos->tipo_particular_empresa }}" class="form-control input-lg">
+                        <input type="number" min="1" name="tipo_particular_empresa" value="{{ $inquilino->tipo_particular_empresa }}" class="form-control input-lg">
                     </div>
                 </div>
             </div>
@@ -180,7 +180,7 @@
 
                     <label class="col-md-4 text-right">Profissão:</label>
                     <div class="col-md-8">
-                        <input type="text" name="profissao" value="{{ $inquilinos->profissao }}" class="form-control input-lg">
+                        <input type="text" name="profissao" value="{{ $inquilino->profissao }}" class="form-control input-lg">
                     </div>
                 </div>
             </div>
@@ -192,7 +192,7 @@
 
                     <label class="col-md-4 text-right">Vencimento:</label>
                     <div class="col-md-8">
-                        <input type="number" min="1" name="vencimento" value="{{ $inquilinos->vencimento }}" class="form-control input-lg">
+                        <input type="number" min="1" name="vencimento" value="{{ $inquilino->vencimento }}" class="form-control input-lg">
                     </div>
                 </div>
             </div>
@@ -204,7 +204,7 @@
 
                     <label class="col-md-4 text-right">Tipo de Contrato:</label>
                     <div class="col-md-8">
-                        <input type="text" name="tipo_contrato" value="{{ $inquilinos->tipo_contrato }}" class="form-control input-lg">
+                        <input type="text" name="tipo_contrato" value="{{ $inquilino->tipo_contrato }}" class="form-control input-lg">
                     </div>
                 </div>
             </div>
@@ -216,7 +216,7 @@
 
                     <label class="col-md-4 text-right">Notas:</label>
                     <div class="col-md-8">
-                        <input type="text" name="notas" value="{{ $inquilinos->notas }}" class="form-control input-lg">
+                        <input type="text" name="notas" value="{{ $inquilino->notas }}" class="form-control input-lg">
                     </div>
                 </div>
             </div>
@@ -228,7 +228,7 @@
 
                     <label class="col-md-4 text-right">CAE:</label>
                     <div class="col-md-8">
-                        <input type="number" min="1" name="cae" value="{{ $inquilinos->cae }}" class="form-control input-lg">
+                        <input type="number" min="1" name="cae" value="{{ $inquilino->cae }}" class="form-control input-lg">
                     </div>
                 </div>
             </div>
@@ -240,7 +240,7 @@
 
                     <label class="col-md-4 text-right">Capital Social:</label>
                     <div class="col-md-8">
-                        <input type="number" min="1" name="capital_social" value="{{ $inquilinos->capital_social }}" class="form-control input-lg">
+                        <input type="number" min="1" name="capital_social" value="{{ $inquilino->capital_social }}" class="form-control input-lg">
                     </div>
                 </div>
             </div>
@@ -252,7 +252,7 @@
 
                     <label class="col-md-4 text-right">Sector de Actividade:</label>
                     <div class="col-md-8">
-                        <input type="text" name="setor_actividade" value="{{ $inquilinos->setor_actividade }}" class="form-control input-lg">
+                        <input type="text" name="setor_actividade" value="{{ $inquilino->setor_actividade }}" class="form-control input-lg">
                     </div>
                 </div>
             </div>
@@ -264,7 +264,7 @@
 
                     <label class="col-md-4 text-right">Certidão permanente:</label>
                     <div class="col-md-8">
-                        <input type="text" name="certidao_permanente" value="{{ $inquilinos->certidao_permanente }}" class="form-control input-lg">
+                        <input type="text" name="certidao_permanente" value="{{ $inquilino->certidao_permanente }}" class="form-control input-lg">
                     </div>
                 </div>
             </div>
@@ -276,7 +276,7 @@
 
                     <label class="col-md-4 text-right">Nº de Funcionários:</label>
                     <div class="col-md-8">
-                        <input type="number" min="1" name="num_funcionarios" value="{{ $inquilinos->num_funcionarios }}" class="form-control input-lg">
+                        <input type="number" min="1" name="num_funcionarios" value="{{ $inquilino->num_funcionarios }}" class="form-control input-lg">
                     </div>
                 </div>
             </div>

@@ -43,6 +43,24 @@ Breadcrumbs::for('roles.edit', function ($trail, $model) {
     $trail->push(__('Update'), route('roles.edit', $model));
 });
 
+// Home > Inquilinos
+Breadcrumbs::for('inquilinos.index', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Inquilinos', route('inquilinos.index'));
+});
+Breadcrumbs::for('inquilinos.create', function ($trail) {
+    $trail->parent('inquilinos.index');
+    $trail->push('Criar', route('inquilinos.create'));
+});
+Breadcrumbs::for('inquilinos.show', function ($trail, $model) {
+    $trail->parent('inquilinos.index');
+    $trail->push($model->nome, route('inquilinos.show', $model));
+});
+Breadcrumbs::for('inquilinos.edit', function ($trail, $model) {
+    $trail->parent('inquilinos.show', $model);
+    $trail->push('Atualizar', route('inquilinos.edit', $model));
+});
+
 /*
 // Home > Blog
 Breadcrumbs::for('blog', function ($trail) {

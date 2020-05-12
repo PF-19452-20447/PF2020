@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Inquilinos;
+use App\DataTables\InquilinoDataTable;
+use App\Inquilino;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Traits\Authorizable;
 use App\Permission;
@@ -13,18 +14,19 @@ use Illuminate\Validation\Rule;
 use App\Http\Controllers\InquilinosDataTable;
 use App\Http\Controllers\Session;
 
-class InquilinosController extends Controller
+class InquilinoController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(InquilinoDataTable $dataTable)
     {
-        $inquilinos = Inquilinos::latest()->paginate(5);
+        return $dataTable->render('inquilinos.index');
+        /*$inquilinos = Inquilino::latest()->paginate(5);
         return view('inquilinos.index',compact('inquilinos'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+            ->with('i', (request()->input('page', 1) - 1) * 5);*/
     }
 
     /**
@@ -69,7 +71,7 @@ class InquilinosController extends Controller
 
         ]);
 
-        Inquilinos::create($request->all());
+        Inquilino::create($request->all());
         return redirect()->route('inquilinos.index')
              ->with('success','Inquilino created successfully.');
     }
@@ -77,37 +79,37 @@ class InquilinosController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Inquilinos  $inquilinos
+     * @param  \App\Inquilino  $inquilino
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $inquilinos = Inquilinos::findOrfail($id);
-        return view('inquilinos.show', compact('inquilinos'));
+        $inquilino = Inquilino::findOrfail($id);
+        return view('inquilinos.show', compact('inquilino'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Inquilinos  $inquilinos
+     * @param  \App\Inquilino  $inquilino
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $inquilinos = Inquilinos::findOrfail($id);
-        return view('inquilinos.edit', compact('inquilinos'));
+        $inquilino = Inquilino::findOrfail($id);
+        return view('inquilinos.edit', compact('inquilino'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Inquilinos  $inquilinos
+     * @param  \App\Inquilino  $inquilino
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $inquilinos = Inquilinos::findOrfail($id);
+        $inquilino = Inquilino::findOrfail($id);
         $this->validate($request,[
 
             'nome' => 'required',
@@ -133,7 +135,7 @@ class InquilinosController extends Controller
         ]);
 
         $input = $request->all();
-        $inquilinos->fill($input)->save();
+        $inquilino->fill($input)->save();
 
 
 
@@ -147,13 +149,13 @@ class InquilinosController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Inquilinos  $inquilinos
+     * @param  \App\Inquilino  $inquilino
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $inquilinos = Inquilinos::findOrfail($id);
-        $inquilinos->delete();
+        $inquilino = Inquilino::findOrfail($id);
+        $inquilino->delete();
         return redirect()->route('inquilinos.index')
                         ->with('success','Inquilino deleted successfully');
     }

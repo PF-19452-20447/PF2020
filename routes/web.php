@@ -55,7 +55,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 //Route::delete('/inquilinos/{inquilino}/delete', 'InquilinosController@delete')->name('inquilinos.delete');
 //Route::impersonate();
 
-Route::resource('inquilinos','InquilinosController');
+    Route::resource('inquilinos','InquilinoController');
 
     /*Route::get('/roles', 'RoleController@index')->name('roles.index');
     Route::post('/roles', 'RoleController@store')->name('roles.store');
