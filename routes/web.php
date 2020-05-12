@@ -18,11 +18,6 @@ use Illuminate\Support\Facades\Auth;
     return view('welcome');
     //return view('home');
     //return view('index');
-});
-Route::get('/', function () {
-    return view('welcome');
-    //return view('home');
-    //return view('index');
 });*/
 
 Auth::routes(['verify' => true]);
@@ -66,5 +61,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/roles/{role}', 'RoleController@destroy')->name('roles.destroy');*/
     Route::resource('roles', 'RoleController');
     Route::put('/roles/{role}/update-permissions', 'RoleController@updatePermissions')->name('roles.update_permissions');
+
+    //Route::get('/settings', 'SettingController@index')->name('settings.index');
+    Route::resource('settings', 'SettingController');
 });
 

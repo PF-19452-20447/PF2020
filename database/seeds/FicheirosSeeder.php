@@ -12,10 +12,10 @@ class FicheirosSeeder extends Seeder
      */
     public function run()
     {
-       /* Ficheiros::create([
+        Ficheiros::create([
             'foto'      => 'foto1.png',
             'descricao' => 'Foto da cozinha'
 
-        ]);*/
+        ]);
     }
 }

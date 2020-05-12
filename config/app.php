@@ -177,6 +177,7 @@ return [
 
         /*Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,*/
         /*Lab404\Impersonate\ImpersonateServiceProvider::class,*/
+        /*App\Providers\SettingServiceProvider::class*/
 
     ],
 
@@ -230,6 +231,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Settings' => App\Facades\Setting::class,
 
     ],
 
