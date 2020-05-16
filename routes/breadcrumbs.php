@@ -41,6 +41,24 @@ Breadcrumbs::for('roles.edit', function ($trail, $model) {
     $trail->push(__('Update'), route('roles.edit', $model));
 });
 
+// Home > Proprietários
+Breadcrumbs::for('proprietarios.index', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Proprietários', route('proprietarios.index'));
+});
+Breadcrumbs::for('proprietarios.create', function ($trail) {
+    $trail->parent('proprietarios.index');
+    $trail->push('Criar', route('proprietarios.create'));
+});
+Breadcrumbs::for('proprietarios.show', function ($trail, $model) {
+    $trail->parent('proprietarios.index');
+    $trail->push($model->nome, route('proprietarios.show', $model));
+});
+Breadcrumbs::for('proprietarios.edit', function ($trail, $model) {
+    $trail->parent('proprietarios.show', $model);
+    $trail->push('Actualizar', route('proprietarios.edit', $model));
+});
+
 // Home > Settings
 Breadcrumbs::for('settings.index', function ($trail) {
     $trail->parent('home');

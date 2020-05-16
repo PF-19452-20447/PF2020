@@ -1,9 +1,14 @@
-@extends('proprietarios.layout')
+@extends('layouts.app')
+
+@section('breadcrumbs')
+    {{ Breadcrumbs::render('proprietarios.show', $proprietario) }}
+@endsection
+
 @section('content')
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2> Show proprietario</h2>
+            <h2> Show {{$proprietario->nome}}</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('proprietarios.index') }}"> Back</a>
@@ -15,91 +20,91 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Nome:</strong>
-                {{ $proprietarios->nome }}
+                {{ $proprietario->nome }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Data de Nascimento:</strong>
-                {{ $proprietarios->data_nascimento }}
+                {{ $proprietario->data_nascimento }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Idade:</strong>
-                {{ $proprietarios->idade }}
+                {{ $proprietario->idade }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>NIF:</strong>
-                {{ $proprietarios->NIF }}
+                {{ $proprietario->NIF }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>CC:</strong>
-                {{ $proprietarios->CC }}
+                {{ $proprietario->CC }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Email:</strong>
-                {{ $proprietarios->email }}
+                {{ $proprietario->email }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Telefone:</strong>
-                {{ $proprietarios->telefone }}
+                {{ $proprietario->telefone }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Morada:</strong>
-                {{ $proprietarios->morada }}
+                {{ $proprietario->morada }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>IBAN:</strong>
-                {{ $proprietarios->IBAN }}
+                {{ $proprietario->IBAN }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Tipo Particular de Empresa:</strong>
-                {{ $proprietarios->tipo_particular_empresa }}
+                {{ $proprietario->tipo_particular_empresa }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>CAE:</strong>
-                {{ $proprietarios->cae }}
+                {{ $proprietario->cae }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Capital Social:</strong>
-                {{ $proprietarios->capital_social }}
+                {{ $proprietario->capital_social }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Setor de Actividade:</strong>
-                {{ $proprietarios->setor_actividade }}
+                {{ $proprietario->setor_actividade }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Certidão Permanente:</strong>
-                {{ $proprietarios->certidao_permanente }}
+                {{ $proprietario->certidao_permanente }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Numero de Funcionários:</strong>
-                {{ $proprietarios->num_funcionarios }}
+                {{ $proprietario->num_funcionarios }}
             </div>
         </div>
     </div>

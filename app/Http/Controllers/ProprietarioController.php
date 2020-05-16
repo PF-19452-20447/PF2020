@@ -2,21 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Proprietarios;
+use App\Proprietario;
 use Illuminate\Http\Request;
+use App\DataTables\ProprietarioDataTable;
 
-class ProprietariosController extends Controller
+class ProprietarioController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ProprietarioDataTable $datatable)
     {
-        $proprietarios = Proprietarios::latest()->paginate(5);
-        return view('proprietarios.index', compact('proprietarios'))
-            ->with('i',(request()->input('page', 1) - 1) *5);
+        return $datatable->render('proprietarios.index');
+        // $proprietarios = Proprietario::latest()->paginate(5);
+        // return view('proprietarios.index', compact('proprietarios'))
+        //     ->with('i',(request()->input('page', 1) - 1) *5);
     }
 
     /**
@@ -55,7 +57,7 @@ class ProprietariosController extends Controller
             'num_funcionarios' => 'required'
         ]);
 
-        Proprietarios::create($request->all());
+        Proprietario::create($request->all());
 
         return redirect()->route('proprietarios.index')
                         ->with('success','Proprietário criado com sucesso');
@@ -64,37 +66,37 @@ class ProprietariosController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Proprietarios  $proprietarios
+     * @param  \App\Proprietario  $proprietarios
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $proprietarios = Proprietarios::findOrFail($id);
-        return view('proprietarios.show',compact('proprietarios'));
+        $proprietario = Proprietario::findOrFail($id);
+        return view('proprietarios.show',compact('proprietario'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Proprietarios  $proprietarios
+     * @param  \App\Proprietario $proprietario
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $proprietarios = Proprietarios::findOrfail($id);
-        return view('proprietarios.edit',compact('proprietarios'));
+        $proprietario = Proprietario::findOrfail($id);
+        return view('proprietarios.edit',compact('proprietario'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Proprietarios  $proprietarios
+     * @param  \App\Proprietario  $proprietario
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $proprietario = Proprietarios::findOrfail($id);
+        $proprietario = Proprietario::findOrfail($id);
         $this->validate($request,[
 
             'nome' => 'required',
@@ -133,7 +135,7 @@ class ProprietariosController extends Controller
      */
     public function destroy($id)
     {
-        $proprietario = Proprietarios::findOrfail($id);
+        $proprietario = Proprietario::findOrfail($id);
         $proprietario->delete();
 
         return redirect()->route('proprietarios.index')

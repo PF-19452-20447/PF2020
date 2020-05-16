@@ -21,8 +21,7 @@ use Illuminate\Support\Facades\Auth;
 });*/
 
 //=== CRUD TESTING FACILITY ===
-Route::resource('proprietarios','ProprietariosController');
-
+Route::resource('proprietarios','ProprietarioController');
 //=============================
 Auth::routes(['verify' => true]);
 
