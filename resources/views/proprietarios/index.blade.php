@@ -52,7 +52,7 @@
         (function(window,$){
             $.fn.dataTable.Buttons.defaults.dom.container.className = '';
             $.fn.dataTable.Buttons.defaults.dom.button.className = 'btn btn-default btn-icon-sm';
-            var buttons = new $.fn.dataTable.Buttons(window.LaravelDataTables["proprietarios-table"], {
+            var buttons = new $.fn.dataTable.Buttons(window.LaravelDataTables["proprietario-table"], {
                 buttons: [
                     'export',
                 ]
@@ -80,7 +80,7 @@
                         dataType: 'json',
                         data: {method: '_DELETE', submit: true}
                     }).always(function (data) {
-                        jQuery('#proprietarios-table').DataTable().draw(false);
+                        jQuery('#proprietario-table').DataTable().draw(false);
                     });
                 }
             });

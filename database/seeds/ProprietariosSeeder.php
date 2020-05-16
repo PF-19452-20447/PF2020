@@ -1,6 +1,6 @@
 <?php
 
-use App\Proprietarios;
+use App\Proprietario;
 use Illuminate\Database\Seeder;
 
 class ProprietariosSeeder extends Seeder
@@ -12,7 +12,7 @@ class ProprietariosSeeder extends Seeder
      */
     public function run()
     {
-        Proprietarios::create([
+        Proprietario::create([
             'nome'      => 'Manuela',
             'data_nascimento' => '1993-01-31',
             'idade' => '28',

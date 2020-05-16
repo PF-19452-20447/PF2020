@@ -26,8 +26,8 @@ class ProprietarioDataTable extends DataTable
             })
             ->addColumn('action', function ($proprietario) {
                 return '<a class="btn btn-sm btn-clean btn-icon btn-icon-md" href="'. route('proprietarios.show', $proprietario) .'" title="'. __('View') .'"><i class="la la-eye"></i></a>
-                        <a href="'. route('proprietarios.edit', $setting) .'" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="'. __('Edit') .'"><i class="la la-edit"></i></a>
-                        <button class="btn btn-sm btn-clean btn-icon btn-icon-md delete-confirmation" data-destroy-form-id="destroy-form-'. $proprietario->id .'" data-delete-url="'. route('proprietarios.destroy', $setting) .'" onclick="destroyConfirmation(this)" title="'. __('Delete') .'"><i class="la la-trash"></i></button>';
+                        <a href="'. route('proprietarios.edit', $proprietario) .'" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="'. __('Edit') .'"><i class="la la-edit"></i></a>
+                        <button class="btn btn-sm btn-clean btn-icon btn-icon-md delete-confirmation" data-destroy-form-id="destroy-form-'. $proprietario->id .'" data-delete-url="'. route('proprietarios.destroy', $proprietario) .'" onclick="destroyConfirmation(this)" title="'. __('Delete') .'"><i class="la la-trash"></i></button>';
             })
             ->rawColumns(['email', 'action']);
     }
@@ -51,11 +51,11 @@ class ProprietarioDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('proprietarios-table')
+                    ->setTableId('proprietario-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom("<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>rtip")
-                    ->orderBy(1)
+                    ->orderBy(0)
                     ->parameters([
                         'buttons' => [],
                     ]);
