@@ -75,9 +75,10 @@ Breadcrumbs::for('inquilinos.show', function ($trail, $model) {
     $trail->push($model->nome, route('inquilinos.show', $model));
 });
 Breadcrumbs::for('inquilinos.edit', function ($trail, $model) {
-    $trail->parent('inquilinos.show', $model);
+    $trail->parent('inquilinos.index', $model);
     $trail->push('Atualizar', route('inquilinos.edit', $model));
 });
+
 
 /*
 // Home > Blog
