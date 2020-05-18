@@ -7,7 +7,7 @@ use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
-use app\Proprietario;
+use App\Proprietario;
 
 class ProprietarioDataTable extends DataTable
 {
@@ -35,7 +35,7 @@ class ProprietarioDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \app\Proprietario $model
+     * @param Proprietario $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query(Proprietario $model)
