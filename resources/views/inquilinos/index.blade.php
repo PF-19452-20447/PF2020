@@ -28,7 +28,7 @@
                         </div>
                         <a href="{{ route('inquilinos.create') }}" class="btn btn-brand btn-elevate btn-icon-sm">
                             <i class="la la-plus"></i>
-                            Criar inquilino
+                            Create Tenant
                         </a>
                     </div>
                 </div>
