@@ -1,9 +1,9 @@
 <?php
 /**
  *
- * @var $user \App\User
+ * @var $setting \App\Inquilino
  */
-view()->share('pageTitle', $inquilino->name);
+view()->share('pageTitle', $inquilino->nome);
 view()->share('hideSubHeader', true);
 ?>
 @extends('layouts.app')
@@ -15,8 +15,25 @@ view()->share('hideSubHeader', true);
         <div class="kt-portlet__head">
             <div class="kt-portlet__head-label">
                 <h3 class="kt-portlet__head-title">
-                    {{ $inquilino->name }}
+                    {{ $inquilino->nome }}
                 </h3>
+            </div>
+            <div class="kt-portlet__head-toolbar">
+                <div class="kt-portlet__head-wrapper">
+                    <div class="kt-portlet__head-actions">
+                        <a href="{{ route('inquilinos.edit', $inquilino) }}" class="btn btn-brand btn-elevate btn-icon-sm">
+                            <i class="la la-edit"></i>
+                            {{ __('Update') }}
+                        </a>
+                        <button class="btn btn-danger btn-elevate btn-icon-sm" onclick="destroyConfirmation(this)">
+                            <i class="la la-trash"></i>
+                            {{ __('Delete') }}
+                        </button>
+                        {!! Form::open(['route' => ['inquilinos.destroy', $inquilino], 'method' => 'delete', 'class'=>"d-none", 'id' => 'delete-form']) !!}
+
+                        {!! Form::close() !!}
+                    </div>
+                </div>
             </div>
         </div>
         <div class="kt-portlet__body">
@@ -25,11 +42,25 @@ view()->share('hideSubHeader', true);
                 <div class="kt-section__content">
                     <table class="table table-striped">
                         <tbody>
+                        <!--//Column::make('id'),
+                        Column::make('Id'),
+                        Column::make('Name'),
+                        Column::make('Email'),
+                        Column::make('Telephone'),
+                        Column::make('Address'),
+                        Column::make('IBAN'),
+                        Column::make('Particular type of company'),
+                        //Column::make('created_at'),
+                        //Column::make('updated_at'),-->
+                            <tr>
+                                <th scope="row">{{ __('ID') }}</th>
+                                <td>{{ $inquilino->id }}</td>
+                            </tr>
                             <tr>
                                 <th scope="row">{{ __('Name') }}</th>
                                 <td>{{ $inquilino->nome }}</td>
                             </tr>
-                             <tr>
+                            <tr>
                                 <th scope="row">{{ __('Date of birth') }}</th>
                                 <td>{{ $inquilino->data_nascimento }}</td>
                             </tr>
@@ -47,7 +78,7 @@ view()->share('hideSubHeader', true);
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Email') }}</th>
-                                <td><a href="mailto:{{ $inquilino->email }}">{{ $inquilino->email }}</a></td>
+                                <td>{{ $inquilino->email }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Telephone') }}</th>
@@ -101,11 +132,37 @@ view()->share('hideSubHeader', true);
                                 <th scope="row">{{ __('Number of employees') }}</th>
                                 <td>{{ $inquilino->num_funcionarios }}</td>
                             </tr>
+                            <tr>
+                                <th scope="row">{{ __('Created at') }}</th>
+                                <td>{{$inquilino->created_at}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">{{ __('Updated at') }}</th>
+                                <td>{{$inquilino->updated_at}}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
             <!--end::Section-->
+
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        function destroyConfirmation(e){
+            swal.fire({
+                title: '{{ __('Are you sure you want to delete this?') }}',
+                text: "{!! __("You won't be able to revert this!") !!}",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: "{{ __('Yes, delete it!') }}"
+            }).then(function(result) {
+                if (result.value) {
+                    document.getElementById('delete-form').submit();
+                }
+            });
+        }
+    </script>
+@endpush
