@@ -52,21 +52,12 @@ Used to login user in the app
 
 Request should contain the following fields on body:
 
-    email (string) *
-    password (string) *
+   - email (string) *
+   - password (string) *
 
 Doesnt need auth
 
 Returns: token
-
-```json
-    {
-        "_token": "HrLB4p3i5TA7lN1LGaC0FriGCW0tBV1pZJxLekUB",
-        "_flash": "array:2 [ "old" => [] "new" => [] ]",
-        "url": "array:1 [ "intended" => "http://127.0.0.1:8000" ]",
-       "_previous": "array:1 [ "url" => "http://127.0.0.1:8000/login" ]"
-    }
-```
 
 *****************************************************************************************************************************
 
