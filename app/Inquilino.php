@@ -9,24 +9,24 @@ class Inquilino extends Model
     protected $fillable = [
 
         'nome',
-        'data_nascimento',
+        'dataNascimento',
         'idade',
-        'NIF',
-        'CC' ,
+        'nif',
+        'cc' ,
         'email' ,
         'telefone',
         'morada',
-        'IBAN' ,
-        'tipo_particular_empresa',
+        'iban' ,
+        'tipoParticularEmpresa',
         'profissao',
         'vencimento',
-        'tipo_contrato' ,
+        'tipoContrato' ,
         'notas',
         'cae' ,
-        'capital_social' ,
-        'setor_actividade' ,
-        'certidao_permanente',
-        'num_funcionarios'
+        'capitalSocial' ,
+        'setorActividade' ,
+        'certidaoPermanente',
+        'numFuncionarios'
 
     ];
 
