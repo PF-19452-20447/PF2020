@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Financas extends Model
+class Ficheiro extends Model
 {
     public function imovel()
     {
-        return $this->belongsTo('App\Imovel');
+        return $this->belongsToMany('App\Imovel');
     }
 }
