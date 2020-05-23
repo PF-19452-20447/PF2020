@@ -13,21 +13,20 @@ class ProprietariosSeeder extends Seeder
     public function run()
     {
         Proprietarios::create([
-            'nome'      => 'Manuela',
-            'data_nascimento' => '1993-01-31',
-            'idade' => '28',
-            'NIF' => '23445',
-            'CC' => '245643567',
-            'email'     => 'manuela@gmail.com',
-            'telefone' => '345434',
-            'morada' => 'Rua da Manuela',
-            'IBAN' => '234523456',
-            'tipo_particular_empresa' => '5',
-            'cae' => '3',
-            'capital_social' => '2',
-            'setor_actividade' => 'Advogada',
-            'certidao_permanente' => 'certidao',
-            'num_funcionarios' => '2'
+            'nome'      => 'Beatriz',
+            'dataNascimento' => '1999-02-21',
+            'nif' => '23453234',
+            'cc' => '234565432',
+            'email'     => 'beatriz@gmail.com',
+            'telefone' => '243223456543',
+            'morada' => 'Rua da Beatriz',
+            'iban' => '7654876543',
+            'tipoParticularEmpresa' => '4',
+            'cae' => '2',
+            'capitalSocial' => '1',
+            'setorActividade' => 'Professora',
+            'certidaoPermanente' => 'certidao',
+            'numFuncionarios' => '4'
 
         ]);
     }

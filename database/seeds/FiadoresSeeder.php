@@ -13,21 +13,20 @@ class FiadoresSeeder extends Seeder
     public function run()
     {
         Fiadores::create([
-            'nome' => 'Elsa',
-            'data_nascimento' => '1997-06-24',
-            'idade' => '24',
-            'NIF' => '44632834678',
-            'CC' => '462347238',
-            'email' => 'elsa@gmail.com',
-            'telefone' => '34738923478',
-            'morada' => 'Rua da Elsa',
-            'IBAN' => '4738948792',
-            'tipo_particular_empresa' => '3',
-            'cae' => '2',
-            'capital_social' => '2',
-            'setor_actividade' => 'Agricultura',
-            'certidao_permanente' => 'certidao',
-            'num_funcionarios' => '2'
+            'nome' => 'xpto1',
+            'dataNascimento' => '1992-02-11',
+            'nif' => '2345687654345678',
+            'cc' => '654345654',
+            'email' => 'xpto1@gmail.com',
+            'telefone' => '9876543456',
+            'morada' => 'Rua do XPTO1',
+            'iban' => '6543465432',
+            'tipoParticularEmpresa' => '3',
+            'cae' => '1',
+            'capitalSocial' => '3',
+            'setorActividade' => 'Agricultura',
+            'certidaoPermanente' => 'certidao',
+            'numFuncionarios' => '2'
 
         ]);
     }

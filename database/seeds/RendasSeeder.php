@@ -13,15 +13,15 @@ class RendasSeeder extends Seeder
     public function run()
     {
         Rendas::create([
-            'valor_a_pagar' => '1000000',
-            'data_pagamento' => '2020-11-02',
-            'metodo_pagamento' => '1',
-            'valor_pago' => '500000',
-            'valor_em_divida' => '500000',
-            'estado' => '2',
-            'data_limite_pagamento' => '2020-11-02',
+            'valorPagar' => '10000',
+            'dataPagamento' => '2019-11-02',
+            'metodoPagamento' => '2',
+            'valorPago' => '50000',
+            'valorDivida' => '5000',
+            'estado' => '1',
+            'dataLimitePagamento' => '2019-11-02',
             'notas' => 'Nao ha notas',
-            'data_recibo' => '2020-11-04'
+            'dataRecibo' => '2019-11-04'
         ]);
     }
 }

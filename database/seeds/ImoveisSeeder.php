@@ -15,18 +15,18 @@ class ImoveisSeeder extends Seeder
         Imoveis::create([
             'tipo'      => 'apartamento',
             'tipologia' => 'T3',
-            'área' => '100',
+            'area' => '100',
             'morada' => 'Rua Agostinho Sá',
-            'num_quartos'     => '3',
-            'num_casa_banho' => '2',
+            'numQuartos'     => '3',
+            'numCasaBanho' => '2',
             'descricao' => 'É um apartamento que se situa ao pé do mar',
             'estado' => '1',
             'mobilado' => '1',
             'fumar' => '0',
-            'animais_estimacao' => '1',
-            'outros_equipamentos' => 'Estores electricos',
-            'certificado_energetico' => 'Com certificado',
-            'licenca_habitacao' => 'Com lincença',
+            'animaisEstimacao' => '1',
+            'outrosEquipamentos' => 'Estores electricos',
+            'certificadoEnergetico' => 'Com certificado',
+            'licencaHabitacao' => 'Com lincença',
             'notas' => 'Nada a acrescentar de momento',
             'televisao' => '1',
             'frigorifico' => '1',
@@ -34,7 +34,7 @@ class ImoveisSeeder extends Seeder
             'varanda' => '1',
             'terraco' => '0',
             'churrasqueira' => '0',
-            'ar_condicionado' => '1'
+            'arCondicionado' => '1'
         ]);
     }
 }

@@ -15,15 +15,15 @@ class CreateRendasTable extends Migration
     {
         Schema::create('rendas', function (Blueprint $table) {
             $table->id();
-            $table->decimal('valor_a_pagar', 10, 3);
-            $table->date('data_pagamento');
-            $table->integer('metodo_pagamento');
-            $table->decimal('valor_pago', 10, 3);
-            $table->decimal('valor_em_divida', 10, 3);
+            $table->decimal('valorPagar', 10, 3);
+            $table->date('dataPagamento');
+            $table->integer('metodoPagamento');
+            $table->decimal('valorPago', 10, 3);
+            $table->decimal('valorDivida', 10, 3);
             $table->integer('estado');
-            $table->date('data_limite_pagamento', 10, 3);
+            $table->date('dataLimitePagamento', 10, 3);
             $table->text('notas');
-            $table->date('data_recibo');
+            $table->date('dataRecibo');
             $table->rememberToken();
             $table->timestamps();
         });

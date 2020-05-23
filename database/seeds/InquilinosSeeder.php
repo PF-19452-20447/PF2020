@@ -5,6 +5,7 @@ use App\Role;
 use App\User;
 use Illuminate\Database\Seeder;
 use App\Inquilinos;
+use App\Inquilino;
 
 class InquilinosSeeder extends Seeder
 {
@@ -16,26 +17,25 @@ class InquilinosSeeder extends Seeder
     public function run()
     {
 
-        Inquilinos::create([
-            'nome'      => 'Tomas ',
-            'data_nascimento' => '1996-07-28',
-            'idade' => '24',
-            'NIF' => '',
-            'CC' => '53627893',
-            'email'     => 'tomas@gmail.com',
-            'telefone' => '362834234',
-            'morada' => 'Rua do Tomas',
-            'IBAN' => '46328347',
-            'tipo_particular_empresa' => '2',
-            'profissao' => 'Engenheiro',
-            'vencimento' => '3',
-            'tipo_contrato' => 'anual',
+        Inquilino::create([
+            'nome'      => 'Daniela ',
+            'dataNascimento' => '1998-02-27',
+            'nif' => '234323456543',
+            'cc' => '234532456',
+            'email'     => 'daniela@gmail.com',
+            'telefone' => '34532345',
+            'morada' => 'Rua da daniela',
+            'iban' => '2343434',
+            'tipoParticularEmpresa' => '3',
+            'profissao' => 'Engenheira',
+            'vencimento' => '2',
+            'tipoContrato' => 'anual',
             'notas' => 'nada a acrescentar',
             'cae' => '1',
-            'capital_social' => '4',
-            'setor_actividade' => 'Engenharia',
-            'certidao_permanente' => 'certidao',
-            'num_funcionarios' => '4'
+            'capitalSocial' => '3',
+            'setorActividade' => 'Engenharia',
+            'certidaoPermanente' => 'certidao',
+            'numFuncionarios' => '2'
 
         ]);
 
