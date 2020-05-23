@@ -16,6 +16,7 @@ use App\Http\Controllers\Session;
 
 class InquilinoController extends Controller
 {
+    //use Authorizable;
     /**
      * Display a listing of the resource.
      *
@@ -50,24 +51,24 @@ class InquilinoController extends Controller
         $request->validate([
 
             'nome' => 'required',
-            'data_nascimento' => 'required',
+            'dataNascimento' => 'required',
             'idade' => 'required',
-            'NIF' => 'required',
-            'CC' => 'required',
+            'nif' => 'required',
+            'cc' => 'required',
             'email' => 'required',
             'telefone' => 'required',
             'morada' => 'required',
-            'IBAN' => 'required',
-            'tipo_particular_empresa' => 'required',
+            'iban' => 'required',
+            'tipoParticular_empresa' => 'required',
             'profissao' => 'required',
             'vencimento' => 'required',
-            'tipo_contrato' => 'required',
+            'tipoContrato' => 'required',
             'notas' => 'required',
             'cae' => 'required',
-            'capital_social' => 'required',
-            'setor_actividade' => 'required',
-            'certidao_permanente' => 'required',
-            'num_funcionarios' => 'required',
+            'capitalSocial' => 'required',
+            'setorActividade' => 'required',
+            'certidaoPermanente' => 'required',
+            'numFuncionarios' => 'required',
 
         ]);
 
@@ -85,7 +86,7 @@ class InquilinoController extends Controller
     public function show($id)
     {
         $inquilino = Inquilino::findOrfail($id);
-        return view('inquilinos.show', compact('inquilino'));
+        return view('inquilinos.show');
     }
 
     /**
@@ -97,7 +98,7 @@ class InquilinoController extends Controller
     public function edit($id)
     {
         $inquilino = Inquilino::findOrfail($id);
-        return view('inquilinos.edit', compact('inquilino'));
+        return view('inquilinos.edit');
     }
 
     /**
@@ -113,24 +114,24 @@ class InquilinoController extends Controller
         $this->validate($request,[
 
             'nome' => 'required',
-            'data_nascimento' => 'required',
+            'dataNascimento' => 'required',
             'idade' => 'required',
-            'NIF' => 'required',
-            'CC' => 'required',
+            'nif' => 'required',
+            'cc' => 'required',
             'email' => 'required',
             'telefone' => 'required',
             'morada' => 'required',
-            'IBAN' => 'required',
-            'tipo_particular_empresa' => 'required',
+            'iban' => 'required',
+            'tipoParticular_empresa' => 'required',
             'profissao' => 'required',
             'vencimento' => 'required',
-            'tipo_contrato' => 'required',
+            'tipoContrato' => 'required',
             'notas' => 'required',
             'cae' => 'required',
-            'capital_social' => 'required',
-            'setor_actividade' => 'required',
-            'certidao_permanente' => 'required',
-            'num_funcionarios' => 'required',
+            'capitalSocial' => 'required',
+            'setorActividade' => 'required',
+            'certidaoPermanente' => 'required',
+            'numFuncionarios' => 'required',
 
         ]);
 
@@ -159,4 +160,33 @@ class InquilinoController extends Controller
         return redirect()->route('inquilinos.index')
                         ->with('success','Inquilino deleted successfully');
     }
+
+    public function validateTenant(Request $request, Inquilino $inqulino = null): array
+    {
+
+        $validate_array = [
+            'nome' => ['required', 'string', 'max:255'],
+            'dataNascimento' => 'required|date',
+            'nif' => 'required|string',
+            'cc' => 'required|string',
+            'email' => ['required', 'string', 'email', 'max:255', $inquilino === null ? 'unique:inquilino' : Rule::unique('inquilino')->ignore($inquilino)],
+            'telefone' => 'required|char',
+            'morada' => 'required|string',
+            'iban' => 'required|char',
+            'tipoParticularEmpresa' => 'required|integer|min:0',
+            'profissao' => 'required|string',
+            'vencimento' => 'required|float',
+            'tipoContrato' => 'required|string',
+            'notas' => 'required|string',
+            'cae' => 'required|integer',
+            'capitalSocial' => 'required|integer',
+            'setorActividade' => 'required|string',
+            'certidaoPermanente' => 'required|string',
+            'numFuncionarios' => 'required|integer'
+        ];
+        return $request->validate($validate_array);
+    }
+
+
+
 }

@@ -9,12 +9,13 @@ use App\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use App\DataTables\UserDataTable;
+use App\Inquilino;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
-    use Authorizable;
+     use Authorizable;
     /**
      * Display a listing of the resource.
      *
