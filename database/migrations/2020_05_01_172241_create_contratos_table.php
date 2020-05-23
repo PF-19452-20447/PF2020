@@ -15,19 +15,19 @@ class CreateContratosTable extends Migration
     {
         Schema::create('contratos', function (Blueprint $table) {
             $table->id();
-            $table->decimal('valor_renda', 10, 3);
-            $table->string('tipo_contrato');
-            $table->dateTime('inicio_contrato');
-            $table->dateTime('fim_contrato');
+            $table->decimal('valorRenda', 10, 3);
+            $table->string('tipoContrato');
+            $table->dateTime('inicioContrato');
+            $table->dateTime('fimContrato');
             $table->boolean('renovavel');
-            $table->string('isencao_beneficio');
-            $table->string('retencao_fonte');
-            $table->dateTime('data_limite_pagamento');
+            $table->string('isencaoBeneficio');
+            $table->string('retencaoFonte');
+            $table->dateTime('dataLimitePagamento');
             $table->integer('estado');
             $table->string('encargos');
             $table->decimal('caucao', 10, 3);
-            $table->integer('metodo_pagamento');
-            $table->string('rendas_avanco');
+            $table->integer('metodoPagamento');
+            $table->string('rendasAvanco');
             $table->rememberToken();
             $table->timestamps();
         });

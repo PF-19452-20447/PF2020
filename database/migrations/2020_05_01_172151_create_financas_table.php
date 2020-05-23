@@ -15,17 +15,17 @@ class CreateFinancasTable extends Migration
     {
         Schema::create('financas', function (Blueprint $table) {
             $table->id();
-            $table->decimal('valor_avaliacao', 10, 3);
-            $table->dateTime('data_avaliacao');
+            $table->decimal('valorAvaliacao', 10, 3);
+            $table->dateTime('dataAvaliacao');
             $table->string('encargos');
-            $table->decimal('IMI', 10, 3);
+            $table->decimal('imi', 10, 3);
             $table->string('condominio');
-            $table->dateTime('data_aquisicao');
-            $table->decimal('preco_compra', 10, 3);
-            $table->decimal('custos_aquisicao', 10, 3);
+            $table->dateTime('dataAquisicao');
+            $table->decimal('precoCompra', 10, 3);
+            $table->decimal('custosAquisicao', 10, 3);
             $table->string('certificados');
             $table->string('seguros');
-            $table->string('documentos_anexar');
+            $table->string('documentosAnexar');
             $table->text('notas');
             $table->rememberToken();
             $table->timestamps();
