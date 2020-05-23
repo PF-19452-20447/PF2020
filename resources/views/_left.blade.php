@@ -60,7 +60,7 @@
                     <h4 class="kt-menu__section-text">{{ __('General') }}</h4>
                     <i class="kt-menu__section-icon flaticon-more-v2"></i>
                 </li>
-                
+
                 {{-- Botão Utilizador / User button --}}
                 <li class="kt-menu__item {{ request()->routeIs('users.*') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
                     <a href="{{ route('users.index') }}" class="kt-menu__link">
@@ -89,7 +89,7 @@
                                 </g>
                             </svg>
                         </span>
-                        <span class="kt-menu__link-text">{{ __('Proprietários') }}</span>
+                        <span class="kt-menu__link-text">{{ __('Landlords') }}</span>
                     </a>
                 </li>
 

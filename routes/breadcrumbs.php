@@ -41,14 +41,14 @@ Breadcrumbs::for('roles.edit', function ($trail, $model) {
     $trail->push(__('Update'), route('roles.edit', $model));
 });
 
-// Home > Proprietários
+// Home > Proprietários (Landlords)
 Breadcrumbs::for('proprietarios.index', function ($trail) {
     $trail->parent('home');
-    $trail->push('Proprietários', route('proprietarios.index'));
+    $trail->push('Landlords', route('proprietarios.index'));
 });
 Breadcrumbs::for('proprietarios.create', function ($trail) {
     $trail->parent('proprietarios.index');
-    $trail->push('Criar', route('proprietarios.create'));
+    $trail->push(__('Create Landlord'), route('proprietarios.create'));
 });
 Breadcrumbs::for('proprietarios.show', function ($trail, $model) {
     $trail->parent('proprietarios.index');
@@ -56,7 +56,7 @@ Breadcrumbs::for('proprietarios.show', function ($trail, $model) {
 });
 Breadcrumbs::for('proprietarios.edit', function ($trail, $model) {
     $trail->parent('proprietarios.show', $model);
-    $trail->push('Actualizar', route('proprietarios.edit', $model));
+    $trail->push(__('Update Landlord'), route('proprietarios.edit', $model));
 });
 
 // Home > Settings

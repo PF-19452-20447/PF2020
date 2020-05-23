@@ -17,7 +17,7 @@
 			<span class="kt-portlet__head-icon">
 				<i class="kt-font-brand flaticon2-user"></i>
 			</span>
-                <h3 class="kt-portlet__head-title">Proprietário</h3>
+                <h3 class="kt-portlet__head-title">{{__('Landlords')}}</h3>
             </div>
             <div class="kt-portlet__head-toolbar">
                 <div class="kt-portlet__head-wrapper">
@@ -27,7 +27,7 @@
                         </div>
                             <a href="{{ route('proprietarios.create') }}" class="btn btn-brand btn-elevate btn-icon-sm">
                                 <i class="la la-plus"></i>
-                                Criar Proprietário
+                                {{__("Create Lanlord")}}
                             </a>
                     </div>
                 </div>
