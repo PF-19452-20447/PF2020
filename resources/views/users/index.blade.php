@@ -102,8 +102,5 @@ view()->share('hideSubHeader', true);
                 }
             });
         }
-
-
     </script>
 @endpush
-

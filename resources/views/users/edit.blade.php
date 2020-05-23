@@ -3,10 +3,8 @@
  *
  * @var $user \App\User
  */
-
 view()->share('pageTitle', $user->name);
 view()->share('hideSubHeader', true);
-
 ?>
 @extends('layouts.app')
 @section('breadcrumbs')
