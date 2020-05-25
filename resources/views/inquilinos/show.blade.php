@@ -1,9 +1,9 @@
 <?php
 /**
  *
- * @var $setting \App\Inquilino
+ * @var $inquilino \App\Inquilino
  */
-view()->share('pageTitle', $inquilino->nome);
+view()->share('pageTitle', $inquilino ->nome);
 view()->share('hideSubHeader', true);
 ?>
 @extends('layouts.app')
@@ -15,7 +15,7 @@ view()->share('hideSubHeader', true);
         <div class="kt-portlet__head">
             <div class="kt-portlet__head-label">
                 <h3 class="kt-portlet__head-title">
-                    {{ $inquilino->nome }}
+                    {{ $inquilino ->nome }}
                 </h3>
             </div>
             <div class="kt-portlet__head-toolbar">
@@ -29,7 +29,7 @@ view()->share('hideSubHeader', true);
                             <i class="la la-trash"></i>
                             {{ __('Delete') }}
                         </button>
-                        {!! Form::open(['route' => ['inquilinos.destroy', $inquilino], 'method' => 'delete', 'class'=>"d-none", 'id' => 'delete-form']) !!}
+                        {!! Form::open(['route' => ['inquilinos.destroy', $inquilino ], 'method' => 'delete', 'class'=>"d-none", 'id' => 'delete-form']) !!}
 
                         {!! Form::close() !!}
                     </div>
@@ -54,87 +54,87 @@ view()->share('hideSubHeader', true);
                         //Column::make('updated_at'),-->
                             <tr>
                                 <th scope="row">{{ __('ID') }}</th>
-                                <td>{{ $inquilino->id }}</td>
+                                <td>{{ $inquilino ->id }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Name') }}</th>
-                                <td>{{ $inquilino->nome }}</td>
+                                <td>{{ $inquilino ->nome }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Date of birth') }}</th>
-                                <td>{{ $inquilino->dataNascimento }}</td>
+                                <td>{{ $inquilino ->dataNascimento }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('NIF') }}</th>
-                                <td>{{ $inquilino->nif }}</td>
+                                <td>{{ $inquilino ->nif }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('CC') }}</th>
-                                <td>{{ $inquilino->cc }}</td>
+                                <td>{{ $inquilino ->cc }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Email') }}</th>
-                                <td>{{ $inquilino->email }}</td>
+                                <td>{{ $inquilino ->email }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Telephone') }}</th>
-                                <td>{{ $inquilino->telefone }}</td>
+                                <td>{{ $inquilino ->telefone }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Address') }}</th>
-                                <td>{{ $inquilino->morada }}</td>
+                                <td>{{ $inquilino ->morada }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('IBAN') }}</th>
-                                <td>{{ $inquilino->iban }}</td>
+                                <td>{{ $inquilino ->iban }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Particular type of company') }}</th>
-                                <td>{{ $inquilino->tipoParticularEmpresa }}</td>
+                                <td>{{ $inquilino ->tipoParticularEmpresa }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Career') }}</th>
-                                <td>{{ $inquilino->profissao }}</td>
+                                <td>{{ $inquilino ->profissao }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Pay') }}</th>
-                                <td>{{ $inquilino->vencimento }}</td>
+                                <td>{{ $inquilino ->vencimento }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Type of contract') }}</th>
-                                <td>{{ $inquilino->tipoContrato }}</td>
+                                <td>{{ $inquilino ->tipoContrato }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Grades') }}</th>
-                                <td>{{ $inquilino->notas }}</td>
+                                <td>{{ $inquilino ->notas }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('CAE') }}</th>
-                                <td>{{ $inquilino->cae }}</td>
+                                <td>{{ $inquilino ->cae }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Share capital') }}</th>
-                                <td>{{ $inquilino->capitalSocial }}</td>
+                                <td>{{ $inquilino ->capitalSocial }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Activity sector') }}</th>
-                                <td>{{ $inquilino->setorActividade }}</td>
+                                <td>{{ $inquilino ->setorActividade }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Permanent certificate') }}</th>
-                                <td>{{ $inquilino->certidaoPermanente }}</td>
+                                <td>{{ $inquilino ->certidaoPermanente }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Number of employees') }}</th>
-                                <td>{{ $inquilino->numFuncionarios }}</td>
+                                <td>{{ $inquilino ->numFuncionarios }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Created at') }}</th>
-                                <td>{{$inquilino->created_at}}</td>
+                                <td>{{$inquilino ->created_at}}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Updated at') }}</th>
-                                <td>{{$inquilino->updated_at}}</td>
+                                <td>{{$inquilino ->updated_at}}</td>
                             </tr>
                         </tbody>
                     </table>
