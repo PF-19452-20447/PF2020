@@ -3,14 +3,17 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\LoadDefaults;
+use App\Cache;
 
 class Inquilino extends Model
 {
-    protected $fillable = [
+    use LoadDefaults;
 
+    protected $fillable = [
+        'id',
         'nome',
         'dataNascimento',
-        'idade',
         'nif',
         'cc' ,
         'email' ,
@@ -29,5 +32,6 @@ class Inquilino extends Model
         'numFuncionarios'
 
     ];
+
 
 }
