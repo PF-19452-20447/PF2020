@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\DataTables\InquilinoDataTable;
 use App\Inquilino;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Traits\Authorizable;
 use App\Permission;
 use App\Role;
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\InquilinosDataTable;
 use App\Http\Controllers\Session;
+use App\Traits;
+
 
 class InquilinoController extends Controller
 {
@@ -37,6 +40,8 @@ class InquilinoController extends Controller
      */
     public function create()
     {
+       $inquilino = new Inquilino();
+       $inquilino->loadDefaultValues();
         return view('inquilinos.create');
     }
 
@@ -48,7 +53,16 @@ class InquilinoController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedAttributes = $this->validateTenant($request);
+
+        if(($model = Inquilino::create($validatedAttributes)) ) {
+            //flash('Role Added');
+            return redirect(route('inquilinos.show', $model));
+        }else{
+            return redirect()->back();
+        }
+
+     /*   $request->validate([
 
             'nome' => 'required',
             'dataNascimento' => 'required',
@@ -70,11 +84,11 @@ class InquilinoController extends Controller
             'certidaoPermanente' => 'required',
             'numFuncionarios' => 'required',
 
-        ]);
+        ]);*/
 
-        Inquilino::create($request->all());
+     /*   Inquilino::create($request->all());
         return redirect()->route('inquilinos.index')
-             ->with('success','Inquilino created successfully.');
+             ->with('success','Inquilino created successfully.');*/
     }
 
     /**
@@ -83,10 +97,10 @@ class InquilinoController extends Controller
      * @param  \App\Inquilino  $inquilino
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Inquilino $inquilino)
     {
-        $inquilino = Inquilino::findOrfail($id);
-        return view('inquilinos.show');
+        //$inquilino = Inquilino::findOrfail($id);
+        return view('inquilinos.show', compact('inquilino'));
     }
 
     /**
@@ -95,10 +109,10 @@ class InquilinoController extends Controller
      * @param  \App\Inquilino  $inquilino
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Inquilino $inquilino)
     {
-        $inquilino = Inquilino::findOrfail($id);
-        return view('inquilinos.edit');
+        //$inquilino = Inquilino::findOrfail($id);
+        return view('inquilinos.edit', compact('inquilino'));
     }
 
     /**
@@ -108,10 +122,18 @@ class InquilinoController extends Controller
      * @param  \App\Inquilino  $inquilino
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Inquilino $inquilino)
     {
-        $inquilino = Inquilino::findOrfail($id);
-        $this->validate($request,[
+        $validatedAttributes = $this->validateTenant($request, $inquilino);
+        $inquilino->fill($validatedAttributes);
+        if($inquilino->save()) {
+            //flash('Role Added');
+            return redirect(route('inquilinos.show', $inquilino));
+        }else{
+            return redirect()->back();
+        }
+      //  $inquilino = Inquilino::findOrfail($id);
+      /*  $this->validate($request,[
 
             'nome' => 'required',
             'dataNascimento' => 'required',
@@ -133,17 +155,15 @@ class InquilinoController extends Controller
             'certidaoPermanente' => 'required',
             'numFuncionarios' => 'required',
 
-        ]);
+        ]);*/
 
-        $input = $request->all();
+       /* $input = $request->all();
         $inquilino->fill($input)->save();
-
-
 
         $request->session()->flash('inquilinos', $input);
 
         return redirect()->route('inquilinos.index')
-                ->with('success','Inquilino updated successfully.');
+                ->with('success','Inquilino updated successfully.');*/
 
     }
 
@@ -153,29 +173,29 @@ class InquilinoController extends Controller
      * @param  \App\Inquilino  $inquilino
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Inquilino $inquilino)
     {
-        $inquilino = Inquilino::findOrfail($id);
+       // $inquilino = Inquilino::findOrfail($id);
         $inquilino->delete();
         return redirect()->route('inquilinos.index')
                         ->with('success','Inquilino deleted successfully');
     }
 
-    public function validateTenant(Request $request, Inquilino $inqulino = null): array
+    public function validateTenant(Request $request, Inquilino $model = null): array
     {
 
         $validate_array = [
             'nome' => ['required', 'string', 'max:255'],
-            'dataNascimento' => 'required|date',
+            'dataNascimento' => 'required|string',
             'nif' => 'required|string',
             'cc' => 'required|string',
-            'email' => ['required', 'string', 'email', 'max:255', $inquilino === null ? 'unique:inquilino' : Rule::unique('inquilino')->ignore($inquilino)],
-            'telefone' => 'required|char',
+            'email' => 'required|string',
+            'telefone' => 'required|string',
             'morada' => 'required|string',
-            'iban' => 'required|char',
+            'iban' => 'required|string',
             'tipoParticularEmpresa' => 'required|integer|min:0',
             'profissao' => 'required|string',
-            'vencimento' => 'required|float',
+            'vencimento' => 'required|integer',
             'tipoContrato' => 'required|string',
             'notas' => 'required|string',
             'cae' => 'required|integer',
@@ -184,6 +204,7 @@ class InquilinoController extends Controller
             'certidaoPermanente' => 'required|string',
             'numFuncionarios' => 'required|integer'
         ];
+
         return $request->validate($validate_array);
     }
 
