@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
+use App\Permission;
+use App\Role;
 
 class HomeController extends Controller
 {

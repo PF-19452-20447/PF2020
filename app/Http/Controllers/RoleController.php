@@ -95,7 +95,6 @@ class RoleController extends Controller
             $role->syncPermissions(Permission::all());
             return redirect()->route('roles.index');
         }
-
         $permissions = $request->get('permissions', []);
         $role->syncPermissions($permissions);
         //flash( $role->name . ' permissions has been updated.');*/
