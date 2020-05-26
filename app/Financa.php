@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Financas extends Model
+class Financa extends Model
 {
     public function imovel()
     {
