@@ -15,10 +15,17 @@ use Illuminate\Validation\Rule;
 use App\Http\Controllers\InquilinosDataTable;
 use App\Http\Controllers\Session;
 use App\Traits;
+use App\Http\Controllers\Gate;
+use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Foundation\Auth\VerifiesEmails;
+use App\Http\Controllers\Auth\VerificationController;
+use Illuminate\Support\Facades\Auth;
 
 
 class InquilinoController extends Controller
 {
+
     //use Authorizable;
     /**
      * Display a listing of the resource.
@@ -27,6 +34,7 @@ class InquilinoController extends Controller
      */
     public function index(InquilinoDataTable $dataTable)
     {
+
         return $dataTable->render('inquilinos.index');
         /*$inquilinos = Inquilino::latest()->paginate(5);
         return view('inquilinos.index',compact('inquilinos'))
@@ -38,11 +46,21 @@ class InquilinoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Inquilino $inquilino)
     {
-       $inquilino = new Inquilino();
-       $inquilino->loadDefaultValues();
-        return view('inquilinos.create');
+        // get current logged in user
+    $user = Auth::user();
+
+    if ($user->can('add_tenant', Inquilino::class)) {
+      echo 'Current logged in user is allowed to create new tenants.';
+    } else {
+        $this->authorize('add_tenant', $inquilino);
+      echo 'Not Authorized';
+    }
+
+        $inquilino = new Inquilino();
+        $inquilino->loadDefaultValues();
+         return view('inquilinos.create');
     }
 
     /**
@@ -51,7 +69,7 @@ class InquilinoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Inquilino $inquilino)
     {
         $validatedAttributes = $this->validateTenant($request);
 
@@ -99,6 +117,24 @@ class InquilinoController extends Controller
      */
     public function show(Inquilino $inquilino)
     {
+        // get current logged in user
+    $user = Auth::user();
+
+    // load post
+    $inquilino = Inquilino::find(1);
+
+    if ($user->can('view_tenant', Inquilino::class)) {
+
+      echo "Current logged in user is allowed to update the Tenant: {$inquilino->id}";
+    } else {
+        $this->authorize('view_tenant', $inquilino);
+        echo 'Not Authorized.';
+    }
+
+      /*  if(auth()->user()->can('Tenant')){
+            $this->authorize('show', $inquilino);
+        }*/
+
         //$inquilino = Inquilino::findOrfail($id);
         return view('inquilinos.show', compact('inquilino'));
     }
@@ -111,6 +147,10 @@ class InquilinoController extends Controller
      */
     public function edit(Inquilino $inquilino)
     {
+       if(auth()->user()->can('edit_tenant')){
+            $this->authorize('edit_tenant', $inquilino);
+        }
+
         //$inquilino = Inquilino::findOrfail($id);
         return view('inquilinos.edit', compact('inquilino'));
     }
@@ -124,9 +164,24 @@ class InquilinoController extends Controller
      */
     public function update(Request $request, Inquilino $inquilino)
     {
+
+// get current logged in user
+$user = Auth::user();
+
+// load post
+$inquilino = Inquilino::find(1);
+
+if ($user->can('edit_tenant', $inquilino)) {
+  echo "Current logged in user is allowed to update the tenant: {$inquilino->id}";
+} else {
+    $this->authorize('edit_tenant', $inquilino);
+  echo 'Not Authorized.';
+}
+
         $validatedAttributes = $this->validateTenant($request, $inquilino);
         $inquilino->fill($validatedAttributes);
         if($inquilino->save()) {
+            $this->authorize('create', $inquilino);
             //flash('Role Added');
             return redirect(route('inquilinos.show', $inquilino));
         }else{
@@ -175,6 +230,24 @@ class InquilinoController extends Controller
      */
     public function destroy(Inquilino $inquilino)
     {
+       /* if(auth()->user()->can('Tenant')){
+            $this->authorize('destroy', $inquilino);
+        }*/
+
+         // get current logged in user
+    $user = Auth::user();
+
+    // load post
+    $inquilino = Inquilino::find(1);
+
+    if ($user->can('delete_tenant', $inquilino)) {
+
+      echo "Current logged in user is allowed to delete the Post: {$inquilino->id}";
+    } else {
+        $this->authorize('delete_tenant', $inquilino);
+      echo 'Not Authorized.';
+    }
+
        // $inquilino = Inquilino::findOrfail($id);
         $inquilino->delete();
         return redirect()->route('inquilinos.index')
@@ -208,6 +281,17 @@ class InquilinoController extends Controller
         return $request->validate($validate_array);
     }
 
+    public function gate()
+    {
+      $inquilino = Inquilino::find(1);
 
+      if (Gate::allows('add_tenant', $inquilino)) {
+        echo 'Allowed';
+      } else {
+        echo 'Not Allowed';
+      }
+
+      exit;
+    }
 
 }
