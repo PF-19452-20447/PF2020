@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Proprietario;
 use Illuminate\Http\Request;
 use App\DataTables\ProprietarioDataTable;
+use App\Traits;
+use Illuminate\Support\Facades\DB;
 
 class ProprietarioController extends Controller
 {
@@ -28,6 +30,8 @@ class ProprietarioController extends Controller
      */
     public function create()
     {
+        $proprietario = new Proprietario();
+        $proprietario->loadDefaultValues();
         return view('proprietarios.create');
     }
 
@@ -39,28 +43,14 @@ class ProprietarioController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nome' => 'required',
-            'data_nascimento' => 'required',
-            'idade' => 'required',
-            'NIF' => 'required',
-            'CC' => 'required',
-            'email' => 'required',
-            'telefone' => 'required',
-            'morada' => 'required',
-            'IBAN' => 'required',
-            'tipo_particular_empresa' => 'required',
-            'cae' => 'required',
-            'capital_social' => 'required',
-            'setor_actividade' => 'required',
-            'certidao_permanente' => 'required',
-            'num_funcionarios' => 'required'
-        ]);
+        $validatedAttributes = $this->validateProprietario($request);
 
-        Proprietario::create($request->all());
-
-        return redirect()->route('proprietarios.index')
-                        ->with('success','Proprietário criado com sucesso');
+        if(($model = Proprietario::create($validatedAttributes)) ) {
+            //flash('Role Added');
+            return redirect(route('propietarios.show', $model));
+        }else{
+            return redirect()->back();
+        }
     }
 
     /**
@@ -69,9 +59,8 @@ class ProprietarioController extends Controller
      * @param  \App\Proprietario  $proprietarios
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Proprietario $proprietario)
     {
-        $proprietario = Proprietario::findOrFail($id);
         return view('proprietarios.show',compact('proprietario'));
     }
 
@@ -81,9 +70,8 @@ class ProprietarioController extends Controller
      * @param  \App\Proprietario $proprietario
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Proprietario $proprietario)
     {
-        $proprietario = Proprietario::findOrfail($id);
         return view('proprietarios.edit',compact('proprietario'));
     }
 
@@ -94,37 +82,16 @@ class ProprietarioController extends Controller
      * @param  \App\Proprietario  $proprietario
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Proprietario $proprietario)
     {
-        $proprietario = Proprietario::findOrfail($id);
-        $this->validate($request,[
-
-            'nome' => 'required',
-            'data_nascimento' => 'required',
-            'idade' => 'required',
-            'NIF' => 'required',
-            'CC' => 'required',
-            'email' => 'required',
-            'telefone' => 'required',
-            'morada' => 'required',
-            'IBAN' => 'required',
-            'tipo_particular_empresa' => 'required',
-            'cae' => 'required',
-            'capital_social' => 'required',
-            'setor_actividade' => 'required',
-            'certidao_permanente' => 'required',
-            'num_funcionarios' => 'required'
-
-        ]);
-
-        $input = $request->all();
-
-        $proprietario->fill($input)->save();
-
-        $request->session()->flash('proprietarios', $input);
-
-        return redirect()->route('proprietarios.index')
-            ->with('success','Proprietário modificado com sucesso.');
+        $validatedAttributes = $this->validateProprietario($request, $proprietario);
+        $proprietario->fill($validatedAttributes);
+        if($proprietario->save()) {
+            //flash('Role Added');
+            return redirect(route('proprietarios.show', $proprietario));
+        }else{
+            return redirect()->back();
+        }
     }
 
     /**
@@ -133,12 +100,35 @@ class ProprietarioController extends Controller
      * @param  \App\Proprietarios  $proprietarios
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Proprietario $proprietario)
     {
-        $proprietario = Proprietario::findOrfail($id);
         $proprietario->delete();
 
         return redirect()->route('proprietarios.index')
                         ->with('success','Proprietário eliminado com sucesso.');
+    }
+
+    public function validateProprietario(Request $request, Proprietario $model = null): array
+    {
+
+        $validate_array = [
+            'nome' => ['required', 'string', 'max:255'],
+            'data_nascimento' => 'required|string',
+            'idade' => 'required|integer',
+            'NIF' => 'required|string',
+            'CC' => 'required|string',
+            'email' => 'required|string',
+            'telefone' => 'required|string',
+            'morada' => 'required|string',
+            'IBAN' => 'required|string',
+            'tipo_particular_empresa' => 'required|integer|min:0',
+            'cae' => 'required|integer',
+            'capital_social' => 'required|integer',
+            'setor_actividade' => 'required|string',
+            'certidao_permanente' => 'required|string',
+            'num_funcionarios' => 'required|integer'
+        ];
+
+        return $request->validate($validate_array);
     }
 }
