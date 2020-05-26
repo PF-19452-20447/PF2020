@@ -64,5 +64,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     //Route::get('/settings', 'SettingController@index')->name('settings.index');
     Route::resource('settings', 'SettingController');
+
+//permissions and roles
+Route::get('service/inquilino/view', 'InquilinoController@view');
+Route::get('service/inquilino/create', 'InquilinoController@create');
+Route::get('service/inquilino/update', 'InquilinoController@update');
+Route::get('service/inquilino/destroy', 'InquilinoController@destroy');
 });
 
