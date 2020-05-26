@@ -19,17 +19,20 @@ class InquilinoDataTable extends DataTable
      */
     public function dataTable($query)
     {
-        return datatables()
+        $datatable =datatables()
             ->eloquent($query)
-            ->editColumn('email', function ($model) {
-                return  "<a href='mailto:$model->email'>$model->email</a>" ;
-            })
-            ->addColumn('action', function ($inquilino) {
-            return '<a class="btn btn-sm btn-clean btn-icon btn-icon-md" href="'. route('inquilinos.show', $inquilino) .'" title="'. __('View') .'"><i class="la la-eye"></i></a>
-                    <a href="'. route('inquilinos.edit', $inquilino) .'" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="'. __('Edit') .'"><i class="la la-edit"></i></a>
-                    <button class="btn btn-sm btn-clean btn-icon btn-icon-md delete-confirmation" data-destroy-form-id="destroy-form-'. $inquilino->id .'" data-delete-url="'. route('inquilinos.destroy', $inquilino) .'" onclick="destroyConfirmation(this)" title="'. __('Delete') .'"><i class="la la-trash"></i></button>';
-            })
-            ->rawColumns(['email', 'action']);
+           ->editColumn('created_at', '{!! date(\'d-m-Y H:i:s\', strtotime($created_at)) !!}');
+            //->editColumn('created_at', '{{ Carbon\Carbon::parse(created_at)->toDateTimeString() }}');
+            if(auth()->user()->can('edit_tenant', 'delete_tenant')){
+                $datatable->addColumn('action', function ($inquilino) {
+                    return '<a class="btn btn-sm btn-clean btn-icon btn-icon-md" href="'. route('inquilinos.show', $inquilino) .'" title="'. __('View') .'"><i class="la la-eye"></i></a>
+                            <a href="'. route('inquilinos.edit', $inquilino) .'" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="'. __('Edit') .'"><i class="la la-edit"></i></a>
+                            <button class="btn btn-sm btn-clean btn-icon btn-icon-md delete-confirmation" data-destroy-form-id="destroy-form-'. $inquilino->id .'" data-delete-url="'. route('inquilinos.destroy', $inquilino) .'" onclick="destroyConfirmation(this)" title="'. __('Delete') .'"><i class="la la-trash"></i></button>';
+
+                });
+
+            }
+            return $datatable;
     }
 
     /**
@@ -68,7 +71,7 @@ class InquilinoDataTable extends DataTable
      */
     protected function getColumns()
     {
-        return [
+        $columns = [
             Column::make('id'),
             Column::make('nome'),
             /*Column::make('data_nascimento'),
@@ -92,12 +95,20 @@ class InquilinoDataTable extends DataTable
             Column::make('created_at'),
             Column::make('updated_at'),
             Column::make('user_id'),*/
-            Column::computed('action')
+           /* Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
                 ->width(120)
-                ->addClass('text-center'),
+                ->addClass('text-center'),*/
         ];
+        if(auth()->user()->can('edit_tenant', 'delete_tenant')){
+            $columns[]=Column::computed('action')
+                ->exportable(false)
+                ->printable(false)
+                ->width(120)
+                ->addClass('text-center');
+        }
+        return $columns;
     }
 
     /**
