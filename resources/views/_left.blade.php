@@ -107,7 +107,7 @@
                                     <li class="kt-menu__item {{ request()->routeIs('inquilinos.create') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
                                         <a href="{{ route('inquilinos.create') }}" class="kt-menu__link ">
                                             <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
-                                            <span class="kt-menu__link-text">{{ __('Create role') }}</span>
+                                            <span class="kt-menu__link-text">{{ __('Create tenant') }}</span>
                                         </a>
                                     </li>
                                 </ul>

@@ -35,6 +35,7 @@ class InquilinoController extends Controller
     public function index(InquilinoDataTable $dataTable)
     {
 
+        $this->authorize('index');
         return $dataTable->render('inquilinos.index');
         /*$inquilinos = Inquilino::latest()->paginate(5);
         return view('inquilinos.index',compact('inquilinos'))
@@ -54,7 +55,7 @@ class InquilinoController extends Controller
     if ($user->can('add_tenant', Inquilino::class)) {
       echo 'Current logged in user is allowed to create new tenants.';
     } else {
-        $this->authorize('add_tenant', $inquilino);
+        $this->authorize('add_tenant',Inquilino::class);
       echo 'Not Authorized';
     }
 
@@ -121,7 +122,7 @@ class InquilinoController extends Controller
     $user = Auth::user();
 
     // load post
-    $inquilino = Inquilino::find(1);
+   // $inquilino = Inquilino::find(1);
 
     if ($user->can('view_tenant', Inquilino::class)) {
 
@@ -169,7 +170,7 @@ class InquilinoController extends Controller
 $user = Auth::user();
 
 // load post
-$inquilino = Inquilino::find(1);
+//$inquilino = Inquilino::find(1);
 
 if ($user->can('edit_tenant', $inquilino)) {
   echo "Current logged in user is allowed to update the tenant: {$inquilino->id}";
@@ -238,7 +239,7 @@ if ($user->can('edit_tenant', $inquilino)) {
     $user = Auth::user();
 
     // load post
-    $inquilino = Inquilino::find(1);
+    //$inquilino = Inquilino::find(1);
 
     if ($user->can('delete_tenant', $inquilino)) {
 
@@ -283,7 +284,7 @@ if ($user->can('edit_tenant', $inquilino)) {
 
     public function gate()
     {
-      $inquilino = Inquilino::find(1);
+      //$inquilino = Inquilino::find(1);
 
       if (Gate::allows('add_tenant', $inquilino)) {
         echo 'Allowed';
