@@ -3,10 +3,8 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
-
- * Generated for Laravel 7.6.2 on 2020-05-18 13:34:53.
-
-
+ * Generated for Laravel 7.6.2 on 2020-05-27 18:51:21.
+ *
  * This file should not be included in your code, only analyzed by your IDE!
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
@@ -15869,6 +15867,45 @@ namespace Barryvdh\Debugbar {
 
 }
 
+namespace App\Facades {
+
+    /**
+     *
+     *
+     */
+    class Setting {
+
+        /**
+         * return a parameter from the config array;
+         *
+         * @param string $param
+         * @param boolean $isArray is is set to true it converts the string to an array
+         * @return \App\Helpers\element from array or array
+         * @static
+         */
+        public static function getParam($param, $isArray = false)
+        {
+                        /** @var \App\Helpers\Setting $instance */
+                        return $instance->getParam($param, $isArray);
+        }
+
+        /**
+         * return a parameter from the options array;
+         *
+         * @param string $param
+         * @param boolean $isArray is is set to true it converts the string to an array
+         * @return \App\Helpers\element from array or array
+         * @static
+         */
+        public static function getOptions($param, $isArray = false)
+        {
+                        /** @var \App\Helpers\Setting $instance */
+                        return $instance->getOptions($param, $isArray);
+        }
+
+    }
+
+}
 
 namespace DaveJamesMiller\Breadcrumbs\Facades {
 
@@ -20969,7 +21006,6 @@ namespace  {
     class View extends \Illuminate\Support\Facades\View {}
 
     class Debugbar extends \Barryvdh\Debugbar\Facade {}
-
 
     class Settings extends \App\Facades\Setting {}
 
