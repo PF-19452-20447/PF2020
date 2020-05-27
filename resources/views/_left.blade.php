@@ -60,6 +60,8 @@
                     <h4 class="kt-menu__section-text">{{ __('General') }}</h4>
                     <i class="kt-menu__section-icon flaticon-more-v2"></i>
                 </li>
+
+                {{-- Botão Utilizador / User button --}}
                 <li class="kt-menu__item {{ request()->routeIs('users.*') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
                     <a href="{{ route('users.index') }}" class="kt-menu__link">
                         <span class="kt-menu__link-icon">
@@ -74,6 +76,7 @@
                         <span class="kt-menu__link-text">{{ __('Users') }}</span>
                     </a>
                 </li>
+
                         <li class="kt-menu__item  kt-menu__item--submenu {{ request()->routeIs('inquilino.*') ? "kt-menu__item--open" : "" }}" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
                             <a href="{{ route('inquilinos.index') }}" class="kt-menu__link kt-menu__toggle">
                                 <span class="kt-menu__link-icon">
@@ -113,6 +116,25 @@
                                 </ul>
                             </div>
                         </li>
+
+
+                {{-- Botão Proprietários / Tenant button --}}
+                <li class="kt-menu__item {{ request()->routeIs('proprietarios.*') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
+                    <a href="{{ route('proprietarios.index') }}" class="kt-menu__link">
+                        <span class="kt-menu__link-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <polygon points="0 0 24 0 24 24 0 24"/>
+                                    <path d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
+                                    <path d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z" fill="#000000" fill-rule="nonzero"/>
+                                </g>
+                            </svg>
+                        </span>
+                        <span class="kt-menu__link-text">{{ __('Landlords') }}</span>
+                    </a>
+                </li>
+
+
                 <li class="kt-menu__section ">
                     <h4 class="kt-menu__section-text">{{ __('Configurations') }}</h4>
                     <i class="kt-menu__section-icon flaticon-more-v2"></i>

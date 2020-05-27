@@ -20,6 +20,9 @@ use Illuminate\Support\Facades\Auth;
     //return view('index');
 });*/
 
+//=== CRUD TESTING FACILITY ===
+Route::resource('proprietarios','ProprietarioController');
+//=============================
 Auth::routes(['verify' => true]);
 
 //Route::get('/inquilinos/{id}', 'InquilinosController@show');

@@ -1,6 +1,6 @@
 <?php
 
-use App\Proprietarios;
+use App\Proprietario;
 use Illuminate\Database\Seeder;
 
 class ProprietariosSeeder extends Seeder
@@ -27,6 +27,7 @@ class ProprietariosSeeder extends Seeder
             'setorActividade' => 'Professora',
             'certidaoPermanente' => 'certidao',
             'numFuncionarios' => '4'
+
 
         ]);
     }

@@ -27,53 +27,304 @@ Laravel has the most extensive and thorough [documentation](https://laravel.com/
 
 If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+## Run it by yourself
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
-- [云软科技](http://www.yunruan.ltd/)
+ 1. Clone this repo.
+ 2. Run composer update.
+ 3. Copy .env.example as .env and replace database information + APP_KEY (for encryption).
+ 4. Run php artisan jwt:secret to generate jwt secret.
+ 5. Run php artisan migrate.
+ 6. Run php artisan db:seed to create first user (admin@admin.pt - adminadmin)
+ 7. Run php artisan serve to locally deploy the application.
 
-## Contributing
+## Basic Documentation
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Endpoints 
+* => required.
+  
+## User Endpoints
 
-## Code of Conduct
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+GET /login
 
-## Security Vulnerabilities
+Used to login user in the app
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Request should contain the following fields on body:
 
-## License
+   - email (string) *
+   - password (string) *
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Doesnt need auth
+
+Returns: token
+
+*****************************************************************************************************************************
+
+GET /users
+
+Show list of users.
+
+Requires auth: Authorization: Bearer *token*
+
+Returns 401 or 404 if auth fails or 200 if ok.
+
+*****************************************************************************************************************************
+
+POST /register
+
+Create new user on app.
+
+Body request:
+- email (string) *
+- name (string) *
+- password (string) *
+- password_confirmation (string) *
+
+Requires auth: Authorization: Bearer *token*
+
+Returns 401 or 404 if auth fails or 200 if ok.
+
+*****************************************************************************************************************************
+
+POST users/create
+
+An authenticated user creates a user in the app.
+
+Requires auth: Authorization: Bearer *token*
+
+Returns 401 or 404 if auth fails or 200 if ok.
+
+*****************************************************************************************************************************
+
+GET /users/{user}
+
+Show details of user.
+
+Requires auth: Authorization: Bearer *token*
+
+Returns 401 or 404 if auth fails or 200 if ok.
+
+*****************************************************************************************************************************
+
+PUT /users/{user}/update
+
+Update and edit user.
+
+Requires auth: Authorization: Bearer *token*
+
+Returns 401 or 404 if auth fails or 200 if ok.
+
+*****************************************************************************************************************************
+
+DELETE /users/delete
+
+Delete user.
+
+Requires auth: Authorization: Bearer *token*
+
+Returns 401 or 404 if auth fails or 200 if ok.
+
+*****************************************************************************************************************************
+
+GET /email/verify
+
+Verify user on app.
+
+Requires auth: Authorization: Bearer *token*
+
+Returns 401 or 404 if auth fails or 200 if ok.
+
+*****************************************************************************************************************************
+
+## Tenant Endpoints
+
+GET /inquilinos
+
+Show list of tenants.
+
+Requires auth: Authorization: Bearer *token*
+
+Returns 401 or 404 if auth fails or 200 if ok.
+
+*****************************************************************************************************************************
+
+GET inquilinos/{inquilino}
+
+Show details of tenant.
+
+Requires auth: Authorization: Bearer *token*
+
+Returns 401 or 404 if auth fails or 200 if ok.
+
+*****************************************************************************************************************************
+
+PUT inquilinos/{inquilino}/edit
+
+Update tenant.
+
+Requires auth: Authorization: Bearer *token*
+
+Returns 401 or 404 if auth fails or 200 if ok.
+
+*****************************************************************************************************************************
+
+DELETE inqulinos/delete
+
+Delete tenant.
+
+Requires auth: Authorization: Bearer *token*
+
+Returns 401 or 404 if auth fails or 200 if ok.
+
+*****************************************************************************************************************************
+
+POST inquilinos/create
+
+Create tenant.
+
+Requires auth: Authorization: Bearer *token*
+
+Returns 401 or 404 if auth fails or 200 if ok.
+
+*****************************************************************************************************************************
+
+## Roles Endpoints
+
+GET /roles
+
+Show list of roles.
+
+Requires auth: Authorization: Bearer *token*
+
+Returns 401 or 404 if auth fails or 200 if ok.
+
+*****************************************************************************************************************************
+
+GET roles/{role}
+
+Show details of role.
+
+Requires auth: Authorization: Bearer *token*
+
+Returns 401 or 404 if auth fails or 200 if ok.
+
+*****************************************************************************************************************************
+
+PUT roles/{role}/edit
+
+Update role.
+
+Requires auth: Authorization: Bearer *token*
+
+Returns 401 or 404 if auth fails or 200 if ok.
+
+*****************************************************************************************************************************
+
+DELETE roles/delete
+
+Delete role.
+
+Requires auth: Authorization: Bearer *token*
+
+Returns 401 or 404 if auth fails or 200 if ok.
+
+*****************************************************************************************************************************
+
+POST roles/create
+
+Create role.
+
+Requires auth: Authorization: Bearer *token*
+
+Returns 401 or 404 if auth fails or 200 if ok.
+
+*****************************************************************************************************************************
+
+## Settings Endpoints
+
+GET /settings
+
+Show list of settings.
+
+Requires auth: Authorization: Bearer *token*
+
+Returns 401 or 404 if auth fails or 200 if ok.
+
+*****************************************************************************************************************************
+
+GET /settings/{setting}
+
+Show details of setting.
+
+Requires auth: Authorization: Bearer *token*
+
+Returns 401 or 404 if auth fails or 200 if ok.
+
+*****************************************************************************************************************************
+
+PUT /settings/{setting}/edit
+
+Update setting.
+
+Requires auth: Authorization: Bearer *token*
+
+Returns 401 or 404 if auth fails or 200 if ok.
+
+*****************************************************************************************************************************
+
+DELETE /settings/delete
+
+Delete setting.
+
+Requires auth: Authorization: Bearer *token*
+
+Returns 401 or 404 if auth fails or 200 if ok.
+
+*****************************************************************************************************************************
+
+POST settings/create
+
+Create setting.
+
+Requires auth: Authorization: Bearer *token*
+
+Returns 401 or 404 if auth fails or 200 if ok.
+
+*****************************************************************************************************************************
+
+## Changelog
+
+##### [2020-05-23]
+- Installed framework **- Daniela Serra**
+- Created base structure for routes file **- Daniela Serra**
+- Created route for login with step-by-step comment (for example and understanding of how the framework works) **- Daniela Serra**
+- Created simple route that needs auth to retrieve current user information (/users/{user}) **- Daniela Serra**
+- Created endpoint to list users **- Daniela Serra**
+- Created endpoint to edit user **- Daniela Serra**
+- Created endpoint to create new user **- Daniela Serra**
+- Created endpointo to create user in the app **- Daniela Serra**
+- Created endpoint tp delete user **- Daniela Serra**
+
+##### [2020-05-23]
+- Created endpoint to retrieve tenants  **- Daniela Serra**
+- Created endpoint to edit tenant  **- Daniela Serra**
+- Created endpoint to create new tenant  **- Daniela Serra**
+- Created endpoint to delete tenant  **- Daniela Serra**
+- Created endpoint to list tenant **- Daniela Serra**
+
+##### [2020-05-23]
+
+- Created endpoint to retrieve roles  **- Daniela Serra**
+- Created endpoint to edit role  **- Daniela Serra**
+- Created endpoint to create new role  **- Daniela Serra**
+- Created endpoint to delete role  **- Daniela Serra**
+- Created endpoint to list role **- Daniela Serra**
+
+##### [2020-05-23]
+
+- Created endpoint to retrieve settings  **- Tomás Colaço**
+- Created endpoint to edit setting  **- Tomás Colaço**
+- Created endpoint to create new setting  **- Tomás Colaço**
+- Created endpoint to delete setting  **- Tomás Colaço**
+- Created endpoint to list setting **- Tomás Colaço**
