@@ -5,9 +5,11 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\LoadDefaults;
 use App\Cache;
+use Illuminate\Auth\Access\HandlesAuthorization;
 
 class Inquilino extends Model
 {
+
     use LoadDefaults;
 
     protected $fillable = [
@@ -32,6 +34,7 @@ class Inquilino extends Model
         'numFuncionarios'
 
     ];
+
 
 
 }

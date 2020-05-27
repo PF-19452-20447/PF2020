@@ -18,7 +18,18 @@ class InquilinoPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        //return $user->id > 0;
+       /* if ($user->can('user::view:all')) {
+            return true;
+        }
+
+        return null;*/
+  /* if ($user->isSuperAdmin->can('index')) {
+        return true;
+    }*/
+        //return $user->id == $inquilino->user_id;
+       // return in_array('index', $user->permissions);
+       //return $user->id > 0;
     }
 
     /**

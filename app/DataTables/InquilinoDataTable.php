@@ -43,7 +43,12 @@ class InquilinoDataTable extends DataTable
      */
     public function query(Inquilino $model)
     {
-        return $model->newQuery();
+        $user = \Auth::user();
+        if($user->can('adminApp'))
+            return $model->newQuery();
+        else
+            return $model->newQuery()->where(['user_id' => $user->id ]);
+        //return $model->newQuery();
     }
 
     /**

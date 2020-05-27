@@ -15,17 +15,23 @@ use Illuminate\Validation\Rule;
 use App\Http\Controllers\InquilinosDataTable;
 use App\Http\Controllers\Session;
 use App\Traits;
-use App\Http\Controllers\Gate;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 use App\Http\Controllers\Auth\VerificationController;
+use App\Policies\InquilinoPolicy;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Auth\Access\Response;
+use Illuminate\Validation\Rules\In;
+use pp\Http\Controllers\HandlesAuthorization;
+use Spatie\Permission\Traits\HasRoles;
 
 class InquilinoController extends Controller
 {
-
+    use HasRoles;
+    //use HandlesAuthorization;
     //use Authorizable;
     /**
      * Display a listing of the resource.
@@ -34,8 +40,20 @@ class InquilinoController extends Controller
      */
     public function index(InquilinoDataTable $dataTable)
     {
+    // get current logged in user
+   /*$user = Auth::user();
+    $roles = Role::all();
 
-        $this->authorize('index');
+    foreach ($roles as $role) {
+        if($user->assignRole('SuperAdmin')){
+            //$user->can('index');
+            $role->givePermissionTo('index');
+        }else{
+            echo 'Not authorized';
+            $this->authorize('index',Inquilino::class);
+        }
+    }*/
+
         return $dataTable->render('inquilinos.index');
         /*$inquilinos = Inquilino::latest()->paginate(5);
         return view('inquilinos.index',compact('inquilinos'))
@@ -280,19 +298,6 @@ if ($user->can('edit_tenant', $inquilino)) {
         ];
 
         return $request->validate($validate_array);
-    }
-
-    public function gate()
-    {
-      //$inquilino = Inquilino::find(1);
-
-      if (Gate::allows('add_tenant', $inquilino)) {
-        echo 'Allowed';
-      } else {
-        echo 'Not Allowed';
-      }
-
-      exit;
     }
 
 }

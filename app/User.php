@@ -124,6 +124,8 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         return 'N/A';
     }
 
+    
+
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('avatar')

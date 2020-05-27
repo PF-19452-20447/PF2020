@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use Illuminate\Support\Facades\DB;
 
+
 trait LoadDefaults
 {
     public static function getTableName()
@@ -46,4 +47,6 @@ trait LoadDefaults
         }
         return $this;
     }
+
+
 }

@@ -66,6 +66,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('settings', 'SettingController');
 
 //permissions and roles
+
 Route::get('service/inquilino/view', 'InquilinoController@view');
 Route::get('service/inquilino/create', 'InquilinoController@create');
 Route::get('service/inquilino/update', 'InquilinoController@update');
