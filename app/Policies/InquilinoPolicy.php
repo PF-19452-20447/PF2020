@@ -18,6 +18,7 @@ class InquilinoPolicy
      */
     public function viewAny(User $user)
     {
+        return true;
         //return $user->id > 0;
        /* if ($user->can('user::view:all')) {
             return true;

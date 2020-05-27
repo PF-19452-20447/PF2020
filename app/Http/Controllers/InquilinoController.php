@@ -40,24 +40,9 @@ class InquilinoController extends Controller
      */
     public function index(InquilinoDataTable $dataTable)
     {
-    // get current logged in user
-   /*$user = Auth::user();
-    $roles = Role::all();
 
-    foreach ($roles as $role) {
-        if($user->assignRole('SuperAdmin')){
-            //$user->can('index');
-            $role->givePermissionTo('index');
-        }else{
-            echo 'Not authorized';
-            $this->authorize('index',Inquilino::class);
-        }
-    }*/
-
+       // $this->authorize('viewAny');
         return $dataTable->render('inquilinos.index');
-        /*$inquilinos = Inquilino::latest()->paginate(5);
-        return view('inquilinos.index',compact('inquilinos'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);*/
     }
 
     /**
