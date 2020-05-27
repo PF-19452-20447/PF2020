@@ -4,22 +4,22 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Inquilinos extends Model
+class Inquilino extends Model
 {
-    public function users()
+    public function user()
     {
-        return $this->belongsTo('App\Users', 'foreign_key');
+        return $this->belongsTo('App\User', 'foreign_key');
     }
 
-    public function fiadores()
+    public function fiador()
 
     {
-         return $this->hasMany('App\Fiadores');
+         return $this->hasMany('App\Fiador');
      }
 
-     public function contratos()
+     public function contrato()
      {
-         return $this->belongsToMany('App\Contratos');
+         return $this->belongsToMany('App\Contrato');
      }
 
 

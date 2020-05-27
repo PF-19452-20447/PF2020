@@ -20,6 +20,9 @@ use Illuminate\Support\Facades\Auth;
     //return view('index');
 });*/
 
+//=== CRUD TESTING FACILITY ===
+Route::resource('proprietarios','ProprietarioController');
+//=============================
 Auth::routes(['verify' => true]);
 
 Route::get('/inquilinos/{id}', 'InquilinosController@show');
@@ -47,5 +50,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/roles/{role}', 'RoleController@destroy')->name('roles.destroy');*/
     Route::resource('roles', 'RoleController');
     Route::put('/roles/{role}/update-permissions', 'RoleController@updatePermissions')->name('roles.update_permissions');
+
+    //Route::get('/settings', 'SettingController@index')->name('settings.index');
+    Route::resource('settings', 'SettingController');
 });
 
