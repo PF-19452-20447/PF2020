@@ -42,7 +42,10 @@ class InquilinoPolicy
      */
     public function view(User $user, Inquilino $inquilino)
     {
-        return TRUE;
+        if($user->can('adminApp')){
+            return true;
+        }else
+            return true; //melhorar e ver só os inquilinos do proprietário.
     }
 
     /**
@@ -53,6 +56,10 @@ class InquilinoPolicy
      */
     public function create(User $user)
     {
+        if($user->can('adminApp')){
+            return true;
+        }elseif($user->can('accessAslandlord'))
+            return true;
         return $user->id > 0;
     }
 
@@ -65,8 +72,13 @@ class InquilinoPolicy
      */
     public function update(User $user, Inquilino $inquilino)
     {
+        if($user->can('AdminApp')){
+            return true;
+        }elseif($user->can('accessAsTenant')) {
+            return $user->id == $inquilino->user_id;
+        }else
+            return false;
 
-        return $user->id == $inquilino->user_id;
     }
 
     /**

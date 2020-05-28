@@ -28,7 +28,7 @@ class ProprietarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Proprietario $proprietario)
     {
         $proprietario = new Proprietario();
         $proprietario->loadDefaultValues();

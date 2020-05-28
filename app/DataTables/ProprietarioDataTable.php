@@ -71,7 +71,14 @@ class ProprietarioDataTable extends DataTable
         return [
             Column::make('id'),
             Column::make('nome'),
+            /*Column::make('data_nascimento'),
+            Column::make('NIF'),
+            Column::make('CC'),*/
             Column::make('email'),
+            Column::make('telefone'),
+            Column::make('morada'),
+            Column::make('iban'),
+            Column::make('tipoParticularEmpresa'),
             Column::computed('action')
                   ->exportable(false)
                   ->printable(false)

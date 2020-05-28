@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\LoadDefaults;
 
 class Proprietario extends Model
 {
+    use LoadDefaults;
+
     protected $fillable = [
         'nome',
         'data_nascimento',

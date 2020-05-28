@@ -52,19 +52,15 @@ view()->share('hideSubHeader', true);
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Date of birth') }}</th>
-                                <td>{{ $proprietario->data_nascimento }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">{{ __('Age') }}</th>
-                                <td>{{ $proprietario->idade }}</td>
+                                <td>{{ $proprietario->dataNascimento }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('NIF') }}</th>
-                                <td>{{ $proprietario->NIF }}</td>
+                                <td>{{ $proprietario->nif }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('CC') }}</th>
-                                <td>{{ $proprietario->CC }}</td>
+                                <td>{{ $proprietario->cc }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Email') }}</th>
@@ -80,11 +76,11 @@ view()->share('hideSubHeader', true);
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('IBAN') }}</th>
-                                <td>{{ $proprietario->IBAN }}</td>
+                                <td>{{ $proprietario->iban }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Particular type of company') }}</th>
-                                <td>{{ $proprietario->tipo_particular_empresa }}</td>
+                                <td>{{ $proprietario->tipoParticularEmpresa }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('CAE') }}</th>
@@ -92,19 +88,19 @@ view()->share('hideSubHeader', true);
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Share capital') }}</th>
-                                <td>{{ $proprietario->capital_social }}</td>
+                                <td>{{ $proprietario->capitalSocial }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Activity sector') }}</th>
-                                <td>{{ $proprietario->setor_actividade }}</td>
+                                <td>{{ $proprietario->setorActividade }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Permanent certificate') }}</th>
-                                <td>{{ $proprietario->certidao_permanente }}</td>
+                                <td>{{ $proprietario->certidaoPermanente }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Number of employees') }}</th>
-                                <td>{{ $proprietario->num_funcionarios }}</td>
+                                <td>{{ $proprietario->numFuncionarios }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Created at') }}</th>
