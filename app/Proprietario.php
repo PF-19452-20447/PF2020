@@ -10,20 +10,20 @@ class Proprietario extends Model
     use LoadDefaults;
 
     protected $fillable = [
+        'id',
         'nome',
-        'data_nascimento',
-        'idade',
-        'NIF',
-        'CC',
+        'dataNascimento',
+        'nif',
+        'cc',
         'email',
         'telefone',
         'morada',
-        'IBAN',
-        'tipo_particular_empresa',
+        'iban',
+        'tipoParticularEmpresa',
         'cae',
-        'capital_social',
-        'setor_actividade',
-        'certidao_permanente',
-        'num_funcionarios'
+        'capitalSocial',
+        'setorActividade',
+        'certidaoPermanente',
+        'numFuncionarios'
     ];
 }

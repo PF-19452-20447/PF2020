@@ -47,7 +47,7 @@ class ProprietarioController extends Controller
 
         if(($model = Proprietario::create($validatedAttributes)) ) {
             //flash('Role Added');
-            return redirect(route('propietarios.show', $model));
+            return redirect(route('proprietarios.show', $model));
         }else{
             return redirect()->back();
         }
@@ -113,20 +113,19 @@ class ProprietarioController extends Controller
 
         $validate_array = [
             'nome' => ['required', 'string', 'max:255'],
-            'data_nascimento' => 'required|string',
-            'idade' => 'required|integer',
-            'NIF' => 'required|string',
-            'CC' => 'required|string',
+            'dataNascimento' => 'required|string',
+            'nif' => 'required|string',
+            'cc' => 'required|string',
             'email' => 'required|string',
             'telefone' => 'required|string',
             'morada' => 'required|string',
-            'IBAN' => 'required|string',
-            'tipo_particular_empresa' => 'required|integer|min:0',
+            'iban' => 'required|string',
+            'tipoParticularEmpresa' => 'required|integer|min:0',
             'cae' => 'required|integer',
-            'capital_social' => 'required|integer',
-            'setor_actividade' => 'required|string',
-            'certidao_permanente' => 'required|string',
-            'num_funcionarios' => 'required|integer'
+            'capitalSocial' => 'required|integer',
+            'setorActividade' => 'required|string',
+            'certidaoPermanente' => 'required|string',
+            'numFuncionarios' => 'required|integer'
         ];
 
         return $request->validate($validate_array);
