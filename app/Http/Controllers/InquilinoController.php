@@ -73,7 +73,7 @@ class InquilinoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Inquilino $inquilino)
+    public function store(Request $request)
     {
         $validatedAttributes = $this->validateTenant($request);
 
@@ -185,7 +185,7 @@ class InquilinoController extends Controller
         $validatedAttributes = $this->validateTenant($request, $inquilino);
         $inquilino->fill($validatedAttributes);
         if($inquilino->save()) {
-            $this->authorize('create', $inquilino);
+            //$this->authorize('create', $inquilino);
             //flash('Role Added');
             return redirect(route('inquilinos.show', $inquilino));
         }else{

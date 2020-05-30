@@ -18,7 +18,7 @@ class InquilinoPolicy
      */
     public function viewAny(User $user)
     {
-        return true;
+            return true;
         //return $user->id > 0;
        /* if ($user->can('user::view:all')) {
             return true;
@@ -40,12 +40,13 @@ class InquilinoPolicy
      * @param  \App\Inquilino  $inquilino
      * @return mixed
      */
-    public function view(User $user, Inquilino $inquilino)
+    public function view(User $user)
     {
         if($user->can('adminApp')){
             return true;
-        }else
-            return true; //melhorar e ver só os inquilinos do proprietário.
+
+        }
+        //melhorar e ver só os inquilinos do proprietário.
     }
 
     /**
@@ -54,12 +55,14 @@ class InquilinoPolicy
      * @param  \App\User  $user
      * @return mixed
      */
-    public function create(User $user)
+    public function create(User $user, Inquilino $inquilino)
     {
         if($user->can('adminApp')){
             return true;
-        }elseif($user->can('accessAslandlord'))
-            return true;
+        }elseif($user->can('accessAsLandlord')){
+             return $user->id == $inquilino->user_id;
+        }
+
         return $user->id > 0;
     }
 
@@ -76,7 +79,7 @@ class InquilinoPolicy
             return true;
         }elseif($user->can('accessAsTenant')) {
             return $user->id == $inquilino->user_id;
-        }else
+        }
             return false;
 
     }
@@ -90,7 +93,7 @@ class InquilinoPolicy
      */
     public function delete(User $user, Inquilino $inquilino)
     {
-        return $user->id == $inquilino->user_id;
+        return $user->id == $inquilino->user_id;;
     }
 
     /**
