@@ -46,8 +46,8 @@ class InquilinoDataTable extends DataTable
         $user = \Auth::user();
         if($user->can('adminApp'))
             return $model->newQuery();
-        else
-            return $model->newQuery()->where(['user_id' => $user->id ]);
+        elseif($user->can('accessAsLandlord'))
+            return $model->newQuery()->whereIn('id', $user->proprietario->inquilinos->pluck('id'));
         //return $model->newQuery();
     }
 

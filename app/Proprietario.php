@@ -26,4 +26,9 @@ class Proprietario extends Model
         'certidaoPermanente',
         'numFuncionarios'
     ];
+
+    public function inquilinos()
+    {
+        return $this->belongsToMany('App\Inquilino', 'proprietario_inquilino');
+    }
 }
