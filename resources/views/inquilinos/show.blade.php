@@ -11,6 +11,7 @@ view()->share('hideSubHeader', true);
     {{ Breadcrumbs::render('inquilinos.show', $inquilino) }}
 @endsection
 @section('content')
+@can('adminApp')
     <div class="kt-portlet">
         <div class="kt-portlet__head">
             <div class="kt-portlet__head-label">
@@ -144,8 +145,10 @@ view()->share('hideSubHeader', true);
 
         </div>
     </div>
+@endcan
 @endsection
 @push('scripts')
+@can('adminApp')
     <script>
         function destroyConfirmation(e){
             swal.fire({
@@ -161,4 +164,5 @@ view()->share('hideSubHeader', true);
             });
         }
     </script>
+@endcan
 @endpush

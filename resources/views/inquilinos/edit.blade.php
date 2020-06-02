@@ -11,6 +11,7 @@ view()->share('hideSubHeader', true);
     {{ Breadcrumbs::render('inquilinos.edit', $inquilino) }}
 @endsection
 @section('content')
+@can('adminApp')
     <div class="kt-portlet">
         <div class="kt-portlet__head">
             <div class="kt-portlet__head-label">
@@ -21,4 +22,5 @@ view()->share('hideSubHeader', true);
         </div>
         @include('inquilinos._form')
     </div>
+    @endcan
 @endsection

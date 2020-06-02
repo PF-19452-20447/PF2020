@@ -79,6 +79,11 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         'email_verified_at' => 'datetime',
     ];
 
+    public function proprietario()
+    {
+        return $this->hasOne('App\Proprietario');
+    }
+
     /**
      * Return the first name of the user
      * @return mixed|string
@@ -124,7 +129,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         return 'N/A';
     }
 
-    
+
 
     public function registerMediaCollections(): void
     {
