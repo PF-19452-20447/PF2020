@@ -49,6 +49,11 @@ class Permission extends \Spatie\Permission\Models\Permission
             'edit_roles',
             'delete_roles',
 
+            'adminFullApp',
+            'adminApp',
+            'accessAsTenant',
+            'accessAsLandlord',
+
             /*'view_posts',
             'add_posts',
             'edit_posts',
