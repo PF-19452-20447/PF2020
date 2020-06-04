@@ -34,6 +34,10 @@ class Inquilino extends Model
         'numFuncionarios'
     ];
 
+    public function fiador()
+    {
+        return $this->hasMany('App\Fiador');
+    }
 
 
 }
