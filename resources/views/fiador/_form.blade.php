@@ -62,7 +62,7 @@
         </div>
         <div class="form-group">
             {!! Form::label('iban', __('IBAN')) !!}
-            {!! Form::number('iban', null, ['class' => 'form-control '.($errors->has('iban') ? 'is-invalid' : ''), 'min' => '1', 'type' => 'number', 'step' => 1, 'required' => true]) !!}
+            {!! Form::text('iban', null, ['class' => 'form-control '.($errors->has('iban') ? 'is-invalid' : ''), 'min' => '1', 'type' => 'number', 'step' => 1, 'required' => true]) !!}
             @error('iban')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
