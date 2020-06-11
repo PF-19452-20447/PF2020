@@ -32,7 +32,6 @@ class Inquilino extends Model
         'setorActividade' ,
         'certidaoPermanente',
         'numFuncionarios'
-
     ];
 
 
