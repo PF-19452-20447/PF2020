@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\ficheiros;
+use App\Ficheiro;
 
 class FicheirosSeeder extends Seeder
 {
@@ -12,7 +12,7 @@ class FicheirosSeeder extends Seeder
      */
     public function run()
     {
-        Ficheiros::create([
+        Ficheiro::create([
             'foto'      => 'foto1.png',
             'descricao' => 'Foto da cozinha'
 

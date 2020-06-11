@@ -4,7 +4,6 @@ use App\Permission;
 use App\Role;
 use App\User;
 use Illuminate\Database\Seeder;
-use App\Inquilinos;
 use App\Inquilino;
 
 class InquilinosSeeder extends Seeder

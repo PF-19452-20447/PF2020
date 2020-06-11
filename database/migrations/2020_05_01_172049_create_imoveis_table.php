@@ -22,7 +22,7 @@ class CreateImoveisTable extends Migration
             $table->integer('numQuartos');
             $table->integer('numCasaBanho');
             $table->text('descricao');
-            $table->integer('estado');
+            $table->boolean('estado');
             $table->boolean('mobilado');
             $table->boolean('fumar');
             $table->boolean('animaisEstimacao');

@@ -3,9 +3,40 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\LoadDefaults;
 
 class Imovel extends Model
 {
+    protected $table = "imoveis";
+    use LoadDefaults;
+
+    protected $fillable = [
+        'id',
+        'tipo',
+        'tipologia',
+        'area',
+        'morada',
+        'numQuartos',
+        'numCasaBanho',
+        'descricao',//
+        'estado' ,//
+        'mobilado',//
+        'fumar',//
+        'animaisEstimacao',//
+        'outrosEquipamentos',
+        'certificadoEnergetico',//
+        'licencaHabitacao',//
+        'notas',
+        'televisao',//
+        'frigorifico',//
+        'piscina',//
+        'varanda',//
+        'terraco',//
+        'churrasqueira',//
+        'arCondicionado'//
+    ];
+
+
     public function proprietario()
     {
         return $this->belongsToMany('App\Proprietario');
@@ -18,7 +49,7 @@ class Imovel extends Model
 
     public function financas()
     {
-        return $this->hasMany('App\Financas');
+        return $this->hasMany('App\Financa');
     }
 
     public function contrato()

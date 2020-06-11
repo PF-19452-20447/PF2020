@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Fiadores;
+use App\Fiador;
 
 class FiadoresSeeder extends Seeder
 {
@@ -12,7 +12,7 @@ class FiadoresSeeder extends Seeder
      */
     public function run()
     {
-        Fiadores::create([
+        Fiador::create([
             'nome' => 'xpto1',
             'dataNascimento' => '1992-02-11',
             'nif' => '2345687654345678',

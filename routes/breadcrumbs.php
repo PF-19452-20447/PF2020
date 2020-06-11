@@ -115,6 +115,24 @@ Breadcrumbs::for('fiador.edit', function ($trail, $model) {
     $trail->push(__('Update'), route('fiador.edit', $model));
 });
 
+// Home > Imoveis
+Breadcrumbs::for('imoveis.index', function ($trail) {
+    $trail->parent('home');
+    $trail->push(__('Guarantor'), route('imoveis.index'));
+});
+Breadcrumbs::for('imoveis.create', function ($trail) {
+    $trail->parent('imoveis.index');
+    $trail->push(__('Create'), route('imoveis.create'));
+});
+Breadcrumbs::for('imoveis.show', function ($trail, $model) {
+    $trail->parent('imoveis.index');
+    $trail->push($model->nome, route('imoveis.show', $model));
+});
+Breadcrumbs::for('imovies.edit', function ($trail, $model) {
+    $trail->parent('imoveis.show', $model);
+    $trail->push(__('Update'), route('imoveis.edit', $model));
+});
+
 /*
 // Home > Blog
 Breadcrumbs::for('blog', function ($trail) {

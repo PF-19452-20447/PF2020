@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Financas;
+use App\Financa;
 
 class FinancasSeeder extends Seeder
 {
@@ -12,7 +12,7 @@ class FinancasSeeder extends Seeder
      */
     public function run()
     {
-        Financas::create([
+        Financa::create([
             'valorAvaliacao' => '10000',
             'dataAvaliacao' => '2020-03-20 12:34:54',
             'encargos' => 'tem encargos',

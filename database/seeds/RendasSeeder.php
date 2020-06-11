@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Rendas;
+use App\Renda;
 
 class RendasSeeder extends Seeder
 {
@@ -12,7 +12,7 @@ class RendasSeeder extends Seeder
      */
     public function run()
     {
-        Rendas::create([
+        Renda::create([
             'valorPagar' => '10000',
             'dataPagamento' => '2019-11-02',
             'metodoPagamento' => '2',

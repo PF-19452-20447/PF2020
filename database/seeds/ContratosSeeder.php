@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\contratos;
+use App\Contrato;
 
 class ContratosSeeder extends Seeder
 {
@@ -12,7 +12,7 @@ class ContratosSeeder extends Seeder
      */
     public function run()
     {
-        Contratos::create([
+        Contrato::create([
             'valorRenda' => '100000',
             'tipoContrato' => 'anual',
             'inicioContrato' => '2019-07-12 11:21:33',

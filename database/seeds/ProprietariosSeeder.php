@@ -12,7 +12,7 @@ class ProprietariosSeeder extends Seeder
      */
     public function run()
     {
-        Proprietarios::create([
+        Proprietario::create([
             'nome'      => 'Beatriz',
             'dataNascimento' => '1999-02-21',
             'nif' => '23453234',

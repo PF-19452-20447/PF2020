@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\imoveis;
+use App\Imovel;
 
 class ImoveisSeeder extends Seeder
 {
@@ -12,7 +12,7 @@ class ImoveisSeeder extends Seeder
      */
     public function run()
     {
-        Imoveis::create([
+        Imovel::create([
             'tipo'      => 'apartamento',
             'tipologia' => 'T3',
             'area' => '100',
