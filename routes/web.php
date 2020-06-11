@@ -76,3 +76,12 @@ Route::get('service/inquilino/update', 'InquilinoController@update');
 Route::get('service/inquilino/destroy', 'InquilinoController@destroy');
 });
 
+//fiadores
+Route::resource('fiador', 'FiadorController');
+
+//permissoes e roles dos fiadores
+
+Route::get('service/fiador/view', 'FiadorController@view');
+Route::get('service/fiador/create', 'FiadorController@create');
+Route::get('service/fiador/update', 'FiadorController@update');
+Route::get('service/fiador/destroy', 'FiadorController@destroy');

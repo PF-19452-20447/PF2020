@@ -2,27 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Proprietario;
+use App\Fiador;
 use Illuminate\Http\Request;
-use App\DataTables\ProprietarioDataTable;
-use App\Traits;
-use Illuminate\Support\Facades\DB;
-use Validation\Validator;
+use App\DataTables\FiadorDatatable;
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\Model;
+use App\IBAN;
+use Illuminate\Validation\Rule;
+use App\Http\Controllers\FormatsMessages;
+use App\Http\Controllers\ValidatesAttributes;
+use Validation\Validator;
 
-class ProprietarioController extends Controller
+
+class FiadorController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ProprietarioDataTable $datatable)
+    public function index(FiadorDatatable $dataTable)
     {
-        return $datatable->render('proprietarios.index');
-        // $proprietarios = Proprietario::latest()->paginate(5);
-        // return view('proprietarios.index', compact('proprietarios'))
-        //     ->with('i',(request()->input('page', 1) - 1) *5);
+        return $dataTable->render('fiador.index');
+        //
     }
 
     /**
@@ -30,11 +33,13 @@ class ProprietarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Proprietario $proprietario)
+    public function create()
     {
-        $proprietario = new Proprietario();
-        $proprietario->loadDefaultValues();
-        return view('proprietarios.create');
+        $fiador = new Fiador();
+        $fiador->loadDefaultValues();
+        //$fiador->checkIBAN();
+        return view('fiador.create', compact('fiador'));
+        //
     }
 
     /**
@@ -45,74 +50,78 @@ class ProprietarioController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedAttributes = $this->validateProprietario($request);
+        $validatedAttributes = $this->validateFiador($request);
+       // $this->validate($request, ['iban' => 'regex:/^[a-zA-Z0-9\s]+$/']);
 
-        if(($model = Proprietario::create($validatedAttributes)) ) {
+
+        if(($model = Fiador::create($validatedAttributes)) ) {
             //flash('Role Added');
-            return redirect(route('proprietarios.show', $model));
-        }else{
+            return redirect(route('fiador.show', $model));
+        }else
             return redirect()->back();
-        }
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Proprietario  $proprietarios
+     * @param  \App\Fiador  $fiador
      * @return \Illuminate\Http\Response
      */
-    public function show(Proprietario $proprietario)
+    public function show(Fiador $fiador)
     {
-        return view('proprietarios.show',compact('proprietario'));
+        return view('fiador.show', compact('fiador'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Proprietario $proprietario
+     * @param  \App\Fiador  $fiador
      * @return \Illuminate\Http\Response
      */
-    public function edit(Proprietario $proprietario)
+    public function edit(Fiador $fiador)
     {
-        return view('proprietarios.edit',compact('proprietario'));
+        return view('fiador.edit', compact('fiador'));
+
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Proprietario  $proprietario
+     * @param  \App\Fiador  $fiador
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Proprietario $proprietario)
+    public function update(Request $request, Fiador $fiador)
     {
-        $validatedAttributes = $this->validateProprietario($request, $proprietario);
-        $proprietario->fill($validatedAttributes);
-        if($proprietario->save()) {
+        $validatedAttributes = $this->validateFiador($request, $fiador);
+        $fiador->fill($validatedAttributes);
+        if($fiador->save()) {
             //flash('Role Added');
-            return redirect(route('proprietarios.show', $proprietario));
+            return redirect(route('fiador.show', $fiador));
         }else{
             return redirect()->back();
         }
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Proprietarios  $proprietarios
+     * @param  \App\Fiador  $fiador
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Proprietario $proprietario)
+    public function destroy(Fiador $fiador)
     {
-        $proprietario->delete();
-
-        return redirect()->route('proprietarios.index')
-                        ->with('success','Proprietário eliminado com sucesso.');
+        $fiador->delete();
+        return redirect(route('fiador.index'));
+        //
     }
 
-    public function validateProprietario(Request $request, Proprietario $model = null): array
+    public function validateFiador(Request $request, Fiador $model = null): array
     {
-
         $validate_array = [
             'nome' => ['required', 'alpha', 'max:255'],
             'dataNascimento' => 'date_format:Y-m-d|before:today|nullable',
@@ -129,6 +138,7 @@ class ProprietarioController extends Controller
             'certidaoPermanente' => 'required|alpha',
             'numFuncionarios' => 'required|integer'
         ];
+
 
         return $request->validate($validate_array);
     }
@@ -199,9 +209,71 @@ function validaNIF($nif, $ignoreFirst=true) {
 		} else {
 			return false;
 		}
+	}
+}
+
+
+  /*  public function validateIban($iban) {
+
+        $iban = new Iban('DE89 3704 0044 0532 0130 00');
+        $validator = new Validator();
+
+            if (!$validator->validate($iban)) {
+                foreach ($validator->getViolations() as $violation) {
+                     echo $violation;
+                }
+            }*/
+
+         /*   $iban = new Iban('DE89 3704 0044 0532 0130 00');
+            $iban->getCountryCode(); // 'DE'
+            $iban->getChecksum(); // '89'
+            $iban->getBban(); // '370400440532013000'
+            $iban->getBbanBankIdentifier(); // '37040044'*/
+           /* $iban->format(Iban::FORMAT_PRINT); // 'DE89 3704 0044 0532 0130 00'
+            $iban->format(Iban::FORMAT_ELECTRONIC); // 'DE89370400440532013000'
+            $iban->format(Iban::FORMAT_ANONYMIZED); // 'XXXXXXXXXXXXXXXXXX3000'*/
+
+        /*    $countryInfo = new CountryInfo('DE');
+            $countryInfo->getCountryName(); // 'Germany'
+            $countryInfo->getIbanStructureSwift(); // 'DE2!n8!n10!n'
+            $countryInfo->getBbanStructureSwift(); // '8!n10!n'
+            $countryInfo->getIbanRegex(); // '/^DE\d{2}\d{8}\d{10}$/'
+            $countryInfo->getBbanRegex(); // '/^\d{8}\d{10}$/'
+            $countryInfo->getIbanLength(); // 22
+            $countryInfo->getBbanLength(); // 18
+            $countryInfo->getIbanPrintExample(); // 'DE89 3704 0044 0532 0130 00'
+            $countryInfo->getIbanElectronicExample(); // 'DE89370400440532013000'
+     }*/
+
+ /*  function validateIBAN($iban)
+
+    {
+    echo $iban;
+
+    if (\IBAN::validate($iban)) {
+        echo 'is a valid IBAN';
+    } else {
+        echo 'is NOT valid IBAN';
     }
 
-}
+        echo "\r\n";
+    }*/
+
+    //date
+    /*public function date()
+{
+    $rules = [
+       'start_date'  => 'date_format:Y-m-d|after:today'
+    ];
+
+    if ($this->request->has('start_date') && $this->request->get('start_date') != $this->request->get('end_date')) {
+       $rules['end_date'] = 'date_format:Y-m-d|after:start_date';
+   } else {
+       $rules['end_date'] = 'date_format:Y-m-d|after:today';
+   }
+
+   return $rules;
+}*/
 
 
 }

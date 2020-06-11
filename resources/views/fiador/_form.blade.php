@@ -1,13 +1,13 @@
 <?php
 /**
  *
- * @var $inquilinos \App\Inquilino | null
+ * @var $fiadores \App\Fiador | null
  * @var $errors Illuminate\View\Middleware\ShareErrorsFromSession
  *
  */
 ?>
 
- {!! Form::model($inquilino ?? '', ['route' => Route::currentRouteName() == 'inquilinos.create' ? ['inquilinos.store'] : ['inquilinos.update', $inquilino ?? ''], 'method' => Route::currentRouteName() == 'inquilinos.create' ? 'post' : 'put', 'class' => "kt-form"]) !!}
+ {!! Form::model($fiador ?? '', ['route' => Route::currentRouteName() == 'fiador.create' ? ['fiador.store'] : ['fiador.update', $fiador ?? ''], 'method' => Route::currentRouteName() == 'fiador.create' ? 'post' : 'put', 'class' => "kt-form"]) !!}
 
     <div class="kt-portlet__body">
         <div class="form-group">
@@ -71,34 +71,6 @@
             {!! Form::label('tipoParticularEmpresa', __('Particular type of company')) !!}
             {!! Form::number('tipoParticularEmpresa', null, ['class' => 'form-control '.($errors->has('tipoParticularEmpresa') ? 'is-invalid' : ''), 'min' => '1', 'type' => 'number', 'max' => '6', 'step' => 1, 'required' => true]) !!}
             @error('tipoParticularEmpresa')
-            <div class="error invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
-        <div class="form-group">
-            {!! Form::label('profissao', __('Job')) !!}
-            {!! Form::text('profissao', null, ['class' => 'form-control '.($errors->has('profissao') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1, 'min' => 0, 'required' => true]) !!}
-            @error('profissao')
-            <div class="error invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
-        <div class="form-group">
-            {!! Form::label('vencimento', __('Payment')) !!}
-            {!! Form::number('vencimento', null, ['class' => 'form-control '.($errors->has('vencimento') ? 'is-invalid' : ''), 'min' => '1', 'max' => '999', 'type' => 'number', 'step' => 1, 'required' => true]) !!}
-            @error('vencimento')
-            <div class="error invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
-        <div class="form-group">
-            {!! Form::label('tipoContrato', __('Type of contract')) !!}
-            {!! Form::text('tipoContrato', null, ['class' => 'form-control '.($errors->has('tipoContrato') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1, 'min' => 0, 'required' => true]) !!}
-            @error('tipoContrato')
-            <div class="error invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
-        <div class="form-group">
-            {!! Form::label('notas', __('Grades')) !!}
-            {!! Form::text('notas', null, ['class' => 'form-control '.($errors->has('notas') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1, 'min' => 0, 'required' => true]) !!}
-            @error('notas')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>

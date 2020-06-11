@@ -97,6 +97,23 @@ Breadcrumbs::for('inquilinos.edit', function ($trail, $model) {
     $trail->push(__('Update'), route('inquilinos.edit', $model));
 });
 
+// Home > Fiador
+Breadcrumbs::for('fiador.index', function ($trail) {
+    $trail->parent('home');
+    $trail->push(__('Guarantor'), route('fiador.index'));
+});
+Breadcrumbs::for('fiador.create', function ($trail) {
+    $trail->parent('fiador.index');
+    $trail->push(__('Create'), route('fiador.create'));
+});
+Breadcrumbs::for('fiador.show', function ($trail, $model) {
+    $trail->parent('fiador.index');
+    $trail->push($model->nome, route('fiador.show', $model));
+});
+Breadcrumbs::for('fiador.edit', function ($trail, $model) {
+    $trail->parent('fiador.show', $model);
+    $trail->push(__('Update'), route('fiador.edit', $model));
+});
 
 /*
 // Home > Blog
