@@ -27,6 +27,9 @@ class DatabaseSeeder extends Seeder
         $this->call(FinancasSeeder::class);
         $this->call(ImoveisSeeder::class);
         $this->call(FiadoresSeeder::class);
+        $this->call(RolesSeeder::class);
+        $this->call(PermissionsSeeder::class);
+        //$this->call(UsersSeeder::class);
         //$this->call(Imoveis_ficheirosSeeder::class);
         //$this->call(proprietarios_imoveisSeeder::class);
         //$this->call(contratos_inquilinosSeeder::class);

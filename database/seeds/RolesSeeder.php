@@ -18,24 +18,24 @@ class RolesSeeder extends Seeder
             'guard_name' => 'web'
         ]);
 
-       /* Role::create([
+        Role::create([
             'name' => "SuperAdmin",
             'guard_name' => 'web'
-        ]);*/
-       /* Role::create([
+        ]);
+        Role::create([
             'name' => "Landlord",
             'guard_name' => 'web'
-        ]);*/
-      /*  Role::create([
+        ]);
+        Role::create([
             'name' => "Tenant",
             'guard_name' => 'web'
-        ]);*/
-        /*Role::create([
+        ]);
+        Role::create([
             'name' => "User",
             'guard_name' => 'web'
-        ]);*/
+        ]);
 
-        
+
     }
 
 }

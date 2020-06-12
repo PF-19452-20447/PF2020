@@ -12,12 +12,12 @@ class PermissionsSeeder extends Seeder
      */
     public function run()
     {
-      /*  Permission::create([
+        Permission::create([
             'name' => "view_users",
             'guard_name' => 'web'
-        ]);*/
+        ]);
 
-     /*   Permission::create([
+       Permission::create([
             'name' => "add_users",
             'guard_name' => 'web'
         ]);
@@ -70,6 +70,6 @@ class PermissionsSeeder extends Seeder
         Permission::create([
             'name' => "accessAsLandlord",
             'guard_name' => 'web'
-        ]);*/
+        ]);
     }
 }
