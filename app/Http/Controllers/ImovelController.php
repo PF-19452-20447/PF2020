@@ -15,7 +15,7 @@ class ImovelController extends Controller
      */
     public function index(ImovelDatatable $dataTable)
     {
-        return $dataTable->render('imovel.index');
+        return $dataTable->render('imoveis.index');
     }
 
     /**

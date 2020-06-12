@@ -118,11 +118,11 @@ Breadcrumbs::for('fiador.edit', function ($trail, $model) {
 // Home > Imoveis
 Breadcrumbs::for('imoveis.index', function ($trail) {
     $trail->parent('home');
-    $trail->push(__('Guarantor'), route('imoveis.index'));
+    $trail->push(__('Properties'), route('imoveis.index'));
 });
 Breadcrumbs::for('imoveis.create', function ($trail) {
     $trail->parent('imoveis.index');
-    $trail->push(__('Create'), route('imoveis.create'));
+    $trail->push(__('Create Property'), route('imoveis.create'));
 });
 Breadcrumbs::for('imoveis.show', function ($trail, $model) {
     $trail->parent('imoveis.index');
@@ -130,7 +130,7 @@ Breadcrumbs::for('imoveis.show', function ($trail, $model) {
 });
 Breadcrumbs::for('imovies.edit', function ($trail, $model) {
     $trail->parent('imoveis.show', $model);
-    $trail->push(__('Update'), route('imoveis.edit', $model));
+    $trail->push(__('Update Property'), route('imoveis.edit', $model));
 });
 
 /*

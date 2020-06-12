@@ -221,13 +221,13 @@
                         <ul class="kt-menu__subnav">
                             <li class="kt-menu__item kt-menu__item--parent" aria-haspopup="true">
                                 <span class="kt-menu__link">
-                                    <span class="kt-menu__link-text">{{ __('Landlord') }}</span>
+                                    <span class="kt-menu__link-text">{{ __('Proptery') }}</span>
                                 </span>
                             </li>
                             <li class="kt-menu__item {{ request()->routeIs('imoveis.index') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
                                 <a href="{{ route('imoveis.index') }}" class="kt-menu__link">
                                     <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
-                                    <span class="kt-menu__link-text">{{ __('List landlord') }}</span>
+                                    <span class="kt-menu__link-text">{{ __('List Properties') }}</span>
                                 </a>
                             </li>
                             @can('adminApp')
