@@ -18,22 +18,22 @@ class Imovel extends Model
         'morada',
         'numQuartos',
         'numCasaBanho',
-        'descricao',//
-        'estado' ,//
-        'mobilado',//
-        'fumar',//
-        'animaisEstimacao',//
+        'descricao',
+        'estado' ,
+        'mobilado',
+        'fumar',
+        'animaisEstimacao',
         'outrosEquipamentos',
-        'certificadoEnergetico',//
-        'licencaHabitacao',//
+        'certificadoEnergetico',
+        'licencaHabitacao',
         'notas',
-        'televisao',//
-        'frigorifico',//
-        'piscina',//
-        'varanda',//
-        'terraco',//
-        'churrasqueira',//
-        'arCondicionado'//
+        'televisao',
+        'frigorifico',
+        'piscina',
+        'varanda',
+        'terraco',
+        'churrasqueira',
+        'arCondicionado'
     ];
 
 

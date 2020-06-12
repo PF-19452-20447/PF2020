@@ -8,7 +8,7 @@ view()->share('hideSubHeader', true);
 ?>
 @extends('layouts.app')
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('imovel.show', $imovel) }}
+    {{ Breadcrumbs::render('imoveis.show', $imovel) }}
 @endsection
 @section('content')
 @can('adminApp')
@@ -22,7 +22,7 @@ view()->share('hideSubHeader', true);
             <div class="kt-portlet__head-toolbar">
                 <div class="kt-portlet__head-wrapper">
                     <div class="kt-portlet__head-actions">
-                        <a href="{{ route('imovel.edit', $imovel) }}" class="btn btn-brand btn-elevate btn-icon-sm">
+                        <a href="{{ route('imoveis.edit', $imovel) }}" class="btn btn-brand btn-elevate btn-icon-sm">
                             <i class="la la-edit"></i>
                             {{ __('Update') }}
                         </a>
@@ -30,7 +30,7 @@ view()->share('hideSubHeader', true);
                             <i class="la la-trash"></i>
                             {{ __('Delete') }}
                         </button>
-                        {!! Form::open(['route' => ['imovel.destroy', $imovel ], 'method' => 'delete', 'class'=>"d-none", 'id' => 'delete-form']) !!}
+                        {!! Form::open(['route' => ['imoveis.destroy', $imovel ], 'method' => 'delete', 'class'=>"d-none", 'id' => 'delete-form']) !!}
 
                         {!! Form::close() !!}
                     </div>

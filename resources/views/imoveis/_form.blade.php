@@ -7,7 +7,7 @@
  */
 ?>
 
- {!! Form::model($imovel ?? '', ['route' => Route::currentRouteName() == 'imovel.create' ? ['imovel.store'] : ['imovel.update', $imovel ?? ''], 'method' => Route::currentRouteName() == 'imovel.create' ? 'post' : 'put', 'class' => "kt-form"]) !!}
+ {!! Form::model($imovel ?? '', ['route' => Route::currentRouteName() == 'imoveis.create' ? ['imoveis.store'] : ['imoveis.update', $imovel ?? ''], 'method' => Route::currentRouteName() == 'imoveis.create' ? 'post' : 'put', 'class' => "kt-form"]) !!}
 
     <div class="kt-portlet__body">
         <div class="form-group">
