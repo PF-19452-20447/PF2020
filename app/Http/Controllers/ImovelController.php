@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Imovel;
 use Illuminate\Http\Request;
+use App\DataTables\ImovelDatatable;
 
 class ImovelController extends Controller
 {
@@ -12,9 +13,9 @@ class ImovelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ImovelDatatable $dataTable)
     {
-        //
+        return $dataTable->render('imovel.index');
     }
 
     /**
@@ -24,7 +25,9 @@ class ImovelController extends Controller
      */
     public function create()
     {
-        //
+        $imovel = new Imovel();
+        $imovel->loadDefaultValues();
+        return view('imoveis.create');
     }
 
     /**
@@ -35,7 +38,13 @@ class ImovelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedAttributes = $this->validateImovel($request);
+
+        if(($model = Imovel::create($validatedAttributes)) ) {
+            return redirect(route('imoveis.show', $model));
+        }else{
+            return redirect()->back();
+        }
     }
 
     /**
@@ -46,7 +55,7 @@ class ImovelController extends Controller
      */
     public function show(Imovel $imovel)
     {
-        //
+        return view('imoveis.show');
     }
 
     /**
@@ -57,7 +66,7 @@ class ImovelController extends Controller
      */
     public function edit(Imovel $imovel)
     {
-        //
+        return view('imoveis.edit');
     }
 
     /**
@@ -69,7 +78,13 @@ class ImovelController extends Controller
      */
     public function update(Request $request, Imovel $imovel)
     {
-        //
+        $validatedAttributes = $this->validateImovel($request, $imovel);
+        $imovel->fill($validatedAttributes);
+        if($imovel->save()) {
+            return redirect(route('imoveis.show', $imovel));
+        }else{
+            return redirect()->back();
+        }
     }
 
     /**
@@ -81,5 +96,44 @@ class ImovelController extends Controller
     public function destroy(Imovel $imovel)
     {
         //
+    }
+
+
+    /**
+     * validateImovel
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Imovel  $imovel
+     * @return array
+     */
+    public function validateImovel(Request $request, Imovel $model = null): array
+    {
+        $validate_array = [
+        'tipo' => 'required|string',
+        'tipologia' => 'required|string',
+        'area' => 'required|integer',
+        'morada' => 'required|string',
+        'numQuartos' => 'required|integer',
+        'numCasaBanho' => 'required|integer',
+        'descricao' => 'required|string',
+        'estado' => 'required|boolean',
+        'mobilado' => 'required|boolean',
+        'fumar' => 'required|boolean',
+        'animaisEstimacao' => 'required|boolean',
+        'outrosEquipamentos' => 'required|string',
+        'certificadoEnergetico' => 'required|string',
+        'licencaHabitacao' => 'required|string',
+        'notas' => 'required|string',
+        'televisao' => 'required|boolean',
+        'frigorifico' => 'required|boolean',
+        'piscina' => 'required|boolean',
+        'varanda' => 'required|boolean',
+        'terraco' => 'required|boolean',
+        'churrasqueira' => 'required|boolean',
+        'arCondicionado' => 'required|boolean'
+        ];
+        return $request->validate($validate_array);
+
+
     }
 }
