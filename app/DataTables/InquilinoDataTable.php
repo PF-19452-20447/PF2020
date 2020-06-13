@@ -8,6 +8,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 use App\Inquilino;
+use App\Proprietario;
 
 class InquilinoDataTable extends DataTable
 {
@@ -38,7 +39,7 @@ class InquilinoDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param App\Inquilino $model
+     * @param App\InquilinoDataTable $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query(Inquilino $model)
@@ -48,6 +49,8 @@ class InquilinoDataTable extends DataTable
             return $model->newQuery();
         elseif($user->can('accessAsLandlord'))
             return $model->newQuery()->whereIn('id', $user->proprietario->inquilinos->pluck('id'));
+        else
+            return $model->newQuery()->where(['user_id' => $user->id ]);
         //return $model->newQuery();
     }
 
