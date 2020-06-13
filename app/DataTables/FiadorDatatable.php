@@ -45,7 +45,14 @@ class FiadorDatatable extends DataTable
      */
     public function query(Fiador $model)
     {
-        return $model->newQuery();
+        $user = \Auth::user();
+        if($user->can('adminApp'))
+            return $model->newQuery();
+        elseif($user->can('accessAsLandlord'))
+            return $model->newQuery()->whereIn('id', $user->proprietario->inquilinos->pluck('id'));
+        elseif($user->proprietario->inquilinos->pluck('id'))
+            return $model->newQuery()->whereIn('id', $user->inquilinos->fiadores->pluck('id'));
+            //return $model->newQuery();
     }
 
     /**

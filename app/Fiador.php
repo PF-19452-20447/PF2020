@@ -34,4 +34,10 @@ class Fiador extends Model
     {
         return $this->belongsTo('App\Inquilino', 'foreign_key');
     }
+
+    
+
+
+
+
 }
