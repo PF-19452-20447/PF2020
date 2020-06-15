@@ -105,7 +105,8 @@
                                             <span class="kt-menu__link-text">{{ __('List tenant') }}</span>
                                         </a>
                                     </li>
-                                    @canany(['adminApp', 'accessAsLandlord'])
+                                    @cannot('accessAsTenant')
+                                    @canany(['adminApp', 'accessAsLandlord', 'accessAsGuarantor'])
                                     <li class="kt-menu__item {{ request()->routeIs('inquilinos.create') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
                                         <a href="{{ route('inquilinos.create') }}" class="kt-menu__link ">
                                             <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
@@ -113,6 +114,7 @@
                                         </a>
                                     </li>
                                     @endcanany
+                                    @endcannot
                                 </ul>
                             </div>
                         </li>
@@ -189,14 +191,15 @@
                                     <span class="kt-menu__link-text">{{ __('List Guarantor') }}</span>
                                 </a>
                             </li>
-                            @can('adminApp')
+
+                            @canany(['adminApp', 'accessAsTenant'])
                             <li class="kt-menu__item {{ request()->routeIs('fiador.create') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
                                 <a href="{{ route('fiador.create') }}" class="kt-menu__link ">
                                     <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
                                     <span class="kt-menu__link-text">{{ __('Create Guarantor') }}</span>
                                 </a>
                             </li>
-                            @endcan
+                            @endcanany
                         </ul>
                     </div>
                 </li>
