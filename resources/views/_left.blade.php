@@ -105,15 +105,14 @@
                                             <span class="kt-menu__link-text">{{ __('List tenant') }}</span>
                                         </a>
                                     </li>
-
-                                    @can(['adminApp', 'accessAsLandlord', 'accessAsGuarantor'])
+                                    @canany(['adminApp', 'accessAsLandlord', 'accessAsGuarantor'])
                                     <li class="kt-menu__item {{ request()->routeIs('inquilinos.create') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
                                         <a href="{{ route('inquilinos.create') }}" class="kt-menu__link ">
                                             <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
-                                            <span class="kt-menu__link-text">{{ __('Create tenant') }}</span>
+                                            <span class="kt-menu__link-text">{{ __('Create Tenant') }}</span>
                                         </a>
                                     </li>
-                                    @endcan
+                                    @endcanany
                                 </ul>
                             </div>
                         </li>
@@ -142,12 +141,14 @@
                                     <span class="kt-menu__link-text">{{ __('Landlord') }}</span>
                                 </span>
                             </li>
+                            @canany(['accessAsTenant'])
                             <li class="kt-menu__item {{ request()->routeIs('proprietarios.index') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
                                 <a href="{{ route('proprietarios.index') }}" class="kt-menu__link">
                                     <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
                                     <span class="kt-menu__link-text">{{ __('List landlord') }}</span>
                                 </a>
                             </li>
+                            @endcanany
                             @can('adminApp')
                             <li class="kt-menu__item {{ request()->routeIs('proprietarios.create') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
                                 <a href="{{ route('proprietarios.create') }}" class="kt-menu__link ">
@@ -184,21 +185,22 @@
                                     <span class="kt-menu__link-text">{{ __('Guarantor') }}</span>
                                 </span>
                             </li>
+                            @canany(['adminApp', 'accessAsTenant', 'accessAsLandlord'])
                             <li class="kt-menu__item {{ request()->routeIs('fiador.index') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
                                 <a href="{{ route('fiador.index') }}" class="kt-menu__link">
                                     <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
                                     <span class="kt-menu__link-text">{{ __('List Guarantor') }}</span>
                                 </a>
                             </li>
-
-                            @canany(['adminApp', 'accessAsTenant'])
+                            @endcanany
+                            @can(['adminApp', 'accessAsTenant'])
                             <li class="kt-menu__item {{ request()->routeIs('fiador.create') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
                                 <a href="{{ route('fiador.create') }}" class="kt-menu__link ">
                                     <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
                                     <span class="kt-menu__link-text">{{ __('Create Guarantor') }}</span>
                                 </a>
                             </li>
-                            @endcanany
+                            @endcan
                         </ul>
                     </div>
                 </li>

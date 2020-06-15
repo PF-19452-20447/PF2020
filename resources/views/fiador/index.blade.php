@@ -26,7 +26,7 @@
                         <div class="dropdown dropdown-inline" id="datatable-buttons">
 
                         </div>
-                       @can('adminApp')
+                       @canany(['adminApp','accessAsTenant'])
                        <a href="{{ route('fiador.create') }}" class="btn btn-brand btn-elevate btn-icon-sm">
                             <i class="la la-plus"></i>
                             Create Guarantor

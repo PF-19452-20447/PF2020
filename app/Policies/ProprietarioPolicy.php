@@ -41,7 +41,7 @@ class ProprietarioPolicy
      * @param  \App\User  $user
      * @return mixed
      */
-    public function create(User $user)
+    public function create(User $user, Proprietario $proprietario)
     {
         if($user->can('adminApp')){
             return true;
