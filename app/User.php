@@ -89,10 +89,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         return $this->hasOne('App\Inquilino');
     }
 
-    public function fiador()
-    {
-        return $this->hasOne('App\Fiador');
-    }
+
 
     /**
      * Return the first name of the user

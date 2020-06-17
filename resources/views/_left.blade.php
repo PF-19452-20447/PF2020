@@ -61,6 +61,7 @@
                     <i class="kt-menu__section-icon flaticon-more-v2"></i>
                 </li>
 
+                @canany(['adminApp', 'adminFullApp', 'view_users'])
                 {{-- Botão Utilizador / User button --}}
                 <li class="kt-menu__item {{ request()->routeIs('users.*') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
                     <a href="{{ route('users.index') }}" class="kt-menu__link">
@@ -76,6 +77,10 @@
                         <span class="kt-menu__link-text">{{ __('Users') }}</span>
                     </a>
                 </li>
+
+                @endcanany
+
+                @canany(['adminApp', 'accessAsLandlord'])
 
                         <li class="kt-menu__item  kt-menu__item--submenu {{ request()->routeIs('inquilino.*') ? "kt-menu__item--open" : "" }}" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
                             <a href="{{ route('inquilinos.index') }}" class="kt-menu__link kt-menu__toggle">
@@ -105,20 +110,25 @@
                                             <span class="kt-menu__link-text">{{ __('List tenant') }}</span>
                                         </a>
                                     </li>
-                                    @canany(['adminApp', 'accessAsLandlord', 'accessAsGuarantor'])
+
                                     <li class="kt-menu__item {{ request()->routeIs('inquilinos.create') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
                                         <a href="{{ route('inquilinos.create') }}" class="kt-menu__link ">
                                             <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
                                             <span class="kt-menu__link-text">{{ __('Create Tenant') }}</span>
                                         </a>
                                     </li>
-                                    @endcanany
+
                                 </ul>
                             </div>
                         </li>
+                        @endcanany
 
 
+
+
+                        @canany(['adminApp', 'accessAsTenant'])
                 {{-- Botão Proprietários / Tenant button --}}
+
                 <li class="kt-menu__item  kt-menu__item--submenu {{ request()->routeIs('proprietario.*') ? "kt-menu__item--open" : "" }}" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
                     <a href="{{ route('proprietarios.index') }}" class="kt-menu__link kt-menu__toggle">
                         <span class="kt-menu__link-icon">
@@ -133,6 +143,7 @@
                         <span class="kt-menu__link-text">{{ __('Landlord') }}</span>
                         <i class="kt-menu__ver-arrow la la-angle-right"></i>
                     </a>
+
                     <div class="kt-menu__submenu ">
                         <span class="kt-menu__arrow"></span>
                         <ul class="kt-menu__subnav">
@@ -141,14 +152,15 @@
                                     <span class="kt-menu__link-text">{{ __('Landlord') }}</span>
                                 </span>
                             </li>
-                            @canany(['accessAsTenant'])
+
+
                             <li class="kt-menu__item {{ request()->routeIs('proprietarios.index') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
                                 <a href="{{ route('proprietarios.index') }}" class="kt-menu__link">
                                     <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
                                     <span class="kt-menu__link-text">{{ __('List landlord') }}</span>
                                 </a>
                             </li>
-                            @endcanany
+
                             @can('adminApp')
                             <li class="kt-menu__item {{ request()->routeIs('proprietarios.create') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
                                 <a href="{{ route('proprietarios.create') }}" class="kt-menu__link ">
@@ -160,7 +172,7 @@
                         </ul>
                     </div>
                 </li>
-
+                @endcanany
 
                 {{-- Botão Fiador / Tenant button --}}
                 <li class="kt-menu__item  kt-menu__item--submenu {{ request()->routeIs('fiador.*') ? "kt-menu__item--open" : "" }}" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
@@ -193,25 +205,28 @@
                                 </a>
                             </li>
                             @endcanany
-                            @can(['adminApp', 'accessAsTenant'])
+                            @canany(['adminApp', 'accessAsTenant'])
                             <li class="kt-menu__item {{ request()->routeIs('fiador.create') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
                                 <a href="{{ route('fiador.create') }}" class="kt-menu__link ">
                                     <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
                                     <span class="kt-menu__link-text">{{ __('Create Guarantor') }}</span>
                                 </a>
                             </li>
-                            @endcan
+                            @endcanany
                         </ul>
                     </div>
                 </li>
 
 
-
+                @can('adminFullApp')
 
                 <li class="kt-menu__section ">
                     <h4 class="kt-menu__section-text">{{ __('Configurations') }}</h4>
                     <i class="kt-menu__section-icon flaticon-more-v2"></i>
                 </li>
+
+
+
                 <li class="kt-menu__item  kt-menu__item--submenu {{ request()->routeIs('roles.*') ? "kt-menu__item--open" : "" }}" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
                     <a href="{{ route('roles.index') }}" class="kt-menu__link kt-menu__toggle">
                         <span class="kt-menu__link-icon">
@@ -251,6 +266,9 @@
                         </ul>
                     </div>
                 </li>
+
+                @endcan
+
                 @can('adminFullApp')
                     <li class="kt-menu__item  kt-menu__item--submenu {{ request()->routeIs('settings.*') ? "kt-menu__item--open" : "" }}" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
                         <a href="{{ route('settings.index') }}" class="kt-menu__link kt-menu__toggle">

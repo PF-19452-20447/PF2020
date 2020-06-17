@@ -32,6 +32,8 @@ class ProprietarioPolicy
     {
         if($user->can('adminApp')){
             return true;
+        }elseif($user->can('accessAsLandlord')) {
+            return $user->id == $proprietario->user_id;
         }
     }
 

@@ -32,5 +32,5 @@ class Proprietario extends Model
         return $this->belongsToMany('App\Inquilino', 'proprietario_inquilino');
     }
 
- 
+
 }

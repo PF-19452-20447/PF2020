@@ -36,7 +36,7 @@ class Inquilino extends Model
 
     public function fiadores()
     {
-        return $this->belongsToMany('App\Fiador');
+        return $this->hasMany('App\Fiador');
     }
 
     public function proprietarios()
