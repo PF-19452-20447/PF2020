@@ -85,3 +85,14 @@ Route::get('service/fiador/view', 'FiadorController@view');
 Route::get('service/fiador/create', 'FiadorController@create');
 Route::get('service/fiador/update', 'FiadorController@update');
 Route::get('service/fiador/destroy', 'FiadorController@destroy');
+
+//contratos
+
+Route::resource('contratos', 'ContratoController');
+
+//permissoes e roles dos contratos
+
+Route::get('service/contrato/view','ContratoController@view');
+Route::get('service/contrato/create','ContratoController@create');
+Route::get('service/contrato/update','ContratoController@update');
+Route::get('service/contrato/destroy','ContratoController@destroy');

@@ -115,6 +115,25 @@ Breadcrumbs::for('fiador.edit', function ($trail, $model) {
     $trail->push(__('Update'), route('fiador.edit', $model));
 });
 
+//Home > Contratos
+Breadcrumbs::for('contratos.index', function ($trail) {
+    $trail->parent('home');
+    $trail->push(__('Contract'), route('contratos.index'));
+});
+Breadcrumbs::for('contratos.create', function ($trail) {
+    $trail->parent('contratos.index');
+    $trail->push(__('Create'), route('contratos.create'));
+});
+Breadcrumbs::for('contratos.show', function ($trail, $model) {
+    $trail->parent('contratos.index');
+    $trail->push($model->tipoContrato, route('contratos.show', $model));
+});
+Breadcrumbs::for('contratos.edit', function ($trail, $model) {
+    $trail->parent('contratos.show', $model);
+    $trail->push(__('Update'), route('contratos.edit', $model));
+});
+
+
 /*
 // Home > Blog
 Breadcrumbs::for('blog', function ($trail) {
