@@ -126,9 +126,9 @@ Breadcrumbs::for('imoveis.create', function ($trail) {
 });
 Breadcrumbs::for('imoveis.show', function ($trail, $model) {
     $trail->parent('imoveis.index');
-    $trail->push($model->nome, route('imoveis.show', $model));
+    $trail->push($model->morada, route('imoveis.show', $model));
 });
-Breadcrumbs::for('imovies.edit', function ($trail, $model) {
+Breadcrumbs::for('imoveis.edit', function ($trail, $model) {
     $trail->parent('imoveis.show', $model);
     $trail->push(__('Update Property'), route('imoveis.edit', $model));
 });

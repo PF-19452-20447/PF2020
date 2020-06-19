@@ -17,7 +17,7 @@ class CreateImoveisTable extends Migration
             $table->id();
             $table->string('tipo');
             $table->string('tipologia');
-            $table->decimal('area', 10, 3);
+            $table->integer('area');
             $table->string('morada');
             $table->integer('numQuartos');
             $table->integer('numCasaBanho');

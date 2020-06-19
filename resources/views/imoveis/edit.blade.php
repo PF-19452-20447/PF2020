@@ -3,7 +3,7 @@
  *
  * @var $imovel \App\Imovel
  */
-view()->share('pageTitle', $imovel->nome);
+view()->share('pageTitle', $imovel->morada);
 view()->share('hideSubHeader', true);
 ?>
 @extends('layouts.app')

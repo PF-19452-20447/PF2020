@@ -25,14 +25,14 @@
             @enderror
         </div>
         <div class="form-group">
-            {!! Form::label('area', __('Area')) !!}
+            {!! Form::label('area', __('Area m2')) !!}
             {!! Form::number('area', null, ['class' => 'form-control '.($errors->has('area') ? 'is-invalid' : ''), 'min' => '1', 'type' => 'number', 'required' => true]) !!}
             @error('area')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
-            {!! Form::label('morada', __('Adress')) !!}
+            {!! Form::label('morada', __('Address')) !!}
             {!! Form::text('morada', null, ['class' => 'form-control '.($errors->has('morada') ? 'is-invalid' : ''), 'required' => true]) !!}
             @error('morada')
             <div class="error invalid-feedback">{{ $message }}</div>
@@ -61,7 +61,8 @@
         </div>
         <div class="form-group">
             {!! Form::label('estado', __('Vacancy')) !!}
-            {!! Form::checkbox('estado', null, ['class' => 'form-control '.($errors->has('estado') ? 'is-invalid' : ''), 'required' => true]) !!}
+            {!! Form::hidden('estado', 0) !!}
+            {!! Form::checkbox('estado', 1, null, ['class' => 'form-control '.($errors->has('estado') ? 'is-invalid' : '')]) !!}
             @error('estado')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
@@ -82,21 +83,24 @@
         </div>
         <div class="form-group">
             {!! Form::label('mobilado', __('Furnished')) !!}
-            {!! Form::checkbox('mobilado', null, ['class' => 'form-control '.($errors->has('mobilado') ? 'is-invalid' : ''), 'required' => true]) !!}
+            {!! Form::hidden('mobilado', 0) !!}
+            {!! Form::checkbox('mobilado', 1, null, ['class' => 'form-control '.($errors->has('mobilado') ? 'is-invalid' : '')]) !!}
             @error('mobilado')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
             {!! Form::label('fumar', __('Somking')) !!}
-            {!! Form::checkbox('fumar', null, ['class' => 'form-control '.($errors->has('fumar') ? 'is-invalid' : ''), 'required' => true]) !!}
+            {!! Form::hidden('fumar', 0) !!}
+            {!! Form::checkbox('fumar', 1, null, ['class' => 'form-control '.($errors->has('fumar') ? 'is-invalid' : '')]) !!}
             @error('fumar')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
             {!! Form::label('animaisEstimacao', __('Pets')) !!}
-            {!! Form::checkbox('animaisEstimacao', null, ['class' => 'form-control '.($errors->has('animaisEstimacao') ? 'is-invalid' : ''), 'required' => true]) !!}
+            {!! Form::hidden('animaisEstimacao', 0) !!}
+            {!! Form::checkbox('animaisEstimacao', 1, null, ['class' => 'form-control '.($errors->has('animaisEstimacao') ? 'is-invalid' : '')]) !!}
             @error('animaisEstimacao')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
@@ -104,63 +108,70 @@
         {{-- EQUIPAMENTO --}}
         <div class="form-group">
             {!! Form::label('televisao', __('TV')) !!}
-            {!! Form::checkbox('televisao', null, ['class' => 'form-control '.($errors->has('televisao') ? 'is-invalid' : ''), 'required' => true]) !!}
+            {!! Form::hidden('televisao', 0) !!}
+            {!! Form::checkbox('televisao', 1, null, ['class' => 'form-control '.($errors->has('televisao') ? 'is-invalid' : '')]) !!}
             @error('televisao')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
             {!! Form::label('frigorifico', __('Fridge')) !!}
-            {!! Form::checkbox('frigorifico', null, ['class' => 'form-control '.($errors->has('frigorifico') ? 'is-invalid' : ''), 'required' => true]) !!}
+            {!! Form::hidden('frigorifico', 0) !!}
+            {!! Form::checkbox('frigorifico', 1, null, ['class' => 'form-control '.($errors->has('frigorifico') ? 'is-invalid' : '')]) !!}
             @error('frigorifico')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
             {!! Form::label('piscina', __('Pool')) !!}
-            {!! Form::checkbox('piscina', null, ['class' => 'form-control '.($errors->has('piscina') ? 'is-invalid' : ''), 'required' => true]) !!}
+            {!! Form::hidden('piscina', 0) !!}
+            {!! Form::checkbox('piscina', 1, null, ['class' => 'form-control '.($errors->has('piscina') ? 'is-invalid' : '')]) !!}
             @error('piscina')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
             {!! Form::label('varanda', __('Balcony')) !!}
-            {!! Form::checkbox('varanda', null, ['class' => 'form-control '.($errors->has('varanda') ? 'is-invalid' : ''), 'required' => true]) !!}
+            {!! Form::hidden('varanda', 0) !!}
+            {!! Form::checkbox('varanda', 1, null, ['class' => 'form-control '.($errors->has('varanda') ? 'is-invalid' : '')]) !!}
             @error('varanda')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
             {!! Form::label('terraco', __('Terrace')) !!}
-            {!! Form::checkbox('terraco', null, ['class' => 'form-control '.($errors->has('animaisterracoEstimacao') ? 'is-invalid' : ''), 'required' => true]) !!}
+            {!! Form::hidden('terraco', 0) !!}
+            {!! Form::checkbox('terraco', 1, null, ['class' => 'form-control '.($errors->has('animaisterracoEstimacao') ? 'is-invalid' : '')]) !!}
             @error('terraco')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
             {!! Form::label('churrasqueira', __('Barbecue')) !!}
-            {!! Form::checkbox('churrasqueira', null, ['class' => 'form-control '.($errors->has('churrasqueira') ? 'is-invalid' : ''), 'required' => true]) !!}
+            {!! Form::hidden('churrasqueira', 0) !!}
+            {!! Form::checkbox('churrasqueira', 1, null, ['class' => 'form-control '.($errors->has('churrasqueira') ? 'is-invalid' : '')]) !!}
             @error('churrasqueira')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
             {!! Form::label('arCondicionado', __('Air Conditioner')) !!}
-            {!! Form::checkbox('arCondicionado', null, ['class' => 'form-control '.($errors->has('arCondicionado') ? 'is-invalid' : ''), 'required' => true]) !!}
+            {!! Form::hidden('arCondicionado', 0) !!}
+            {!! Form::checkbox('arCondicionado', 1, null, ['class' => 'form-control '.($errors->has('arCondicionado') ? 'is-invalid' : '')]) !!}
             @error('arCondicionado')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
             {!! Form::label('outrosEquipamentos', __('Other equipment')) !!}
-            {!! Form::text('outrosEquipamentos', null, ['class' => 'form-control '.($errors->has('outrosEquipamentos') ? 'is-invalid' : ''), 'required' => true]) !!}
+            {!! Form::text('outrosEquipamentos', null, ['class' => 'form-control '.($errors->has('outrosEquipamentos') ? 'is-invalid' : '')]) !!}
             @error('outrosEquipamentos')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
             {!! Form::label('notas', __('Notes')) !!}
-            {!! Form::text('notas', null, ['class' => 'form-control '.($errors->has('notas') ? 'is-invalid' : ''), 'required' => true]) !!}
+            {!! Form::text('notas', null, ['class' => 'form-control '.($errors->has('notas') ? 'is-invalid' : '')]) !!}
             @error('notas')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror

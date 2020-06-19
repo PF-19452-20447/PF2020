@@ -87,7 +87,9 @@ Route::get('service/fiador/update', 'FiadorController@update');
 Route::get('service/fiador/destroy', 'FiadorController@destroy');
 
 //imoveis
-Route::resource('imoveis', 'ImovelController');
+Route::resource('imoveis', 'ImovelController')->parameters([
+    'imoveis' => 'imovel'
+]);
 
 //permissoes e roles dos fiadores
 Route::get('service/imoveis/view', 'ImovelController@view');

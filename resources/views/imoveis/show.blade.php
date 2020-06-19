@@ -3,7 +3,7 @@
  *
  * @var $imovel \App\Imovel
  */
-view()->share('pageTitle', $imovel ->nome);
+view()->share('pageTitle', $imovel->morada);
 view()->share('hideSubHeader', true);
 ?>
 @extends('layouts.app')
@@ -92,8 +92,8 @@ view()->share('hideSubHeader', true);
                                 <td>{{ $imovel ->animaisEstimacao }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">{{ __('Permanent certificate') }}</th>
-                                <td>{{ $imovel ->certidaoPermanente }}</td>
+                                <th scope="row">{{ __('Energy certificate') }}</th>
+                                <td>{{ $imovel ->certificadoEnergetico }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Habitation License') }}</th>

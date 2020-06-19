@@ -55,7 +55,7 @@ class ImovelController extends Controller
      */
     public function show(Imovel $imovel)
     {
-        return view('imoveis.show');
+        return view('imoveis.show', compact('imovel'));
     }
 
     /**
@@ -66,7 +66,7 @@ class ImovelController extends Controller
      */
     public function edit(Imovel $imovel)
     {
-        return view('imoveis.edit');
+        return view('imoveis.edit', compact("imovel"));
     }
 
     /**
@@ -95,7 +95,10 @@ class ImovelController extends Controller
      */
     public function destroy(Imovel $imovel)
     {
-        //
+        $imovel->delete();
+
+        return redirect()->route('imoveis.index')
+                        ->with('success','Property successfully deleted!');
     }
 
 
@@ -109,28 +112,28 @@ class ImovelController extends Controller
     public function validateImovel(Request $request, Imovel $model = null): array
     {
         $validate_array = [
-        'tipo' => 'required|string',
+        'tipo' => 'required|string',//
         'tipologia' => 'required|string',
-        'area' => 'required|integer',
+        'area' => 'required|integer',//
         'morada' => 'required|string',
         'numQuartos' => 'required|integer',
         'numCasaBanho' => 'required|integer',
         'descricao' => 'required|string',
-        'estado' => 'required|boolean',
-        'mobilado' => 'required|boolean',
-        'fumar' => 'required|boolean',
-        'animaisEstimacao' => 'required|boolean',
-        'outrosEquipamentos' => 'required|string',
+        'estado' => 'boolean',
+        'mobilado' => 'boolean',
+        'fumar' => 'boolean',
+        'animaisEstimacao' => 'boolean',
+        'outrosEquipamentos' => 'string',
         'certificadoEnergetico' => 'required|string',
         'licencaHabitacao' => 'required|string',
-        'notas' => 'required|string',
-        'televisao' => 'required|boolean',
-        'frigorifico' => 'required|boolean',
-        'piscina' => 'required|boolean',
-        'varanda' => 'required|boolean',
-        'terraco' => 'required|boolean',
-        'churrasqueira' => 'required|boolean',
-        'arCondicionado' => 'required|boolean'
+        'notas' => 'string',
+        'televisao' => 'boolean',
+        'frigorifico' => 'boolean',
+        'piscina' => 'boolean',
+        'varanda' => 'boolean',
+        'terraco' => 'boolean',
+        'churrasqueira' => 'boolean',
+        'arCondicionado' => 'boolean'
         ];
         return $request->validate($validate_array);
 
