@@ -26,7 +26,7 @@
                         <div class="dropdown dropdown-inline" id="datatable-buttons">
 
                         </div>
-                       @canany(['adminApp', 'accessAsLandlord'])
+                       @canany(['adminApp', 'accessAsLandlord', 'accessAsTenant'])
                        <a href="{{ route('contratos.create') }}" class="btn btn-brand btn-elevate btn-icon-sm">
                             <i class="la la-plus"></i>
                             Create Contract

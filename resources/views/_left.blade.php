@@ -239,7 +239,7 @@
                     </div>
                 </li>
 
-                @can('adminApp')
+                @canany(['adminApp', 'adminFullApp', 'accessAsTenant'])
 
                 <li class="kt-menu__section ">
                     <h4 class="kt-menu__section-text">{{ __('Pages') }}</h4>
@@ -269,12 +269,14 @@
                                     <span class="kt-menu__link-text">{{ __('Contract') }}</span>
                                 </span>
                             </li>
+
                             <li class="kt-menu__item {{ request()->routeIs('contratos.index') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
                                 <a href="{{ route('contratos.index') }}" class="kt-menu__link">
                                     <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
                                     <span class="kt-menu__link-text">{{ __('List contracts') }}</span>
                                 </a>
                             </li>
+
                             <li class="kt-menu__item {{ request()->routeIs('contratos.create') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
                                 <a href="{{ route('contratos.create') }}" class="kt-menu__link ">
                                     <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
@@ -285,7 +287,7 @@
                     </div>
                 </li>
 
-                @endcan
+                @endcanany
 
 
                 @can('adminFullApp')

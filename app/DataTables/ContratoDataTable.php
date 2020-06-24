@@ -43,7 +43,17 @@ class ContratoDataTable extends DataTable
      */
     public function query(Contrato $model)
     {
-        return $model->newQuery();
+        $user = \Auth::user();
+        if($user->can('adminApp')){
+            return $model->newQuery();
+        }
+
+        if($user->can('accessAsTenant')){
+            return $model->newQuery()->whereIn('id', $user->inquilino->contratos->pluck('id'));
+
+        }
+
+        return $model->newQuery()->where(['contrato_id' => $user->id ]);
     }
 
     /**

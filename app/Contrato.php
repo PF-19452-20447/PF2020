@@ -35,7 +35,7 @@ class Contrato extends Model
 
     public function inquilino()
     {
-        return $this->belongsToMany('App\Inquilino');
+        return $this->belongsToMany('App\Inquilino', 'contrato_inquilinos');
     }
 
     public function renda()

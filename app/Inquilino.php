@@ -44,5 +44,8 @@ class Inquilino extends Model
         return $this->belongsToMany('App\Proprietario', 'proprietario_inquilino');
     }
 
+    public function contratos (){
+        return $this->belongsToMany('App\Contrato', 'contrato_inquilinos');
+    }
 
 }
