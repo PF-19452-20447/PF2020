@@ -51,8 +51,9 @@ class UserDataTable extends DataTable
                                 </form>
                             </div>
                         </span>
+
                         <a href="'. route('users.edit', $user) .'" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="'. __('Edit') .'"><i class="la la-edit"></i></a>';
-               });
+                    });
            }
         return $datatable;
 

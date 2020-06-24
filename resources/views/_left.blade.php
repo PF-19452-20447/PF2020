@@ -56,7 +56,7 @@
                         <span class="kt-menu__link-text">{{ __('Dashboard') }}</span>
                     </a>
                 </li>
-                @canany(['adminApp', 'adminFullApp'])
+                @canany(['adminApp', 'adminFullApp', 'accessAsLandlord'])
                 {{-- Botão Utilizador / User button --}}
                 <li class="kt-menu__item {{ request()->routeIs('users.*') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
                     <a href="{{ route('users.profile')}}" class="kt-menu__link">
