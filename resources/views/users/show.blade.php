@@ -19,6 +19,17 @@ view()->share('hideSubHeader', true);
                 </h3>
             </div>
         </div>
+        <div class="kt-portlet__head-toolbar">
+            <div class="kt-portlet__head-wrapper">
+                <div class="kt-portlet__head-actions">
+                    <a href="{{ route('users.edit', $user) }}" class="btn btn-brand btn-elevate btn-icon-sm">
+                        <i class="la la-edit"></i>
+                        {{ __('Update') }}
+                    </a>
+                    {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
         <div class="kt-portlet__body">
             <!--begin::Section-->
             <div class="kt-section">

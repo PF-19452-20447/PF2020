@@ -14,6 +14,7 @@ Breadcrumbs::for('users.create', function ($trail) {
     $trail->parent('users.index');
     $trail->push(__('Create'), route('users.create'));
 });
+
 Breadcrumbs::for('users.show', function ($trail, $user) {
     $trail->parent('users.index');
     $trail->push($user->name, route('users.show', $user));
@@ -23,10 +24,7 @@ Breadcrumbs::for('users.edit', function ($trail, $user) {
     $trail->push(__('Update'), route('users.edit', $user));
 });
 
-/*Breadcrumbs::for('users.profile', function ($trail, $user) {
-    $trail->parent('users.show', $user);
-    $trail->push(__('Update'), route('users.edit', $user));
-});*/
+
 
 // Home > Role
 Breadcrumbs::for('roles.index', function ($trail) {

@@ -128,7 +128,7 @@ class FiadorController extends Controller
             'nif' => ['required', 'alpha_num', 'max:32'],
             'cc' => ['required', 'alpha_num', 'max:16'],
             'email' => 'required|email|unique:users',
-            'telefone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'telefone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:9',
             'morada' => 'required|string',
             'iban' => ['required', 'alpha_dash', 'max:64'],
             'tipoParticularEmpresa' => 'required|integer|min:0',

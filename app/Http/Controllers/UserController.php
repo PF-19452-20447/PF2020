@@ -64,6 +64,15 @@ class UserController extends Controller
         }
     }
 
+
+    public function showProfile()
+    {
+       // $user = User::find($id);
+        // return view('users.profile', compact('users') );
+        return view('users.show', ['user' => auth()->user()]);
+    }
+
+
     /**
      * Display the specified resource.
      *
@@ -189,5 +198,7 @@ class UserController extends Controller
         return $user;
     }
 
-    
+
+
+
 }
