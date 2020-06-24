@@ -188,4 +188,6 @@ class UserController extends Controller
         $user->syncRoles($roles);
         return $user;
     }
+
+    
 }

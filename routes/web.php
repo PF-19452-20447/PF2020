@@ -36,6 +36,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/users/create', 'UserController@create')->name('users.create');
     Route::get('/users/{user}', 'UserController@show')->name('users.show');
     Route::get('/users/{user}/edit', 'UserController@edit')->name('users.edit');
+    Route::get('users/profile/{id}', 'UserProfileController@showProfile')->name('users.profile');
+    //Route::get('users/profile', ['as' => 'users.profile', 'uses' => 'UserController@showProfile']);
     Route::put('/users/{user}', 'UserController@update')->name('users.update');
     Route::delete('/users/{user}', 'UserController@destroy')->name('users.destroy');
     Route::delete('/users/{user}/delete', 'UserController@delete')->name('users.delete');
@@ -96,3 +98,12 @@ Route::get('service/contrato/view','ContratoController@view');
 Route::get('service/contrato/create','ContratoController@create');
 Route::get('service/contrato/update','ContratoController@update');
 Route::get('service/contrato/destroy','ContratoController@destroy');
+
+/*Route::group( ['middleware' => 'auth'], function() {
+    // practicing using forms for sending data to the DB & populating form fields with DB data
+    Route::get('users/profile', 'UserProfileController@index')->name('users.profile');
+    Route::patch('users/profile/{id}', 'UserProfileController@update')->name('users.edit');
+
+});*/
+
+Route::get('users/profile', 'UserProfileController@showProfile')->name('users.show');

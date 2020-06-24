@@ -23,7 +23,10 @@ Breadcrumbs::for('users.edit', function ($trail, $user) {
     $trail->push(__('Update'), route('users.edit', $user));
 });
 
-
+/*Breadcrumbs::for('users.profile', function ($trail, $user) {
+    $trail->parent('users.show', $user);
+    $trail->push(__('Update'), route('users.edit', $user));
+});*/
 
 // Home > Role
 Breadcrumbs::for('roles.index', function ($trail) {
@@ -132,6 +135,7 @@ Breadcrumbs::for('contratos.edit', function ($trail, $model) {
     $trail->parent('contratos.show', $model);
     $trail->push(__('Update'), route('contratos.edit', $model));
 });
+
 
 
 /*
