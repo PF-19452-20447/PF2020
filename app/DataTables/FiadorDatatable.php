@@ -57,9 +57,13 @@ class FiadorDatatable extends DataTable
 
             }
             return $model->newQuery()->whereIn('id', $fiadores_ids);
+
         }
+        elseif($user->can('accessAsTenant')){
 
+            return $model->newQuery()->whereIn('id', $user->inquilino->fiadores->pluck('id'));
 
+        }
       /*  elseif($user->proprietario->inquilinos->pluck('id'))
             return $model->newQuery()->whereIn('id', $user->inquilinos->fiadores->pluck('id'));*/
             //return $model->newQuery();
