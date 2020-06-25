@@ -134,6 +134,23 @@ Breadcrumbs::for('contratos.edit', function ($trail, $model) {
     $trail->push(__('Update'), route('contratos.edit', $model));
 });
 
+//Home > Rendas
+Breadcrumbs::for('rendas.index', function ($trail) {
+    $trail->parent('home');
+    $trail->push(__('Income'), route('rendas.index'));
+});
+Breadcrumbs::for('rendas.create', function ($trail) {
+    $trail->parent('rendas.index');
+    $trail->push(__('Create'), route('rendas.create'));
+});
+Breadcrumbs::for('rendas.show', function ($trail, $model) {
+    $trail->parent('rendas.index');
+    $trail->push($model->valorPagar, route('rendas.show', $model));
+});
+Breadcrumbs::for('rendas.edit', function ($trail, $model) {
+    $trail->parent('rendas.show', $model);
+    $trail->push(__('Update'), route('rendas.edit', $model));
+});
 
 
 /*
