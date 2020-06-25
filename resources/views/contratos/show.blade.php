@@ -66,7 +66,7 @@ view()->share('hideSubHeader', true);
                                 <td>{{ $contrato ->tipoContrato }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">{{ __('Start of contract') }}</th>
+                                <th scope="row">{{ __('Begining of contract') }}</th>
                                 <td>{{ $contrato ->inicioContrato }}</td>
                             </tr>
                             <tr>
@@ -78,7 +78,7 @@ view()->share('hideSubHeader', true);
                                 <td>{{ $contrato ->renovavel }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">{{ __('Benefit exemption') }}</th>
+                                <th scope="row">{{ __('Exemption benefit') }}</th>
                                 <td>{{ $contrato ->isencaoBeneficio }}</td>
                             </tr>
                             <tr>
