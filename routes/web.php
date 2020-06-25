@@ -105,4 +105,17 @@ Route::get('service/contrato/destroy','ContratoController@destroy');
 
 });*/
 
+//rendas
+
+
+Route::resource('rendas', 'RendaController');
+
+//permissoes e roles das rendas
+
+Route::get('service/renda/view','RendaController@view');
+Route::get('service/renda/create','RendaController@create');
+Route::get('service/renda/update','RendaController@update');
+Route::get('service/renda/destroy','RendaController@destroy');
+
+
 
