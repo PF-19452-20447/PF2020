@@ -286,8 +286,51 @@
                         </ul>
                     </div>
                 </li>
-
                 @endcanany
+
+
+                <li class="kt-menu__item  kt-menu__item--submenu {{ request()->routeIs('rendas.*') ? "kt-menu__item--open" : "" }}" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
+                    <a href="{{ route('rendas.index') }}" class="kt-menu__link kt-menu__toggle">
+                        <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:/home/keenthemes/www/metronic/themes/metronic/theme/html/demo2/dist/../src/media/svg/icons/Shopping/Credit-card.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <rect x="0" y="0" width="24" height="24"/>
+                                <rect fill="#000000" opacity="0.3" x="2" y="5" width="20" height="14" rx="2"/>
+                                <rect fill="#000000" x="2" y="8" width="20" height="3"/>
+                                <rect fill="#000000" opacity="0.3" x="16" y="14" width="4" height="2" rx="1"/>
+                            </g>
+                        </svg><!--end::Svg Icon--></span>
+                        <span class="kt-menu__link-text">{{ __('Incomes') }}</span>
+                        <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                    </a>
+                    <div class="kt-menu__submenu ">
+                        <span class="kt-menu__arrow"></span>
+                        <ul class="kt-menu__subnav">
+                            <li class="kt-menu__item kt-menu__item--parent" aria-haspopup="true">
+                                <span class="kt-menu__link">
+                                    <span class="kt-menu__link-text">{{ __('Incomes') }}</span>
+                                </span>
+                            </li>
+
+                            <li class="kt-menu__item {{ request()->routeIs('rendas.index') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
+                                <a href="{{ route('rendas.index') }}" class="kt-menu__link">
+                                    <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
+                                    <span class="kt-menu__link-text">{{ __('List incomes') }}</span>
+                                </a>
+                            </li>
+
+                            <li class="kt-menu__item {{ request()->routeIs('rendas.create') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
+                                <a href="{{ route('rendas.create') }}" class="kt-menu__link ">
+                                    <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
+                                    <span class="kt-menu__link-text">{{ __('Create incomes') }}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+
+
+
 
 
                 @can('adminFullApp')
