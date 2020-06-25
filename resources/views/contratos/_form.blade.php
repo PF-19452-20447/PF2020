@@ -20,13 +20,12 @@
         <div class="form-group">
             {!! Form::label('tipoContrato', __('Type of contract')) !!}
             {!! Form::text('tipoContrato', null, ['class' => 'form-control '.($errors->has('tipoContrato') ? 'is-invalid' : ''), 'type' => 'date', 'required' => true ]) !!}
-            <!--<span class="form-text text-muted">We'll never share your email with anyone else.</span>-->
             @error('tipoContrato')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
-            {!! Form::label('inicioContrato', __('Start of contract')) !!}
+            {!! Form::label('inicioContrato', __('Begining of contract')) !!}
             {!! Form::datetime('inicioContrato', null, ['class' => 'form-control '.($errors->has('inicioContrato') ? 'is-invalid' : ''), 'min' => '1', 'required' => true ]) !!}
             @error('inicioContrato')
             <div class="error invalid-feedback">{{ $message }}</div>
@@ -47,7 +46,7 @@
             @enderror
         </div>
         <div class="form-group">
-            {!! Form::label('isencaoBeneficio', __('Benefit exemption')) !!}
+            {!! Form::label('isencaoBeneficio', __('Exemption benefit')) !!}
             {!! Form::text('isencaoBeneficio', null, ['class' => 'form-control '.($errors->has('isencaoBeneficio') ? 'is-invalid' : ''), 'min' => '1', 'type' => 'number', 'step' => 1, 'required' => true]) !!}
             @error('isencaoBeneficio')
             <div class="error invalid-feedback">{{ $message }}</div>
