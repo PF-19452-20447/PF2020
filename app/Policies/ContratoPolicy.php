@@ -18,7 +18,7 @@ class ContratoPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -30,7 +30,10 @@ class ContratoPolicy
      */
     public function view(User $user, Contrato $contrato)
     {
-        //
+        if($user->can('adminApp')){
+            return true;
+
+        }
     }
 
     /**
@@ -39,9 +42,15 @@ class ContratoPolicy
      * @param  \App\User  $user
      * @return mixed
      */
-    public function create(User $user)
+    public function create(User $user, Contrato $contrato)
     {
-        //
+        if($user->can('adminApp')){
+            return true;
+        }elseif($user->can('accessAsTenant')){
+             return $user->id == $contrato->user_id;
+        }
+
+        return $user->id > 0;
     }
 
     /**
@@ -53,7 +62,9 @@ class ContratoPolicy
      */
     public function update(User $user, Contrato $contrato)
     {
-        //
+        if($user->can('AdminApp')){
+            return true;
+        }
     }
 
     /**
@@ -65,7 +76,7 @@ class ContratoPolicy
      */
     public function delete(User $user, Contrato $contrato)
     {
-        //
+        return $user->id == $contrato->user_id;
     }
 
     /**
