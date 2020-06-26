@@ -80,7 +80,12 @@ class RendaPolicy
      */
     public function delete(User $user, Renda $renda)
     {
-        return $user->id == $renda->user_id;
+       if($user->can('AdminApp')){
+            return true;
+        }elseif($user->can('accessAsLandlord')) {
+            return $user->id == $renda->user_id;
+        }
+            return false;
     }
 
     /**
