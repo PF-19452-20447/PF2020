@@ -276,19 +276,20 @@
                                     <span class="kt-menu__link-text">{{ __('List contracts') }}</span>
                                 </a>
                             </li>
-
+                            @canany(['adminApp', 'adminFullApp'])
                             <li class="kt-menu__item {{ request()->routeIs('contratos.create') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
                                 <a href="{{ route('contratos.create') }}" class="kt-menu__link ">
                                     <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
                                     <span class="kt-menu__link-text">{{ __('Create contracts') }}</span>
                                 </a>
                             </li>
+                            @endcanany
                         </ul>
                     </div>
                 </li>
                 @endcanany
 
-
+                @canany(['adminApp', 'adminFullApp', 'accessAsLandlord', 'accessAsTenant'])
                 <li class="kt-menu__item  kt-menu__item--submenu {{ request()->routeIs('rendas.*') ? "kt-menu__item--open" : "" }}" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
                     <a href="{{ route('rendas.index') }}" class="kt-menu__link kt-menu__toggle">
                         <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:/home/keenthemes/www/metronic/themes/metronic/theme/html/demo2/dist/../src/media/svg/icons/Shopping/Credit-card.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -310,24 +311,26 @@
                                     <span class="kt-menu__link-text">{{ __('Incomes') }}</span>
                                 </span>
                             </li>
-
+                            @can('accessAsTenant')
                             <li class="kt-menu__item {{ request()->routeIs('rendas.index') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
                                 <a href="{{ route('rendas.index') }}" class="kt-menu__link">
                                     <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
                                     <span class="kt-menu__link-text">{{ __('List incomes') }}</span>
                                 </a>
                             </li>
-
+                            @endcan
+                            @canany(['adminApp', 'adminFullApp', 'accessAsLandlord'])
                             <li class="kt-menu__item {{ request()->routeIs('rendas.create') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
                                 <a href="{{ route('rendas.create') }}" class="kt-menu__link ">
                                     <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
                                     <span class="kt-menu__link-text">{{ __('Create incomes') }}</span>
                                 </a>
                             </li>
+                            @endcanany
                         </ul>
                     </div>
                 </li>
-
+                @endcanany
 
 
 
