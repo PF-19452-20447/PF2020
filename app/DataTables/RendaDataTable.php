@@ -8,6 +8,7 @@ use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
+use App\Inquilino;
 
 class RendaDataTable extends DataTable
 {
@@ -45,10 +46,16 @@ class RendaDataTable extends DataTable
     {
         $user = \Auth::user();
         if($user->can('adminApp')){
-            return $model->newQuery();
-        }
 
-        return $model->newQuery()->where(['renda_id' => $user->id ]);
+            return $model->newQuery();
+
+        }elseif($user->can('accessAsTenant')){
+
+            return Inquilino::find(1)->rendas();
+
+        }
+        return $model->newQuery();
+
     }
 
     /**
