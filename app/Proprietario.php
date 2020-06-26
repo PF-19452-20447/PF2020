@@ -32,5 +32,11 @@ class Proprietario extends Model
         return $this->belongsToMany('App\Inquilino', 'proprietario_inquilino');
     }
 
+    public function renda () {
+
+        return $this->hasOne('App\Renda', 'proprietario_id', 'id');
+
+    }
+
 
 }
