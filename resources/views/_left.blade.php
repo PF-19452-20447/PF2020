@@ -311,7 +311,7 @@
                                     <span class="kt-menu__link-text">{{ __('Incomes') }}</span>
                                 </span>
                             </li>
-                            @can('accessAsTenant')
+                            @canany(['accessAsTenant', 'accessAsLandlord', 'adminApp', 'adminFullApp'])
                             <li class="kt-menu__item {{ request()->routeIs('rendas.index') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
                                 <a href="{{ route('rendas.index') }}" class="kt-menu__link">
                                     <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
