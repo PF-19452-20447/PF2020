@@ -9,6 +9,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 use App\Inquilino;
+use App\Proprietario;
 
 class RendaDataTable extends DataTable
 {
@@ -24,7 +25,7 @@ class RendaDataTable extends DataTable
             ->eloquent($query)
            ->editColumn('created_at', '{!! date(\'d-m-Y H:i:s\', strtotime($created_at)) !!}');
             //->editColumn('created_at', '{{ Carbon\Carbon::parse(created_at)->toDateTimeString() }}');
-            if(auth()->user()->can('adminApp')){
+            if(auth()->user()->can('accessAsLandlord')){
                 $datatable->addColumn('action', function ($renda) {
                     return '<a class="btn btn-sm btn-clean btn-icon btn-icon-md" href="'. route('rendas.show', $renda) .'" title="'. __('View') .'"><i class="la la-eye"></i></a>
                             <a href="'. route('rendas.edit', $renda) .'" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="'. __('Edit') .'"><i class="la la-edit"></i></a>
@@ -52,6 +53,11 @@ class RendaDataTable extends DataTable
         }elseif($user->can('accessAsTenant')){
 
             return Inquilino::find(1)->rendas();
+
+        }
+        elseif($user->can('accessAsLandlord')){
+
+            return Proprietario::find(1)->renda();
 
         }
         return $model->newQuery();
@@ -100,7 +106,7 @@ class RendaDataTable extends DataTable
                 ->width(120)
                 ->addClass('text-center'),*/
         ];
-        if(auth()->user()->can('adminApp')){
+        if(auth()->user()->can('accessAsLandlord')){
             $columns[]=Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
