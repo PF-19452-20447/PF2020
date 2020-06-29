@@ -31,12 +31,12 @@ class Renda extends Model
         return $this->belongsTo('App\Contrato');
     }
 
-  public function inquil (){
+  public function inquilino (){
 
         return $this->belongsTo('App\Inquilino');
     }
 
-    public function proprieta()
+    public function proprietario()
     {
         return $this->belongsTo('App\Proprietario');
     }

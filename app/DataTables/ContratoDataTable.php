@@ -48,8 +48,11 @@ class ContratoDataTable extends DataTable
             return $model->newQuery();
         }
 
-        if($user->can('accessAsTenant')){
+        elseif($user->can('accessAsTenant')){
             return $model->newQuery()->whereIn('id', $user->inquilino->contratos->pluck('id'));
+
+        }elseif($user->can('accessAsLandlord')){
+            return $model->newQuery()->whereIn('id', $user->proprietario->contratos->pluck('id'));
 
         }
 

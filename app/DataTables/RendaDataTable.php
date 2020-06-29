@@ -52,15 +52,16 @@ class RendaDataTable extends DataTable
 
         }elseif($user->can('accessAsTenant')){
 
-            return Inquilino::find(1)->rendas();
+            return $model->newQuery()->where('inquilino_id', $user->inquilino->id);
+           // return Inquilino::find(1)->rendas();
 
         }
         elseif($user->can('accessAsLandlord')){
 
-            return Proprietario::find(1)->renda();
-
+            return $model->newQuery()->where('proprietario_id', $user->proprietario->id);
         }
-        return $model->newQuery();
+        
+       // return $model->newQuery();
 
     }
 

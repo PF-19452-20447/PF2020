@@ -72,6 +72,7 @@ view()->share('hideSubHeader', true);
                     <input type="password" placeholder="{{ __('Confirm Password') }}" class="form-control" name="password_confirmation" >
                 </div>
                 <!-- Roles Form Input -->
+                @canany(['adminApp', 'adminFullApp'])
                 <div class="form-group">
                     {!! Form::label('roles[]', 'Roles') !!}
                     {!! Form::select('roles[]', $roles, isset($user) ? $user->roles->pluck('id')->toArray() : null,  ['class' => 'form-control '.($errors->has('roles') ? "is-invalid" : ""), 'multiple']) !!}
@@ -79,11 +80,14 @@ view()->share('hideSubHeader', true);
                     <div class="error invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
+
                 <!-- Permissions -->
-                @if(isset($user))
-                    @include('users._permissions', ['closed' => 'true', 'model' => $user ])
-                @endif
+                     @if(isset($user))
+                        @include('users._permissions', ['closed' => 'true', 'model' => $user ])
+                    @endif
+                @endcanany
             </div>
+
             <div class="kt-portlet__foot">
                 <div class="kt-form__actions">
                     <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
