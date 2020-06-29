@@ -239,13 +239,61 @@
                     </div>
                 </li>
 
-                @canany(['adminApp', 'adminFullApp', 'accessAsTenant'])
+                @canany(['adminApp', 'adminFullApp', 'accessAsTenant', 'accessAsLandlord'])
 
                 <li class="kt-menu__section ">
                     <h4 class="kt-menu__section-text">{{ __('Pages') }}</h4>
                     <i class="kt-menu__section-icon flaticon-more-v2"></i>
                 </li>
+                @endcanany
 
+                {{-- Botão Imovéis / Properties button --}}
+                @canany(['adminApp', 'adminFullApp', 'accessAsLandlord'])
+                <li class="kt-menu__item  kt-menu__item--submenu {{ request()->routeIs('imoveis.*') ? "kt-menu__item--open" : "" }}" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
+                    <a href="{{ route('imoveis.index') }}" class="kt-menu__link kt-menu__toggle">
+                        <span class="kt-menu__link-icon"><!--begin::Svg Icon | path:/var/www/metronic/themes/metronic/theme/html/demo2/dist/../src/media/svg/icons/Home/Bed.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <rect x="0" y="0" width="24" height="24"/>
+                                <path d="M4,22 L2,22 C2,19.2385763 4.23857625,18 7,18 L17,18 C19.7614237,18 22,19.2385763 22,22 L20,22 C20,20.3431458 18.6568542,20 17,20 L7,20 C5.34314575,20 4,20.3431458 4,22 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
+                                <rect fill="#000000" x="1" y="14" width="22" height="6" rx="1"/>
+                                <path d="M13,13 L11,13 L11,12 C11,11.4477153 10.5522847,11 10,11 L6,11 C5.44771525,11 5,11.4477153 5,12 L5,13 L4,13 C3.44771525,13 3,12.5522847 3,12 L3,8 C3,6.8954305 3.8954305,6 5,6 L19,6 C20.1045695,6 21,6.8954305 21,8 L21,12 C21,12.5522847 20.5522847,13 20,13 L19,13 L19,12 C19,11.4477153 18.5522847,11 18,11 L14,11 C13.4477153,11 13,11.4477153 13,12 L13,13 Z" fill="#000000" opacity="0.3"/>
+                            </g>
+                        </svg><!--end::Svg Icon--></span>
+                        <span class="kt-menu__link-text">{{ __('Property') }}</span>
+                        <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                    </a>
+                    <div class="kt-menu__submenu ">
+                        <span class="kt-menu__arrow"></span>
+                        <ul class="kt-menu__subnav">
+                            <li class="kt-menu__item kt-menu__item--parent" aria-haspopup="true">
+                                <span class="kt-menu__link">
+                                    <span class="kt-menu__link-text">{{ __('Proptery') }}</span>
+                                </span>
+                            </li>
+                            <li class="kt-menu__item {{ request()->routeIs('imoveis.index') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
+                                <a href="{{ route('imoveis.index') }}" class="kt-menu__link">
+                                    <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
+                                    <span class="kt-menu__link-text">{{ __('List Properties') }}</span>
+                                </a>
+                            </li>
+                            @canany(['adminApp', 'adminFullApp', 'accessAsLandlord'])
+                            <li class="kt-menu__item {{ request()->routeIs('imoveis.create') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
+                                <a href="{{ route('imoveis.create') }}" class="kt-menu__link ">
+                                    <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
+                                    <span class="kt-menu__link-text">{{ __('Create Property') }}</span>
+                                </a>
+                            </li>
+                            @endcanany
+                        </ul>
+                    </div>
+                </li>
+                @endcanany
+
+
+
+
+
+                @canany(['adminApp', 'adminFullApp', 'accessAsLandlord'])
                 <li class="kt-menu__item  kt-menu__item--submenu {{ request()->routeIs('contratos.*') ? "kt-menu__item--open" : "" }}" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
                     <a href="{{ route('contratos.index') }}" class="kt-menu__link kt-menu__toggle">
                         <span class="kt-menu__link-icon">
@@ -276,7 +324,7 @@
                                     <span class="kt-menu__link-text">{{ __('List contracts') }}</span>
                                 </a>
                             </li>
-                            @canany(['adminApp', 'adminFullApp'])
+                            @canany(['adminApp', 'adminFullApp', 'accessAsLandlord'])
                             <li class="kt-menu__item {{ request()->routeIs('contratos.create') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
                                 <a href="{{ route('contratos.create') }}" class="kt-menu__link ">
                                     <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
@@ -318,7 +366,7 @@
                                     <span class="kt-menu__link-text">{{ __('List incomes') }}</span>
                                 </a>
                             </li>
-                            @endcan
+                            @endcanany
                             @canany(['adminApp', 'adminFullApp', 'accessAsLandlord'])
                             <li class="kt-menu__item {{ request()->routeIs('rendas.create') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
                                 <a href="{{ route('rendas.create') }}" class="kt-menu__link ">
@@ -331,51 +379,6 @@
                     </div>
                 </li>
                 @endcanany
-
-
-                {{-- Botão Imovéis / Properties button --}}
-                <li class="kt-menu__item  kt-menu__item--submenu {{ request()->routeIs('imoveis.*') ? "kt-menu__item--open" : "" }}" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
-                    <a href="{{ route('imoveis.index') }}" class="kt-menu__link kt-menu__toggle">
-                        <span class="kt-menu__link-icon">
-                            <!--begin::Svg Icon | path:/home/keenthemes/www/metronic/themes/metronic/theme/html/demo1/dist/../src/media/svg/icons/General/User.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                    <polygon points="0 0 24 0 24 24 0 24"/>
-                                    <path d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
-                                    <path d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z" fill="#000000" fill-rule="nonzero"/>
-                                </g>
-                            </svg><!--end::Svg Icon-->
-                        </span>
-                        <span class="kt-menu__link-text">{{ __('Property') }}</span>
-                        <i class="kt-menu__ver-arrow la la-angle-right"></i>
-                    </a>
-                    <div class="kt-menu__submenu ">
-                        <span class="kt-menu__arrow"></span>
-                        <ul class="kt-menu__subnav">
-                            <li class="kt-menu__item kt-menu__item--parent" aria-haspopup="true">
-                                <span class="kt-menu__link">
-                                    <span class="kt-menu__link-text">{{ __('Proptery') }}</span>
-                                </span>
-                            </li>
-                            <li class="kt-menu__item {{ request()->routeIs('imoveis.index') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
-                                <a href="{{ route('imoveis.index') }}" class="kt-menu__link">
-                                    <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
-                                    <span class="kt-menu__link-text">{{ __('List Properties') }}</span>
-                                </a>
-                            </li>
-                            @can('adminApp')
-                            <li class="kt-menu__item {{ request()->routeIs('imoveis.create') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
-                                <a href="{{ route('imoveis.create') }}" class="kt-menu__link ">
-                                    <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
-                                    <span class="kt-menu__link-text">{{ __('Create landlord') }}</span>
-                                </a>
-                            </li>
-                            @endcan
-                        </ul>
-                    </div>
-                </li>
-
-
-
 
                 @can('adminFullApp')
 

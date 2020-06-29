@@ -22,7 +22,7 @@ class ImovelDatatable extends DataTable
         ->eloquent($query)
        ->editColumn('created_at', '{!! date(\'d-m-Y H:i:s\', strtotime($created_at)) !!}');
         //->editColumn('created_at', '{{ Carbon\Carbon::parse(created_at)->toDateTimeString() }}');
-        if(auth()->user()->can('adminApp')){
+        if(auth()->user()->can('accessAsLandlord')){
             $datatable->addColumn('action', function ($imovel) {
                 return '<a class="btn btn-sm btn-clean btn-icon btn-icon-md" href="'. route('imoveis.show', $imovel) .'" title="'. __('View') .'"><i class="la la-eye"></i></a>
                         <a href="'. route('imoveis.edit', $imovel) .'" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="'. __('Edit') .'"><i class="la la-edit"></i></a>
@@ -42,7 +42,16 @@ class ImovelDatatable extends DataTable
      */
     public function query(Imovel $model)
     {
-        return $model->newQuery();
+        $user = \Auth::user();
+        if($user->can('adminApp')){
+
+            return $model->newQuery();
+
+        }
+        elseif($user->can('accessAsLandlord')){
+
+            return $model->newQuery()->whereIn('id', $user->proprietario->imoveis->pluck('id'));
+        }
     }
 
     /**
@@ -95,7 +104,7 @@ class ImovelDatatable extends DataTable
             //Column::make('churrasqueira'),
             //Column::make('arCondicionado')
         ];
-        if(auth()->user()->can('adminApp')){
+        if(auth()->user()->can('accessAsLandlord')){
             $columns[]=Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

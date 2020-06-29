@@ -26,12 +26,12 @@
                         <div class="dropdown dropdown-inline" id="datatable-buttons">
 
                         </div>
-                       @can('adminApp')
+                        @canany(['adminApp', 'accessAsLandlord', 'adminFullApp'])
                        <a href="{{ route('imoveis.create') }}" class="btn btn-brand btn-elevate btn-icon-sm">
                             <i class="la la-plus"></i>
                             Create Property
                         </a>
-                        @endcan
+                        @endcanany
                     </div>
                 </div>
             </div>

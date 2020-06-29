@@ -37,9 +37,9 @@ class Imovel extends Model
     ];
 
 
-    public function proprietario()
+    public function proprietarios()
     {
-        return $this->belongsToMany('App\Proprietario');
+        return $this->belongsToMany('App\Proprietario', 'proprietarios_imoveis');
     }
 
     public function ficheiro()

@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Dashboard</div>
-                    <h4>Welcome to our application {{-- Auth::user()->proprietario->rendas->pluck('id') --}}
+                    <h4>Welcome to our application {{-- Auth::user()->proprietario->imoveis->pluck('id') --}}
                         <?php
                        /* $user= Auth::user();
                         $fiadores_ids = [];

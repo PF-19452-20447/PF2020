@@ -21,7 +21,7 @@ view()->share('hideSubHeader', true);
                 </h3>
             </div>
         </div>
-
+        
         <form class="kt-form" method="POST" action="{{route('users.update', $user)}}" enctype="multipart/form-data">
             @csrf
             @method('PUT')

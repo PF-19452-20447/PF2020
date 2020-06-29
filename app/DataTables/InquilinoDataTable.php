@@ -24,7 +24,7 @@ class InquilinoDataTable extends DataTable
             ->eloquent($query)
            ->editColumn('created_at', '{!! date(\'d-m-Y H:i:s\', strtotime($created_at)) !!}');
             //->editColumn('created_at', '{{ Carbon\Carbon::parse(created_at)->toDateTimeString() }}');
-            if(auth()->user()->can('adminApp')){
+            if(auth()->user()->can('accessAsLandlord')){
                 $datatable->addColumn('action', function ($inquilino) {
                     return '<a class="btn btn-sm btn-clean btn-icon btn-icon-md" href="'. route('inquilinos.show', $inquilino) .'" title="'. __('View') .'"><i class="la la-eye"></i></a>
                             <a href="'. route('inquilinos.edit', $inquilino) .'" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="'. __('Edit') .'"><i class="la la-edit"></i></a>
@@ -109,7 +109,7 @@ class InquilinoDataTable extends DataTable
                 ->width(120)
                 ->addClass('text-center'),*/
         ];
-        if(auth()->user()->can('adminApp')){
+        if(auth()->user()->can('accessAsLandlord')){
             $columns[]=Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

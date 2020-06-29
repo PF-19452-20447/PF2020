@@ -3,7 +3,7 @@
  *
  * @var $imovel \App\Imovel
  */
-view()->share('pageTitle', $imovel->morada);
+view()->share('pageTitle', $imovel->tipo);
 view()->share('hideSubHeader', true);
 ?>
 @extends('layouts.app')
@@ -11,12 +11,12 @@ view()->share('hideSubHeader', true);
     {{ Breadcrumbs::render('imoveis.show', $imovel) }}
 @endsection
 @section('content')
-@can('adminApp')
+@canany(['adminApp', 'adminFullApp', 'accessAsLandlord'])
     <div class="kt-portlet">
         <div class="kt-portlet__head">
             <div class="kt-portlet__head-label">
                 <h3 class="kt-portlet__head-title">
-                    {{ $imovel ->nome }}
+                    {{ $imovel ->tipo }}
                 </h3>
             </div>
             <div class="kt-portlet__head-toolbar">
@@ -143,10 +143,10 @@ view()->share('hideSubHeader', true);
 
         </div>
     </div>
-@endcan
+@endcanany
 @endsection
 @push('scripts')
-@can('adminApp')
+@canany(['adminApp', 'adminFullApp', 'accessAsLandlord'])
     <script>
         function destroyConfirmation(e){
             swal.fire({
@@ -162,5 +162,5 @@ view()->share('hideSubHeader', true);
             });
         }
     </script>
-@endcan
+@endcanany
 @endpush

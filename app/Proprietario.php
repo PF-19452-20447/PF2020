@@ -38,6 +38,11 @@ class Proprietario extends Model
 
     }
 
-   
+    public function imoveis (){
+
+        return $this->belongsToMany('App\Imovel', 'proprietarios_imoveis');
+    }
+
+
 
 }
