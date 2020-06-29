@@ -34,10 +34,24 @@ class Inquilino extends Model
         'numFuncionarios'
     ];
 
-    public function fiador()
+    public function fiadores()
     {
         return $this->hasMany('App\Fiador');
     }
 
+    public function proprietarios()
+    {
+        return $this->belongsToMany('App\Proprietario', 'proprietario_inquilino');
+    }
+
+    public function contratos (){
+
+        return $this->belongsToMany('App\Contrato', 'contrato_inquilinos');
+    }
+
+    public function rendas(){
+
+        return $this->hasMany('App\Renda'); /*, 'inquilino_id', 'id');*/
+    }
 
 }

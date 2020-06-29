@@ -84,6 +84,13 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         return $this->hasOne('App\Proprietario');
     }
 
+    public function inquilino()
+    {
+        return $this->hasOne('App\Inquilino');
+    }
+
+
+
     /**
      * Return the first name of the user
      * @return mixed|string

@@ -10,7 +10,9 @@ view()->share('hideSubHeader', true);
 @section('breadcrumbs')
     {{ Breadcrumbs::render('users.edit', $user) }}
 @endsection
+
 @section('content')
+@can('accessAsLandlord')
     <div class="kt-portlet">
         <div class="kt-portlet__head">
             <div class="kt-portlet__head-label">
@@ -19,6 +21,7 @@ view()->share('hideSubHeader', true);
                 </h3>
             </div>
         </div>
+
         <form class="kt-form" method="POST" action="{{route('users.update', $user)}}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -69,6 +72,7 @@ view()->share('hideSubHeader', true);
                     <input type="password" placeholder="{{ __('Confirm Password') }}" class="form-control" name="password_confirmation" >
                 </div>
                 <!-- Roles Form Input -->
+                @canany(['adminApp', 'adminFullApp'])
                 <div class="form-group">
                     {!! Form::label('roles[]', 'Roles') !!}
                     {!! Form::select('roles[]', $roles, isset($user) ? $user->roles->pluck('id')->toArray() : null,  ['class' => 'form-control '.($errors->has('roles') ? "is-invalid" : ""), 'multiple']) !!}
@@ -76,11 +80,14 @@ view()->share('hideSubHeader', true);
                     <div class="error invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
+
                 <!-- Permissions -->
-                @if(isset($user))
-                    @include('users._permissions', ['closed' => 'true', 'model' => $user ])
-                @endif
+                     @if(isset($user))
+                        @include('users._permissions', ['closed' => 'true', 'model' => $user ])
+                    @endif
+                @endcanany
             </div>
+
             <div class="kt-portlet__foot">
                 <div class="kt-form__actions">
                     <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
@@ -88,8 +95,11 @@ view()->share('hideSubHeader', true);
                 </div>
             </div>
         </form>
+
     </div>
+    @endcan
 @endsection
+
 @push('scripts')
     <script src="{{ asset('js/ktavatarsingle.js') }}"></script>
     <script>

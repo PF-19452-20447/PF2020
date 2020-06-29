@@ -14,6 +14,7 @@ Breadcrumbs::for('users.create', function ($trail) {
     $trail->parent('users.index');
     $trail->push(__('Create'), route('users.create'));
 });
+
 Breadcrumbs::for('users.show', function ($trail, $user) {
     $trail->parent('users.index');
     $trail->push($user->name, route('users.show', $user));
@@ -115,6 +116,7 @@ Breadcrumbs::for('fiador.edit', function ($trail, $model) {
     $trail->push(__('Update'), route('fiador.edit', $model));
 });
 
+
 // Home > Imoveis
 Breadcrumbs::for('imoveis.index', function ($trail) {
     $trail->parent('home');
@@ -132,6 +134,45 @@ Breadcrumbs::for('imoveis.edit', function ($trail, $model) {
     $trail->parent('imoveis.show', $model);
     $trail->push(__('Update Property'), route('imoveis.edit', $model));
 });
+
+
+//Home > Contratos
+Breadcrumbs::for('contratos.index', function ($trail) {
+    $trail->parent('home');
+    $trail->push(__('Contract'), route('contratos.index'));
+});
+Breadcrumbs::for('contratos.create', function ($trail) {
+    $trail->parent('contratos.index');
+    $trail->push(__('Create'), route('contratos.create'));
+});
+Breadcrumbs::for('contratos.show', function ($trail, $model) {
+    $trail->parent('contratos.index');
+    $trail->push($model->tipoContrato, route('contratos.show', $model));
+});
+Breadcrumbs::for('contratos.edit', function ($trail, $model) {
+    $trail->parent('contratos.show', $model);
+    $trail->push(__('Update'), route('contratos.edit', $model));
+});
+
+//Home > Rendas
+Breadcrumbs::for('rendas.index', function ($trail) {
+    $trail->parent('home');
+    $trail->push(__('Income'), route('rendas.index'));
+});
+Breadcrumbs::for('rendas.create', function ($trail) {
+    $trail->parent('rendas.index');
+    $trail->push(__('Create'), route('rendas.create'));
+});
+Breadcrumbs::for('rendas.show', function ($trail, $model) {
+    $trail->parent('rendas.index');
+    $trail->push($model->valorPagar, route('rendas.show', $model));
+});
+Breadcrumbs::for('rendas.edit', function ($trail, $model) {
+    $trail->parent('rendas.show', $model);
+    $trail->push(__('Update'), route('rendas.edit', $model));
+});
+
+
 
 /*
 // Home > Blog

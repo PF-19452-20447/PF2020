@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Fiador;
+use App\Inquilino;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -45,7 +46,27 @@ class FiadorDatatable extends DataTable
      */
     public function query(Fiador $model)
     {
-        return $model->newQuery();
+        $user = \Auth::user();
+        if($user->can('adminApp'))
+            return $model->newQuery();
+        elseif($user->can('accessAsLandlord')){
+            //return $model->newQuery()->whereIn('id', $user->proprietario->inquilinos->fiadores->pluck('id'));
+            $fiadores_ids = [];
+            foreach($user->proprietario->inquilinos as $inquilino){
+                $fiadores_ids = array_merge($fiadores_ids,  $inquilino->fiadores->pluck('id')->toArray());
+
+            }
+            return $model->newQuery()->whereIn('id', $fiadores_ids);
+
+        }
+        elseif($user->can('accessAsTenant')){
+
+            return $model->newQuery()->whereIn('id', $user->inquilino->fiadores->pluck('id'));
+
+        }
+      /*  elseif($user->proprietario->inquilinos->pluck('id'))
+            return $model->newQuery()->whereIn('id', $user->inquilinos->fiadores->pluck('id'));*/
+            //return $model->newQuery();
     }
 
     /**

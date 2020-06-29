@@ -31,7 +31,7 @@
                             <i class="la la-plus"></i>
                             Create Tenant
                         </a>
-                        @endcanany
+                       @endcanany
                     </div>
                 </div>
             </div>

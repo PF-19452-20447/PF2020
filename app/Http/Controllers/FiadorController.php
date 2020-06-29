@@ -17,6 +17,7 @@ use Validation\Validator;
 class FiadorController extends Controller
 {
 
+
     /**
      * Display a listing of the resource.
      *
@@ -37,7 +38,6 @@ class FiadorController extends Controller
     {
         $fiador = new Fiador();
         $fiador->loadDefaultValues();
-        //$fiador->checkIBAN();
         return view('fiador.create', compact('fiador'));
         //
     }
@@ -124,11 +124,11 @@ class FiadorController extends Controller
     {
         $validate_array = [
             'nome' => ['required', 'alpha', 'max:255'],
-            'dataNascimento' => 'date_format:Y-m-d|before:today|nullable',
+            'dataNascimento' => 'required|date_format:Y-m-d|before:today|nullable',
             'nif' => ['required', 'alpha_num', 'max:32'],
             'cc' => ['required', 'alpha_num', 'max:16'],
             'email' => 'required|email|unique:users',
-            'telefone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'telefone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:9',
             'morada' => 'required|string',
             'iban' => ['required', 'alpha_dash', 'max:64'],
             'tipoParticularEmpresa' => 'required|integer|min:0',

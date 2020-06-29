@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Inquilino;
 use App\User;
+use App\Renda;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class InquilinoPolicy
+class RendaPolicy
 {
     use HandlesAuthorization;
 
@@ -18,26 +18,15 @@ class InquilinoPolicy
      */
     public function viewAny(User $user)
     {
-            return true;
-        //return $user->id > 0;
-       /* if ($user->can('user::view:all')) {
-            return true;
-        }
 
-        return null;*/
-  /* if ($user->isSuperAdmin->can('index')) {
         return true;
-    }*/
-        //return $user->id == $inquilino->user_id;
-       // return in_array('index', $user->permissions);
-       //return $user->id > 0;
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Inquilino  $inquilino
+     * @param  \App\Renda  $renda
      * @return mixed
      */
     public function view(User $user)
@@ -46,7 +35,6 @@ class InquilinoPolicy
             return true;
 
         }
-        //melhorar e ver só os inquilinos do proprietário.
     }
 
     /**
@@ -55,12 +43,12 @@ class InquilinoPolicy
      * @param  \App\User  $user
      * @return mixed
      */
-    public function create(User $user, Inquilino $inquilino)
+    public function create(User $user, Renda $renda)
     {
         if($user->can('adminApp')){
             return true;
         }elseif($user->can('accessAsLandlord')){
-             return $user->id == $inquilino->user_id;
+             return $user->id == $renda->user_id;
         }
 
         return $user->id > 0;
@@ -70,40 +58,44 @@ class InquilinoPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Inquilino  $inquilino
+     * @param  \App\Renda  $renda
      * @return mixed
      */
-    public function update(User $user, Inquilino $inquilino)
+    public function update(User $user, Renda $renda)
     {
         if($user->can('AdminApp')){
             return true;
-        }elseif($user->can('accessAsTenant')) {
-            return $user->id == $inquilino->user_id;
+        }elseif($user->can('accessAsLandlord')) {
+            return $user->id == $renda->user_id;
         }
             return false;
-
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Inquilino  $inquilino
+     * @param  \App\Renda  $renda
      * @return mixed
      */
-    public function delete(User $user, Inquilino $inquilino)
+    public function delete(User $user, Renda $renda)
     {
-        return $user->id == $inquilino->user_id;
+       if($user->can('AdminApp')){
+            return true;
+        }elseif($user->can('accessAsLandlord')) {
+            return $user->id == $renda->user_id;
+        }
+            return false;
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Inquilino  $inquilino
+     * @param  \App\Renda  $renda
      * @return mixed
      */
-    public function restore(User $user, Inquilino $inquilino)
+    public function restore(User $user, Renda $renda)
     {
         //
     }
@@ -112,10 +104,10 @@ class InquilinoPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Inquilino  $inquilino
+     * @param  \App\Renda  $renda
      * @return mixed
      */
-    public function forceDelete(User $user, Inquilino $inquilino)
+    public function forceDelete(User $user, Renda $renda)
     {
         //
     }

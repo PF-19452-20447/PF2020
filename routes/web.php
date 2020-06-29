@@ -34,6 +34,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/users', 'UserController@index')->name('users.index');
     Route::post('/users', 'UserController@store')->name('users.store');
     Route::get('/users/create', 'UserController@create')->name('users.create');
+    Route::get('/profile', 'UserController@showProfile')->name('users.profile');
     Route::get('/users/{user}', 'UserController@show')->name('users.show');
     Route::get('/users/{user}/edit', 'UserController@edit')->name('users.edit');
     Route::put('/users/{user}', 'UserController@update')->name('users.update');
@@ -86,6 +87,7 @@ Route::get('service/fiador/create', 'FiadorController@create');
 Route::get('service/fiador/update', 'FiadorController@update');
 Route::get('service/fiador/destroy', 'FiadorController@destroy');
 
+
 //imoveis
 Route::resource('imoveis', 'ImovelController')->parameters([
     'imoveis' => 'imovel'
@@ -96,5 +98,37 @@ Route::get('service/imoveis/view', 'ImovelController@view');
 Route::get('service/imoveis/create', 'ImovelController@create');
 Route::get('service/imoveis/update', 'ImovelController@update');
 Route::get('service/imoveis/destroy', 'ImovelController@destroy');
+
+//contratos
+
+Route::resource('contratos', 'ContratoController');
+
+//permissoes e roles dos contratos
+
+Route::get('service/contrato/view','ContratoController@view');
+Route::get('service/contrato/create','ContratoController@create');
+Route::get('service/contrato/update','ContratoController@update');
+Route::get('service/contrato/destroy','ContratoController@destroy');
+
+/*Route::group( ['middleware' => 'auth'], function() {
+    // practicing using forms for sending data to the DB & populating form fields with DB data
+    Route::get('users/profile', 'UserProfileController@index')->name('users.profile');
+    Route::patch('users/profile/{id}', 'UserProfileController@update')->name('users.edit');
+
+});*/
+
+//rendas
+
+
+Route::resource('rendas', 'RendaController');
+
+//permissoes e roles das rendas
+
+Route::get('service/renda/view','RendaController@view');
+Route::get('service/renda/create','RendaController@create');
+Route::get('service/renda/update','RendaController@update');
+Route::get('service/renda/destroy','RendaController@destroy');
+
+
 
 

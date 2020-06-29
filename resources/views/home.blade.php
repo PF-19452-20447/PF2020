@@ -6,7 +6,24 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Dashboard</div>
-                    <h4>Welcome to our application {{--{{ Auth::user()->proprietario->inquilinos->pluck('id') --}}</h4>
+                    <h4>Welcome to our application {{-- Auth::user()->proprietario->rendas->pluck('id') --}}
+                        <?php
+                       /* $user= Auth::user();
+                        $fiadores_ids = [];
+                        foreach($user->proprietario->inquilinos as $inquilino){
+                         $fiadores_ids = array_merge($fiadores_ids,  $inquilino->fiadores->pluck('id')->toArray());
+                         echo(json_encode($fiadores_ids).",");
+                          //  echo($inquilino->id.",");
+                         // echo(json_encode($inquilino->fiadores->pluck('id')).",");
+                          /*foreach($inquilino->fiadores as $fiador){
+                            // $fiadores_ids = array_merge($fiadores_ids,  $inquilino->fiadores->pluck('id')->toArray());
+                                echo($fiador->id.",");
+                              //echo(json_encode($inquilino->fiadores->pluck('id')).",");
+                            }*//*
+                        }*/
+
+                        ?>
+                        </h4>
 
                 <div class="card-body">
                     @if (session('status'))

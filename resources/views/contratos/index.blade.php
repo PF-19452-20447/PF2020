@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('fiador.index') }}
+    {{ Breadcrumbs::render('contratos.index') }}
 @endsection
 @push('styles')
     <link href="{{ asset('css/datatables.css') }}" rel="stylesheet" type="text/css" >
@@ -17,7 +17,7 @@
 				<i class="kt-font-brand flaticon2-user"></i>
 			</span>
                 <h3 class="kt-portlet__head-title">
-                    Guarantor
+                    Contract
                 </h3>
             </div>
             <div class="kt-portlet__head-toolbar">
@@ -26,12 +26,12 @@
                         <div class="dropdown dropdown-inline" id="datatable-buttons">
 
                         </div>
-                       @canany(['adminApp','accessAsTenant'])
-                       <a href="{{ route('fiador.create') }}" class="btn btn-brand btn-elevate btn-icon-sm">
+                       @canany(['adminApp', 'accessAsLandlord'])
+                       <a href="{{ route('contratos.create') }}" class="btn btn-brand btn-elevate btn-icon-sm">
                             <i class="la la-plus"></i>
-                            Create Guarantor
+                            Create Contract
                         </a>
-                        @endcan
+                       @endcanany
                     </div>
                 </div>
             </div>
@@ -54,7 +54,7 @@
         (function(window,$){
             $.fn.dataTable.Buttons.defaults.dom.container.className = '';
             $.fn.dataTable.Buttons.defaults.dom.button.className = 'btn btn-default btn-icon-sm';
-            var buttons = new $.fn.dataTable.Buttons(window.LaravelDataTables["fiador-table"], {
+            var buttons = new $.fn.dataTable.Buttons(window.LaravelDataTables["contrato-table"], {
                 buttons: [
                     'export',
                 ]
@@ -82,7 +82,7 @@
                         dataType: 'json',
                         data: {method: '_DELETE', submit: true}
                     }).always(function (data) {
-                        jQuery('#fiador-table').DataTable().draw(false);
+                        jQuery('#contrato-table').DataTable().draw(false);
                     });
                 }
             });

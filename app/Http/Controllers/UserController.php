@@ -64,6 +64,15 @@ class UserController extends Controller
         }
     }
 
+
+    public function showProfile()
+    {
+       // $user = User::find($id);
+        // return view('users.profile', compact('users') );
+        return view('users.show', ['user' => auth()->user()]);
+    }
+
+
     /**
      * Display the specified resource.
      *
@@ -119,9 +128,14 @@ class UserController extends Controller
         }elseif($request->filled('delete_image')){ // if the image was replaced above it will automatically delete this so don't run again
             $user->getFirstMedia('avatar')->delete();
         }
-        /*else
-            $user->de*/
-        return redirect(route('users.show', $user));
+
+            if($user->id !== auth()->user()->id){
+                return redirect(route('users.show', $user));
+
+            }else{
+                return redirect(route('users.profile'));
+            }
+
     }
 
     /**
@@ -188,4 +202,8 @@ class UserController extends Controller
         $user->syncRoles($roles);
         return $user;
     }
+
+
+
+
 }
