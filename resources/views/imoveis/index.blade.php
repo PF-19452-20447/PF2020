@@ -29,7 +29,7 @@
                        @can('adminApp')
                        <a href="{{ route('imoveis.create') }}" class="btn btn-brand btn-elevate btn-icon-sm">
                             <i class="la la-plus"></i>
-                            Create Guarantor
+                            Create Property
                         </a>
                         @endcan
                     </div>
