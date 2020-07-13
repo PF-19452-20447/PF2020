@@ -83,7 +83,7 @@ Breadcrumbs::for('settings.edit', function ($trail, $model) {
 // Home > Inquilinos
 Breadcrumbs::for('inquilinos.index', function ($trail) {
     $trail->parent('home');
-    $trail->push('Inquilinos', route('inquilinos.index'));
+    $trail->push('Tenants', route('inquilinos.index'));
 });
 Breadcrumbs::for('inquilinos.create', function ($trail) {
     $trail->parent('inquilinos.index');
@@ -101,7 +101,7 @@ Breadcrumbs::for('inquilinos.edit', function ($trail, $model) {
 // Home > Fiador
 Breadcrumbs::for('fiador.index', function ($trail) {
     $trail->parent('home');
-    $trail->push(__('Guarantor'), route('fiador.index'));
+    $trail->push(__('Guarantors'), route('fiador.index'));
 });
 Breadcrumbs::for('fiador.create', function ($trail) {
     $trail->parent('fiador.index');
@@ -139,7 +139,7 @@ Breadcrumbs::for('imoveis.edit', function ($trail, $model) {
 //Home > Contratos
 Breadcrumbs::for('contratos.index', function ($trail) {
     $trail->parent('home');
-    $trail->push(__('Contract'), route('contratos.index'));
+    $trail->push(__('Contracts'), route('contratos.index'));
 });
 Breadcrumbs::for('contratos.create', function ($trail) {
     $trail->parent('contratos.index');
@@ -157,7 +157,7 @@ Breadcrumbs::for('contratos.edit', function ($trail, $model) {
 //Home > Rendas
 Breadcrumbs::for('rendas.index', function ($trail) {
     $trail->parent('home');
-    $trail->push(__('Income'), route('rendas.index'));
+    $trail->push(__('Incomes'), route('rendas.index'));
 });
 Breadcrumbs::for('rendas.create', function ($trail) {
     $trail->parent('rendas.index');

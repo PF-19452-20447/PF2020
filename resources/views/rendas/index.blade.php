@@ -17,7 +17,7 @@
 				<i class="kt-font-brand flaticon2-user"></i>
 			</span>
                 <h3 class="kt-portlet__head-title">
-                    Income
+                    Incomes
                 </h3>
             </div>
             <div class="kt-portlet__head-toolbar">

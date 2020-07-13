@@ -63,7 +63,15 @@ class ImovelDatatable extends DataTable
     {
         return $this->builder()
                     ->setTableId('imovel-table')
-                    ->columns($this->getColumns())
+                    ->columns([
+                        'id' => ['title' => 'Id'],
+                        'tipo' => [ 'title' => 'Type' ],
+                        'tipologia' => [ 'title' => 'Typology' ],
+                        'area' => ['title' => 'Area'],
+                        'morada' => ['title' => 'Address'],
+                        'estado' => ['title' => 'State'],
+                        'action' => ['title' => 'Action'],
+                    ])
                     ->minifiedAjax()
                     ->dom("<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>rtip") // Bfrtip
                     ->orderBy(0)
@@ -80,15 +88,22 @@ class ImovelDatatable extends DataTable
     protected function getColumns()
     {
         $columns = [
-            Column::make('id'),
-            Column::make('tipo'),
-            Column::make('tipologia'),
-            Column::make('area'),
-            Column::make('morada'),
+
+            'id',
+            'tipo',
+            'tipologia',
+            'area',
+            'morada',
+            'estado'
+            //Column::make('id'),
+            //Column::make('tipo'),
+            //Column::make('tipologia'),
+            //Column::make('area'),
+          //  Column::make('morada'),
             //Column::make('numQuartos'),
             //Column::make('numCasaBanho'),
             //Column::make('descricao'),
-            Column::make('estado'),
+           // Column::make('estado'),
             //Column::make('mobilado'),
             //Column::make('fumar'),
             //Column::make('animaisEstimacao'),

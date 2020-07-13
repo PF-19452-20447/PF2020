@@ -63,7 +63,16 @@ class InquilinoDataTable extends DataTable
     {
         return $this->builder()
                     ->setTableId('inquilino-table')
-                    ->columns($this->getColumns())
+                    ->columns([
+                        'id' => ['title' => 'Id'],
+                        'nome' => [ 'title' => 'Name' ],
+                        'email' => [ 'title' => 'Email' ],
+                        'telefone' => ['title' => 'Telephone'],
+                        'morada' => ['title' => 'Address'],
+                        'iban' => ['title' => 'Iban'],
+                        'tipoParticularEmpresa' => ['title' => 'Particular type of company'],
+                        'action' => ['title' => 'Action'],
+                    ])
                     ->minifiedAjax()
                     ->dom("<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>rtip") // Bfrtip
                     ->orderBy(0)
@@ -80,16 +89,25 @@ class InquilinoDataTable extends DataTable
     protected function getColumns()
     {
         $columns = [
-            Column::make('id'),
-            Column::make('nome'),
+            'id',
+            'nome',
+            'email',
+            'telefone',
+            'morada',
+            'iban',
+            'tipoParticularEmpresa',
+            'action'
+
+            //Column::make('id'),
+            //Column::make('nome'),
             /*Column::make('data_nascimento'),
             Column::make('NIF'),
             Column::make('CC'),*/
-            Column::make('email'),
-            Column::make('telefone'),
-            Column::make('morada'),
-            Column::make('iban'),
-            Column::make('tipoParticularEmpresa'),
+           // Column::make('email'),
+            //Column::make('telefone'),
+            //Column::make('morada'),
+            //Column::make('iban'),
+            //Column::make('tipoParticularEmpresa'),
            /* Column::make('profissao'),
             Column::make('vencimento'),
             Column::make('tipo_contrato'),

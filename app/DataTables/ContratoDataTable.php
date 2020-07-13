@@ -69,7 +69,16 @@ class ContratoDataTable extends DataTable
     {
         return $this->builder()
                     ->setTableId('contrato-table')
-                    ->columns($this->getColumns())
+                    ->columns([
+                        'id' => ['title' => 'Id'],
+                        'valorRenda' => [ 'title' => 'Income value' ],
+                        'tipoContrato' => [ 'title' => 'Type of contract' ],
+                        'dataLimitePagamento' => ['title' => 'Payment deadline'],
+                        'estado' => ['title' => 'State'],
+                        'caucao' => ['title' => 'Deposit'],
+                        'metodoPagamento' => ['title' => 'Payment method'],
+                        'action' => ['title' => 'Action'],
+                    ])
                     ->minifiedAjax()
                     ->dom("<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>rtip") // Bfrtip
                     ->orderBy(0)
@@ -86,19 +95,26 @@ class ContratoDataTable extends DataTable
     protected function getColumns()
     {
         $columns = [
-            Column::make('id'),
-            Column::make('valorRenda'),
-            Column::make('tipoContrato'),
+            'id',
+            'valorRenda',
+            'tipoContrato',
+            'dataLimitePagamento',
+            'estado',
+            'caucao',
+            'metodoPagamento'
+           // Column::make('id'),
+           // Column::make('valorRenda'),
+            //Column::make('tipoContrato'),
             /*Column::make('inicioContrato'),
             Column::make('fimContrato'),
             Column::make('renovavel'),
             Column::make('isencaoBeneficio'),
             Column::make('retencaoFonte'),*/
-            Column::make('dataLimitePagamento'),
-            Column::make('estado'),
+            //Column::make('dataLimitePagamento'),
+            //Column::make('estado'),
            /* Column::make('encargos'),*/
-            Column::make('caucao'),
-            Column::make('metodoPagamento'),
+            //Column::make('caucao'),
+            //Column::make('metodoPagamento'),
            // Column::make('rendasAvanco'),
            /* Column::computed('action')
                 ->exportable(false)

@@ -26,7 +26,7 @@ class FiadorDatatable extends DataTable
         ->eloquent($query)
        ->editColumn('created_at', '{!! date(\'d-m-Y H:i:s\', strtotime($created_at)) !!}');
         //->editColumn('created_at', '{{ Carbon\Carbon::parse(created_at)->toDateTimeString() }}');
-        if(auth()->user()->can('adminApp')){
+        if(auth()->user()->can('accessAsTenant')){
             $datatable->addColumn('action', function ($fiador) {
                 return '<a class="btn btn-sm btn-clean btn-icon btn-icon-md" href="'. route('fiador.show', $fiador) .'" title="'. __('View') .'"><i class="la la-eye"></i></a>
                         <a href="'. route('fiador.edit', $fiador) .'" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="'. __('Edit') .'"><i class="la la-edit"></i></a>
@@ -78,7 +78,16 @@ class FiadorDatatable extends DataTable
     {
         return $this->builder()
                     ->setTableId('fiador-table')
-                    ->columns($this->getColumns())
+                    ->columns([
+                        'id' => ['title' => 'Id'],
+                        'nome' => [ 'title' => 'Name' ],
+                        'email' => [ 'title' => 'Email' ],
+                        'telefone' => ['title' => 'Telephone'],
+                        'morada' => ['title' => 'Address'],
+                        'iban' => ['title' => 'Iban'],
+                        'tipoParticularEmpresa' => ['title' => 'Particular type of company'],
+                        'action' => ['title' => 'Action'],
+                    ])
                     ->minifiedAjax()
                     ->dom("<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>rtip") // Bfrtip
                     ->orderBy(0)
@@ -95,16 +104,26 @@ class FiadorDatatable extends DataTable
     protected function getColumns()
     {
         $columns = [
-            Column::make('id'),
-            Column::make('nome'),
+
+            'id',
+            'nome',
+            'email',
+            'telefone',
+            'morada',
+            'iban',
+            'tipoParticularEmpresa',
+            'action'
+
+          //  Column::make('id'),
+          //  Column::make('nome'),
             /*Column::make('data_nascimento'),
             Column::make('NIF'),
             Column::make('CC'),*/
-            Column::make('email'),
-            Column::make('telefone'),
-            Column::make('morada'),
-            Column::make('iban'),
-            Column::make('tipoParticularEmpresa'),
+          //  Column::make('email'),
+          //  Column::make('telefone'),
+           // Column::make('morada'),
+         //   Column::make('iban'),
+         //   Column::make('tipoParticularEmpresa'),
            /* Column::make('profissao'),
             Column::make('vencimento'),
             Column::make('tipo_contrato'),
@@ -124,7 +143,7 @@ class FiadorDatatable extends DataTable
                 ->width(120)
                 ->addClass('text-center'),*/
         ];
-        if(auth()->user()->can('adminApp')){
+        if(auth()->user()->can('accessAsTenant')){
             $columns[]=Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

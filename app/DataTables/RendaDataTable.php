@@ -60,7 +60,7 @@ class RendaDataTable extends DataTable
 
             return $model->newQuery()->where('proprietario_id', $user->proprietario->id);
         }
-        
+
        // return $model->newQuery();
 
     }
@@ -74,7 +74,16 @@ class RendaDataTable extends DataTable
     {
         return $this->builder()
                     ->setTableId('renda-table')
-                    ->columns($this->getColumns())
+                    ->columns([
+                        'id' => ['title' => 'Id'],
+                        'valorPagar' => [ 'title' => 'Payable amount' ],
+                        'dataPagamento' => [ 'title' => 'Payment Date' ],
+                        'metodoPagamento' => ['title' => 'Payment method'],
+                        'estado' => ['title' => 'State'],
+                        'dataLimitePagamento' => ['title' => 'Payment deadline'],
+                        'dataRecibo' => ['title' => 'Receipt date'],
+                        'action' => ['title' => 'Action'],
+                    ])
                     ->minifiedAjax()
                     ->dom("<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>rtip") // Bfrtip
                     ->orderBy(0)
@@ -91,16 +100,24 @@ class RendaDataTable extends DataTable
     protected function getColumns()
     {
         $columns = [
-            Column::make('id'),
-            Column::make('valorPagar'),
-            Column::make('dataPagamento'),
-            Column::make('metodoPagamento'),
+            'id',
+            'valorPagar',
+            'dataPagamento',
+            'metodoPagamento',
+            'estado',
+            'dataLimitePagamento',
+            'dataRecibo',
+
+          //  Column::make('id'),
+            //Column::make('valorPagar'),
+            //Column::make('dataPagamento'),
+            //Column::make('metodoPagamento'),
           //  Column::make('valorPago'),
           //  Column::make('valorDivida'),
-            Column::make('estado'),
-            Column::make('dataLimitePagamento'),
+            //Column::make('estado'),
+            //Column::make('dataLimitePagamento'),
           //  Column::make('notas'),
-            Column::make('dataRecibo'),
+            //Column::make('dataRecibo'),
            /* Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

@@ -114,7 +114,7 @@ class ProprietarioController extends Controller
     {
 
         $validate_array = [
-            'nome' => ['required', 'alpha', 'max:255'],
+            'nome' => 'required|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/|max:255',
             'dataNascimento' => 'required|date_format:Y-m-d|before:today|nullable',
             'nif' => ['required', 'alpha_num', 'max:32'],
             'cc' => ['required', 'alpha_num', 'max:16'],
@@ -125,8 +125,8 @@ class ProprietarioController extends Controller
             'tipoParticularEmpresa' => 'required|integer|min:0',
             'cae' => 'required|integer',
             'capitalSocial' => 'required|integer',
-            'setorActividade' => 'required|alpha',
-            'certidaoPermanente' => 'required|alpha',
+            'setorActividade' => 'required|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
+            'certidaoPermanente' => 'required|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'numFuncionarios' => 'required|integer'
         ];
 

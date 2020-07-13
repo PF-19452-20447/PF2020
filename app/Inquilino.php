@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\LoadDefaults;
 use App\Cache;
+use App\camel_case;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class Inquilino extends Model
@@ -53,5 +54,7 @@ class Inquilino extends Model
 
         return $this->hasMany('App\Renda'); /*, 'inquilino_id', 'id');*/
     }
+
+
 
 }

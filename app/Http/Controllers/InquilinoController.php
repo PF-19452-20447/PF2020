@@ -263,7 +263,7 @@ class InquilinoController extends Controller
     {
 
         $validate_array = [
-            'nome' => ['required', 'alpha', 'max:255'],
+            'nome' => 'required|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/|max:255',
             'dataNascimento' => 'required|date_format:Y-m-d|before:today|nullable',
             'nif' => ['required', 'alpha_num', 'max:32'],
             'cc' => ['required', 'alpha_num', 'max:16'],
@@ -272,14 +272,14 @@ class InquilinoController extends Controller
             'morada' => 'required|string',
             'iban' => ['required', 'alpha_dash', 'max:64'],
             'tipoParticularEmpresa' => 'required|integer|min:0',
-            'profissao' => 'required|alpha',
+            'profissao' => 'required|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'vencimento' => 'required|integer',
-            'tipoContrato' => 'required|alpha',
-            'notas' => 'required|string',
+            'tipoContrato' => 'required|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
+            'notas' => 'required|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'cae' => 'required|integer',
             'capitalSocial' => 'required|integer',
-            'setorActividade' => 'required|alpha',
-            'certidaoPermanente' => 'required|alpha',
+            'setorActividade' => 'required|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
+            'certidaoPermanente' => 'required|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'numFuncionarios' => 'required|integer'
         ];
 
