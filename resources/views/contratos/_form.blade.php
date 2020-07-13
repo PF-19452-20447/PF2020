@@ -40,7 +40,8 @@
         </div>
         <div class="form-group">
             {!! Form::label('renovavel', __('Renewable')) !!}
-            {!! Form::number('renovavel', null, ['class' => 'form-control '.($errors->has('renovavel') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1, 'min' => 0, 'max'=>1, 'required' => true]) !!}
+            {!! Form::hidden('renovavel', 0) !!}
+            {!! Form::checkbox('renovavel', 1, null, ['class' => 'form-control '.($errors->has('renovavel') ? 'is-invalid' : '')]) !!}
             @error('renovavel')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
