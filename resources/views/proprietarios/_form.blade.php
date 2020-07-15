@@ -109,6 +109,7 @@
             @enderror
         </div>
 
+        @can('adminApp')
         @if($proprietario_list != null)
         <div class="form-group">
            <label for="proprietario-content">Select Landlord</label>
@@ -121,7 +122,9 @@
              </select>
             </div>
             @endif
+            @endcan
          </div>
+
 
     <div class="kt-portlet__foot">
         <div class="kt-form__actions">
