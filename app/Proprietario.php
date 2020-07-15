@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\LoadDefaults;
+use App\Collection;
 
 class Proprietario extends Model
 {
@@ -43,6 +44,27 @@ class Proprietario extends Model
         return $this->belongsToMany('App\Imovel', 'proprietarios_imoveis');
     }
 
+
+      /**
+     * @return string
+     */
+    public function getLandlordLabelAttributes()
+    {
+        $proprietarios = $this->getLandlordName()->toArray();
+
+        if (\count($proprietarios)) {
+            return implode(', ', array_map(function ($item) {
+                return ucwords($item);
+            }, $proprietarios));
+        }
+
+        return 'N/A';
+    }
+
+    public function getLandlordName(): Collection
+    {
+        return $this->proprietarios->pluck('nome');
+    }
 
 
 }

@@ -115,7 +115,7 @@ class FiadorPolicy
      * @param  \App\Inquilino  $inquilino
      * @return mixed
      */
-    public function forceDelete(User $user, Inquilino $inquilino)
+    public function forceDelete(User $user, Fiador $fiador)
     {
         //
     }

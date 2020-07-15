@@ -101,7 +101,8 @@ class ContratoDataTable extends DataTable
             'dataLimitePagamento',
             'estado',
             'caucao',
-            'metodoPagamento'
+            'metodoPagamento',
+            'action'
            // Column::make('id'),
            // Column::make('valorRenda'),
             //Column::make('tipoContrato'),

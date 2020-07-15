@@ -9,6 +9,8 @@ use App\Traits;
 use Illuminate\Support\Facades\DB;
 use Validation\Validator;
 use App\Http\Controllers\Controller;
+use Auth;
+
 
 class ProprietarioController extends Controller
 {
@@ -19,6 +21,7 @@ class ProprietarioController extends Controller
      */
     public function index(ProprietarioDataTable $datatable)
     {
+
         return $datatable->render('proprietarios.index');
         // $proprietarios = Proprietario::latest()->paginate(5);
         // return view('proprietarios.index', compact('proprietarios'))
@@ -30,11 +33,21 @@ class ProprietarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Proprietario $proprietario)
+    public function create(Proprietario $proprietario, $proprietario_id = null)
     {
         $proprietario = new Proprietario();
         $proprietario->loadDefaultValues();
-        return view('proprietarios.create');
+
+        $proprietario_list = DB::table('proprietarios')->groupBy('nome')->get();
+
+/*
+        //select box
+        $proprietario = null;
+        if(!$proprietario_id){
+            $proprietario = Proprietario::where('user_id', Auth::user()->id)->get();
+        }
+*/
+        return view('proprietarios.create')->with('proprietario_list', $proprietario_list); //, ['id' => $proprietario_id, 'proprietario' => $proprietario]);
     }
 
     /**
@@ -45,11 +58,14 @@ class ProprietarioController extends Controller
      */
     public function store(Request $request)
     {
+
         $validatedAttributes = $this->validateProprietario($request);
+
+        $proprietario_list = DB::table('proprietarios')->groupBy('nome')->get();
 
         if(($model = Proprietario::create($validatedAttributes)) ) {
             //flash('Role Added');
-            return redirect(route('proprietarios.show', $model));
+            return redirect(route('proprietarios.show', $model))->with('proprietario_list', $proprietario_list);
         }else{
             return redirect()->back();
         }
@@ -63,7 +79,9 @@ class ProprietarioController extends Controller
      */
     public function show(Proprietario $proprietario)
     {
-        return view('proprietarios.show',compact('proprietario'));
+        $proprietario_list = DB::table('proprietarios')->groupBy('nome')->get();
+
+        return view('proprietarios.show',compact('proprietario'))->with('proprietario_list', $proprietario_list);
     }
 
     /**
@@ -74,7 +92,8 @@ class ProprietarioController extends Controller
      */
     public function edit(Proprietario $proprietario)
     {
-        return view('proprietarios.edit',compact('proprietario'));
+        $proprietario_list = DB::table('proprietarios')->groupBy('nome')->get();
+        return view('proprietarios.edit',compact('proprietario'))->with('proprietario_list', $proprietario_list);
     }
 
     /**
@@ -86,11 +105,12 @@ class ProprietarioController extends Controller
      */
     public function update(Request $request, Proprietario $proprietario)
     {
+        $proprietario_list = DB::table('proprietarios')->groupBy('nome')->get();
         $validatedAttributes = $this->validateProprietario($request, $proprietario);
         $proprietario->fill($validatedAttributes);
         if($proprietario->save()) {
             //flash('Role Added');
-            return redirect(route('proprietarios.show', $proprietario));
+            return redirect(route('proprietarios.show', $proprietario))->with('proprietario_list', $proprietario_list);
         }else{
             return redirect()->back();
         }
@@ -202,6 +222,28 @@ function validaNIF($nif, $ignoreFirst=true) {
     }
 
 }
+
+  /*  private function syncLandlord(Request $request, $proprietario)
+    {
+         // Get the submitted proprietarios
+        $prop = $request->get('proprietarios', []);
+        $permissions = $request->get('permissions', []);
+
+        // Get the roles
+        $prop = Proprietario::find($prop);
+
+        // check for current role changes
+         if( ! $proprietario->hasAllRoles( $prop ) ) {
+             // reset all direct permissions for user
+            $proprietario->permissions()->sync([]);
+         } else {
+            // handle permissions
+            $proprietario->syncPermissions($permissions);
+        }
+
+      $proprietario->syncRoles($prop);
+      return $proprietario;
+    }*/
 
 
 }

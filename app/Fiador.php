@@ -9,7 +9,12 @@ class Fiador extends Model
 {
 
     protected $table = "fiadores";
+
     use LoadDefaults;
+
+    protected $hidden = [
+        'action'
+    ];
 
     protected $fillable = [
         'id',

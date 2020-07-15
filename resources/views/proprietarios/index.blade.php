@@ -28,7 +28,7 @@
                         @can('adminApp')
                             <a href="{{ route('proprietarios.create') }}" class="btn btn-brand btn-elevate btn-icon-sm">
                                 <i class="la la-plus"></i>
-                                {{__("Create Lanlord")}}
+                                {{__("Create Landlord")}}
                             </a>
                             @endcan
                     </div>

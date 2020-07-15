@@ -86,7 +86,7 @@ class FiadorDatatable extends DataTable
                         'morada' => ['title' => 'Address'],
                         'iban' => ['title' => 'Iban'],
                         'tipoParticularEmpresa' => ['title' => 'Particular type of company'],
-                        'action' => ['title' => 'Action'],
+                        'action' => ['title' => 'Action']
                     ])
                     ->minifiedAjax()
                     ->dom("<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>rtip") // Bfrtip

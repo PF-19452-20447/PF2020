@@ -110,6 +110,12 @@ view()->share('hideSubHeader', true);
                                 <th scope="row">{{ __('Updated at') }}</th>
                                 <td>{{$proprietario->updated_at}}</td>
                             </tr>
+                            <tr>
+                                <th scope="row">{{ __('Landlord selected') }}</th>
+                                <td>
+                                    <option value="{{ $proprietario->id }}"> {{$proprietario->nome}}</option>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

@@ -108,7 +108,21 @@
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-    </div>
+
+        @if($proprietario_list != null)
+        <div class="form-group">
+           <label for="proprietario-content">Select Landlord</label>
+           <select name ="proprietario_id" class="form-control">
+
+                @foreach ($proprietario_list as $proprietario)
+                    <option value="{{$proprietario->id}}"> {{$proprietario->nome}}</option>
+
+                @endforeach
+             </select>
+            </div>
+            @endif
+         </div>
+
     <div class="kt-portlet__foot">
         <div class="kt-form__actions">
             <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
