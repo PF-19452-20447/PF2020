@@ -114,7 +114,7 @@ view()->share('hideSubHeader', true);
                             <tr>
                                 <th scope="row">{{ __('Landlord selected') }}</th>
                                 <td>
-                                    <option value="{{ $proprietario->id }}"> {{$proprietario->nome}}</option>
+                                    <option value="{{ $proprietario->id }}" {{in_array($proprietario->id, old("proprietario_list") ?: []) ? "selected": ""}}> {{$proprietario->nome}}</option>
                                 </td>
                             </tr>
                             @endcan

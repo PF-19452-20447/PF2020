@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Validation\Validator;
 use App\Http\Controllers\Controller;
 use Auth;
-
+use App\Http\Controllers\General_news;
 
 class ProprietarioController extends Controller
 {
@@ -59,17 +59,29 @@ class ProprietarioController extends Controller
     public function store(Request $request)
     {
 
-        $validatedAttributes = $this->validateProprietario($request);
 
-        $proprietario_list = DB::table('proprietarios')->groupBy('nome')->get();
+
+
+        $validatedAttributes = $this->validateProprietario($request);
 
         if(($model = Proprietario::create($validatedAttributes)) ) {
             //flash('Role Added');
-            return redirect(route('proprietarios.show', $model))->with('proprietario_list', $proprietario_list);
+            return redirect(route('proprietarios.show', $model));
         }else{
+
+            $proprietario = $request->input('proprietario_list');
+            $proprietario = implode(',', $proprietario);
+
+            $input = $request->except('proprietario_list');
+            //Assign the "mutated" news value to $input
+            $input['proprietario_list'] = $proprietario;
+
+            Proprietario::create($input);
+
             return redirect()->back();
         }
     }
+
 
     /**
      * Display the specified resource.
@@ -105,12 +117,11 @@ class ProprietarioController extends Controller
      */
     public function update(Request $request, Proprietario $proprietario)
     {
-        $proprietario_list = DB::table('proprietarios')->groupBy('nome')->get();
         $validatedAttributes = $this->validateProprietario($request, $proprietario);
         $proprietario->fill($validatedAttributes);
         if($proprietario->save()) {
             //flash('Role Added');
-            return redirect(route('proprietarios.show', $proprietario))->with('proprietario_list', $proprietario_list);
+            return redirect(route('proprietarios.show', $proprietario));
         }else{
             return redirect()->back();
         }
