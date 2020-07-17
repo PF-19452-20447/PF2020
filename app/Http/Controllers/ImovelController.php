@@ -17,6 +17,7 @@ class ImovelController extends Controller
     {
         return $dataTable->render('imoveis.index');
     }
+    
 
     /**
      * Show the form for creating a new resource.

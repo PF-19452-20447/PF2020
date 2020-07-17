@@ -23,7 +23,6 @@ use Illuminate\Support\Facades\Auth;
 //=== CRUD TESTING FACILITY ===
 Route::resource('proprietarios','ProprietarioController');
 
-
 //=============================
 Auth::routes(['verify' => true]);
 
@@ -94,6 +93,11 @@ Route::get('service/fiador/destroy', 'FiadorController@destroy');
 Route::resource('imoveis', 'ImovelController')->parameters([
     'imoveis' => 'imovel'
 ]);
+
+Route::get('multiple-file-upload', 'MultipleUploadController@indexFiles');
+
+Route::post('multiple-file-upload/upload', 'MultipleUploadController@uploadFiles')->name('upload');
+
 
 //permissoes e roles dos fiadores
 Route::get('service/imoveis/view', 'ImovelController@view');
