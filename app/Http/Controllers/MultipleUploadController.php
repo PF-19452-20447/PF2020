@@ -2,34 +2,90 @@
 
 namespace App\Http\Controllers;
 
+use App\Ficheiro;
 use App\Imovel;
 use Illuminate\Http\Request;
 
 class MultipleUploadController extends Controller
 {
-    function indexFiles()
+        /**
+
+     * success response method.
+
+     *
+
+     * @return \Illuminate\Http\Response
+
+     */
+
+    public function index()
+
     {
-     return view('multiple-file-upload');
+
+    	return view('imoveis.image-view');
+
     }
 
-    function uploadFiles(Request $request)
+
+    /**
+
+     * success response method.
+
+     *
+
+     * @return \Illuminate\Http\Response
+
+     */
+
+    public function store(Request $request)
+
     {
-     $image_code = '';
-     $images = $request->file('file');
-     foreach($images as $image)
-     {
-      $new_name = rand() . '.' . $image->getClientOriginalExtension();
-      $image->move(public_path('images'), $new_name);
-      $image_code .= '<div class="col-md-3" style="margin-bottom:24px;"><img src="/images/'.$new_name.'" class="img-thumbnail" /></div>';
-     }
 
-     $output = array(
-      'success'  => 'Images uploaded successfully',
-      'image'   => $image_code
-     );
+    	$imageName = request()->file->getClientOriginalName();
 
-     return response()->json($output);
+        request()->file->move(public_path('upload'), $imageName);
+
+
+    	return response()->json(['uploaded' => '/upload/'.$imageName]);
+
     }
 
-   
+    public function update(Request $request, $id)
+    {
+        $update = $request->all();
+        $product = Imovel::find($id);
+
+        $picture = '';
+        $images = [];
+        if ($request->hasFile('images')) {
+          $files = $request->file('images');
+          foreach($files as $file){
+            if (isset($file)){
+              $filename = $file->getClientOriginalName();
+              $extension = $file->getClientOriginalExtension();
+              $picture = date('His').$filename;
+              $destinationPath = base_path() . '\public\upload/';
+              $file->move($destinationPath, $picture);
+              array_push($images, $picture);
+            }
+          }
+        }
+
+        if (!empty($product['images']) && isset($images[0])) {
+          $update['images'] = $images[0];
+        }
+        if (!empty($product['images2']) && isset($images[1])) {
+          $update['images2'] = $images[1];
+        }
+        if (!empty($product['images3']) && isset($images[2])) {
+          $update['images3'] = $images[2];
+        }
+        if (!empty($product['images4']) && isset($images[3])) {
+          $update['images4'] = $images[3];
+        }
+        unset($update['images']);
+        $product->update($update);
+        return redirect('imoveis.show');
+    }
+
 }
