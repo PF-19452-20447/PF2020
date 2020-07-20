@@ -94,10 +94,9 @@ Route::resource('imoveis', 'ImovelController')->parameters([
     'imoveis' => 'imovel'
 ]);
 
-Route::get('multiple-file-upload', 'MultipleUploadController@indexFiles');
+Route::get('image-view','MultipleUploadController@index');
 
-Route::post('multiple-file-upload/upload', 'MultipleUploadController@uploadFiles')->name('upload');
-
+Route::post('image-view','MultipleUploadController@store')->name('store');
 
 //permissoes e roles dos fiadores
 Route::get('service/imoveis/view', 'ImovelController@view');
