@@ -177,70 +177,131 @@
             @enderror
         </div>
         <div class="form-group">
-            <div class="container">
-                <br />
-                <h3 align="center">Laravel 5.8 - Multiple File Upload with Progressbar using Ajax jQuery</h3>
-                <br />
-                <div class="panel panel-default">
-                           <div class="panel-heading">
-                               <h3 class="panel-title">Upload Multiple Images in Laravel 5.8</h3>
-                           </div>
-                           <div class="panel-body">
-                               <br />
-                               <form method="post" action="{{ route('upload') }}" enctype="multipart/form-data">
-                                   @csrf
-                                   <div class="row">
-                                       <div class="col-md-3" align="right"><h4>Select Images</h4></div>
-                                       <div class="col-md-6">
-                                           <input type="file" name="file[]" id="file" accept="image/*" multiple />
-                                       </div>
-                                       <div class="col-md-3">
-                                           <input type="submit" name="upload" value="Upload" class="btn btn-success" />
-                                       </div>
-                                   </div>
-                               </form>
-                               <br />
-                               <div class="progress">
-                                   <div class="progress-bar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-                                       0%
-                                   </div>
-                               </div>
-                               <br />
-                               <div id="success" class="row">
 
-                               </div>
-                               <br />
-                           </div>
-                       </div>
-             </div>
-        <br />
-        @push('scripts')
-            <script>
-            $(document).ready(function(){
-                $('form').ajaxForm({
-                    beforeSend:function(){
-                        $('#success').empty();
-                        $('.progress-bar').text('0%');
-                        $('.progress-bar').css('width', '0%');
-                    },
-                    uploadProgress:function(event, position, total, percentComplete){
-                        $('.progress-bar').text(percentComplete + '0%');
-                        $('.progress-bar').css('width', percentComplete + '0%');
-                    },
-                    success:function(data)
-                    {
-                        if(data.success)
-                        {
-                            $('#success').html('<div class="text-success text-center"><b>'+data.success+'</b></div><br /><br />');
-                            $('#success').append(data.image);
-                            $('.progress-bar').text('Uploaded');
-                            $('.progress-bar').css('width', '100%');
-                        }
-                    }
-                });
-            });
-        </script>
-            @endpush
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css"/>
+
+    <style type="text/css">
+
+        .main-section{
+
+            margin:0 auto;
+
+            padding: 20px;
+
+            margin-top: 100px;
+
+            background-color: #fff;
+
+            box-shadow: 0px 0px 20px #c1c1c1;
+
+        }
+
+        .fileinput-remove,
+
+        .fileinput-upload{
+
+            display: none;
+
+        }
+
+    </style>
+
+</head>
+
+<body class="bg-danger">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-8 col-sm-12 col-11 main-section">
+
+                <h1 class="text-center text-danger">Selected Properties image</h1><br>
+
+
+
+                    {!! csrf_field() !!}
+
+                    <div class="form-group">
+
+                        <div class="file-loading">
+
+                            <input id="file-1" type="file" name="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="2">
+
+                        </div>
+
+                    </div>
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/js/fileinput.js" type="text/javascript"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/themes/fa/theme.js" type="text/javascript"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" type="text/javascript"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" type="text/javascript"></script>
+
+
+    <script type="text/javascript">
+
+        $("#file-1").fileinput({
+
+            theme: 'fa',
+
+            uploadUrl: "/image-view",
+
+            uploadExtraData: function() {
+
+                return {
+
+                    _token: $("input[name='_token']").val(),
+
+                };
+
+            },
+
+            allowedFileExtensions: ['jpg', 'png', 'gif'],
+
+            overwriteInitial: false,
+
+            maxFileSize:2000,
+
+            maxFilesNum: 10,
+
+            slugCallback: function (filename) {
+
+                return filename.replace('(', '_').replace(']', '_');
+
+            }
+
+        });
+
+    </script>
+
+
+</body>
+
+</html>
+
 
 </div>
     <div class="kt-portlet__foot">
