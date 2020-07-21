@@ -33,12 +33,10 @@ class ProprietarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Proprietario $proprietario, $proprietario_id = null)
+    public function create(Proprietario $proprietario)
     {
         $proprietario = new Proprietario();
         $proprietario->loadDefaultValues();
-
-        $proprietario_list = DB::table('proprietarios')->groupBy('nome')->get();
 
 /*
         //select box
@@ -47,7 +45,7 @@ class ProprietarioController extends Controller
             $proprietario = Proprietario::where('user_id', Auth::user()->id)->get();
         }
 */
-        return view('proprietarios.create')->with('proprietario_list', $proprietario_list); //, ['id' => $proprietario_id, 'proprietario' => $proprietario]);
+        return view('proprietarios.create'); //, ['id' => $proprietario_id, 'proprietario' => $proprietario]);
     }
 
     /**
@@ -59,25 +57,12 @@ class ProprietarioController extends Controller
     public function store(Request $request)
     {
 
-
-
-
         $validatedAttributes = $this->validateProprietario($request);
 
         if(($model = Proprietario::create($validatedAttributes)) ) {
             //flash('Role Added');
             return redirect(route('proprietarios.show', $model));
         }else{
-
-            $proprietario = $request->input('proprietario_list');
-            $proprietario = implode(',', $proprietario);
-
-            $input = $request->except('proprietario_list');
-            //Assign the "mutated" news value to $input
-            $input['proprietario_list'] = $proprietario;
-
-            Proprietario::create($input);
-
             return redirect()->back();
         }
     }
@@ -91,9 +76,7 @@ class ProprietarioController extends Controller
      */
     public function show(Proprietario $proprietario)
     {
-        $proprietario_list = DB::table('proprietarios')->groupBy('nome')->get();
-
-        return view('proprietarios.show',compact('proprietario'))->with('proprietario_list', $proprietario_list);
+        return view('proprietarios.show',compact('proprietario'));
     }
 
     /**
@@ -104,8 +87,8 @@ class ProprietarioController extends Controller
      */
     public function edit(Proprietario $proprietario)
     {
-        $proprietario_list = DB::table('proprietarios')->groupBy('nome')->get();
-        return view('proprietarios.edit',compact('proprietario'))->with('proprietario_list', $proprietario_list);
+
+        return view('proprietarios.edit',compact('proprietario'));
     }
 
     /**

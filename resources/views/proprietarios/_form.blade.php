@@ -108,21 +108,6 @@
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-
-        @can('adminApp')
-        @if($proprietario_list != null)
-        <div class="form-group">
-           <label for="proprietario-content">Select Landlord</label>
-           <select multiple="multiple" name ="proprietario_list[]" id ="proprietario_list" class="form-control select-tag" >
-
-                @foreach ($proprietario_list as $proprietario)
-                    <option value="{{$proprietario->id}}" {{in_array($proprietario->id, old("proprietario_list") ?: []) ? "selected": "" }}> {{$proprietario->nome}}</option>
-
-                @endforeach
-             </select>
-         </div>
-        @endif
-        @endcan
     </div>
 
 
