@@ -116,6 +116,7 @@ class RendaController extends Controller
 
     public function validateContract(Request $request, Renda $model = null): array
     {
+         //nullable -> optional fields
 
         $validate_array = [
             'valorPagar' => 'required|regex:/^\d+(\.\d{1,2})?$/',
@@ -125,7 +126,7 @@ class RendaController extends Controller
             'valorDivida' => 'required|regex:/^\d+(\.\d{1,2})?$/',
             'estado' => 'required|integer|min:0|max:6',
             'dataLimitePagamento' => 'required|date_format:Y-m-d|after:dataPagamento',
-            'notas' => 'required|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
+            'notas' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'dataRecibo' => 'required|date_format:Y-m-d|after:dataLimitePagamento'
         ];
 

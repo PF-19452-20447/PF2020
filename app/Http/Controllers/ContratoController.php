@@ -118,20 +118,22 @@ class ContratoController extends Controller
     public function validateContract(Request $request, Contrato $model = null): array
     {
 
+         //nullable -> optional fields
+
         $validate_array = [
             'valorRenda' => 'required|regex:/^\d+(\.\d{1,2})?$/',
             'tipoContrato' => 'required|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'inicioContrato' => 'required|date_format:Y-m-d H:i:s|after:tomorrow',
             'fimContrato' => 'required|date_format:Y-m-d H:i:s|after:inicioContrato',
-            'renovavel' => 'required|boolean',
-            'isencaoBeneficio' => 'required|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
-            'retencaoFonte' => 'required|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
+            'renovavel' => 'nullable|boolean',
+            'isencaoBeneficio' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
+            'retencaoFonte' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'dataLimitePagamento' => 'required|date_format:Y-m-d H:i:s|after:inicioContrato',
             'estado' => 'required|integer|min:0|max:6',
             'encargos' => 'required|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'caucao' => 'required|regex:/^\d+(\.\d{1,2})?$/',
             'metodoPagamento' => 'required|integer|min:0|max:6',
-            'rendasAvanco' => 'required|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/'
+            'rendasAvanco' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/'
         ];
 
         return $request->validate($validate_array);

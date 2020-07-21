@@ -104,7 +104,7 @@
         </div>
         <div class="form-group">
             {!! Form::label('numFuncionarios', __('Number of employees')) !!}
-            {!! Form::number('numFuncionarios', null, ['class' => 'form-control '.($errors->has('numFuncionarios') ? 'is-invalid' : ''), 'min' => '1', 'max' => '10', 'type' => 'number', 'step' => 1, 'required' => true]) !!}
+            {!! Form::number('numFuncionarios', null, ['class' => 'form-control '.($errors->has('numFuncionarios') ? 'is-invalid' : ''), 'min' => '0', 'max' => '10', 'type' => 'number', 'step' => 1, 'required' => true]) !!}
             @error('numFuncionarios')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror

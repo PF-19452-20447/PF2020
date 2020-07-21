@@ -122,6 +122,9 @@ class FiadorController extends Controller
 
     public function validateFiador(Request $request, Fiador $model = null): array
     {
+
+         //nullable -> optional fields
+
         $validate_array = [
             'nome' => 'required|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/|max:255',
             'dataNascimento' => 'required|date_format:Y-m-d|before:today|nullable',
@@ -134,9 +137,9 @@ class FiadorController extends Controller
             'tipoParticularEmpresa' => 'required|integer|min:0',
             'cae' => 'required|integer',
             'capitalSocial' => 'required|integer',
-            'setorActividade' => 'required|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
-            'certidaoPermanente' => 'required|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
-            'numFuncionarios' => 'required|integer'
+            'setorActividade' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
+            'certidaoPermanente' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
+            'numFuncionarios' => 'nullable|integer|min:0'
         ];
 
 

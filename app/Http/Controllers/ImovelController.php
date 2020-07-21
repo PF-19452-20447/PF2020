@@ -17,7 +17,7 @@ class ImovelController extends Controller
     {
         return $dataTable->render('imoveis.index');
     }
-    
+
 
     /**
      * Show the form for creating a new resource.
@@ -112,6 +112,9 @@ class ImovelController extends Controller
      */
     public function validateImovel(Request $request, Imovel $model = null): array
     {
+
+         //nullable -> optional fields
+
         $validate_array = [
         'tipo' => 'required|string',//
         'tipologia' => 'required|string',
@@ -119,22 +122,22 @@ class ImovelController extends Controller
         'morada' => 'required|string',
         'numQuartos' => 'required|integer',
         'numCasaBanho' => 'required|integer',
-        'descricao' => 'required|string',
-        'estado' => 'boolean',
-        'mobilado' => 'boolean',
-        'fumar' => 'boolean',
-        'animaisEstimacao' => 'boolean',
-        'outrosEquipamentos' => 'string',
-        'certificadoEnergetico' => 'required|string',
-        'licencaHabitacao' => 'required|string',
-        'notas' => 'string',
-        'televisao' => 'boolean',
-        'frigorifico' => 'boolean',
-        'piscina' => 'boolean',
-        'varanda' => 'boolean',
-        'terraco' => 'boolean',
-        'churrasqueira' => 'boolean',
-        'arCondicionado' => 'boolean'
+        'descricao' => 'nullable|string',
+        'estado' => 'nullable|boolean',
+        'mobilado' => 'nullable|boolean',
+        'fumar' => 'nullable|boolean',
+        'animaisEstimacao' => 'nullable|boolean',
+        'outrosEquipamentos' => 'nullable|string',
+        'certificadoEnergetico' => 'nullable|string',
+        'licencaHabitacao' => 'nullable|string',
+        'notas' => 'nullable|string',
+        'televisao' => 'nullable|boolean',
+        'frigorifico' => 'nullable|boolean',
+        'piscina' => 'nullable|boolean',
+        'varanda' => 'nullable|boolean',
+        'terraco' => 'nullable|boolean',
+        'churrasqueira' => 'nullable|boolean',
+        'arCondicionado' => 'nullable|boolean'
         ];
         return $request->validate($validate_array);
 

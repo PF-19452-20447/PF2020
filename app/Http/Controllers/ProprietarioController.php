@@ -126,6 +126,7 @@ class ProprietarioController extends Controller
 
     public function validateProprietario(Request $request, Proprietario $model = null): array
     {
+         //nullable -> optional fields
 
         $validate_array = [
             'nome' => 'required|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/|max:255',
@@ -139,9 +140,9 @@ class ProprietarioController extends Controller
             'tipoParticularEmpresa' => 'required|integer|min:0',
             'cae' => 'required|integer',
             'capitalSocial' => 'required|integer',
-            'setorActividade' => 'required|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
-            'certidaoPermanente' => 'required|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
-            'numFuncionarios' => 'required|integer'
+            'setorActividade' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
+            'certidaoPermanente' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
+            'numFuncionarios' => 'nullable|integer|min:0'
         ];
 
         return $request->validate($validate_array);
