@@ -135,37 +135,16 @@ view()->share('hideSubHeader', true);
                                 <th scope="row">{{ __('Other Equipment') }}</th>
                                 <td>{{ $imovel ->outrosEquipamentos }}</td>
                             </tr>
-                            <tr>
-                                <th scope="row">{{ __('Images Selected') }}</th>
-                                <td>
 
+                                 <tr>
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">All images
-                    <a href="/imoveis/create" class="btn btn-primary" style="margin-left: 70%">New Property</a></div>
-                <hr>
-                <div class="card-body">
-                    @foreach($imovel as $imoveis)
-
-                        <hr>
-                        <img style="width:100%" src="/public/upload/{{$imovel->images}}">
-                        <br>
-                        <hr>
-                    @endforeach
-                    <small><?php echo now() ?></small>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
+                                    <td>{{$imovel->ficheiro->pluck('id')}}</td>
+                                  <td> <?php foreach (json_decode($imovel->ficheiro->pluck('imovel_id')) as $foto) { ?>
+                                     <img src="{{ URL::to('public/images/'.$foto) }}" style="height:120px; width:200px"/>
+                                     <?php } ?>
                                 </td>
-                            </tr>
+                             </tr>
+
                         </tbody>
                     </table>
                 </div>

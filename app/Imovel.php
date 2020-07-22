@@ -44,7 +44,7 @@ class Imovel extends Model
 
     public function ficheiro()
     {
-        return $this->belongsToMany('App\Ficheiro');
+        return $this->hasMany('App\Ficheiro');
     }
 
     public function financas()
@@ -56,4 +56,5 @@ class Imovel extends Model
     {
         return $this->hasMany('App\Contrato');
     }
+
 }
