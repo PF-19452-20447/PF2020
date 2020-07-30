@@ -136,15 +136,20 @@ view()->share('hideSubHeader', true);
                                 <td>{{ $imovel ->outrosEquipamentos }}</td>
                             </tr>
 
-                                 <tr>
+                            <tr>
+                                <th scope="row">{{ __('Images') }}</th>
 
-                                    <td>{{$imovel->ficheiro->pluck('id')}}</td>
-                                  <td> <?php foreach (json_decode($imovel->ficheiro->pluck('imovel_id')) as $foto) { ?>
-                                     <img src="{{ URL::to('public/images/'.$foto) }}" style="height:120px; width:200px"/>
-                                     <?php } ?>
-                                </td>
-                             </tr>
+                                    <td>
+                                        @foreach($imovel->getMedia('images') as $image)
+                                             <a href="{{$image->getUrl()}}">
+                                                 <img src="{{$image->getUrl()}}" class="rounded" style="width:120px">
+                                            </a>
+                                        @endforeach
+                                        
+                                    </td>
 
+
+                            </tr>
                         </tbody>
                     </table>
                 </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Imovel;
 use Illuminate\Http\Request;
 use App\DataTables\ImovelDatatable;
+use Illuminate\Support\Facades\Storage;
 
 class ImovelController extends Controller
 {
@@ -28,7 +29,7 @@ class ImovelController extends Controller
     {
         $imovel = new Imovel();
         $imovel->loadDefaultValues();
-        return view('imoveis.create');
+        return view('imoveis.create', compact('imovel'));
     }
 
     /**
@@ -37,16 +38,37 @@ class ImovelController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Imovel $imovel)
     {
         $validatedAttributes = $this->validateImovel($request);
 
-        if(($model = Imovel::create($validatedAttributes)) ) {
-            return redirect(route('imoveis.show', $model));
-        }else{
-            return redirect()->back();
-        }
+
+            if(($model = Imovel::create($validatedAttributes)) ) {
+
+                if ($request->hasFile('photos')) {
+                    foreach ($request->file('photos') as $photo) {
+                        // $foto = $photo->store('photos');
+                        $imovel->addMedia($photo)->toMediaCollection('images');
+
+                     }
+                     $imovel->save();
+                    return redirect(route('imoveis.show', $model));
+                }
+
+            }
     }
+
+
+   /* public function uploadSubmit(Request $request)
+    {
+        $imovel = Imovel::create($request->all());
+        foreach ($request->photos as $photo) {
+           // $foto = $photo->store('photos');
+           $imovel->addMedia($photo)->toMediaCollection('images');
+           dd('olá');
+        }
+        return 'Upload successful!';
+    }*/
 
     /**
      * Display the specified resource.
@@ -79,14 +101,33 @@ class ImovelController extends Controller
      */
     public function update(Request $request, Imovel $imovel)
     {
+
         $validatedAttributes = $this->validateImovel($request, $imovel);
         $imovel->fill($validatedAttributes);
-        if($imovel->save()) {
-            return redirect(route('imoveis.show', $imovel));
-        }else{
-            return redirect()->back();
-        }
-    }
+
+
+            if ($request->hasFile('photos')) {
+
+                $imovel->addMedia('photos')->toMediaCollection('avatar');
+
+                if($request->filled('delete_image')){ // if the image was replaced above it will automatically delete this so don't run again
+                    $imovel->getFirstMedia('photos')->delete();
+                }
+
+                $avatar = $request->file('logo');
+                $filename = 'sitelogo' . '-' . time() . '.' . $avatar->getClientOriginalExtension();
+                $location = public_path('avatars/');
+                $request->file('logo')->move($location, $filename);
+
+                $imovel->logo = $filename;
+
+             }
+
+             $imovel->save();
+             return redirect(route('imoveis.show', $imovel));
+
+            }
+
 
     /**
      * Remove the specified resource from storage.

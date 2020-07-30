@@ -14,27 +14,27 @@ class UsersSeeder extends Seeder
     {
         User::create([
             'name' => 'admin',
-            'emai' => 'admin@mail.com',
+            'email' => 'admin@mail.com',
             'password' => 'password'
         ]);
         User::create([
             'name' => 'user',
-            'emai' => 'user@mail.com',
+            'email' => 'user@mail.com',
             'password' => 'password'
         ]);
         User::create([
             'name' => 'superadmin',
-            'emai' => 'superadmin@mail.com',
+            'email' => 'superadmin@mail.com',
             'password' => 'password'
         ]);
         User::create([
             'name' => 'landlord',
-            'emai' => 'landlord@mail.com',
+            'email' => 'landlord@mail.com',
             'password' => 'password'
         ]);
         User::create([
             'name' => 'tenant',
-            'emai' => 'tenant@mail.com',
+            'email' => 'tenant@mail.com',
             'password' => 'password'
         ]);
 

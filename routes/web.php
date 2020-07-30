@@ -94,10 +94,6 @@ Route::resource('imoveis', 'ImovelController')->parameters([
     'imoveis' => 'imovel'
 ]);
 
-Route::get('/upload','MultipleUploadController@uploadForm');
-
-Route::post('/upload','MultipleUploadController@uploadSubmit');
-
 //permissoes e roles dos fiadores
 Route::get('service/imoveis/view', 'ImovelController@view');
 Route::get('service/imoveis/create', 'ImovelController@create');

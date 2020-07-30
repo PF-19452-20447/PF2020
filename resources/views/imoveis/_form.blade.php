@@ -7,7 +7,7 @@
  */
 ?>
 
- {!! Form::model($imovel ?? '', ['route' => Route::currentRouteName() == 'imoveis.create' ? ['imoveis.store'] : ['imoveis.update', $imovel ?? ''], 'method' => Route::currentRouteName() == 'imoveis.create' ? 'post' : 'put', 'class' => "kt-form"]) !!}
+ {!! Form::model($imovel ?? '', ['route' => Route::currentRouteName() == 'imoveis.create' ? ['imoveis.store'] : ['imoveis.update', $imovel ?? '' ?? ''], 'method' => Route::currentRouteName() == 'imoveis.create' ? 'post' : 'put', 'class' => "kt-form", 'enctype'=>"multipart/form-data"]) !!}
 
     <div class="kt-portlet__body">
         <div class="form-group">
@@ -177,17 +177,25 @@
             @enderror
         </div>
 
-        <div class="form-group">
 
-            <form action="/upload" enctype="multipart/form-data" method="post">
-                {{ csrf_field() }}
+        <div id="hidden_inputs">
+        <div class="form-group">
                 <br><br>
+
                 Selected photos (can attach more than one): <br>
                 <input multiple="multiple" name="photos[]" type="file">
+
+                @foreach($imovel->getMedia('images') as $image)
+                <br></br>
+                        <br></br>
+                        <button class="btn btn-danger" onClick="removeImg(this)" type="button" data-id="{{$image->id}}">Delete</button>
+                        <img src="{{$image->getUrl()}}" id="img{{$image->id}}" class="rounded" style="width:120px">
+               @endforeach
+
                 <br><br>
-             
-                </form>
         </div>
+    </div>
+
 
     <div class="kt-portlet__foot">
         <div class="kt-form__actions">
@@ -198,4 +206,20 @@
 
 {!! Form::close() !!}
 
+@push('scripts')
+<script>
+    var removeImg = function(elem){
 
+        //  alert($(elem).data('id'));
+
+            var imageId = $(elem).data('id'); //armazena o id da imagem
+            //console.log($(elem).data('id'));
+            $(elem).remove(); //remove o elemento
+            $("#img" + imageId).remove(); //remove a imagem
+
+            var info = '<input type="hidden" name="img_delete[]" value="' + imageId + '">'; //esconde o input da imagem (id)
+            $('#hidden_inputs').append(info); //faz append do id da div
+
+    }
+</script>
+@endpush

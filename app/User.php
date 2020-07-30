@@ -11,6 +11,7 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\Permission\Traits\HasRoles;
 
 
+
 /**
  * App\User
  *
@@ -119,6 +120,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
 
         return 'N/A';
     }
+    
 
     /**
      * @return string
@@ -135,8 +137,6 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
 
         return 'N/A';
     }
-
-
 
     public function registerMediaCollections(): void
     {

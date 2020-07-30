@@ -4,11 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\LoadDefaults;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\HasMedia;
 
-class Imovel extends Model
+
+class Imovel extends Model implements HasMedia
 {
     protected $table = "imoveis";
-    use LoadDefaults;
+    use LoadDefaults, InteractsWithMedia;
 
     protected $fillable = [
         'id',
@@ -55,6 +58,14 @@ class Imovel extends Model
     public function contrato()
     {
         return $this->hasMany('App\Contrato');
+    }
+
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('images')
+            ->useFallbackUrl('/images/default_user.jpg')
+            ->useFallbackPath(public_path('/images/default_user.jpg'));
     }
 
 }
