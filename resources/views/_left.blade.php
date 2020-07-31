@@ -293,7 +293,7 @@
 
 
 
-                @canany(['adminApp', 'adminFullApp', 'accessAsLandlord'])
+                @canany(['adminApp', 'adminFullApp', 'accessAsLandlord', 'accessAsTenant'])
                 <li class="kt-menu__item  kt-menu__item--submenu {{ request()->routeIs('contratos.*') ? "kt-menu__item--open" : "" }}" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
                     <a href="{{ route('contratos.index') }}" class="kt-menu__link kt-menu__toggle">
                         <span class="kt-menu__link-icon">
