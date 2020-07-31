@@ -136,10 +136,10 @@ class ProprietarioController extends Controller
             'email' => 'required|email|unique:users',
             'telefone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:9',
             'morada' => 'required|string',
-            'iban' => ['required', 'alpha_dash', 'max:64'],
+            'iban' => ['nullable', 'alpha_dash', 'max:64'],
             'tipoParticularEmpresa' => 'required|integer|min:0',
-            'cae' => 'required|integer',
-            'capitalSocial' => 'required|integer',
+            'cae' => 'nullable|integer',
+            'capitalSocial' => 'nullable|integer',
             'setorActividade' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'certidaoPermanente' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'numFuncionarios' => 'nullable|integer|min:0'
