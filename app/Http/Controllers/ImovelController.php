@@ -38,26 +38,21 @@ class ImovelController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Imovel $imovel)
+    public function store(Request $request)
     {
         $validatedAttributes = $this->validateImovel($request);
 
-
-            if(($model = Imovel::create($validatedAttributes)) ) {
-
-                if ($request->hasFile('photos')) {
-                    foreach ($request->file('photos') as $photo) {
-                        // $foto = $photo->store('photos');
-                        $imovel->addMedia($photo)->toMediaCollection('images');
-
-                     }
-                     $imovel->save();
-                    return redirect(route('imoveis.show', $model));
-                }
-
+        if(($imodel = Imovel::create($validatedAttributes)) ) {
+            if ($request->hasFile('photos')) {
+                foreach ($request->file('photos') as $photo) {
+                    // $foto = $photo->store('photos');
+                    $imodel->addMedia($photo)->toMediaCollection('images');
+                 }
             }
+            return redirect(route('imoveis.show', $imodel));
+        }else
+            return redirect()->back();
     }
-
 
    /* public function uploadSubmit(Request $request)
     {
@@ -105,28 +100,21 @@ class ImovelController extends Controller
         $validatedAttributes = $this->validateImovel($request, $imovel);
         $imovel->fill($validatedAttributes);
 
-
-            if ($request->hasFile('photos')) {
-
-                $imovel->addMedia('photos')->toMediaCollection('avatar');
-
-                if($request->filled('delete_image')){ // if the image was replaced above it will automatically delete this so don't run again
-                    $imovel->getFirstMedia('photos')->delete();
-                }
-
-                $avatar = $request->file('logo');
-                $filename = 'sitelogo' . '-' . time() . '.' . $avatar->getClientOriginalExtension();
-                $location = public_path('avatars/');
-                $request->file('logo')->move($location, $filename);
-
-                $imovel->logo = $filename;
-
-             }
-
-             $imovel->save();
-             return redirect(route('imoveis.show', $imovel));
-
+        if($imovel->save()) {
+            //remove the images from server, this should be called before the code to save the images
+            foreach ($request->input('img_delete', []) as $file_id) {
+                $imovel->getMedia('images')->where('id', $file_id)->first()->delete();
             }
+            if ($request->hasFile('photos')) {
+                foreach ($request->file('photos') as $photo) {
+                    $imovel->addMedia($photo)->toMediaCollection('images');
+                }
+            }
+            return redirect(route('imoveis.show', $imovel));
+        }else{
+            return redirect()->back();
+        }
+    }
 
 
     /**
@@ -157,28 +145,30 @@ class ImovelController extends Controller
          //nullable -> optional fields
 
         $validate_array = [
-        'tipo' => 'required|string',//
-        'tipologia' => 'required|string',
-        'area' => 'required|integer',//
-        'morada' => 'required|string',
-        'numQuartos' => 'required|integer',
-        'numCasaBanho' => 'required|integer',
-        'descricao' => 'nullable|string',
-        'estado' => 'nullable|boolean',
-        'mobilado' => 'nullable|boolean',
-        'fumar' => 'nullable|boolean',
-        'animaisEstimacao' => 'nullable|boolean',
-        'outrosEquipamentos' => 'nullable|string',
-        'certificadoEnergetico' => 'nullable|string',
-        'licencaHabitacao' => 'nullable|string',
-        'notas' => 'nullable|string',
-        'televisao' => 'nullable|boolean',
-        'frigorifico' => 'nullable|boolean',
-        'piscina' => 'nullable|boolean',
-        'varanda' => 'nullable|boolean',
-        'terraco' => 'nullable|boolean',
-        'churrasqueira' => 'nullable|boolean',
-        'arCondicionado' => 'nullable|boolean'
+            'tipo' => 'required|string',//
+            'tipologia' => 'required|string',
+            'area' => 'required|integer',//
+            'morada' => 'required|string',
+            'numQuartos' => 'required|integer',
+            'numCasaBanho' => 'required|integer',
+            'descricao' => 'nullable|string',
+            'estado' => 'nullable|boolean',
+            'mobilado' => 'nullable|boolean',
+            'fumar' => 'nullable|boolean',
+            'animaisEstimacao' => 'nullable|boolean',
+            'outrosEquipamentos' => 'nullable|string',
+            'certificadoEnergetico' => 'nullable|string',
+            'licencaHabitacao' => 'nullable|string',
+            'notas' => 'nullable|string',
+            'televisao' => 'nullable|boolean',
+            'frigorifico' => 'nullable|boolean',
+            'piscina' => 'nullable|boolean',
+            'varanda' => 'nullable|boolean',
+            'terraco' => 'nullable|boolean',
+            'churrasqueira' => 'nullable|boolean',
+            'arCondicionado' => 'nullable|boolean',
+            'photos.*'=>'nullable|file',
+            'img_delete'=>'nullable',
         ];
         return $request->validate($validate_array);
 

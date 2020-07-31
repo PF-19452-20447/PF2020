@@ -7,7 +7,7 @@
  */
 ?>
 
- {!! Form::model($imovel ?? '', ['route' => Route::currentRouteName() == 'imoveis.create' ? ['imoveis.store'] : ['imoveis.update', $imovel ?? '' ?? ''], 'method' => Route::currentRouteName() == 'imoveis.create' ? 'post' : 'put', 'class' => "kt-form", 'enctype'=>"multipart/form-data"]) !!}
+ {!! Form::model($imovel ?? '', ['route' => Route::currentRouteName() == 'imoveis.create' ? ['imoveis.store'] : ['imoveis.update', $imovel ?? ''], 'method' => Route::currentRouteName() == 'imoveis.create' ? 'post' : 'put', 'class' => "kt-form", 'enctype'=>"multipart/form-data"]) !!}
 
     <div class="kt-portlet__body">
         <div class="form-group">
@@ -28,7 +28,7 @@
             {!! Form::label('area', __('Area m2')) !!}
             {!! Form::number('area', null, ['class' => 'form-control '.($errors->has('area') ? 'is-invalid' : ''), 'min' => '1', 'type' => 'number', 'required' => true]) !!}
             @error('area')
-            <div class="error invalid-feedback">{{ $message }}</div>
+                <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
@@ -177,25 +177,25 @@
             @enderror
         </div>
 
-
-        <div id="hidden_inputs">
         <div class="form-group">
-                <br><br>
+            {!! Form::label('photos', __('Selected photos (can attach more than one)')) !!}<br>
+            {!! Form::file('photos[]', null, ['class' => 'form-control '.($errors->has('photos') ? 'is-invalid' : ''), 'multiple' => true]) !!}
+            @error('photos')
+                <div class="error invalid-feedback">{{ $message }}</div>
+            @enderror
 
-                Selected photos (can attach more than one): <br>
-                <input multiple="multiple" name="photos[]" type="file">
+            @foreach($imovel->getMedia('images') as $image)
+                <div id="image-holder{{$image->id}}">
+                    <br>
+                    <br>
+                    <button class="btn btn-danger" onClick="removeImg(this)" type="button" data-id="{{$image->id}}">Delete</button>
+                    <img src="{{$image->getUrl()}}" id="img{{$image->id}}" class="rounded" style="width:120px">
+                </div>
+           @endforeach
 
-                @foreach($imovel->getMedia('images') as $image)
-                <br></br>
-                        <br></br>
-                        <button class="btn btn-danger" onClick="removeImg(this)" type="button" data-id="{{$image->id}}">Delete</button>
-                        <img src="{{$image->getUrl()}}" id="img{{$image->id}}" class="rounded" style="width:120px">
-               @endforeach
-
-                <br><br>
+            <br><br>
+            <div id="hidden_inputs"></div>
         </div>
-    </div>
-
 
     <div class="kt-portlet__foot">
         <div class="kt-form__actions">
@@ -214,8 +214,10 @@
 
             var imageId = $(elem).data('id'); //armazena o id da imagem
             //console.log($(elem).data('id'));
-            $(elem).remove(); //remove o elemento
-            $("#img" + imageId).remove(); //remove a imagem
+            //$(elem).remove(); //remove o elemento
+            //$("#img" + imageId).remove(); //remove a imagem
+            $("#image-holder" + imageId).remove(); //remove imagem e botão
+
 
             var info = '<input type="hidden" name="img_delete[]" value="' + imageId + '">'; //esconde o input da imagem (id)
             $('#hidden_inputs').append(info); //faz append do id da div
