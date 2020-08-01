@@ -28,12 +28,30 @@ use Illuminate\Validation\Rules\In;
 use pp\Http\Controllers\HandlesAuthorization;
 use Spatie\Permission\Traits\HasRoles;
 use Validation\Validator;
+use PDF;
+use Dompdf\Dompdf;
 
 class InquilinoController extends Controller
 {
     use HasRoles;
     //use HandlesAuthorization;
     //use Authorizable;
+
+
+    public function export_pdf()
+    {
+      // Fetch all customers from database
+      $data = Inquilino::get();
+      // Send data to the view using loadView function of PDF facade
+      $pdf = PDF::loadView('pdf.inquilinos', $data);
+      // If you want to store the generated pdf to the server then you can use the store function
+      $pdf->save(storage_path().'_filename.pdf');
+      // Finally, you can download the file using download function
+      return $pdf->download('inquilinos.pdf');
+    }
+
+
+
     /**
      * Display a listing of the resource.
      *

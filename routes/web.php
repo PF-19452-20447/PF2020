@@ -57,6 +57,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::resource('inquilinos','InquilinoController');
 
+    Route::get('/inquilinos/pdf','InquilinoController@export_pdf');
+
+
     /*Route::get('/roles', 'RoleController@index')->name('roles.index');
     Route::post('/roles', 'RoleController@store')->name('roles.store');
     Route::get('/roles/create', 'RoleController@create')->name('roles.create');
