@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contrato;
 use App\DataTables\ContratoDataTable;
+use App\Imovel;
 use Illuminate\Http\Request;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -35,7 +36,7 @@ class ContratoController extends Controller
 
         $contrato = new Contrato();
         $contrato->loadDefaultValues();
-         return view('contratos.create');
+         return view('contratos.create', compact('contrato'));
     }
 
     /**
@@ -48,11 +49,11 @@ class ContratoController extends Controller
     {
         $validatedAttributes = $this->validateContract($request);
 
-        if(($model = Contrato::create($validatedAttributes)) ) {
-            //flash('Role Added');
-            return redirect(route('contratos.show', $model));
-        }else{
-            return redirect()->back();
+        if(($imodel = Contrato::create($validatedAttributes)) ) {
+            if($request->hasFile('ficheiro_contrato')){
+                    $imodel->addMedia($request->file('ficheiro_contrato'))->toMediaCollection('contract_files');
+            }
+            return redirect(route('contratos.show', $imodel));
         }
 
     }
@@ -92,14 +93,22 @@ class ContratoController extends Controller
 
         $validatedAttributes = $this->validateContract($request, $contrato);
         $contrato->fill($validatedAttributes);
-        if($contrato->save()) {
-            //$this->authorize('create', $inquilino);
-            //flash('Role Added');
+
+        if($contrato->save()){
+
+            //remove the images from server, this should be called before the code to save the images
+             foreach ($request->input('cont_delete') as $file_id) {
+                 $contrato->getMedia('contract_files')->where('id', $file_id)->first()->delete();
+            }
+            if ($request->hasFile('ficheiro_contrato')) {
+                foreach ($request->file('ficheiro_contrato') as $cont) {
+                    $contrato->addMedia($cont)->toMediaCollection('contract_files');
+                }
+            }
             return redirect(route('contratos.show', $contrato));
         }else{
             return redirect()->back();
         }
-
     }
 
     /**
@@ -133,7 +142,9 @@ class ContratoController extends Controller
             'encargos' => 'required|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'caucao' => 'required|regex:/^\d+(\.\d{1,2})?$/',
             'metodoPagamento' => 'required|integer|min:0|max:6',
-            'rendasAvanco' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/'
+            'rendasAvanco' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
+            'ficheiro_contrato'=>'nullable|file',
+            'cont_delete'=>'nullable',
         ];
 
         return $request->validate($validate_array);

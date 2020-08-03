@@ -102,6 +102,25 @@
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
+        <div class="form-group">
+            {!! Form::label('ficheiro_contrato', __('Contract file')) !!}<br>
+            {!! Form::file('ficheiro_contrato', null, ['class' => 'form-control '.($errors->has('ficheiro_contrato') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1,  'required' => true]) !!}
+            @error('ficheiro_contrato')
+            <div class="error invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
+        @foreach($contrato->getMedia('contract_files') as $cont)
+        <div id="contract-holder{{$cont->id}}">
+            <br>
+            <br>
+            <button class="btn btn-danger" onClick="removeCont(this)" type="button" data-id="{{$cont->id}}">Delete</button>
+            <img src="{{$cont->getUrl()}}" id="cont{{$cont->id}}" class="rounded" style="width:120px" place-holder="contractImage">
+        </div>
+        @endforeach
+        <br><br>
+
+        <div id="hidden_inputs"></div>
 
     </div>
     <div class="kt-portlet__foot">
@@ -111,3 +130,18 @@
         </div>
     </div>
 {!! Form::close() !!}
+
+@push('scripts')
+<script>
+    var removeCont = function(elem){
+
+            var contratoId = $(elem).data('id'); //armazena o id do contrato
+            $("#contract-holder" + contratoId).remove(); //remove contrato e botão
+
+
+            var info = '<input type="hidden" name="cont_delete" value="' + contratoId + '">'; //esconde o input do contrato (id)
+            $('#hidden_inputs').append(info); //faz append do id da div
+
+    }
+</script>
+@endpush
