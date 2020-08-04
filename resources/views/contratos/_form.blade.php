@@ -103,6 +103,24 @@
             @enderror
         </div>
 
+        <div class="form-group">
+            <label>Selected Tenants</label>
+            <select class="form-control select2-multi" multiple="multiple" name ="inquilinos_list[]" id ="inquilinos_list[]" style="width: 50%" data-placeholder="select tenant">
+                <?php
+
+                $user = Auth::user();
+                if(!empty($proprietario)){
+                    foreach($user->proprietario->inquilinos as $inquilino){
+                         <option {{in_array($inquilino->id, $selectedTenantes) ? 'selected':''}}>
+                            {{$inquilino->nome}}
+                         </option>
+                     }
+                 }
+
+                ?>
+            </select>
+        </div>
+
     </div>
     <div class="kt-portlet__foot">
         <div class="kt-form__actions">

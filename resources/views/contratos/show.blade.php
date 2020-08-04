@@ -117,6 +117,10 @@ view()->share('hideSubHeader', true);
                                 <th scope="row">{{ __('Updated at') }}</th>
                                 <td>{{$contrato ->updated_at}}</td>
                             </tr>
+                            <tr>
+                                <th scope="row">{{ __('Tenants selected') }}</th>
+                                <td>{{$contrato->inquilino->pluck('nome')}}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

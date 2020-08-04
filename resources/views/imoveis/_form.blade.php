@@ -191,7 +191,7 @@
                     <button class="btn btn-danger" onClick="removeImg(this)" type="button" data-id="{{$image->id}}">Delete</button>
                     <img src="{{$image->getUrl()}}" id="img{{$image->id}}" class="rounded" style="width:120px">
                 </div>
-           @endforeach
+            @endforeach
 
             <br><br>
             <div id="hidden_inputs"></div>
