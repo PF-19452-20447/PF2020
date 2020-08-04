@@ -102,11 +102,11 @@
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-        <div class="form-group">
+        <div class="form-group {{ $errors->has('ficheiro_contrato') ? 'is-invalid' : '' }}">
             {!! Form::label('ficheiro_contrato', __('Contract file')) !!}<br>
-            {!! Form::file('ficheiro_contrato', null, ['class' => 'form-control '.($errors->has('ficheiro_contrato') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1,  'required' => true]) !!}
+            {!! Form::file('ficheiro_contrato', null, ['class' => 'form-control '.($errors->has('ficheiro_contrato') ? 'is-invalid' : '')]) !!}
             @error('ficheiro_contrato')
-            <div class="error invalid-feedback">{{ $message }}</div>
+                <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
 
@@ -132,16 +132,16 @@
 {!! Form::close() !!}
 
 @push('scripts')
-<script>
-    var removeCont = function(elem){
+    <script>
+        var removeCont = function(elem){
 
-            var contratoId = $(elem).data('id'); //armazena o id do contrato
-            $("#contract-holder" + contratoId).remove(); //remove contrato e botão
+                var contratoId = $(elem).data('id'); //armazena o id do contrato
+                $("#contract-holder" + contratoId).remove(); //remove contrato e botão
 
 
-            var info = '<input type="hidden" name="cont_delete" value="' + contratoId + '">'; //esconde o input do contrato (id)
-            $('#hidden_inputs').append(info); //faz append do id da div
+                var info = '<input type="hidden" name="cont_delete[]" value="' + contratoId + '">'; //esconde o input do contrato (id)
+                $('#hidden_inputs').append(info); //faz append do id da div
 
-    }
-</script>
+        }
+    </script>
 @endpush

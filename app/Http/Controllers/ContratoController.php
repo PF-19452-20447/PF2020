@@ -97,13 +97,14 @@ class ContratoController extends Controller
         if($contrato->save()){
 
             //remove the images from server, this should be called before the code to save the images
-             foreach ($request->input('cont_delete') as $file_id) {
+             foreach ($request->input('cont_delete', []) as $file_id) {
                  $contrato->getMedia('contract_files')->where('id', $file_id)->first()->delete();
             }
             if ($request->hasFile('ficheiro_contrato')) {
-                foreach ($request->file('ficheiro_contrato') as $cont) {
+                /*foreach ($request->file('ficheiro_contrato') as $cont) {
                     $contrato->addMedia($cont)->toMediaCollection('contract_files');
-                }
+                }*/
+                $contrato->addMedia($request->file('ficheiro_contrato'))->toMediaCollection('contract_files');
             }
             return redirect(route('contratos.show', $contrato));
         }else{
