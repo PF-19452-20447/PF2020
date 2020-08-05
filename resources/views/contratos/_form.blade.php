@@ -105,22 +105,24 @@
 
         <div class="form-group">
             <label>Selected Tenants</label>
-            <select class="form-control select2-multi" multiple="multiple" name ="inquilinos_list[]" id ="inquilinos[]" style="width: 50%" >
+            <select class="form-control select2-multi {{ $errors->has('inquilinos_list') ? 'is-invalid' : '' }}" multiple="multiple" name ="inquilinos_list[]" id ="inquilinos" style="width: 50%" >
                 <?php
                 $user = Auth::user();
-                if(!empty($proprietario)){
+                if(!empty($user->proprietario)){
                     foreach($user->proprietario->inquilinos as $inquilino){
                 ?>
-                         <option in_array($inquilino->id, $selectedTenantes) ? 'selected': ''}}>
+                         <option value="{{ $inquilino->id }}" {{ in_array($inquilino->id, $selectedTenantes) ? 'selected': ''}}>
                             {{$inquilino->nome}}
                          </option>
 
                          <?php
                      }
                  }
-
                 ?>
             </select>
+            @error('inquilinos_list')
+                <div class="error invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
 
     </div>

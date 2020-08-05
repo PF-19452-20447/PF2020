@@ -33,12 +33,12 @@ class Contrato extends Model
         return $this->belongsTo('App\Imovel');
     }
 
-    public function inquilino()
+    public function inquilinos()
     {
         return $this->belongsToMany('App\Inquilino', 'contrato_inquilinos');
     }
 
-    public function renda()
+    public function rendas()
     {
         return $this->hasMany('App\Renda');
     }

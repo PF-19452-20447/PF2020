@@ -119,7 +119,7 @@ view()->share('hideSubHeader', true);
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Tenants selected') }}</th>
-                                <td>{{$contrato->inquilino->pluck('nome')}}</td>
+                                <td>{{$contrato->inquilinos->pluck('nome')}}</td>
                             </tr>
                         </tbody>
                     </table>

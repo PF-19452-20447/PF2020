@@ -32,13 +32,14 @@ class ContratoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Contrato $contrato)
+    public function create()
     {
-        $inquilino = Inquilino::pluck('nome', 'id');
+        //$inquilino = Inquilino::pluck('nome', 'id');
        // $inquilino = DB::table('inquilinos')->groupBy('nome')->get();
         $contrato = new Contrato();
         $contrato->loadDefaultValues();
-         return view('contratos.create', compact('inquilino'));
+        $selectedTenantes = [];
+         return view('contratos.create', compact('contrato', 'selectedTenantes'));
 
     }
 
@@ -63,9 +64,10 @@ class ContratoController extends Controller
 
 */
         $validatedAttributes = $this->validateContract($request);
-         $validatedAttributes = $request->except('inquilino');
+         //$validatedAttributes = $request->except('inquilino');
 
         if(($model = Contrato::create($validatedAttributes)) ) {
+            $model->inquilinos()->attach($validatedAttributes['inquilinos_list']);
             //flash('Role Added');
             return redirect(route('contratos.show', $model));
         }else{
@@ -82,8 +84,7 @@ class ContratoController extends Controller
      */
     public function show(Contrato $contrato)
     {
-        $selectedTenantes = $contrato->inquilino->pluck('id')->toArray();
-        return view('contratos.show', compact('contrato', 'selectedTenantes'));
+        return view('contratos.show', compact('contrato'));
     }
 
     /**
@@ -94,8 +95,8 @@ class ContratoController extends Controller
      */
     public function edit(Contrato $contrato)
     {
-        $inquilino = Inquilino::pluck('nome', 'id');
-        return view('contratos.edit', compact('contrato', 'inquilino'));
+        $selectedTenantes = $contrato->inquilinos->pluck('id')->toArray();
+        return view('contratos.edit', compact('contrato', 'selectedTenantes'));
     }
 
     /**
@@ -107,17 +108,17 @@ class ContratoController extends Controller
      */
     public function update(Request $request, Contrato $contrato)
     {
-
-        if(!empty($validatedAttributes['inquilino'])){
-            $validatedAttributes = $request->except('inquilino');
-
+        /*if(!empty($validatedAttributes['inquilinos_list'])){
+            $validatedAttributes = $request->except('inquilinos_list');
         }else{
-            $validatedAttributes = $request->except('inquilino');
-        }
+            $validatedAttributes = $request->except('inquilinos_list');
+        }*/
 
         $validatedAttributes = $this->validateContract($request, $contrato);
         $contrato->fill($validatedAttributes);
         if($contrato->save()) {
+            $contrato->inquilinos()->sync($validatedAttributes['inquilinos_list']);
+
             //$this->authorize('create', $inquilino);
             //flash('Role Added');
             return redirect(route('contratos.show', $contrato));
@@ -175,7 +176,7 @@ class ContratoController extends Controller
             'caucao' => 'required|regex:/^\d+(\.\d{1,2})?$/',
             'metodoPagamento' => 'required|integer|min:0|max:6',
             'rendasAvanco' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
-            'inquilino' => 'required|min:1'
+            'inquilinos_list' => 'required|min:1'
         ];
 
         return $request->validate($validate_array);
