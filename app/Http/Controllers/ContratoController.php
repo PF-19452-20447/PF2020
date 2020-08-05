@@ -7,6 +7,7 @@ use App\DataTables\ContratoDataTable;
 use App\Inquilino;
 use Illuminate\Http\Request;
 use Spatie\Permission\Traits\HasRoles;
+use DB;
 
 class ContratoController extends Controller
 {
@@ -34,9 +35,11 @@ class ContratoController extends Controller
     public function create(Contrato $contrato)
     {
         $inquilino = Inquilino::pluck('nome', 'id');
+       // $inquilino = DB::table('inquilinos')->groupBy('nome')->get();
         $contrato = new Contrato();
         $contrato->loadDefaultValues();
          return view('contratos.create', compact('inquilino'));
+
     }
 
     /**
