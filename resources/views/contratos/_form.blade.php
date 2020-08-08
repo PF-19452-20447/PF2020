@@ -7,7 +7,7 @@
  */
 ?>
 
- {!! Form::model($contrato ?? '', ['route' => Route::currentRouteName() == 'contratos.create' ? ['contratos.store'] : ['contratos.update', $contrato ?? ''], 'method' => Route::currentRouteName() == 'contratos.create' ? 'post' : 'put', 'class' => "kt-form"]) !!}
+ {!! Form::model($contrato ?? '', ['route' => Route::currentRouteName() == 'contratos.create' ? ['contratos.store'] : ['contratos.update', $contrato ?? ''],'enctype' => "multipart/form-data",'method' => Route::currentRouteName() == 'contratos.create' ? 'post' : 'put', 'class' => "kt-form"]) !!}
 
     <div class="kt-portlet__body">
         <div class="form-group">
@@ -109,16 +109,15 @@
                 <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-
         @foreach($contrato->getMedia('contract_files') as $cont)
         <div id="contract-holder{{$cont->id}}">
             <br>
-            <br>
             <button class="btn btn-danger" onClick="removeCont(this)" type="button" data-id="{{$cont->id}}">Delete</button>
-            <img src="{{$cont->getUrl()}}" id="cont{{$cont->id}}" class="rounded" style="width:120px" place-holder="contractImage">
+        <p id="cont{{$cont->id}}"><a href="{{$cont->getUrl()}}" download>{{$cont->file_name}}</a></p>{{-- por agora para testar --}}
+            {{-- <img src="{{$cont->getUrl()}}" id="cont{{$cont->id}}" class="rounded" style="width:120px" place-holder="contractImage"> --}}
         </div>
         @endforeach
-        <br><br>
+        <br>
 
         <div id="hidden_inputs"></div>
 

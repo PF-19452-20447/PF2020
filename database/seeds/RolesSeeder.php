@@ -30,11 +30,6 @@ class RolesSeeder extends Seeder
             'name' => "Tenant",
             'guard_name' => 'web'
         ]);
-        Role::create([
-            'name' => "User",
-            'guard_name' => 'web'
-        ]);
-
 
     }
 
