@@ -48,7 +48,8 @@ class ContratoPolicy
             return true;
         }elseif($user->can('accessAsTenant')){
              return $user->id == $contrato->user_id;
-        }
+        
+       }
 
         return $user->id > 0;
     }

@@ -8,6 +8,9 @@ use App\Traits\LoadDefaults;
 class Contrato extends Model
 {
 
+  //  protected $table = 'contratos';
+    //protected $primaryKey = 'contrato_id';
+
     use LoadDefaults;
 
     protected $fillable = [

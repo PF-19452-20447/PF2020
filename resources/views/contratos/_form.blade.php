@@ -125,6 +125,27 @@
             @enderror
         </div>
 
+        <div class="form-group">
+            <label>Selected Property</label>
+            <select class="form-control {{ $errors->has('imovel_id') ? 'is-invalid' : '' }}" name ="imovel_id" id ="imoveis" style="width: 50%" >
+                <?php
+                $user = Auth::user();
+                if(!empty($user->proprietario)){
+                    foreach($user->proprietario->imoveis as $imovel){
+                ?>
+                         <option value="{{ $imovel->id }}" @if (old('imovel_id') == $imovel->id) selected="selected" @endif >
+                            {{$imovel->morada}}
+                         </option>
+                         <?php
+                     }
+                 }
+                ?>
+            </select>
+            @error('imovel_id')
+                <div class="error invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
     </div>
     <div class="kt-portlet__foot">
         <div class="kt-form__actions">

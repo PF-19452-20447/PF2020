@@ -8,6 +8,9 @@ use App\Collection;
 
 class Proprietario extends Model
 {
+
+    //protected $table= 'proprietarios';
+
     use LoadDefaults;
 
     protected $fillable = [
@@ -39,7 +42,7 @@ class Proprietario extends Model
 
     }
 
-    public function imoveis (){
+    public function imoveis(){
 
         return $this->belongsToMany('App\Imovel', 'proprietarios_imoveis');
     }

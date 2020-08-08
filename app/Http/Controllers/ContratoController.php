@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contrato;
 use App\DataTables\ContratoDataTable;
+use App\Imovel;
 use App\Inquilino;
 use Illuminate\Http\Request;
 use Spatie\Permission\Traits\HasRoles;
@@ -11,6 +12,7 @@ use DB;
 
 class ContratoController extends Controller
 {
+
 
     use HasRoles;
     //use HandlesAuthorization;
@@ -39,6 +41,7 @@ class ContratoController extends Controller
         $contrato = new Contrato();
         $contrato->loadDefaultValues();
         $selectedTenantes = [];
+        //$selectedProperty = [];
          return view('contratos.create', compact('contrato', 'selectedTenantes'));
 
     }
@@ -51,25 +54,16 @@ class ContratoController extends Controller
      */
     public function store(Request $request)
     {
-/*
-        $news = $request->input('news');
-        $news = implode(',', $news);
 
-        $input = $request->except('news');
-        //Assign the "mutated" news value to $input
-        $input['news'] = $news;
-
-        General_news::create($input);
-        return redirect()->back();
-
-*/
         $validatedAttributes = $this->validateContract($request);
          //$validatedAttributes = $request->except('inquilino');
 
         if(($model = Contrato::create($validatedAttributes)) ) {
             $model->inquilinos()->attach($validatedAttributes['inquilinos_list']);
+         //  $model->imovel()->attach($validatedAttributes['imovel_id']);
+         $imovel_id = $request->imovel_id;
             //flash('Role Added');
-            return redirect(route('contratos.show', $model));
+            return redirect(route('contratos.show', $model, compact('imovel_id')));
         }else{
             return redirect()->back();
         }
@@ -96,6 +90,7 @@ class ContratoController extends Controller
     public function edit(Contrato $contrato)
     {
         $selectedTenantes = $contrato->inquilinos->pluck('id')->toArray();
+        //$selectedProperty = $contrato->imovel->pluck('id')->toArray();
         return view('contratos.edit', compact('contrato', 'selectedTenantes'));
     }
 
@@ -118,7 +113,7 @@ class ContratoController extends Controller
         $contrato->fill($validatedAttributes);
         if($contrato->save()) {
             $contrato->inquilinos()->sync($validatedAttributes['inquilinos_list']);
-
+            //$contrato->imovel()->sync($validatedAttributes['imovel_id']);
             //$this->authorize('create', $inquilino);
             //flash('Role Added');
             return redirect(route('contratos.show', $contrato));
@@ -176,7 +171,8 @@ class ContratoController extends Controller
             'caucao' => 'required|regex:/^\d+(\.\d{1,2})?$/',
             'metodoPagamento' => 'required|integer|min:0|max:6',
             'rendasAvanco' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
-            'inquilinos_list' => 'required|min:1'
+            'inquilinos_list' => 'required|min:1',
+            'imovel_id' => 'required'
         ];
 
         return $request->validate($validate_array);

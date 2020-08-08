@@ -11,6 +11,7 @@ use Spatie\MediaLibrary\HasMedia;
 class Imovel extends Model implements HasMedia
 {
     protected $table = "imoveis";
+    //protected $primaryKey = 'contrato_id';
     use LoadDefaults, InteractsWithMedia;
 
     protected $fillable = [
