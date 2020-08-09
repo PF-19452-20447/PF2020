@@ -74,7 +74,6 @@ class ContratoDataTable extends DataTable
                         'valorRenda' => [ 'title' => 'Income value' ],
                         'tipoContrato' => [ 'title' => 'Type of contract' ],
                         'dataLimitePagamento' => ['title' => 'Payment deadline'],
-                        'estado' => ['title' => 'State'],
                         'caucao' => ['title' => 'Deposit'],
                         'metodoPagamento' => ['title' => 'Payment method'],
                         'action' => ['title' => 'Action'],

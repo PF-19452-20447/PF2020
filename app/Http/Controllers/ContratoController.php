@@ -166,7 +166,7 @@ class ContratoController extends Controller
             'isencaoBeneficio' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'retencaoFonte' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'dataLimitePagamento' => 'required|date_format:Y-m-d H:i:s|after:inicioContrato',
-            'estado' => 'required|integer|min:0|max:6',
+            'estado' => 'required|integer',
             'encargos' => 'required|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'caucao' => 'required|regex:/^\d+(\.\d{1,2})?$/',
             'metodoPagamento' => 'required|integer|min:0|max:6',

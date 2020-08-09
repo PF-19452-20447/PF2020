@@ -91,7 +91,7 @@ view()->share('hideSubHeader', true);
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('State') }}</th>
-                                <td>{{ $contrato ->estado }}</td>
+                                <td>{{ $contrato ->StateLabel }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Charges') }}</th>

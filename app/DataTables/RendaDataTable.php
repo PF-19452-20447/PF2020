@@ -79,7 +79,6 @@ class RendaDataTable extends DataTable
                         'valorPagar' => [ 'title' => 'Payable amount' ],
                         'dataPagamento' => [ 'title' => 'Payment Date' ],
                         'metodoPagamento' => ['title' => 'Payment method'],
-                        'estado' => ['title' => 'State'],
                         'dataLimitePagamento' => ['title' => 'Payment deadline'],
                         'dataRecibo' => ['title' => 'Receipt date'],
                         'action' => ['title' => 'Action'],
