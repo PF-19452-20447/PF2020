@@ -11,6 +11,8 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 class Inquilino extends Model
 {
 
+    protected $table='inquilinos';
+
     use LoadDefaults;
 
     protected $fillable = [
