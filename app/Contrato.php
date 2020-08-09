@@ -27,7 +27,8 @@ class Contrato extends Model
         'encargos',
         'caucao',
         'metodoPagamento',
-        'rendasAvanco'
+        'rendasAvanco',
+        'imovel_id'
     ];
 
 

@@ -123,7 +123,7 @@ view()->share('hideSubHeader', true);
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Property selected') }}</th>
-                                <td>{{$contrato->imovel->id}}</td>
+                                <td>{{$contrato->imovel->morada}}</td>
                             </tr>
                         </tbody>
                     </table>

@@ -61,9 +61,9 @@ class ContratoController extends Controller
         if(($model = Contrato::create($validatedAttributes)) ) {
             $model->inquilinos()->attach($validatedAttributes['inquilinos_list']);
          //  $model->imovel()->attach($validatedAttributes['imovel_id']);
-         $imovel_id = $request->imovel_id;
+         //$imovel_id = $request->imovel_id;
             //flash('Role Added');
-            return redirect(route('contratos.show', $model, compact('imovel_id')));
+            return redirect(route('contratos.show', $model));
         }else{
             return redirect()->back();
         }
