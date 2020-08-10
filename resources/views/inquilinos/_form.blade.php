@@ -7,9 +7,10 @@
  */
 ?>
 
- {!! Form::model($inquilino ?? '', ['route' => Route::currentRouteName() == 'inquilinos.create' ? ['inquilinos.store'] : ['inquilinos.update', $inquilino ?? ''], 'method' => Route::currentRouteName() == 'inquilinos.create' ? 'post' : 'put', 'class' => "kt-form"]) !!}
+{!! Form::model($inquilino ?? '', ['route' => Route::currentRouteName() == 'inquilinos.create' ? ['inquilinos.store'] : ['inquilinos.update', $inquilino ?? ''], 'method' => Route::currentRouteName() == 'inquilinos.create' ? 'post' : 'put', 'class' => "kt-form", 'enctype'=>"multipart/form-data"]) !!}
 
     <div class="kt-portlet__body">
+
         <div class="form-group">
             {!! Form::label('nome', __('Name')) !!}
             {!! Form::text('nome', null, ['class' => 'form-control '.($errors->has('nome') ? 'is-invalid' : ''), 'required' => true]) !!}
@@ -20,7 +21,6 @@
         <div class="form-group">
             {!! Form::label('dataNascimento', __('Date of birth')) !!}
             {!! Form::date('dataNascimento', null, ['class' => 'form-control '.($errors->has('dataNascimento') ? 'is-invalid' : ''), 'type' => 'date', 'required' => true ]) !!}
-            <!--<span class="form-text text-muted">We'll never share your email with anyone else.</span>-->
             @error('dataNascimento')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
@@ -137,10 +137,27 @@
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
+        <div class="form-group">
+            {!! Form::label('photos', __('Image')) !!}<br>
+            {!! Form::file('photos[]', null, ['class' => 'form-control '.($errors->has('photos') ? 'is-invalid' : ''), 'multiple' => true]) !!}
+            @error('photos')
+                <div class="error invalid-feedback">{{ $message }}</div>
+            @enderror
 
+            @foreach($inquilino->getMedia('images') as $image)
+                <div id="image-holder{{$image->id}}">
+                    <br>
+                    <br>
+                    <button class="btn btn-danger" onClick="removeImg(this)" type="button" data-id="{{$image->id}}">Delete</button>
+                    <img src="{{$image->getUrl()}}" id="img{{$image->id}}" class="rounded" style="width:120px">
+                </div>
+            @endforeach
 
-
+            <br><br>
+            <div id="hidden_inputs"></div>
+        </div>
     </div>
+
     <div class="kt-portlet__foot">
         <div class="kt-form__actions">
             <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
@@ -148,3 +165,23 @@
         </div>
     </div>
 {!! Form::close() !!}
+
+@push('scripts')
+<script>
+    var removeImg = function(elem){
+
+        //  alert($(elem).data('id'));
+
+            var imageId = $(elem).data('id'); //armazena o id da imagem
+            //console.log($(elem).data('id'));
+            //$(elem).remove(); //remove o elemento
+            //$("#img" + imageId).remove(); //remove a imagem
+            $("#image-holder" + imageId).remove(); //remove imagem e botão
+
+
+            var info = '<input type="hidden" name="img_delete[]" value="' + imageId + '">'; //esconde o input da imagem (id)
+            $('#hidden_inputs').append(info); //faz append do id da div
+
+    }
+</script>
+@endpush

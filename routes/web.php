@@ -55,7 +55,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 //Route::delete('/inquilinos/{inquilino}/delete', 'InquilinosController@delete')->name('inquilinos.delete');
 //Route::impersonate();
 
-    Route::resource('inquilinos','InquilinoController');
+    Route::resource('inquilinos','InquilinoController');    
+    Route::post('/inquilinos', 'InquilinoController@store')->name('inquilinos.store');
 
     Route::get('/inquilinos/pdf','InquilinoController@export_pdf');
 

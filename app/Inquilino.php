@@ -7,13 +7,15 @@ use App\Traits\LoadDefaults;
 use App\Cache;
 use App\camel_case;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Inquilino extends Model
+class Inquilino extends Model implements HasMedia
 {
 
     protected $table='inquilinos';
 
-    use LoadDefaults;
+    use LoadDefaults, InteractsWithMedia;
 
     protected $fillable = [
         'id',
@@ -57,6 +59,12 @@ class Inquilino extends Model
         return $this->hasMany('App\Renda'); /*, 'inquilino_id', 'id');*/
     }
 
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('images')
+            ->useFallbackUrl('/images/default_user.jpg')
+            ->useFallbackPath(public_path('/images/default_user.jpg'));
+    }
 
 
 }

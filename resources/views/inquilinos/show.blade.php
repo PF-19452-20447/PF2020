@@ -53,10 +53,12 @@ view()->share('hideSubHeader', true);
                         Column::make('Particular type of company'),
                         //Column::make('created_at'),
                         //Column::make('updated_at'),-->
-                            <tr>
-                                <th scope="row">{{ __('ID') }}</th>
-                                <td>{{ $inquilino ->id }}</td>
-                            </tr>
+
+                        <tr>
+                            <th scope="row">{{ __('ID') }}</th>
+                            <td>{{ $inquilino ->id }}</td>
+                        </tr>
+
                             <tr>
                                 <th scope="row">{{ __('Name') }}</th>
                                 <td>{{ $inquilino ->nome }}</td>
@@ -136,6 +138,19 @@ view()->share('hideSubHeader', true);
                             <tr>
                                 <th scope="row">{{ __('Updated at') }}</th>
                                 <td>{{$inquilino ->updated_at}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">{{ __('Images') }}</th>
+
+                                    <td>
+                                        @foreach($inquilino->getMedia('images') as $image)
+                                             <a href="{{$image->getUrl()}}">
+                                                 <img src="{{$image->getUrl()}}" class="rounded" style="width:120px">
+                                            </a>
+                                        @endforeach
+
+                                    </td>
+
                             </tr>
                         </tbody>
                     </table>

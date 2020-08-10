@@ -83,7 +83,7 @@ class InquilinoController extends Controller
 
         $inquilino = new Inquilino();
         $inquilino->loadDefaultValues();
-         return view('inquilinos.create');
+         return view('inquilinos.create', compact('inquilino'));
     }
 
     /**
@@ -96,9 +96,15 @@ class InquilinoController extends Controller
     {
         $validatedAttributes = $this->validateTenant($request);
 
-        if(($model = Inquilino::create($validatedAttributes)) ) {
+        if(($inquilino = Inquilino::create($validatedAttributes)) ) {
+            if ($request->hasFile('photos')) {
+                foreach ($request->file('photos') as $photo) {
+                    // $foto = $photo->store('photos');
+                    $inquilino->addMedia($photo)->toMediaCollection('images');
+                 }
+            }
             //flash('Role Added');
-            return redirect(route('inquilinos.show', $model));
+            return redirect(route('inquilinos.show', $inquilino));
         }else{
             return redirect()->back();
         }
@@ -204,6 +210,14 @@ class InquilinoController extends Controller
         $validatedAttributes = $this->validateTenant($request, $inquilino);
         $inquilino->fill($validatedAttributes);
         if($inquilino->save()) {
+            foreach ($request->input('img_delete', []) as $file_id) {
+                $inquilino->getMedia('images')->where('id', $file_id)->first()->delete();
+            }
+            if ($request->hasFile('photos')) {
+                foreach ($request->file('photos') as $photo) {
+                    $inquilino->addMedia($photo)->toMediaCollection('images');
+                }
+            }
             //$this->authorize('create', $inquilino);
             //flash('Role Added');
             return redirect(route('inquilinos.show', $inquilino));
@@ -299,7 +313,9 @@ class InquilinoController extends Controller
             'capitalSocial' => 'nullable|integer',
             'setorActividade' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'certidaoPermanente' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
-            'numFuncionarios' => 'nullable|integer|min:0'
+            'numFuncionarios' => 'nullable|integer|min:0',
+            'photos.*'=>'nullable|file',
+            'img_delete'=>'nullable'
         ];
 
         return $request->validate($validate_array);
