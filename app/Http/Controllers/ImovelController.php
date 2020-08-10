@@ -152,7 +152,7 @@ class ImovelController extends Controller
             'numQuartos' => 'required|integer',
             'numCasaBanho' => 'required|integer',
             'descricao' => 'nullable|string',
-            'estado' => 'required|boolean',
+            'estado' => 'required|integer',
             'mobilado' => 'nullable|boolean',
             'fumar' => 'nullable|boolean',
             'animaisEstimacao' => 'nullable|boolean',

@@ -61,8 +61,7 @@
         </div>
         <div class="form-group">
             {!! Form::label('estado', __('Vacancy')) !!}
-            {!! Form::hidden('estado', 0) !!}
-            {!! Form::checkbox('estado', 1, null, ['class' => 'form-control '.($errors->has('estado') ? 'is-invalid' : '')]) !!}
+            {!! Form::select('estado', \App\Imovel::getStateArray() , null , ['class' => 'form-control '.($errors->has('estado') ? 'is-invalid' : ''), 'required' => true]) !!}
             @error('estado')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror

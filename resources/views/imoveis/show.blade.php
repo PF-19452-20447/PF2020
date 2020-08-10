@@ -77,7 +77,7 @@ view()->share('hideSubHeader', true);
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('State') }}</th>
-                                <td>{{ $imovel ->estado }}</td>
+                                <td>{{ $imovel ->StateLabel }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Furnished') }}</th>
@@ -145,7 +145,7 @@ view()->share('hideSubHeader', true);
                                                  <img src="{{$image->getUrl()}}" class="rounded" style="width:120px">
                                             </a>
                                         @endforeach
-                                        
+
                                     </td>
 
 
