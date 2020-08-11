@@ -15,6 +15,8 @@ class Imovel extends Model implements HasMedia
     const TYPE_ARRENDADO = 1;
     const TYPE_VAZIO = 2;
     const TYPE_MANUTENÇÃO = 3;
+    const TYPE_SIM = 4;
+    const TYPE_NÃO = 5;
 
     protected $table = "imoveis";
     //protected $primaryKey = 'contrato_id';
@@ -56,8 +58,8 @@ class Imovel extends Model implements HasMedia
     protected static function booted()
     {
         static::saved(function ($model) {
-            Cache::forget('renda-params');
-            Cache::forget('renda-options');
+            Cache::forget('imovel-params');
+            Cache::forget('imovel-options');
         });
     }
 
@@ -74,23 +76,143 @@ class Imovel extends Model implements HasMedia
         ];
     }
 
+    public static function getBooleanArray()
+    {
+        return [
+            self::TYPE_SIM =>  __('Sim'),
+            self::TYPE_NÃO =>  __('Não'),
+        ];
+    }
+
      /**
      * Return the first name of the user
      * @return mixed|string
      */
-    public function getStateLabelAttribute()
+    public function getEstadoLabelAttribute()
     {
         $array = self::getStateOptions();
         return $array[$this->estado];
     }
 
-    /**
+     /**
      * Return an array with the values of type field
      * @return array
      */
     public function getStateOptions()
     {
         return static::getStateArray();
+    }
+
+    
+    /**
+     * Return the first name of the user
+     * @return mixed|string
+     */
+    public function getBooleanLabelAttribute()
+    {
+        $array = self::getBooleanOptions();
+        return $array[$this->mobilado];
+    }
+
+    /**
+     * Return the first name of the user
+     * @return mixed|string
+     */
+    public function getAnimaisEstimacaoLabelAttribute()
+    {
+        $array = self::getBooleanOptions();
+        return $array[$this->animaisEstimacao];
+    }
+
+
+    /**
+     * Return the first name of the user
+     * @return mixed|string
+     */
+    public function getTelevisaoLabelAttribute()
+    {
+        $array = self::getBooleanOptions();
+        return $array[$this->televisao];
+    }
+
+    /**
+     * Return the first name of the user
+     * @return mixed|string
+     */
+    public function getFrigorificoLabelAttribute()
+    {
+        $array = self::getBooleanOptions();
+        return $array[$this->frigorifico];
+    }
+
+    /**
+     * Return the first name of the user
+     * @return mixed|string
+     */
+    public function getPiscinaLabelAttribute()
+    {
+        $array = self::getBooleanOptions();
+        return $array[$this->piscina];
+    }
+
+     /**
+     * Return the first name of the user
+     * @return mixed|string
+     */
+    public function getVarandaLabelAttribute()
+    {
+        $array = self::getBooleanOptions();
+        return $array[$this->varanda];
+    }
+
+    /**
+     * Return the first name of the user
+     * @return mixed|string
+     */
+    public function getTerracoLabelAttribute()
+    {
+        $array = self::getBooleanOptions();
+        return $array[$this->terraco];
+    }
+
+     /**
+     * Return the first name of the user
+     * @return mixed|string
+     */
+    public function getChurrasqueiraLabelAttribute()
+    {
+        $array = self::getBooleanOptions();
+        return $array[$this->churrasqueira];
+    }
+
+    /**
+     * Return the first name of the user
+     * @return mixed|string
+     */
+    public function getArCondicionadoLabelAttribute()
+    {
+        $array = self::getBooleanOptions();
+        return $array[$this->arCondicionado];
+    }
+
+
+    /**
+     * Return the first name of the user
+     * @return mixed|string
+     */
+    public function getFumarLabelAttribute()
+    {
+        $array = self::getBooleanOptions();
+        return $array[$this->fumar];
+    }
+
+    /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public function getBooleanOptions()
+    {
+        return static::getBooleanArray();
     }
 
 

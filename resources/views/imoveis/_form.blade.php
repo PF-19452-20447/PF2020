@@ -60,7 +60,7 @@
             @enderror
         </div>
         <div class="form-group">
-            {!! Form::label('estado', __('Vacancy')) !!}
+            {!! Form::label('estado', __('State')) !!}
             {!! Form::select('estado', \App\Imovel::getStateArray() , null , ['class' => 'form-control '.($errors->has('estado') ? 'is-invalid' : ''), 'required' => true]) !!}
             @error('estado')
             <div class="error invalid-feedback">{{ $message }}</div>
@@ -82,24 +82,21 @@
         </div>
         <div class="form-group">
             {!! Form::label('mobilado', __('Furnished')) !!}
-            {!! Form::hidden('mobilado', 0) !!}
-            {!! Form::checkbox('mobilado', 1, null, ['class' => 'form-control '.($errors->has('mobilado') ? 'is-invalid' : '')]) !!}
+            {!! Form::select('mobilado', \App\Imovel::getBooleanArray() , null , ['class' => 'form-control '.($errors->has('mobilado') ? 'is-invalid' : ''), 'required' => true]) !!}
             @error('mobilado')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
-            {!! Form::label('fumar', __('Somking')) !!}
-            {!! Form::hidden('fumar', 0) !!}
-            {!! Form::checkbox('fumar', 1, null, ['class' => 'form-control '.($errors->has('fumar') ? 'is-invalid' : '')]) !!}
+            {!! Form::label('fumar', __('Smoking')) !!}
+            {!! Form::select('fumar', \App\Imovel::getBooleanArray() , null , ['class' => 'form-control '.($errors->has('fumar') ? 'is-invalid' : ''), 'required' => true]) !!}
             @error('fumar')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
             {!! Form::label('animaisEstimacao', __('Pets')) !!}
-            {!! Form::hidden('animaisEstimacao', 0) !!}
-            {!! Form::checkbox('animaisEstimacao', 1, null, ['class' => 'form-control '.($errors->has('animaisEstimacao') ? 'is-invalid' : '')]) !!}
+            {!! Form::select('animaisEstimacao', \App\Imovel::getBooleanArray() , null , ['class' => 'form-control '.($errors->has('animaisEstimacao') ? 'is-invalid' : ''), 'required' => true]) !!}
             @error('animaisEstimacao')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
@@ -107,56 +104,49 @@
         {{-- EQUIPAMENTO --}}
         <div class="form-group">
             {!! Form::label('televisao', __('TV')) !!}
-            {!! Form::hidden('televisao', 0) !!}
-            {!! Form::checkbox('televisao', 1, null, ['class' => 'form-control '.($errors->has('televisao') ? 'is-invalid' : '')]) !!}
+            {!! Form::select('televisao', \App\Imovel::getBooleanArray() , null , ['class' => 'form-control '.($errors->has('televisao') ? 'is-invalid' : ''), 'required' => true]) !!}
             @error('televisao')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
             {!! Form::label('frigorifico', __('Fridge')) !!}
-            {!! Form::hidden('frigorifico', 0) !!}
-            {!! Form::checkbox('frigorifico', 1, null, ['class' => 'form-control '.($errors->has('frigorifico') ? 'is-invalid' : '')]) !!}
+            {!! Form::select('frigorifico', \App\Imovel::getBooleanArray() , null , ['class' => 'form-control '.($errors->has('frigorifico') ? 'is-invalid' : ''), 'required' => true]) !!}
             @error('frigorifico')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
             {!! Form::label('piscina', __('Pool')) !!}
-            {!! Form::hidden('piscina', 0) !!}
-            {!! Form::checkbox('piscina', 1, null, ['class' => 'form-control '.($errors->has('piscina') ? 'is-invalid' : '')]) !!}
+            {!! Form::select('piscina', \App\Imovel::getBooleanArray() , null , ['class' => 'form-control '.($errors->has('piscina') ? 'is-invalid' : ''), 'required' => true]) !!}
             @error('piscina')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
             {!! Form::label('varanda', __('Balcony')) !!}
-            {!! Form::hidden('varanda', 0) !!}
-            {!! Form::checkbox('varanda', 1, null, ['class' => 'form-control '.($errors->has('varanda') ? 'is-invalid' : '')]) !!}
+            {!! Form::select('varanda', \App\Imovel::getBooleanArray() , null , ['class' => 'form-control '.($errors->has('varanda') ? 'is-invalid' : ''), 'required' => true]) !!}
             @error('varanda')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
             {!! Form::label('terraco', __('Terrace')) !!}
-            {!! Form::hidden('terraco', 0) !!}
-            {!! Form::checkbox('terraco', 1, null, ['class' => 'form-control '.($errors->has('animaisterracoEstimacao') ? 'is-invalid' : '')]) !!}
+            {!! Form::select('terraco', \App\Imovel::getBooleanArray() , null , ['class' => 'form-control '.($errors->has('terraco') ? 'is-invalid' : ''), 'required' => true]) !!}
             @error('terraco')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
             {!! Form::label('churrasqueira', __('Barbecue')) !!}
-            {!! Form::hidden('churrasqueira', 0) !!}
-            {!! Form::checkbox('churrasqueira', 1, null, ['class' => 'form-control '.($errors->has('churrasqueira') ? 'is-invalid' : '')]) !!}
+            {!! Form::select('churrasqueira', \App\Imovel::getBooleanArray() , null , ['class' => 'form-control '.($errors->has('churrasqueira') ? 'is-invalid' : ''), 'required' => true]) !!}
             @error('churrasqueira')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
             {!! Form::label('arCondicionado', __('Air Conditioner')) !!}
-            {!! Form::hidden('arCondicionado', 0) !!}
-            {!! Form::checkbox('arCondicionado', 1, null, ['class' => 'form-control '.($errors->has('arCondicionado') ? 'is-invalid' : '')]) !!}
+            {!! Form::select('arCondicionado', \App\Imovel::getBooleanArray() , null , ['class' => 'form-control '.($errors->has('arCondicionado') ? 'is-invalid' : ''), 'required' => true]) !!}
             @error('arCondicionado')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
