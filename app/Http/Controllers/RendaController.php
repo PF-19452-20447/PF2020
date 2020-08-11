@@ -121,7 +121,7 @@ class RendaController extends Controller
         $validate_array = [
             'valorPagar' => 'required|regex:/^\d+(\.\d{1,2})?$/',
             'dataPagamento' => 'required|date_format:Y-m-d|after:tomorrow',
-            'metodoPagamento' => 'required|integer|min:0|max:6',
+            'metodoPagamento' => 'required|integer',
             'valorPago' => 'nullable|regex:/^\d+(\.\d{1,2})?$/',
             'valorDivida' => 'nullable|regex:/^\d+(\.\d{1,2})?$/',
             'estado' => 'required|integer',

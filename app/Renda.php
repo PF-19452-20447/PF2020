@@ -12,6 +12,11 @@ class Renda extends Model
     const TYPE_PAGO = 2;
     const TYPE_NAO_REMUNERADO = 3;
     const TYPE_PARCIAL = 4;
+    const TYPE_TRANSFERENCIA_BANCARIA = 5;
+    const TYPE_MULTIBANCO = 6;
+    const TYPE_MBWAY = 7;
+    const TYPE_DEBITO_DIRETO = 8;
+    const TYPE_CARTAO_CREDITO = 9;
 
     use LoadDefaults;
 
@@ -60,6 +65,21 @@ class Renda extends Model
         ];
     }
 
+    /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public static function getMethodPaymentArray()
+    {
+        return [
+            self::TYPE_TRANSFERENCIA_BANCARIA =>  __('Transferência Bancária'),
+            self::TYPE_MULTIBANCO =>  __('Multibanco'),
+            self::TYPE_MBWAY =>  __('Mb Way'),
+            self::TYPE_DEBITO_DIRETO =>  __('Débito Direto'),
+            self::TYPE_CARTAO_CREDITO =>  __('Cartão de Crédito')
+        ];
+    }
+
 
     /**
      * Return an array with the values of type field
@@ -70,6 +90,14 @@ class Renda extends Model
         return static::getStateArray();
     }
 
+     /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public function getMethodPaymentOptions()
+    {
+        return static::getMethodPaymentArray();
+    }
 
 /**
      * Return the first name of the user
@@ -80,6 +108,17 @@ class Renda extends Model
         $array = self::getStateOptions();
         return $array[$this->estado];
     }
+
+    /**
+     * Return the first name of the user
+     * @return mixed|string
+     */
+    public function getMethodPaymentLabelAttribute()
+    {
+        $array = self::getMethodPaymentOptions();
+        return $array[$this->metodoPagamento];
+    }
+
 
 
     public function contrato()

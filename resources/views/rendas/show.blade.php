@@ -67,7 +67,7 @@ view()->share('hideSubHeader', true);
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Payment method') }}</th>
-                                <td>{{ $renda ->metodoPagamento }}</td>
+                                <td>{{ $renda ->MethodPaymentLabel }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Amount paid') }}</th>
