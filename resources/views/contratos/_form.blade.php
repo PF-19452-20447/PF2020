@@ -40,8 +40,7 @@
         </div>
         <div class="form-group">
             {!! Form::label('renovavel', __('Renewable')) !!}
-            {!! Form::hidden('renovavel', 0) !!}
-            {!! Form::checkbox('renovavel', 1, null, ['class' => 'form-control '.($errors->has('renovavel') ? 'is-invalid' : '')]) !!}
+            {!! Form::select('renovavel', \App\Contrato::getRenewableArray() , null , ['class' => 'form-control '.($errors->has('renovavel') ? 'is-invalid' : ''), 'required' => true]) !!}
             @error('renovavel')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror

@@ -75,7 +75,7 @@ view()->share('hideSubHeader', true);
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Renewable') }}</th>
-                                <td>{{ $contrato ->renovavel }}</td>
+                                <td>{{ $contrato ->RenewableLabel }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Exemption benefit') }}</th>

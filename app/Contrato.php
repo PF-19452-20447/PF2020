@@ -13,6 +13,13 @@ class Contrato extends Model
     const TYPE_PAGO = 2;
     const TYPE_NAO_REMUNERADO = 3;
     const TYPE_PARCIAL = 4;
+    const TYPE_SIM = 5;
+    const TYPE_NÃO = 6;
+    const TYPE_TRANSFERENCIA_BANCARIA = 7;
+    const TYPE_MULTIBANCO = 8;
+    const TYPE_MBWAY = 9;
+    const TYPE_DEBITO_DIRETO = 10;
+    const TYPE_CARTAO_CREDITO = 11;
 
   //  protected $table = 'contratos';
     //protected $primaryKey = 'contrato_id';
@@ -70,6 +77,29 @@ class Contrato extends Model
         ];
     }
 
+    /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public static function getRenewableArray()
+    {
+        return [
+            self::TYPE_SIM =>  __('Sim'),
+            self::TYPE_NÃO =>  __('Não'),
+        ];
+    }
+
+
+
+    /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public function getRenewableOptions()
+    {
+        return static::getRenewableArray();
+    }
+
 
     /**
      * Return an array with the values of type field
@@ -91,8 +121,18 @@ class Contrato extends Model
         return $array[$this->estado];
     }
 
+    /**
+     * Return the first name of the user
+     * @return mixed|string
+     */
+    public function getRenewableLabelAttribute()
+    {
+        $array = self::getRenewableOptions();
+        return $array[$this->renovavel];
+    }
 
-    
+
+
     public function imovel()
     {
         return $this->belongsTo('App\Imovel');
