@@ -68,7 +68,7 @@
         </div>
         <div class="form-group">
             {!! Form::label('estado', __('State')) !!}
-            {!! Form::select('estado', \App\Renda::getStateArray() , null , ['class' => 'form-control '.($errors->has('estado') ? 'is-invalid' : ''), 'required' => true]) !!}
+            {!! Form::select('estado', \App\Contrato::getStateArray() , null , ['class' => 'form-control '.($errors->has('estado') ? 'is-invalid' : ''), 'required' => true]) !!}
             @error('estado')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
@@ -88,8 +88,8 @@
             @enderror
         </div>
         <div class="form-group">
-            {!! Form::label('metodoPagamento', __('Payment method')) !!}
-            {!! Form::number('metodoPagamento', null, ['class' => 'form-control '.($errors->has('metodoPagamento') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1, 'min' => 1, 'max'=> 6, 'required' => true]) !!}
+            {!! Form::label('metodoPagamento', __('Payment Method')) !!}
+            {!! Form::select('metodoPagamento', \App\Contrato::getMethodPaymentArray() , null , ['class' => 'form-control '.($errors->has('metodoPagamento') ? 'is-invalid' : ''), 'required' => true]) !!}
             @error('metodoPagamento')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror

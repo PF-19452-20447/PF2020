@@ -89,6 +89,30 @@ class Contrato extends Model
         ];
     }
 
+    /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public static function getMethodPaymentArray()
+    {
+        return [
+            self::TYPE_TRANSFERENCIA_BANCARIA =>  __('Transferência Bancária'),
+            self::TYPE_MULTIBANCO =>  __('Multibanco'),
+            self::TYPE_MBWAY =>  __('Mb Way'),
+            self::TYPE_DEBITO_DIRETO =>  __('Débito Direto'),
+            self::TYPE_CARTAO_CREDITO =>  __('Cartão de Crédito')
+        ];
+    }
+
+
+     /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public function getMethodPaymentOptions()
+    {
+        return static::getMethodPaymentArray();
+    }
 
 
     /**
@@ -99,6 +123,7 @@ class Contrato extends Model
     {
         return static::getRenewableArray();
     }
+
 
 
     /**
@@ -129,6 +154,16 @@ class Contrato extends Model
     {
         $array = self::getRenewableOptions();
         return $array[$this->renovavel];
+    }
+
+    /**
+     * Return the first name of the user
+     * @return mixed|string
+     */
+    public function getMethodPaymentLabelAttribute()
+    {
+        $array = self::getMethodPaymentOptions();
+        return $array[$this->metodoPagamento];
     }
 
 
