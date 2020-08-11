@@ -139,7 +139,7 @@ class ProprietarioController extends Controller
             'iban' => ['nullable', 'alpha_dash', 'max:64'],
             'tipoParticularEmpresa' => 'required|integer|min:0',
             'cae' => 'nullable|integer',
-            'capitalSocial' => 'nullable|integer',
+            'capitalSocial' => 'required|integer',
             'setorActividade' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'certidaoPermanente' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'numFuncionarios' => 'nullable|integer|min:0'

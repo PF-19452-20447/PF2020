@@ -68,8 +68,8 @@
             @enderror
         </div>
         <div class="form-group">
-            {!! Form::label('tipoParticularEmpresa', __('Particular type of company')) !!}
-            {!! Form::number('tipoParticularEmpresa', null, ['class' => 'form-control '.($errors->has('tipoParticularEmpresa') ? 'is-invalid' : ''), 'min' => '1', 'type' => 'number', 'max' => '6', 'step' => 1, 'required' => true]) !!}
+            {!! Form::label('tipoParticularEmpresa', __('Particular Type of company')) !!}
+            {!! Form::select('tipoParticularEmpresa', \App\Inquilino::getTipoParticularEmpresaArray() , null , ['class' => 'form-control '.($errors->has('tipoParticularEmpresa') ? 'is-invalid' : ''), 'required' => true]) !!}
             @error('tipoParticularEmpresa')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
@@ -104,7 +104,7 @@
         </div>
         <div class="form-group">
             {!! Form::label('cae', __('CAE')) !!}
-            {!! Form::number('cae', null, ['class' => 'form-control '.($errors->has('cae') ? 'is-invalid' : ''), 'min' => '1', 'type' => 'number', 'step' => 1, 'required' => true]) !!}
+            {!! Form::select('cae', \App\Inquilino::getCAEArray() , null , ['class' => 'form-control '.($errors->has('cae') ? 'is-invalid' : ''), 'required' => true]) !!}
             @error('cae')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
