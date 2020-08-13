@@ -11,7 +11,7 @@ view()->share('hideSubHeader', true);
     {{ Breadcrumbs::render('fiador.show', $fiador) }}
 @endsection
 @section('content')
-@can('adminApp')
+@canany(['adminApp', 'adminFullApp', 'accessAsLandlord', 'accessAsTenant'])
     <div class="kt-portlet">
         <div class="kt-portlet__head">
             <div class="kt-portlet__head-label">
@@ -22,6 +22,7 @@ view()->share('hideSubHeader', true);
             <div class="kt-portlet__head-toolbar">
                 <div class="kt-portlet__head-wrapper">
                     <div class="kt-portlet__head-actions">
+                        @canany(['adminApp', 'adminFullApp', 'accessAsTenant'])
                         <a href="{{ route('fiador.edit', $fiador) }}" class="btn btn-brand btn-elevate btn-icon-sm">
                             <i class="la la-edit"></i>
                             {{ __('Update') }}
@@ -31,7 +32,7 @@ view()->share('hideSubHeader', true);
                             {{ __('Delete') }}
                         </button>
                         {!! Form::open(['route' => ['fiador.destroy', $fiador ], 'method' => 'delete', 'class'=>"d-none", 'id' => 'delete-form']) !!}
-
+                        @endcanany
                         {!! Form::close() !!}
                     </div>
                 </div>
@@ -129,10 +130,10 @@ view()->share('hideSubHeader', true);
 
         </div>
     </div>
-@endcan
+@endcanany
 @endsection
 @push('scripts')
-@can('adminApp')
+@canany(['adminApp', 'adminFullApp', 'accessAsTenant'])
     <script>
         function destroyConfirmation(e){
             swal.fire({
@@ -148,5 +149,5 @@ view()->share('hideSubHeader', true);
             });
         }
     </script>
-@endcan
+@endcanany
 @endpush

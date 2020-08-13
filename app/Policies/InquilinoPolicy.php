@@ -77,7 +77,7 @@ class InquilinoPolicy
     {
         if($user->can('AdminApp')){
             return true;
-        }elseif($user->can('accessAsTenant')) {
+        }elseif($user->can('accessAsLandlord')) {
             return $user->id == $inquilino->user_id;
         }
             return false;

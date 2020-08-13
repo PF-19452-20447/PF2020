@@ -34,6 +34,8 @@ class ProprietarioPolicy
             return true;
         }elseif($user->can('accessAsLandlord')) {
             return $user->id == $proprietario->user_id;
+        }elseif($user->can('accessAsTenant')){
+            return true;
         }
     }
 
