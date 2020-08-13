@@ -30,13 +30,6 @@ class ImovelDatatable extends DataTable
 
             });
 
-        }if(auth()->user()->can('accessAsTenant')){
-            $datatable->addColumn('action', function ($imovel) {
-                return '<a class="btn btn-sm btn-clean btn-icon btn-icon-md" href="'. route('imoveis.show', $imovel) .'" title="'. __('View') .'"><i class="la la-eye"></i></a>
-                        ';
-
-            });
-
         }
         return $datatable;
     }
@@ -58,9 +51,6 @@ class ImovelDatatable extends DataTable
         elseif($user->can('accessAsLandlord')){
 
             return $model->newQuery()->whereIn('id', $user->proprietario->imoveis->pluck('id'));
-        }elseif($user->can('accessAsTenant')){
-
-            return $model->newQuery()->whereIn('id', $user->inquilino->imoveis->pluck('id'));
         }
     }
 

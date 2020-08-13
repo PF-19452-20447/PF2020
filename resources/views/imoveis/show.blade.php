@@ -11,7 +11,7 @@ view()->share('hideSubHeader', true);
     {{ Breadcrumbs::render('imoveis.show', $imovel) }}
 @endsection
 @section('content')
-@canany(['adminApp', 'adminFullApp', 'accessAsLandlord', 'accessAsTenant'])
+@canany(['adminApp', 'adminFullApp', 'accessAsLandlord'])
     <div class="kt-portlet">
         <div class="kt-portlet__head">
             <div class="kt-portlet__head-label">
@@ -22,7 +22,6 @@ view()->share('hideSubHeader', true);
             <div class="kt-portlet__head-toolbar">
                 <div class="kt-portlet__head-wrapper">
                     <div class="kt-portlet__head-actions">
-                        @canany(['adminApp', 'adminFullApp', 'accessAsLandlord'])
                         <a href="{{ route('imoveis.edit', $imovel) }}" class="btn btn-brand btn-elevate btn-icon-sm">
                             <i class="la la-edit"></i>
                             {{ __('Update') }}
@@ -32,7 +31,7 @@ view()->share('hideSubHeader', true);
                             {{ __('Delete') }}
                         </button>
                         {!! Form::open(['route' => ['imoveis.destroy', $imovel ], 'method' => 'delete', 'class'=>"d-none", 'id' => 'delete-form']) !!}
-                        @endcanany
+
                         {!! Form::close() !!}
                     </div>
                 </div>
