@@ -56,7 +56,7 @@
                         <span class="kt-menu__link-text">{{ __('Dashboard') }}</span>
                     </a>
                 </li>
-                @canany(['adminApp', 'adminFullApp', 'accessAsLandlord'])
+                @canany(['adminApp', 'adminFullApp', 'accessAsLandlord', 'accessAsTenant'])
                 {{-- Botão Utilizador / User button --}}
                 <li class="kt-menu__item {{ request()->routeIs('users.*') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
                     <a href="{{ route('users.profile')}}" class="kt-menu__link">
@@ -248,7 +248,7 @@
                 @endcanany
 
                 {{-- Botão Imovéis / Properties button --}}
-                @canany(['adminApp', 'adminFullApp', 'accessAsLandlord'])
+                @canany(['adminApp', 'adminFullApp', 'accessAsLandlord', 'accessAsTenant'])
                 <li class="kt-menu__item  kt-menu__item--submenu {{ request()->routeIs('imoveis.*') ? "kt-menu__item--open" : "" }}" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
                     <a href="{{ route('imoveis.index') }}" class="kt-menu__link kt-menu__toggle">
                         <span class="kt-menu__link-icon"><!--begin::Svg Icon | path:/var/www/metronic/themes/metronic/theme/html/demo2/dist/../src/media/svg/icons/Home/Bed.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -267,7 +267,7 @@
                         <ul class="kt-menu__subnav">
                             <li class="kt-menu__item kt-menu__item--parent" aria-haspopup="true">
                                 <span class="kt-menu__link">
-                                    <span class="kt-menu__link-text">{{ __('Proptery') }}</span>
+                                    <span class="kt-menu__link-text">{{ __('Property') }}</span>
                                 </span>
                             </li>
                             <li class="kt-menu__item {{ request()->routeIs('imoveis.index') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">

@@ -40,12 +40,14 @@ class ImovelPolicy
      * @param  \App\Inquilino  $inquilino
      * @return mixed
      */
-    public function view(User $user)
+    public function view(User $user, Imovel $imovel)
     {
         if($user->can('adminApp')){
             return true;
         }elseif($user->can('accessAsLandlord')) {
             return true;
+        }elseif($user->can('accessAsTenant')) {
+            return $user->id == $imovel->user_id;;
         }
 
         //melhorar e ver só os inquilinos do proprietário.

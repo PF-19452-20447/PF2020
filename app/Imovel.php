@@ -103,7 +103,7 @@ class Imovel extends Model implements HasMedia
         return static::getStateArray();
     }
 
-    
+
     /**
      * Return the first name of the user
      * @return mixed|string
@@ -234,6 +234,10 @@ class Imovel extends Model implements HasMedia
     public function contrato()
     {
         return $this->hasMany('App\Contrato');
+    }
+
+    public function inquilino(){
+        return $this->belongsTo('App\Inquilino');
     }
 
 

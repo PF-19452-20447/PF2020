@@ -142,6 +142,12 @@ class Inquilino extends Model implements HasMedia
         return $this->hasMany('App\Renda'); /*, 'inquilino_id', 'id');*/
     }
 
+    public function imoveis(){
+        return $this->hasMany('App\Imovel');
+    }
+
+
+
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('images')
