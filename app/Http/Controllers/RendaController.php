@@ -56,6 +56,14 @@ class RendaController extends Controller
 
     }
 
+
+    public function notificationMail(Renda $renda)
+    {
+
+        return view('rendas.index');
+    }
+
+
     /**
      * Display the specified resource.
      *

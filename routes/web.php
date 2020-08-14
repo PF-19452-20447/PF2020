@@ -30,6 +30,10 @@ Auth::routes(['verify' => true]);
 
 Route::get('/', 'HomeController@index')->name('home');
 
+Route::get('rendas', 'PaymentsController@create')->middleware('auth');
+Route::get('payments', 'PaymentsController@store')->name('payments.store')->middleware('auth');
+Route::get('notifications', 'UserNotificationsController@show')->middleware('auth');
+
 //only users autenticated and with email verified can access the following routes
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/users', 'UserController@index')->name('users.index');
@@ -55,7 +59,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 //Route::delete('/inquilinos/{inquilino}/delete', 'InquilinosController@delete')->name('inquilinos.delete');
 //Route::impersonate();
 
-    Route::resource('inquilinos','InquilinoController');    
+    Route::resource('inquilinos','InquilinoController');
     Route::post('/inquilinos', 'InquilinoController@store')->name('inquilinos.store');
 
     Route::get('/inquilinos/pdf','InquilinoController@export_pdf');

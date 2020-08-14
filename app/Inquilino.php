@@ -127,6 +127,7 @@ class Inquilino extends Model implements HasMedia
         return $this->hasMany('App\Fiador');
     }
 
+
     public function proprietarios()
     {
         return $this->belongsToMany('App\Proprietario', 'proprietario_inquilino');
