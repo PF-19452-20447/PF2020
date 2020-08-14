@@ -8,6 +8,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use App\Notifications\NexmoMessage;
 
+
 class PaymentReceived extends Notification
 {
     use Queueable;
@@ -32,7 +33,7 @@ class PaymentReceived extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail','database']; //, 'nexmo'
+        return ['mail','database', 'nexmo']; //, 'nexmo'
     }
 
     /**
@@ -41,12 +42,12 @@ class PaymentReceived extends Notification
      * @param  mixed  $notifiable
      * @return NexmoMessage
     */
-    /*
+
     public function toNexmo($notifiable)
     {
         return (new NexmoMessage())
-                ->content('Your Laracasts payment bas been received!');
-    }*/
+                ->content('Your Laracasts payment bas been processed!');
+    }
 
     /**
      * Get the mail representation of the notification.
