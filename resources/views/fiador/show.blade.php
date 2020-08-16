@@ -92,11 +92,11 @@ view()->share('hideSubHeader', true);
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Particular type of company') }}</th>
-                                <td>{{ $fiador ->tipoParticularEmpresa }}</td>
+                                <td>{{ $fiador ->TipoParticularEmpresaLabel }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('CAE') }}</th>
-                                <td>{{ $fiador ->cae }}</td>
+                                <td>{{ $fiador ->CAELabel }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Share capital') }}</th>
