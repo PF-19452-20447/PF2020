@@ -131,8 +131,10 @@ class UserController extends Controller
         //$user->update($validatedAttributes);      // até posso meter isto tudo inline com o request()->validate
         $user->fill($userAttributes);      // até posso meter isto tudo inline com o request()->validate
 
-        // Handle the user roles
-        $this->syncPermissions($request, $user);
+        if(auth()->user()->can('adminApp') || auth()->user()->can('adminFullApp')) {
+            // Handle the user roles
+            $this->syncPermissions($request, $user);
+        }
         $user->save();
 
         if($request->hasFile('image') && $request->file('image')->isValid()){
@@ -181,11 +183,18 @@ class UserController extends Controller
      */
     public function validateUser(Request $request, User $user = null, $request_password = false): array
     {
-        $validate_array = [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', $user === null ? 'unique:users' : Rule::unique('users')->ignore($user)], // 'email' => 'required|email|unique:users,email,' . $id,
-            'roles' => 'required|min:1'
-        ];
+        if(auth()->user()->can('adminApp') || auth()->user()->can('adminFullApp')) {
+            $validate_array = [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', $user === null ? 'unique:users' : Rule::unique('users')->ignore($user)], // 'email' => 'required|email|unique:users,email,' . $id,
+                'roles' => 'required|min:1'
+            ];
+        }else{ // if is not an admin don't validate role
+            $validate_array = [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', $user === null ? 'unique:users' : Rule::unique('users')->ignore($user)], // 'email' => 'required|email|unique:users,email,' . $id,
+            ];
+        }
 
         if($request_password || ($request->has('password') && !empty($request->get('password')))){
             $validate_array ['password']= ['string', 'min:8', 'confirmed'];

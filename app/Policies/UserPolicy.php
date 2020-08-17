@@ -16,16 +16,9 @@ class UserPolicy
      * @param  \App\User  $user
      * @return mixed
      */
-    public function viewAny(User $user, User $model)
+    public function viewAny(User $user)
     {
-        $user = Auth::user();
-
-        if($user->can('adminApp')){
-            return true;
-
-        }else {
-            return $model->id == $user->id;
-        }
+        return $user->can('adminApp');
     }
 
     /**
@@ -37,16 +30,10 @@ class UserPolicy
      */
     public function view(User $user, User $model)
     {
-
-        $user = Auth::User();
-
         if($user->can('adminApp')){
             return true;
-        }
-
-        else{
-            return $user->id === $model->id;
-
+        }else{
+            return $user->id == $model->id;
         }
 
     }
@@ -59,31 +46,7 @@ class UserPolicy
      */
     public function create(User $user, User $model)
     {
-        $user = Auth::user();
-
-        if($user->can('adminApp')){
-            return true;
-
-        }else{
-            return $model->id == $user->id;
-        }
-
-    }
-
-    public function edit(User $model, User $user)
-    {
-        if($user->can('adminApp')){
-            return true;
-
-        }else{
-            return $model->id == $user->id;
-        /*if($user->can('accessAsLandlord')){
-            return $currentUser->is($user);*/
-        }
-
-        return false;
-
-
+        return $user->can('adminApp');
     }
 
     /**
@@ -95,18 +58,12 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
-
-        $user = Auth::user();
         if($user->can('adminApp')){
             return true;
-        }
-
-        else{
+        }else{
             return $model->id == $user->id;
-
         }
-
-
+        return false;
     }
 
     /**
@@ -118,14 +75,7 @@ class UserPolicy
      */
     public function delete(User $user, User $model)
     {
-        $user = Auth::user();
-
-        if($user->can('adminApp')){
-            return true;
-
-        }else{
-            return $model->id == $user->id;
-        }
+        return $user->can('adminApp');
     }
 
     /**
@@ -137,7 +87,7 @@ class UserPolicy
      */
     public function restore(User $user, User $model)
     {
-        //
+        return $user->can('adminApp');
     }
 
     /**
@@ -149,6 +99,6 @@ class UserPolicy
      */
     public function forceDelete(User $user, User $model)
     {
-        //
+        return $user->can('adminApp');
     }
 }
