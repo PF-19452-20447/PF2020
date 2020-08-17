@@ -15,7 +15,13 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
-     use Authorizable;
+
+    public function __construct()
+    {
+        $this->authorizeResource(User::class, 'user');
+    }
+
+    // use Authorizable;
     /**
      * Display a listing of the resource.
      *
@@ -64,14 +70,12 @@ class UserController extends Controller
         }
     }
 
-
     public function showProfile()
     {
        // $user = User::find($id);
         // return view('users.profile', compact('users') );
         return view('users.show', ['user' => auth()->user()]);
     }
-
 
     /**
      * Display the specified resource.
@@ -83,6 +87,14 @@ class UserController extends Controller
     {
         return view('users.show', ['user' => $user]);
     }
+
+    public function editProfile($id)
+    {
+        $user = User::findOrFail(auth()->id());
+        return view('users.profile',compact('user'));
+    }
+
+
 
     /**
      * Show the form for editing the specified resource.

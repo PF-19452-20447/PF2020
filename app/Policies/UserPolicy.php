@@ -1,13 +1,12 @@
- <?php
+<?php
 
 namespace App\Policies;
 
-use App\Proprietario;
 use App\User;
-use Auth;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Auth;
 
-class ProprietarioPolicy
+class UserPolicy
 {
     use HandlesAuthorization;
 
@@ -19,28 +18,37 @@ class ProprietarioPolicy
      */
     public function viewAny(User $user, User $model)
     {
+        $user = Auth::user();
+
         if($user->can('adminApp')){
             return true;
-        }else{
+
+        }else {
             return $model->id == $user->id;
         }
-
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Proprietario  $proprietario
+     * @param  \App\User  $model
      * @return mixed
      */
     public function view(User $user, User $model)
     {
+
+        $user = Auth::User();
+
         if($user->can('adminApp')){
             return true;
-        }else{
-            return $user->id === $model->id;
         }
+
+        else{
+            return $user->id === $model->id;
+
+        }
+
     }
 
     /**
@@ -51,11 +59,30 @@ class ProprietarioPolicy
      */
     public function create(User $user, User $model)
     {
+        $user = Auth::user();
+
         if($user->can('adminApp')){
             return true;
+
         }else{
             return $model->id == $user->id;
         }
+
+    }
+
+    public function edit(User $model, User $user)
+    {
+        if($user->can('adminApp')){
+            return true;
+
+        }else{
+            return $model->id == $user->id;
+        /*if($user->can('accessAsLandlord')){
+            return $currentUser->is($user);*/
+        }
+
+        return false;
+
 
     }
 
@@ -63,43 +90,52 @@ class ProprietarioPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Proprietario  $proprietario
+     * @param  \App\User  $model
      * @return mixed
      */
     public function update(User $user, User $model)
     {
-        if($user->can('AdminApp')){
+
+        $user = Auth::user();
+        if($user->can('adminApp')){
             return true;
-        }else {
-            return $user->id === $model->id;
         }
+
+        else{
+            return $model->id == $user->id;
+
+        }
+
+
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Proprietario  $proprietario
+     * @param  \App\User  $model
      * @return mixed
      */
-    public function delete(User $user, Proprietario $proprietario, User $model)
+    public function delete(User $user, User $model)
     {
+        $user = Auth::user();
+
         if($user->can('adminApp')){
             return true;
+
         }else{
-            return $user->id == $proprietario->user_id;
+            return $model->id == $user->id;
         }
-        
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Proprietario  $proprietario
+     * @param  \App\User  $model
      * @return mixed
      */
-    public function restore(User $user, Proprietario $proprietario)
+    public function restore(User $user, User $model)
     {
         //
     }
@@ -108,10 +144,10 @@ class ProprietarioPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Proprietario  $proprietario
+     * @param  \App\User  $model
      * @return mixed
      */
-    public function forceDelete(User $user, Proprietario $proprietario)
+    public function forceDelete(User $user, User $model)
     {
         //
     }
