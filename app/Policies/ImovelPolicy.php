@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Inquilino;
+use App\Imovel;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class InquilinoPolicy
+class ImovelPolicy
 {
     use HandlesAuthorization;
 
@@ -40,12 +40,16 @@ class InquilinoPolicy
      * @param  \App\Inquilino  $inquilino
      * @return mixed
      */
-    public function view(User $user)
+    public function view(User $user, Imovel $imovel)
     {
         if($user->can('adminApp')){
             return true;
-
+        }elseif($user->can('accessAsLandlord')) {
+            return true;
+        }elseif($user->can('accessAsTenant')) {
+            return $user->id == $imovel->user_id;;
         }
+
         //melhorar e ver só os inquilinos do proprietário.
     }
 
@@ -55,15 +59,14 @@ class InquilinoPolicy
      * @param  \App\User  $user
      * @return mixed
      */
-    public function create(User $user, Inquilino $inquilino)
+    public function create(User $user, Imovel $imovel)
     {
         if($user->can('adminApp')){
             return true;
-        }elseif($user->can('accessAsLandlord')){
-             return $user->id == $inquilino->user_id;
+        }elseif($user->can('accessAsLandlord')) {
+            return $user->id == $imovel->user_id;
         }
-
-        return $user->id > 0;
+        return false;
     }
 
     /**
@@ -73,12 +76,12 @@ class InquilinoPolicy
      * @param  \App\Inquilino  $inquilino
      * @return mixed
      */
-    public function update(User $user, Inquilino $inquilino)
+    public function update(User $user, Imovel $imovel)
     {
         if($user->can('AdminApp')){
             return true;
         }elseif($user->can('accessAsLandlord')) {
-            return $user->id == $inquilino->user_id;
+            return $user->id == $imovel->user_id;
         }
             return false;
 
@@ -91,9 +94,9 @@ class InquilinoPolicy
      * @param  \App\Inquilino  $inquilino
      * @return mixed
      */
-    public function delete(User $user, Inquilino $inquilino)
+    public function delete(User $user, Imovel $imovel)
     {
-        return $user->id == $inquilino->user_id;
+        return $user->id == $imovel->user_id;
     }
 
     /**
@@ -103,7 +106,7 @@ class InquilinoPolicy
      * @param  \App\Inquilino  $inquilino
      * @return mixed
      */
-    public function restore(User $user, Inquilino $inquilino)
+    public function restore(User $user, Imovel $imovel)
     {
         //
     }
@@ -115,7 +118,7 @@ class InquilinoPolicy
      * @param  \App\Inquilino  $inquilino
      * @return mixed
      */
-    public function forceDelete(User $user, Inquilino $inquilino)
+    public function forceDelete(User $user, Imovel $imovel)
     {
         //
     }

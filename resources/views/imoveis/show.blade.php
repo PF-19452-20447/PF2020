@@ -11,7 +11,7 @@ view()->share('hideSubHeader', true);
     {{ Breadcrumbs::render('imoveis.show', $imovel) }}
 @endsection
 @section('content')
-@canany(['adminApp', 'adminFullApp', 'accessAsLandlord'])
+@canany(['adminApp', 'adminFullApp', 'accessAsLandlord', 'accessAsTenant'])
     <div class="kt-portlet">
         <div class="kt-portlet__head">
             <div class="kt-portlet__head-label">
@@ -22,6 +22,7 @@ view()->share('hideSubHeader', true);
             <div class="kt-portlet__head-toolbar">
                 <div class="kt-portlet__head-wrapper">
                     <div class="kt-portlet__head-actions">
+                        @canany(['adminApp', 'adminFullApp', 'accessAsLandlord'])
                         <a href="{{ route('imoveis.edit', $imovel) }}" class="btn btn-brand btn-elevate btn-icon-sm">
                             <i class="la la-edit"></i>
                             {{ __('Update') }}
@@ -31,7 +32,7 @@ view()->share('hideSubHeader', true);
                             {{ __('Delete') }}
                         </button>
                         {!! Form::open(['route' => ['imoveis.destroy', $imovel ], 'method' => 'delete', 'class'=>"d-none", 'id' => 'delete-form']) !!}
-
+                        @endcanany
                         {!! Form::close() !!}
                     </div>
                 </div>
@@ -60,7 +61,7 @@ view()->share('hideSubHeader', true);
                                 <td>{{ $imovel ->area }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">{{ __('Adress') }}</th>
+                                <th scope="row">{{ __('Address') }}</th>
                                 <td>{{ $imovel ->morada }}</td>
                             </tr>
                             <tr>
@@ -77,19 +78,19 @@ view()->share('hideSubHeader', true);
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('State') }}</th>
-                                <td>{{ $imovel ->estado }}</td>
+                                <td>{{ $imovel ->EstadoLabel }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Furnished') }}</th>
-                                <td>{{ $imovel ->mobilado }}</td>
+                                <td>{{ $imovel ->BooleanLabel }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">{{ __('Somkers') }}</th>
-                                <td>{{ $imovel ->fumar }}</td>
+                                <th scope="row">{{ __('Smokers') }}</th>
+                                <td>{{ $imovel ->FumarLabel }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Pets') }}</th>
-                                <td>{{ $imovel ->animaisEstimacao }}</td>
+                                <td>{{ $imovel ->AnimaisEstimacaoLabel }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Energy certificate') }}</th>
@@ -101,35 +102,35 @@ view()->share('hideSubHeader', true);
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Notes') }}</th>
-                                <td>{{$imovel ->notas}}</td>
+                                <td>{{$imovel ->notas }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('TV') }}</th>
-                                <td>{{$imovel ->televisao}}</td>
+                                <td>{{$imovel ->TelevisaoLabel }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Fridge') }}</th>
-                                <td>{{$imovel ->frigorifico}}</td>
+                                <td>{{$imovel ->FrigorificoLabel }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Pool') }}</th>
-                                <td>{{$imovel ->piscina}}</td>
+                                <td>{{$imovel ->PiscinaLabel}}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Balcony') }}</th>
-                                <td>{{$imovel ->varanda}}</td>
+                                <td>{{$imovel ->VarandaLabel }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Terrace') }}</th>
-                                <td>{{$imovel ->terraco}}</td>
+                                <td>{{$imovel ->TerracoLabel }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Barbecue') }}</th>
-                                <td>{{$imovel ->churrasqueira}}</td>
+                                <td>{{$imovel ->ChurrasqueiraLabel }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Air conditioner') }}</th>
-                                <td>{{$imovel ->arCondicionado}}</td>
+                                <td>{{$imovel ->ArCondicionadoLabel}}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Other Equipment') }}</th>
@@ -145,7 +146,7 @@ view()->share('hideSubHeader', true);
                                                  <img src="{{$image->getUrl()}}" class="rounded" style="width:120px">
                                             </a>
                                         @endforeach
-                                        
+
                                     </td>
 
 

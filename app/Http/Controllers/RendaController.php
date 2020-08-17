@@ -29,12 +29,12 @@ class RendaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Renda $renda)
+    public function create()
     {
 
         $renda = new Renda();
         $renda->loadDefaultValues();
-         return view('rendas.create');
+         return view('rendas.create', compact('renda'));
     }
 
     /**
@@ -55,6 +55,14 @@ class RendaController extends Controller
         }
 
     }
+
+
+    public function notificationMail(Renda $renda)
+    {
+
+        return view('rendas.index');
+    }
+
 
     /**
      * Display the specified resource.
@@ -121,10 +129,10 @@ class RendaController extends Controller
         $validate_array = [
             'valorPagar' => 'required|regex:/^\d+(\.\d{1,2})?$/',
             'dataPagamento' => 'required|date_format:Y-m-d|after:tomorrow',
-            'metodoPagamento' => 'required|integer|min:0|max:6',
+            'metodoPagamento' => 'required|integer',
             'valorPago' => 'nullable|regex:/^\d+(\.\d{1,2})?$/',
             'valorDivida' => 'nullable|regex:/^\d+(\.\d{1,2})?$/',
-            'estado' => 'required|integer|min:0|max:6',
+            'estado' => 'required|integer',
             'dataLimitePagamento' => 'required|date_format:Y-m-d|after:dataPagamento',
             'notas' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'dataRecibo' => 'required|date_format:Y-m-d|after:dataLimitePagamento'

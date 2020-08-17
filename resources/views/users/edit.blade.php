@@ -12,7 +12,7 @@ view()->share('hideSubHeader', true);
 @endsection
 
 @section('content')
-@can('accessAsLandlord')
+@canany(['accessAsLandlord', 'accessAsTenant'])
     <div class="kt-portlet">
         <div class="kt-portlet__head">
             <div class="kt-portlet__head-label">
@@ -21,7 +21,6 @@ view()->share('hideSubHeader', true);
                 </h3>
             </div>
         </div>
-        
         <form class="kt-form" method="POST" action="{{route('users.update', $user)}}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -97,7 +96,7 @@ view()->share('hideSubHeader', true);
         </form>
 
     </div>
-    @endcan
+    @endcanany
 @endsection
 
 @push('scripts')

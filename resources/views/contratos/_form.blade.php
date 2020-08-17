@@ -7,7 +7,7 @@
  */
 ?>
 
- {!! Form::model($contrato ?? '', ['route' => Route::currentRouteName() == 'contratos.create' ? ['contratos.store'] : ['contratos.update', $contrato ?? ''],'enctype' => "multipart/form-data",'method' => Route::currentRouteName() == 'contratos.create' ? 'post' : 'put', 'class' => "kt-form"]) !!}
+ {!! Form::model($contrato ?? '', ['route' => Route::currentRouteName() == 'contratos.create' ? ['contratos.store'] : ['contratos.update', $contrato ?? ''], 'method' => Route::currentRouteName() == 'contratos.create' ? 'post' : 'put', 'class' => "kt-form"]) !!}
 
     <div class="kt-portlet__body">
         <div class="form-group">
@@ -40,8 +40,7 @@
         </div>
         <div class="form-group">
             {!! Form::label('renovavel', __('Renewable')) !!}
-            {!! Form::hidden('renovavel', 0) !!}
-            {!! Form::checkbox('renovavel', 1, null, ['class' => 'form-control '.($errors->has('renovavel') ? 'is-invalid' : '')]) !!}
+            {!! Form::select('renovavel', \App\Contrato::getRenewableArray() , null , ['class' => 'form-control '.($errors->has('renovavel') ? 'is-invalid' : ''), 'required' => true]) !!}
             @error('renovavel')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
@@ -69,7 +68,7 @@
         </div>
         <div class="form-group">
             {!! Form::label('estado', __('State')) !!}
-            {!! Form::number('estado', null, ['class' => 'form-control '.($errors->has('estado') ? 'is-invalid' : ''), 'min' => '1', 'type' => 'number', 'max' => '6', 'step' => 1, 'required' => true]) !!}
+            {!! Form::select('estado', \App\Contrato::getStateArray() , null , ['class' => 'form-control '.($errors->has('estado') ? 'is-invalid' : ''), 'required' => true]) !!}
             @error('estado')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
@@ -89,8 +88,8 @@
             @enderror
         </div>
         <div class="form-group">
-            {!! Form::label('metodoPagamento', __('Payment method')) !!}
-            {!! Form::number('metodoPagamento', null, ['class' => 'form-control '.($errors->has('metodoPagamento') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1, 'min' => 1, 'max'=> 6, 'required' => true]) !!}
+            {!! Form::label('metodoPagamento', __('Payment Method')) !!}
+            {!! Form::select('metodoPagamento', \App\Contrato::getMethodPaymentArray() , null , ['class' => 'form-control '.($errors->has('metodoPagamento') ? 'is-invalid' : ''), 'required' => true]) !!}
             @error('metodoPagamento')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
@@ -102,24 +101,49 @@
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-        <div class="form-group {{ $errors->has('ficheiro_contrato') ? 'is-invalid' : '' }}">
-            {!! Form::label('ficheiro_contrato', __('Contract file')) !!}<br>
-            {!! Form::file('ficheiro_contrato', null, ['class' => 'form-control '.($errors->has('ficheiro_contrato') ? 'is-invalid' : '')]) !!}
-            @error('ficheiro_contrato')
+
+        <div class="form-group">
+            <label>Selected Tenants</label>
+            <select class="form-control select2-multi {{ $errors->has('inquilinos_list') ? 'is-invalid' : '' }}" multiple="multiple" name ="inquilinos_list[]" id ="inquilinos" style="width: 50%" >
+                <?php
+                $user = Auth::user();
+                if(!empty($user->proprietario)){
+                    foreach($user->proprietario->inquilinos as $inquilino){
+                ?>
+                         <option value="{{ $inquilino->id }}" {{ in_array($inquilino->id, $selectedTenantes) ? 'selected': ''}}>
+                            {{$inquilino->nome}}
+                         </option>
+
+                         <?php
+                     }
+                 }
+                ?>
+            </select>
+            @error('inquilinos_list')
                 <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-        @foreach($contrato->getMedia('contract_files') as $cont)
-        <div id="contract-holder{{$cont->id}}">
-            <br>
-            <button class="btn btn-danger" onClick="removeCont(this)" type="button" data-id="{{$cont->id}}">Delete</button>
-        <p id="cont{{$cont->id}}"><a href="{{$cont->getUrl()}}" download>{{$cont->file_name}}</a></p>{{-- por agora para testar --}}
-            {{-- <img src="{{$cont->getUrl()}}" id="cont{{$cont->id}}" class="rounded" style="width:120px" place-holder="contractImage"> --}}
-        </div>
-        @endforeach
-        <br>
 
-        <div id="hidden_inputs"></div>
+        <div class="form-group">
+            <label>Selected Property</label>
+            <select class="form-control {{ $errors->has('imovel_id') ? 'is-invalid' : '' }}" name ="imovel_id" id ="imoveis" style="width: 50%" >
+                <?php
+                $user = Auth::user();
+                if(!empty($user->proprietario)){
+                    foreach($user->proprietario->imoveis as $imovel){
+                ?>
+                         <option value="{{ $imovel->id }}" @if (old('imovel_id') == $imovel->id) selected="selected" @endif >
+                            {{$imovel->morada}}
+                         </option>
+                         <?php
+                     }
+                 }
+                ?>
+            </select>
+            @error('imovel_id')
+                <div class="error invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
 
     </div>
     <div class="kt-portlet__foot">
@@ -130,17 +154,4 @@
     </div>
 {!! Form::close() !!}
 
-@push('scripts')
-    <script>
-        var removeCont = function(elem){
 
-                var contratoId = $(elem).data('id'); //armazena o id do contrato
-                $("#contract-holder" + contratoId).remove(); //remove contrato e botão
-
-
-                var info = '<input type="hidden" name="cont_delete[]" value="' + contratoId + '">'; //esconde o input do contrato (id)
-                $('#hidden_inputs').append(info); //faz append do id da div
-
-        }
-    </script>
-@endpush

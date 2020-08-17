@@ -19,14 +19,16 @@ view()->share('hideSubHeader', true);
                 </h3>
             </div>
         </div>
-        @can(['accessAsLandlord'])
+        @canany(['accessAsLandlord', 'accessAsTenant'])
         <div class="kt-portlet__head-toolbar">
             <div class="kt-portlet__head-wrapper">
                 <div class="kt-portlet__head-actions">
+                    @if(auth()->user()->is($user))
                     <a href="{{ route('users.edit', $user) }}" class="btn btn-brand btn-elevate btn-icon-sm">
                         <i class="la la-edit"></i>
                         {{ __('Update') }}
                     </a>
+                    @endif
                     {!! Form::close() !!}
                 </div>
             </div>

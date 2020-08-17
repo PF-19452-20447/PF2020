@@ -87,7 +87,7 @@ Breadcrumbs::for('inquilinos.index', function ($trail) {
 });
 Breadcrumbs::for('inquilinos.create', function ($trail) {
     $trail->parent('inquilinos.index');
-    $trail->push('Criar', route('inquilinos.create'));
+    $trail->push('Create', route('inquilinos.create'));
 });
 Breadcrumbs::for('inquilinos.show', function ($trail, $model) {
     $trail->parent('inquilinos.index');

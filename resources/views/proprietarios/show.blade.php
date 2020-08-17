@@ -21,6 +21,7 @@ view()->share('hideSubHeader', true);
             <div class="kt-portlet__head-toolbar">
                 <div class="kt-portlet__head-wrapper">
                     <div class="kt-portlet__head-actions">
+                        @canany(['adminApp', 'adminFullApp'])
                         <a href="{{ route('proprietarios.edit', $proprietario) }}" class="btn btn-brand btn-elevate btn-icon-sm">
                             <i class="la la-edit"></i>
                             {{ __('Update') }}
@@ -30,7 +31,7 @@ view()->share('hideSubHeader', true);
                             {{ __('Delete') }}
                         </button>
                         {!! Form::open(['route' => ['proprietarios.destroy', $proprietario], 'method' => 'delete', 'class'=>"d-none", 'id' => 'delete-form']) !!}
-
+                        @endcanany
                         {!! Form::close() !!}
                     </div>
                 </div>
@@ -80,11 +81,11 @@ view()->share('hideSubHeader', true);
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Particular type of company') }}</th>
-                                <td>{{ $proprietario->tipoParticularEmpresa }}</td>
+                                <td>{{ $proprietario->TipoParticularEmpresaLabel }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('CAE') }}</th>
-                                <td>{{ $proprietario->cae }}</td>
+                                <td>{{ $proprietario->CAELabel }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Share capital') }}</th>

@@ -11,7 +11,7 @@ view()->share('hideSubHeader', true);
     {{ Breadcrumbs::render('rendas.show', $renda) }}
 @endsection
 @section('content')
-@canany(['adminApp', 'adminFullApp', 'accessAsLandlord'])
+@canany(['adminApp', 'adminFullApp', 'accessAsLandlord', 'accessAsTenant'])
     <div class="kt-portlet">
         <div class="kt-portlet__head">
             <div class="kt-portlet__head-label">
@@ -22,6 +22,7 @@ view()->share('hideSubHeader', true);
             <div class="kt-portlet__head-toolbar">
                 <div class="kt-portlet__head-wrapper">
                     <div class="kt-portlet__head-actions">
+                        @canany(['adminApp', 'adminFullApp', 'accessAsLandlord'])
                         <a href="{{ route('rendas.edit', $renda) }}" class="btn btn-brand btn-elevate btn-icon-sm">
                             <i class="la la-edit"></i>
                             {{ __('Update') }}
@@ -31,7 +32,7 @@ view()->share('hideSubHeader', true);
                             {{ __('Delete') }}
                         </button>
                         {!! Form::open(['route' => ['rendas.destroy', $renda ], 'method' => 'delete', 'class'=>"d-none", 'id' => 'delete-form']) !!}
-
+                        @endcanany
                         {!! Form::close() !!}
                     </div>
                 </div>
@@ -67,7 +68,7 @@ view()->share('hideSubHeader', true);
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Payment method') }}</th>
-                                <td>{{ $renda ->metodoPagamento }}</td>
+                                <td>{{ $renda ->MethodPaymentLabel }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Amount paid') }}</th>
@@ -79,7 +80,7 @@ view()->share('hideSubHeader', true);
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('State') }}</th>
-                                <td>{{ $renda ->estado }}</td>
+                                <td>{{ $renda->stateLabel}}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Payment deadline') }}</th>

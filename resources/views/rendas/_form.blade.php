@@ -25,8 +25,8 @@
             @enderror
         </div>
         <div class="form-group">
-            {!! Form::label('metodoPagamento', __('Payment method')) !!}
-            {!! Form::number('metodoPagamento', null, ['class' => 'form-control '.($errors->has('metodoPagamento') ?  'is-invalid' : ''), 'min' => '0', 'max'=>'6' ,  'required' => true ]) !!}
+            {!! Form::label('metodoPagamento', __('Payment Method')) !!}
+            {!! Form::select('metodoPagamento', \App\Renda::getMethodPaymentArray() , null , ['class' => 'form-control '.($errors->has('metodoPagamento') ? 'is-invalid' : ''), 'required' => true]) !!}
             @error('metodoPagamento')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
@@ -47,7 +47,7 @@
         </div>
         <div class="form-group">
             {!! Form::label('estado', __('State')) !!}
-            {!! Form::number('estado', null, ['class' => 'form-control '.($errors->has('estado') ?  'is-invalid' : ''), 'min' => '0', 'max'=>'6',  'step' => 1, 'required' => true]) !!}
+            {!! Form::select('estado', \App\Renda::getStateArray() , null , ['class' => 'form-control '.($errors->has('estado') ? 'is-invalid' : ''), 'required' => true]) !!}
             @error('estado')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror

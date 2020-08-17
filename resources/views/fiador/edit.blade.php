@@ -11,7 +11,7 @@ view()->share('hideSubHeader', true);
     {{ Breadcrumbs::render('fiador.edit', $fiador) }}
 @endsection
 @section('content')
-@can('adminApp')
+@canany(['adminApp', 'adminFullApp', 'accessAsTenant'])
     <div class="kt-portlet">
         <div class="kt-portlet__head">
             <div class="kt-portlet__head-label">
@@ -22,5 +22,5 @@ view()->share('hideSubHeader', true);
         </div>
         @include('fiador._form')
     </div>
-    @endcan
+    @endcanany
 @endsection

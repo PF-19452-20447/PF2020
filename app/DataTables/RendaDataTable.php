@@ -33,6 +33,15 @@ class RendaDataTable extends DataTable
 
                 });
 
+            }elseif(auth()->user()->can('accessAsTenant')){
+                $datatable->addColumn('action', function ($renda) {
+                    return  '<form method="POST" action="/payments">
+                    <a class="btn btn-sm btn-clean btn-icon btn-icon-md" href="'. route('rendas.show', $renda) .'" title="'. __('View') .'"><i class="la la-eye"></i></a>
+                    <button class="btn btn-brand btn-elevate btn-icon-sm" type="submit">Make payment</button>
+                    
+                            </form>
+                                    ';
+                });
             }
             return $datatable;
     }
@@ -79,7 +88,6 @@ class RendaDataTable extends DataTable
                         'valorPagar' => [ 'title' => 'Payable amount' ],
                         'dataPagamento' => [ 'title' => 'Payment Date' ],
                         'metodoPagamento' => ['title' => 'Payment method'],
-                        'estado' => ['title' => 'State'],
                         'dataLimitePagamento' => ['title' => 'Payment deadline'],
                         'dataRecibo' => ['title' => 'Receipt date'],
                         'action' => ['title' => 'Action'],

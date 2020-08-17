@@ -11,7 +11,7 @@ view()->share('hideSubHeader', true);
     {{ Breadcrumbs::render('contratos.show', $contrato) }}
 @endsection
 @section('content')
-@canany(['adminApp', 'adminFullApp', 'accessAsLandlord'])
+@canany(['adminApp', 'adminFullApp', 'accessAsLandlord', 'accessAsTenant'])
     <div class="kt-portlet">
         <div class="kt-portlet__head">
             <div class="kt-portlet__head-label">
@@ -22,6 +22,7 @@ view()->share('hideSubHeader', true);
             <div class="kt-portlet__head-toolbar">
                 <div class="kt-portlet__head-wrapper">
                     <div class="kt-portlet__head-actions">
+                        @canany(['adminApp', 'adminFullApp', 'accessAsLandlord'])
                         <a href="{{ route('contratos.edit', $contrato) }}" class="btn btn-brand btn-elevate btn-icon-sm">
                             <i class="la la-edit"></i>
                             {{ __('Update') }}
@@ -31,7 +32,7 @@ view()->share('hideSubHeader', true);
                             {{ __('Delete') }}
                         </button>
                         {!! Form::open(['route' => ['contratos.destroy', $contrato ], 'method' => 'delete', 'class'=>"d-none", 'id' => 'delete-form']) !!}
-
+                        @endcanany
                         {!! Form::close() !!}
                     </div>
                 </div>
@@ -75,7 +76,7 @@ view()->share('hideSubHeader', true);
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Renewable') }}</th>
-                                <td>{{ $contrato ->renovavel }}</td>
+                                <td>{{ $contrato ->RenewableLabel }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Exemption benefit') }}</th>
@@ -91,7 +92,7 @@ view()->share('hideSubHeader', true);
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('State') }}</th>
-                                <td>{{ $contrato ->estado }}</td>
+                                <td>{{ $contrato ->StateLabel }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Charges') }}</th>
@@ -103,7 +104,7 @@ view()->share('hideSubHeader', true);
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Payment method') }}</th>
-                                <td>{{ $contrato ->metodoPagamento }}</td>
+                                <td>{{ $contrato ->MethodPaymentLabel }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Advancing rents') }}</th>
@@ -116,6 +117,14 @@ view()->share('hideSubHeader', true);
                             <tr>
                                 <th scope="row">{{ __('Updated at') }}</th>
                                 <td>{{$contrato ->updated_at}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">{{ __('Tenants selected') }}</th>
+                                <td>{{$contrato->inquilinos->pluck('nome')}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">{{ __('Property selected') }}</th>
+                                <td>{{$contrato->imovel->morada}}</td>
                             </tr>
                         </tbody>
                     </table>

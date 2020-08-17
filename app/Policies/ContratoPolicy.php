@@ -18,7 +18,14 @@ class ContratoPolicy
      */
     public function viewAny(User $user)
     {
-        return true;
+        if($user->can('adminApp')){
+            return true;
+
+        }elseif($user->can('accessAsTenant')){
+            return true;
+
+        }
+        return false;
     }
 
     /**
@@ -28,12 +35,17 @@ class ContratoPolicy
      * @param  \App\Contrato  $contrato
      * @return mixed
      */
-    public function view(User $user, Contrato $contrato)
+    public function view(User $user, User $model)
     {
         if($user->can('adminApp')){
             return true;
 
+        }elseif($user->can('accessAsTenant')){
+            return $user->id == $model->inquilino_id;
+
         }
+
+        //return false;
     }
 
     /**
@@ -48,7 +60,8 @@ class ContratoPolicy
             return true;
         }elseif($user->can('accessAsTenant')){
              return $user->id == $contrato->user_id;
-        }
+
+       }
 
         return $user->id > 0;
     }

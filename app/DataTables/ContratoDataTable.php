@@ -31,6 +31,14 @@ class ContratoDataTable extends DataTable
 
                 });
 
+            }elseif(auth()->user()->can('accessAsTenant')){
+                $datatable->addColumn('action', function ($contrato) {
+                    return '<a class="btn btn-sm btn-clean btn-icon btn-icon-md" href="'. route('contratos.show', $contrato) .'" title="'. __('View') .'"><i class="la la-eye"></i></a>
+                           ';
+
+                });
+
+
             }
             return $datatable;
     }
@@ -74,7 +82,6 @@ class ContratoDataTable extends DataTable
                         'valorRenda' => [ 'title' => 'Income value' ],
                         'tipoContrato' => [ 'title' => 'Type of contract' ],
                         'dataLimitePagamento' => ['title' => 'Payment deadline'],
-                        'estado' => ['title' => 'State'],
                         'caucao' => ['title' => 'Deposit'],
                         'metodoPagamento' => ['title' => 'Payment method'],
                         'action' => ['title' => 'Action'],

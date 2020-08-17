@@ -80,6 +80,18 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Route notifications for the Nexmo channel.
+     *
+     * @param  \Illuminate\Notifications\Notification  $notification
+     * @return string
+     */
+    public function routeNotificationForNexmo($notification)
+    {
+        return '';
+    }
+
+
     public function proprietario()
     {
         return $this->hasOne('App\Proprietario');
@@ -120,7 +132,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
 
         return 'N/A';
     }
-    
+
 
     /**
      * @return string
