@@ -37,6 +37,14 @@ class ImovelDatatable extends DataTable
 
             });
 
+        }if(auth()->user()->can('adminApp')){
+            $datatable->addColumn('action', function ($imovel) {
+                return '<a class="btn btn-sm btn-clean btn-icon btn-icon-md" href="'. route('imoveis.show', $imovel) .'" title="'. __('View') .'"><i class="la la-eye"></i></a>
+                        <a href="'. route('imoveis.edit', $imovel) .'" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="'. __('Edit') .'"><i class="la la-edit"></i></a>
+                        <button class="btn btn-sm btn-clean btn-icon btn-icon-md delete-confirmation" data-destroy-form-id="destroy-form-'. $imovel->id .'" data-delete-url="'. route('imoveis.destroy', $imovel) .'" onclick="destroyConfirmation(this)" title="'. __('Delete') .'"><i class="la la-trash"></i></button>';
+
+            });
+
         }
         return $datatable;
     }
