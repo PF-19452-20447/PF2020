@@ -122,10 +122,10 @@ view()->share('hideSubHeader', true);
                                 <th scope="row">{{ __('Tenants selected') }}</th>
                                 <td>{{$contrato->inquilinos->pluck('nome')}}</td>
                             </tr>
-                            <tr>
+                            {{-- <tr>
                                 <th scope="row">{{ __('Property selected') }}</th>
                                 <td>{{$contrato->imovel->morada}}</td>
-                            </tr>
+                            </tr> --}}
                         </tbody>
                     </table>
                 </div>
