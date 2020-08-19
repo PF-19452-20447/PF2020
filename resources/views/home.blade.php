@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Dashboard</div>
-                    <h4>Welcome to our application {{-- Auth::user()->proprietario->imoveis->pluck('id') --}}
+                    <h4>Welcome to our application! {{-- Auth::user()->proprietario->imoveis->pluck('id') --}}
                         <?php
                        /* $user= Auth::user();
                         $fiadores_ids = [];
@@ -24,6 +24,7 @@
 
                         ?>
                         </h4>
+
 
                 <div class="card-body">
                     @if (session('status'))
@@ -50,7 +51,25 @@
                             <a href="{{ route('register') }}">Register</a>
                         @endif
                     @endauth
+                    <br></br>
+                    <div class="card-header">
+                        <div class="card-body">
+                            <h5>To start is simple, step 1,2,3</h5>
+                        </div>
+                        <div class="card-body">
+                            <img src="images/numero1.png " />
+                            <a class="btn" href="{{ route('imoveis.create') }}">
+                                Create Property
+                                <p>Create a card for your property</p>
+                            </a>
 
+                        </div>
+
+                        <br></br>
+                        <a href="{{ route('inquilinos.create') }}">Create Tenant</a>
+                        <br></br>
+                        <a href="{{ route('contratos.create') }}">Create Contract</a>
+                    </div>
                 </div>
             </div>
         </div>
