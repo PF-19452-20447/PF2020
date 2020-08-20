@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@canany(['adminApp', 'adminFullApp', 'accessAsTenant', 'accessAsLandlord'])
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -51,6 +52,9 @@
                             <a href="{{ route('register') }}">Register</a>
                         @endif
                     @endauth
+                    @endcanany
+                    @cannot(['adminApp','adminFullApp'])
+                    @can('accessAsLandlord')
                     <br></br>
                     <div class="card-header">
                         <div class="card-body">
@@ -70,9 +74,12 @@
                         <br></br>
                         <a href="{{ route('contratos.create') }}">Create Contract</a>
                     </div>
+                    @endcan
+                    @endcanany
                 </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
+
