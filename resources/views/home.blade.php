@@ -1,4 +1,17 @@
 @extends('layouts.app')
+<head>
+<style>
+    #numero1{
+        border: 2px solid	rgba(190,190,190,0.5);
+        border-radius: 5px;
+    }
+
+    .card-body{
+        background-color: white;
+    }
+
+</style>
+</head>
 
 @section('content')
 @canany(['adminApp', 'adminFullApp', 'accessAsTenant', 'accessAsLandlord'])
@@ -6,7 +19,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
+                <br></br>
                 <div class="card-header">Dashboard</div>
+                    <br></br>
                     <h4>Welcome to our application! {{-- Auth::user()->proprietario->imoveis->pluck('id') --}}
                         <?php
                        /* $user= Auth::user();
@@ -60,19 +75,38 @@
                         <div class="card-body">
                             <h5>To start is simple, step 1,2,3</h5>
                         </div>
-                        <div class="card-body">
-                            <img src="images/numero1.png " />
+                        <div id="numero1" class="card-body">
+                            <img src="images/number1.png " />
                             <a class="btn" href="{{ route('imoveis.create') }}">
                                 Create Property
+                                <br></br>
                                 <p>Create a card for your property</p>
                             </a>
 
                         </div>
 
                         <br></br>
-                        <a href="{{ route('inquilinos.create') }}">Create Tenant</a>
+                        <div border="solid" class="card-body">
+                            <img src="images/number2.png " />
+                            <a class="btn" href="{{ route('inquilinos.create') }}">
+                                Create Tenant
+                                <br></br>
+                                <p>Create a card for your tenant</p>
+                            </a>
+
+                        </div>
+
                         <br></br>
-                        <a href="{{ route('contratos.create') }}">Create Contract</a>
+                        <div border="solid" class="card-body">
+                            <img src="images/number3.png " />
+                            <a class="btn" href="{{ route('contratos.create') }}">
+                                Create Contract
+                                <br></br>
+                                <p>Create a card for your contract</p>
+                            </a>
+
+                        </div>
+
                     </div>
                     @endcan
                     @endcanany
