@@ -10,6 +10,16 @@
         background-color: white;
     }
 
+    #numero2{
+        border: 2px solid	rgba(190,190,190,0.5);
+        border-radius: 5px;
+    }
+
+    #numero3{
+        border: 2px solid	rgba(190,190,190,0.5);
+        border-radius: 5px;
+    }
+
 </style>
 </head>
 
@@ -72,7 +82,7 @@
                     @can('accessAsLandlord')
                     <br></br>
                     <div class="card-header">
-                        <div class="card-body">
+                        <div class="card-header">
                             <h5>To start is simple, step 1,2,3</h5>
                         </div>
                         <div id="numero1" class="card-body">
@@ -86,7 +96,7 @@
                         </div>
 
                         <br></br>
-                        <div border="solid" class="card-body">
+                        <div id="numero2" class="card-body">
                             <img src="images/number2.png " />
                             <a class="btn" href="{{ route('inquilinos.create') }}">
                                 Create Tenant
@@ -97,7 +107,7 @@
                         </div>
 
                         <br></br>
-                        <div border="solid" class="card-body">
+                        <div id="numero3" class="card-body">
                             <img src="images/number3.png " />
                             <a class="btn" href="{{ route('contratos.create') }}">
                                 Create Contract
