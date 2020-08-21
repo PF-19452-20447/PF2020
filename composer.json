@@ -24,6 +24,7 @@
         "propaganistas/laravel-phone": "^4.2",
         "spatie/laravel-medialibrary": "^8.0.0",
         "spatie/laravel-permission": "^3.13",
+        "spatie/payment": "^2.0",
         "yajra/laravel-datatables": "^1.5",
         "yajra/laravel-datatables-oracle": "~9.0"
     },

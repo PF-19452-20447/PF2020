@@ -147,7 +147,7 @@ class ImovelController extends Controller
         $validate_array = [
             'tipo' => 'required|string|nullable',
             'tipologia' => 'required|string',
-            'area' => 'nullable|integer',
+            'area' => 'required|integer',
             'morada' => 'required|string',
             'numQuartos' => 'required|integer',
             'numCasaBanho' => 'required|integer',
