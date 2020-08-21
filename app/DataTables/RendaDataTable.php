@@ -38,7 +38,7 @@ class RendaDataTable extends DataTable
                     return  '<form method="POST" action="/payments">
                     <a class="btn btn-sm btn-clean btn-icon btn-icon-md" href="'. route('rendas.show', $renda) .'" title="'. __('View') .'"><i class="la la-eye"></i></a>
                     <button class="btn btn-brand btn-elevate btn-icon-sm" type="submit">Make payment</button>
-                    
+
                             </form>
                                     ';
                 });
@@ -61,13 +61,13 @@ class RendaDataTable extends DataTable
 
         }elseif($user->can('accessAsTenant')){
 
-            return $model->newQuery()->where('inquilino_id', $user->inquilino->id);
+            return $model->newQuery()->whereIn('inquilino_id', $user->inquilino->id);
            // return Inquilino::find(1)->rendas();
 
         }
         elseif($user->can('accessAsLandlord')){
 
-            return $model->newQuery()->where('proprietario_id', $user->proprietario->id);
+            return $model->newQuery()->whereIn('proprietario_id', $user->proprietario->id);
         }
 
        // return $model->newQuery();

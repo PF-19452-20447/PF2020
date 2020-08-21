@@ -28,66 +28,48 @@ class DatabaseSeeder extends Seeder
         $this->call(ImoveisSeeder::class);
         $this->call(FiadoresSeeder::class);
         $this->call(RolesSeeder::class);
-        //$this->call(PermissionsSeeder::class);
-        //$this->call(UsersSeeder::class);
-        //$this->call(Imoveis_ficheirosSeeder::class);
-        //$this->call(proprietarios_imoveisSeeder::class);
-        //$this->call(contratos_inquilinosSeeder::class);
+        $this->call(UsersSeeder::class);
+        $this->call(PermissionsSeeder::class);
 
-        // $this->call(UserSeeder::class);
         // Ask for db migration refresh, default is no
-        if ($this->command->confirm('Do you wish to refresh migration before seeding, it will clear all old data ?')) {
+        if ($this->command->confirm('Do you wish to refresh migration before seeding, it will clear all old data ? [Y|N]')) {
             // Call the php artisan migrate:refresh
             $this->command->call('migrate:refresh');
             $this->command->warn("Data cleared, starting from blank database.");
         }
 
-        // Seed the default permissions
-        $permissions = Permission::defaultPermissions();
+        $this->command->info('Adding Default permissions to Default roles...');
 
-        foreach ($permissions as $perms) {
-            Permission::firstOrCreate(['name' => $perms]);
-        }
+        //Retrieve the roles from the database
+        $roles = Role::all();
 
-        $this->command->info('Default Permissions added.');
-
-        // Confirm roles needed
-        if ($this->command->confirm('Create Roles for user, default is admin and user? [y|N]', true)) {
-
-            // Ask for roles from input
-            $input_roles = $this->command->ask('Enter roles in comma separate format.', 'Admin,User');
-
-            // Explode roles
-            $roles_array = explode(',', $input_roles);
-
-            // add roles
-            foreach($roles_array as $role) {
-                $role = Role::firstOrCreate(['name' => trim($role)]);
-
-                if( $role->name == 'Admin' || $role->name == 'SuperAdmin') {
-                    // assign all permissions
+        // add default roles, permissions and users
+        foreach($roles as $role) {
+            switch($role->name){
+                case "SuperAdmin":
                     $role->syncPermissions(Permission::all());
-                    $this->command->info('Admin granted all the permissions');
-                } else {
-                    // for others by default only read access
-                    $role->syncPermissions(Permission::where('name', 'LIKE', 'view_%')->get());
-                }
-
-                // create one user for each role
-                //$this->createUser($role);
+                    $this->command->info('Permissions added to SuperAdmin');
+                    break;
+                case "Admin":
+                    $role->syncPermissions(Permission::all());
+                    $role->revokePermissionTo(Permission::where('name','adminFullApp')->first());
+                    $this->command->info('Permissions added to Admin');
+                    break;
+                case "Landlord":
+                    $role->givePermissionTo(Permission::where('name','accessAsLandlord')->first());
+                    $this->command->info('Permissions added to Landlord');
+                    break;
+                case "Tenant":
+                    $role->givePermissionTo(Permission::where('name','accessAsTenant')->first());
+                    $this->command->info('Permissions added to Tenant');
+                    break;
+                default:
+                $this->command->info('No permissions where assigned to the ' . $role->name . ' role.');
             }
-
-            $this->command->info('Roles ' . $input_roles . ' added successfully');
-
-        } else {
-            Role::firstOrCreate(['name' => 'User']);
-            $this->command->info('Added only default user role.');
+            User::where('name', $role->name)->first()->assignRole($role->name);
+            $this->command->info('Default user '.$role->name.' role added');
         }
-
-        // now lets seed some posts for demo
-        /*factory(\App\Post::class, 30)->create();
-        $this->command->info('Some Posts data seeded.');
-        $this->command->warn('All done :)');*/
+        $this->command->info('Roles and Permissions added successfully');
     }
 
     /**
