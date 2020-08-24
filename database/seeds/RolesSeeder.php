@@ -25,10 +25,10 @@ class RolesSeeder extends Seeder
             'name' => "Landlord",
             'guard_name' => 'web'
         ]);
-        Role::create([
-            'name' => "Tenant",
-            'guard_name' => 'web'
-        ]);
+        // Role::create([
+        //     'name' => "Tenant",
+        //     'guard_name' => 'web'
+        // ]);
 
     }
 

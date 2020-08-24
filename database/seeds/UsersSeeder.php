@@ -27,11 +27,11 @@ class UsersSeeder extends Seeder
             'email' => 'landlord@mail.com',
             'password' => Hash::make('12345678')
         ]);
-        User::create([
-            'name' => 'Tenant',
-            'email' => 'tenant@mail.com',
-            'password' => Hash::make('12345678')
-        ]);
+        // User::create([
+        //     'name' => 'Tenant',
+        //     'email' => 'tenant@mail.com',
+        //     'password' => Hash::make('12345678')
+        // ]);
 
 
     }

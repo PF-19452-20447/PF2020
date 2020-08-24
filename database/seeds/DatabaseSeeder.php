@@ -59,10 +59,10 @@ class DatabaseSeeder extends Seeder
                     $role->givePermissionTo(Permission::where('name','accessAsLandlord')->first());
                     $this->command->info('Permissions added to Landlord');
                     break;
-                case "Tenant":
-                    $role->givePermissionTo(Permission::where('name','accessAsTenant')->first());
-                    $this->command->info('Permissions added to Tenant');
-                    break;
+                // case "Tenant":
+                //     $role->givePermissionTo(Permission::where('name','accessAsTenant')->first());
+                //     $this->command->info('Permissions added to Tenant');
+                //     break;
                 default:
                 $this->command->info('No permissions where assigned to the ' . $role->name . ' role.');
             }
@@ -70,22 +70,5 @@ class DatabaseSeeder extends Seeder
             $this->command->info('Default user '.$role->name.' role added');
         }
         $this->command->info('Roles and Permissions added successfully');
-    }
-
-    /**
-     * Create a user with given role
-     *
-     * @param $role
-     */
-    private function createUser($role)
-    {
-        $user = factory(User::class)->create();
-        $user->assignRole($role->name);
-
-        if( $role->name == 'Admin' ) {
-            $this->command->info('Here is your admin details to login:');
-            $this->command->warn($user->email);
-            $this->command->warn('Password is "secret"');
-        }
     }
 }

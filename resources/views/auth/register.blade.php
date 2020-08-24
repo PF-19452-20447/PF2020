@@ -36,12 +36,6 @@
                 <div class="input-group">
                     <input id="password-confirm" type="password" placeholder="{{ __('Confirm Password') }}" class="form-control" name="password_confirmation" required autocomplete="new-password">
                 </div>
-                <div class="input-group">
-                    <label for="landlord" class="form-control">{{__('Landlord')}}</label>
-                    <input type="radio" id="landlord" name="role" value="Landlord" class="form-control">
-                    <label for="tenant" class="form-control">{{__('Tenant')}}</label>
-                    <input type="radio" id="tenant" name="role" value="Tenant" class="form-control">
-                </div>
                 <!--<div class="row kt-login__extra">
                     <div class="col kt-align-left">
                         <label class="kt-checkbox">

@@ -73,7 +73,7 @@ class RegisterController extends Controller
         ]);
 
         //$role = new App\Role(['name' => 'Landlord']);
-        $role = Role::where(['name' => $data['role']])->first();
+        $role = Role::where('name', 'Landlord')->first();
         $user->roles()->save($role);
         return $user;
     }
