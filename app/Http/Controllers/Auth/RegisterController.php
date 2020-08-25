@@ -54,6 +54,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'role' => ['required', 'string']
         ]);
     }
 
@@ -72,7 +73,7 @@ class RegisterController extends Controller
         ]);
 
         //$role = new App\Role(['name' => 'Landlord']);
-        $role = Role::where(['name' => 'Landlord'])->first();
+        $role = Role::where('name', 'Landlord')->first();
         $user->roles()->save($role);
         return $user;
     }

@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Seeder;
 use App\Role;
-use App\Permission;
 
 class RolesSeeder extends Seeder
 {
@@ -26,15 +25,10 @@ class RolesSeeder extends Seeder
             'name' => "Landlord",
             'guard_name' => 'web'
         ]);
-        Role::create([
-            'name' => "Tenant",
-            'guard_name' => 'web'
-        ]);
-        Role::create([
-            'name' => "User",
-            'guard_name' => 'web'
-        ]);
-
+        // Role::create([
+        //     'name' => "Tenant",
+        //     'guard_name' => 'web'
+        // ]);
 
     }
 
