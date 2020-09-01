@@ -119,7 +119,51 @@
 
                     </div>
                     @endcan
-                    @endcanany
+                    @endcannot
+
+                    <br>
+                    <br>
+                    @cannot(['accessAsLandlord', 'adminFullApp', 'adminApp'])
+                    @can(['accessAsTenant'])
+                    <div class="card-header">
+                        <div class="card-header">
+
+                        </div>
+                        <div id="numero1" class="card-body">
+                            <img src="images/contracts.png " />
+                            <a class="btn" href="{{ route('contratos.index') }}">
+                                Contracts
+                                <br></br>
+
+                            </a>
+
+                        </div>
+
+                        <br></br>
+                        <div id="numero2" class="card-body">
+                            <img src="images/money.png " />
+                            <a class="btn" href="{{ route('rendas.index') }}">
+                                Incomes
+                                <br></br>
+
+                            </a>
+
+                        </div>
+
+                        <br></br>
+                        <div id="numero3" class="card-body">
+                            <img src="images/house.png " />
+                            <a class="btn" href="{{ route('imoveis.index') }}">
+                                Properties
+                                <br></br>
+                                
+                            </a>
+
+                        </div>
+
+                    </div>
+                    @endcan
+                    @endcannot
                 </div>
             </div>
         </div>
