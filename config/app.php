@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'pt',
 
     /*
     |--------------------------------------------------------------------------
@@ -178,6 +178,8 @@ return [
         /*Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,*/
         /*Lab404\Impersonate\ImpersonateServiceProvider::class,*/
         /*App\Providers\SettingServiceProvider::class*/
+        'Barryvdh\TranslationManager\ManagerServiceProvider',
+
 
     ],
 
