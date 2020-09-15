@@ -95,6 +95,14 @@ view()->share('hideSubHeader', true);
                                 <td>{{ $renda ->dataRecibo }}</td>
                             </tr>
                             <tr>
+                                <th scope="row">{{ __('Entity') }}</th>
+                                <td>{{ $renda ->entidade }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">{{ __('Reference') }}</th>
+                                <td>{{ $renda ->referencia }}</td>
+                            </tr>
+                            <tr>
                                 <th scope="row">{{ __('Created at') }}</th>
                                 <td>{{$renda ->created_at}}</td>
                             </tr>

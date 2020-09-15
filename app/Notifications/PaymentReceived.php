@@ -58,10 +58,10 @@ class PaymentReceived extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject('your laracasts payment was received!')
-                    ->greeting("Whats up?")
-                    ->line('The introduction to the notification.')
-                    ->line('Paga isso!')
+                    ->subject('Your payment was received!')
+                    ->greeting("Pay the income.")
+                    ->line('You should have to pay the income till payment deadline.')
+                    ->line('Pay!')
                     ->action('Notification Action', url('/'))
                     ->line('Thank you for using our application!');
     }

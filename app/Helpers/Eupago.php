@@ -8,7 +8,7 @@ use SoapHeader;
 
 class Eupago
 {
-    private $_instance;
+    private static $_instance;
     private $_wsdlDev = 'https://sandbox.eupago.pt/replica.eupagov20.wsdl';
     private $_wsdlProd = 'https://seguro.eupago.pt/eupagov20.wsdl';
     private $_wsdl = null;
@@ -18,6 +18,14 @@ class Eupago
     //private $_transactionId = null;
     private $_inSandbox = false;
     private $_callbackUrl = "";
+
+    public static function getInstance()
+    {
+        if(!self::$_instance){
+            self::$_instance = new Eupago;
+        }
+        return self::$_instance;
+    }
 
     public function __construct()
     {
@@ -44,10 +52,11 @@ class Eupago
         $this->_inSandbox = true;
     }
 
-    /*public function setTransactionId($transactionId)
+    public function setTransactionId($transactionId)
     {
         $this->_transactionId = $transactionId;
-    }*/
+    }
+
     private function getClient()
     {
         $this->_wsdl = $this->_inSandbox ? $this->_wsdlDev : $this->_wsdlProd;
