@@ -8,6 +8,7 @@ use Cache;
 
 class Renda extends Model
 {
+    //VER O CAMPO DO TYPE ALTERAR PARA ESTADO_EM_ESPERA.
     const TYPE_EM_ESPERA = 1;
     const TYPE_PAGO = 2;
     const TYPE_NAO_REMUNERADO = 3;
@@ -34,7 +35,9 @@ class Renda extends Model
         'estado',
         'dataLimitePagamento',
         'notas',
-        'dataRecibo'
+        'dataRecibo',
+        'entidade',
+        'referencia'
     ];
 
     /**
