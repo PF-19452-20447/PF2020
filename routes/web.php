@@ -129,8 +129,9 @@ Route::get('service/contrato/destroy','ContratoController@destroy');
 
 //rendas
 
-
+Route::get('rendas/eupago-callback', 'RendaController@eupagoCallback');
 Route::resource('rendas', 'RendaController');
+
 
 //permissoes e roles das rendas
 

@@ -38,15 +38,12 @@ class RendaController extends Controller
             $contrato = Contrato::findOrfail($request->get('contrato_id'));
         }
 
-
-
         $renda = new Renda();
         $renda->loadDefaultValues();
         if(isset($contrato)){
             $renda->valorPagar = $contrato->valorRenda;
             $renda->contrato_id = $contrato->id;
         }
-
 
        // $response = Eupago::generateReferenceMB($renda->id, $renda->valorPagar);
       /*  if(Eupago::checkValidResponse($response)){
@@ -94,18 +91,86 @@ class RendaController extends Controller
 
     }
 
+  /*  public function execute()
+    {
+
+        $response = $this->eupagoCallback();
+        $JsonFactory = $this->_objectManager->get('Magento\Framework\Controller\Result\JsonFactory');
+        $result = $JsonFactory->create();
+        $result = $result->setData($response);
+        if (!isset($response['success']))
+            $result->setHttpResponseCode(403);
+        return $result;
+    }*/
+
+
+
     public function eupagoCallback (Request $request){
 
-//ir buscar o identificador da renda
-//https://arrendamento-ipt.noop.pt/rendas/eupago-callback?valor=24.00000&canal=Arrendamento&referencia=000333823&transacao=10399510&identificador=68&mp=PC%3APT&chave_api=demo-a009-ce12-393c-d95&data=2020-09-15:15:57:55&entidade=82142&comissao=0.84&local=demo
-//nao é preciso transação
-//ler valor, referencia identificador, chave_api, data, entidade
-//valor pago = valor  .. o valor da divida = 0, data = data do pagamento ou a do dia now().
-//mudar estado de pagamento para pago.
+        //passar como parametro o request $request
+        //ir buscar o identificador da renda
+        //https://arrendamento-ipt.noop.pt/rendas/eupago-callback?valor=24.00000&canal=Arrendamento&referencia=000333823&transacao=10399510&identificador=68&mp=PC%3APT&chave_api=demo-a009-ce12-393c-d95&data=2020-09-15:15:57:55&entidade=82142&comissao=0.84&local=demo
+        //nao é preciso transação
+        //ler valor, referencia identificador, chave_api, data, entidade
+        //valor pago = valor  .. o valor da divida = 0, data = data do pagamento ou a do dia now().
+        //mudar estado de pagamento para pago.
+
+        //dados da api para confirmar
+       // $CallBack = $this->getRequest()->getParams();
+       $CallBack_valorPagar = $request->get('valorPagar');
+       dd($CallBack_valorPagar);
+       $CallBack_referencia = $request->get('referencia');
+       $CallBack_chave_api = $request->get('chave_api');
+        $CallBack_id = $request->get('identificador');
+        $CallBack_entidade = $request->get('entidade');
+        $CallBack_dataLimitePagamento = $request->get('dataLimitePagamento');
+       // $CallBack_valorPagar = $CallBack['valorPagar'];
+        //dd($CallBack_valorPagar);
+        //$CallBack_referencia = $CallBack['referencia'];
+        //$CallBack_chave_api = $CallBack['chave_api'];
+        //$CallBack_id = $CallBack['identificador'];
+        //$CallBack_entidade = $CallBack['entidade'];
+        //$CallBack_dataLimitePagamento = $CallBack['dataLimitePagamento'];
 
 
+        //dados da renda
+        $rendaId = $CallBack_id; //$CallBack_renda_id vem da api Eupago[renda-id]
+        $renda = Renda::find($rendaId);
+      //  dd($renda);
+        $valor_renda = $renda->valorPagar; //retirado do valor total da renda
 
-    }
+        //dados de pagamento
+
+        $pagamento = $renda->getPayment();
+        $entidade = $pagamento->eupago_entidade;
+        $referencia = $pagamento->eupago_referencia;
+        $valorPagar = $pagamento->eupago_valorPagar;
+        $dataLimitePagamento = $pagamento->eupago_dataLimitePagamento;
+        $chave_api = $pagamento->eupago_chave_api;
+
+        //conferir e confirmar dados
+
+        $confere_valorPagar = (($valor_renda == $valorPagar) == $CallBack_valorPagar ? true : false);
+        dd($valorPagar);
+        $confere_entidade = ($entidade == $CallBack_entidade ? true : false);
+        dd($entidade);
+        $confere_referencia = ($referencia == $CallBack_referencia ? true : false);
+        $confere_chave_api = ($CallBack_chave_api == $chave_api ? true : false);
+        $confere_dataLimitePagamento = ($CallBack_dataLimitePagamento == $dataLimitePagamento ? true : false);
+
+        // se tudo ok, faz o update do estado da renda e envia um email ao cliente/inquilino
+
+        if($confere_valorPagar && $confere_chave_api && $confere_referencia && $confere_entidade && $confere_dataLimitePagamento){ /*futuro upgrade -> $confere_autorizacao*/
+            $renda->setData('estado', "pago");
+            $renda->setStatus("processing");
+            $renda->sendOrderUpdateEmail();
+            $history = $renda->addStatusHistoryComment('Renda marked as paga automatically.', false);
+            $history->setIsCustomerNotified(true);
+            $renda->save();
+
+        }
+}
+
 
     public function notificationMail(Renda $renda)
     {
@@ -194,5 +259,5 @@ class RendaController extends Controller
         return $request->validate($validate_array);
     }
 
-   
+
 }
