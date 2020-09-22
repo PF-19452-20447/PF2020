@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use App\Role;
+use App\Proprietario;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -54,7 +55,11 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'role' => ['required', 'string']
+            'role' => ['required', 'string'],
+            'dataNascimento' => ['required', 'date_format:Y-m-d', 'before:today'],
+            'nome' => ['required', 'regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/', 'max:255'],
+            'nif' => ['required', 'alpha_num', 'max:32'],
+            'morada' => ['required','string']
         ]);
     }
 
@@ -72,9 +77,19 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
-        //$role = new App\Role(['name' => 'Landlord']);
         $role = Role::where('name', 'Landlord')->first();
         $user->roles()->save($role);
+
+        $landlord = Proprietario::create([
+            'nome' => $data['nome'],
+            'email' => $data['email'],
+            'dataNascimento' => $data['dataNascimento'],
+            'nif' => $data['nif'],
+            'morada' => $data['morada'],
+            
+        ]);
+
+        //Criar o perfil de "landlord"
         return $user;
     }
 

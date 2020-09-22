@@ -36,6 +36,31 @@
                 <div class="input-group">
                     <input id="password-confirm" type="password" placeholder="{{ __('Confirm Password') }}" class="form-control" name="password_confirmation" required autocomplete="new-password">
                 </div>
+                <hr/>
+                <div class="input-group">
+                    <input id="nome" type="text" placeholder="{{ __('Full Name') }}" class="form-control @error('nome') is-invalid @enderror" name="nome" value="{{ old('nome') }}" required autocomplete="nome">
+                    @error('nome')
+                    <div class="error invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="input-group">
+                    <input id="dataNascimento" type="date" placeholder="{{ __('Date of Birth') }}" class="form-control @error('dataNascimento') is-invalid @enderror" name="dataNascimento" value="{{ old('dataNascimento') }}" required autocomplete="dataNascimento">
+                    @error('dataNascimento')
+                    <div class="error invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="input-group">
+                    <input id="morada" type="text" placeholder="{{ __('Address') }}" class="form-control @error('morada') is-invalid @enderror" name="morada" value="{{ old('morada') }}" required autocomplete="morada">
+                    @error('morada')
+                    <div class="error invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="input-group">
+                    <input id="nif" type="number" placeholder="{{ __('Tax Number') }}" class="form-control @error('nif') is-invalid @enderror" name="nif" value="{{ old('nif') }}" required autocomplete="nif">
+                    @error('nif')
+                    <div class="error invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
                 <!--<div class="row kt-login__extra">
                     <div class="col kt-align-left">
                         <label class="kt-checkbox">
