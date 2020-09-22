@@ -55,7 +55,6 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'role' => ['required', 'string'],
             'dataNascimento' => ['required', 'date_format:Y-m-d', 'before:today'],
             'nome' => ['required', 'regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/', 'max:255'],
             'nif' => ['required', 'alpha_num', 'max:32'],
@@ -77,19 +76,20 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
-        $role = Role::where('name', 'Landlord')->first();
-        $user->roles()->save($role);
-
+        //Criar o perfil de "landlord"
         $landlord = Proprietario::create([
             'nome' => $data['nome'],
             'email' => $data['email'],
             'dataNascimento' => $data['dataNascimento'],
             'nif' => $data['nif'],
             'morada' => $data['morada'],
-            
+            'user_id' => $user->id
         ]);
+        //\Debugbar::error($user);
+        //Atribui o role de landlord
+        $role = Role::where('name', 'Landlord')->first();
+        $user->roles()->save($role);
 
-        //Criar o perfil de "landlord"
         return $user;
     }
 
