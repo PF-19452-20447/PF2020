@@ -78,6 +78,9 @@ class RendaController extends Controller
                //On left field name in DB and on right field name in Form/view
                $model->referencia = $response->referencia;
                 $model->entidade = $response->entidade;
+                $model->estado= Renda::TYPE_EM_ESPERA;
+               // $model->estado= Renda::TYPE_PAGO;
+                $model->metodoPagamento = Renda::TYPE_MULTIBANCO;
                 $model->save();
             }
 
@@ -117,13 +120,18 @@ class RendaController extends Controller
 
         //dados da api para confirmar
        // $CallBack = $this->getRequest()->getParams();
-       $CallBack_valorPagar = $request->get('valorPagar');
-       dd($CallBack_valorPagar);
+      $CallBack_valorPagar = $request->get('valor');
+      // dd($CallBack_valorPagar);
        $CallBack_referencia = $request->get('referencia');
+       //dd($CallBack_referencia);
        $CallBack_chave_api = $request->get('chave_api');
+       //dd($CallBack_chave_api);
         $CallBack_id = $request->get('identificador');
+        //dd($CallBack_id);
         $CallBack_entidade = $request->get('entidade');
-        $CallBack_dataLimitePagamento = $request->get('dataLimitePagamento');
+       // dd($CallBack_entidade);
+        $CallBack_dataLimitePagamento = $request->get('data');
+       // dd($CallBack_dataLimitePagamento);
        // $CallBack_valorPagar = $CallBack['valorPagar'];
         //dd($CallBack_valorPagar);
         //$CallBack_referencia = $CallBack['referencia'];
@@ -141,31 +149,40 @@ class RendaController extends Controller
 
         //dados de pagamento
 
-        $pagamento = $renda->getPayment();
+      /*  $pagamento = $renda->getPayment();
         $entidade = $pagamento->eupago_entidade;
         $referencia = $pagamento->eupago_referencia;
         $valorPagar = $pagamento->eupago_valorPagar;
         $dataLimitePagamento = $pagamento->eupago_dataLimitePagamento;
-        $chave_api = $pagamento->eupago_chave_api;
+        $chave_api = $pagamento->eupago_chave_api;*/
 
-        //conferir e confirmar dados
+        //confirmar dados
 
-        $confere_valorPagar = (($valor_renda == $valorPagar) == $CallBack_valorPagar ? true : false);
-        dd($valorPagar);
-        $confere_entidade = ($entidade == $CallBack_entidade ? true : false);
-        dd($entidade);
-        $confere_referencia = ($referencia == $CallBack_referencia ? true : false);
-        $confere_chave_api = ($CallBack_chave_api == $chave_api ? true : false);
-        $confere_dataLimitePagamento = ($CallBack_dataLimitePagamento == $dataLimitePagamento ? true : false);
+        $confere_valorPagar = (($valor_renda == $CallBack_valorPagar)  ? true : false);
+        //dd($confere_valorPagar);
+        $confere_entidade = ($renda->entidade == $CallBack_entidade ? true : false);
+        //dd($confere_entidade);
+        $confere_referencia = ($renda->referencia == $CallBack_referencia ? true : false);
+       // dd($confere_referencia);
+        $confere_chave_api = ($CallBack_chave_api == config('eupago.key') ? true : false);
+        //dd($confere_chave_api);
+       // $confere_dataLimitePagamento = ($renda->dataLimitePagamento == $CallBack_dataLimitePagamento ? true : false);
 
-        // se tudo ok, faz o update do estado da renda e envia um email ao cliente/inquilino
+        // se tudo ok, faz o update do estado da renda e envia um email ao inquilino
 
-        if($confere_valorPagar && $confere_chave_api && $confere_referencia && $confere_entidade && $confere_dataLimitePagamento){ /*futuro upgrade -> $confere_autorizacao*/
-            $renda->setData('estado', "pago");
-            $renda->setStatus("processing");
-            $renda->sendOrderUpdateEmail();
-            $history = $renda->addStatusHistoryComment('Renda marked as paga automatically.', false);
-            $history->setIsCustomerNotified(true);
+        if($confere_valorPagar && $confere_chave_api && $confere_referencia && $confere_entidade ){ /*futuro upgrade -> $confere_autorizacao*/
+
+            $renda->estado= Renda::TYPE_PAGO;
+            $renda->metodoPagamento = Renda::TYPE_MULTIBANCO;
+            $renda->valorPago = $valor_renda;
+            $renda->valorDivida= 0;
+            //$renda->id = Renda::find($rendaId);
+            $date = preg_replace('/:/', ' ', $CallBack_dataLimitePagamento, 1);
+            $renda->dataPagamento = $date;
+           // $renda->dataPagamento= now();
+            //$renda->valorPagar= $valor_renda;
+            //$renda->entidade= $entidade;
+            //$renda->referencia = $referencia;
             $renda->save();
 
         }
@@ -243,15 +260,15 @@ class RendaController extends Controller
          //nullable -> optional fields
 
         $validate_array = [
-            'valorPagar' => 'required|regex:/^\d+(\.\d{1,2})?$/',
-            'dataPagamento' => 'required|date_format:Y-m-d|after:tomorrow',
-            'metodoPagamento' => 'required|integer',
+            'valorPagar' => 'nullable|regex:/^\d+(\.\d{1,2})?$/',
+            'dataPagamento' => 'nullable|date_format:Y-m-d',
+            'metodoPagamento' => 'nullable|integer',
             'valorPago' => 'nullable|regex:/^\d+(\.\d{1,2})?$/',
             'valorDivida' => 'nullable|regex:/^\d+(\.\d{1,2})?$/',
-            'estado' => 'required|integer',
-            'dataLimitePagamento' => 'required|date_format:Y-m-d|after:dataPagamento',
+            'estado' => 'nullable|integer',
+            'dataLimitePagamento' => 'nullable|date_format:Y-m-d',
             'notas' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
-            'dataRecibo' => 'required|date_format:Y-m-d|after:dataLimitePagamento',
+            'dataRecibo' => 'nullable|date_format:Y-m-d',
             'entidade' => 'nullable|regex:/^\d+(\.\d{1,2})?$/',
             'referencia' => 'nullable|regex:/^\d+(\.\d{1,2})?$/'
         ];
