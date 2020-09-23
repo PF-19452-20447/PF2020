@@ -7,9 +7,12 @@ use App\DataTables\RendaDataTable;
 use Illuminate\Http\Request;
 use Spatie\Permission\Traits\HasRoles;
 use App\Facades\Eupago;
-
+use App\User;
+use Notification;
 use App\Contrato;
-use \Magento\Framework\App\Action\Action;
+use App\Notifications\PaymentReceived;
+use App\Notifications\PaymentReceived as NotificationsPaymentReceived;
+
 
 class RendaController extends Controller
 {
@@ -76,7 +79,7 @@ class RendaController extends Controller
                // $response; //tem os dados devolvidos para eupago
                // dd($response);
                //On left field name in DB and on right field name in Form/view
-               $model->referencia = $response->referencia;
+                $model->referencia = $response->referencia;
                 $model->entidade = $response->entidade;
                 $model->estado= Renda::TYPE_EM_ESPERA;
                // $model->estado= Renda::TYPE_PAGO;
@@ -185,7 +188,19 @@ class RendaController extends Controller
             //$renda->referencia = $referencia;
             $renda->save();
 
+            //$user = User::where('proprietario_id', $renda->proprietario->id);
+            //dd($renda->proprietario->id);
+            $user = $renda->proprietario->user;
+           //dd($renda->proprietario->user);
+            $user->notify(new PaymentReceived($renda));
+
         }
+
+
+
+       /* $user = User::first();
+        $user->notify(new PaymentReceived($renda));
+        dd($user->notify);*/
 }
 
 

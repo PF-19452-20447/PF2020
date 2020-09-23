@@ -138,4 +138,6 @@ class Renda extends Model
     {
         return $this->belongsTo('App\Proprietario');
     }
+
+    
 }

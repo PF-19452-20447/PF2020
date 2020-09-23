@@ -7,22 +7,24 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use App\Notifications\NexmoMessage;
+use App\Renda;
 
 
 class PaymentReceived extends Notification
 {
     use Queueable;
 
-    protected $amount;
+    private $renda;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($amount)
+    public function __construct($renda)
     {
-       $this->amount = $amount;
+       $this->renda = $renda;
+      // $rendas = Renda::where($renda->id);
     }
 
     /**
@@ -33,7 +35,7 @@ class PaymentReceived extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail','database', 'nexmo']; //, 'nexmo'
+        return ['mail','database']; //, 'nexmo'
     }
 
     /**
@@ -43,11 +45,11 @@ class PaymentReceived extends Notification
      * @return NexmoMessage
     */
 
-    public function toNexmo($notifiable)
+ /*   public function toNexmo($notifiable)
     {
         return (new NexmoMessage())
-                ->content('Your Laracasts payment bas been processed!');
-    }
+                ->content('Your Laracasts payment has been processed!');
+    }*/
 
     /**
      * Get the mail representation of the notification.
@@ -59,10 +61,8 @@ class PaymentReceived extends Notification
     {
         return (new MailMessage)
                     ->subject('Your payment was received!')
-                    ->greeting("Pay the income.")
-                    ->line('You should have to pay the income till payment deadline.')
-                    ->line('Pay!')
-                    ->action('Notification Action', url('/'))
+                    ->greeting("Your Income was paid.")
+                    ->action('Notification Action', route('rendas.show', $this->renda))
                     ->line('Thank you for using our application!');
     }
 
@@ -72,10 +72,10 @@ class PaymentReceived extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toArray($notifiable)
+    public function toDatabase($notifiable)
     {
         return [
-            'amount' => $this->amount
+            'proprietario_id' => $this->renda['proprietario_id']
         ];
     }
 }

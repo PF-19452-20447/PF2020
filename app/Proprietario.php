@@ -130,4 +130,10 @@ class Proprietario extends Model
         return $this->belongsToMany('App\Imovel', 'proprietarios_imoveis');
     }
 
+    public function user(){
+        
+        return $this->belongsTo('App\User');
+    }
+
+
 }

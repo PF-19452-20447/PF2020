@@ -40,9 +40,18 @@ class RendaDataTable extends DataTable
                 $datatable->addColumn('action', function ($renda) {
                     return  '<form method="POST" action="https://sandbox.eupago.pt/clientes/referencias/Multibanco">
                     <a class="btn btn-sm btn-clean btn-icon btn-icon-md" href="'. route('rendas.show', $renda) .'" title="'. __('View') .'"><i class="la la-eye"></i></a>
-                    <button class="btn btn-success" type="submit">Pay with card</button>
                             </form>
                                     ';
+                });
+            }
+            if(auth()->user()->can('adminApp')){
+                $datatable->addColumn('action', function ($renda) {
+                    return '<form method="POST" action="/payments">
+                            <a class="btn btn-sm btn-clean btn-icon btn-icon-md" href="'. route('rendas.show', $renda) .'" title="'. __('View') .'"><i class="la la-eye"></i></a>
+                            <a href="'. route('rendas.edit', $renda) .'" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="'. __('Edit') .'"><i class="la la-edit"></i></a>
+                            <button class="btn btn-sm btn-clean btn-icon btn-icon-md delete-confirmation" data-destroy-form-id="destroy-form-'. $renda->id .'" data-delete-url="'. route('rendas.destroy', $renda) .'" onclick="destroyConfirmation(this)" title="'. __('Delete') .'"><i class="la la-trash"></i></button>
+                            ';
+
                 });
             }
 
