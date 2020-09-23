@@ -81,9 +81,9 @@ class RendaController extends Controller
                //On left field name in DB and on right field name in Form/view
                 $model->referencia = $response->referencia;
                 $model->entidade = $response->entidade;
-                $model->estado= Renda::TYPE_EM_ESPERA;
+                $model->estado= Renda::ESTADO_EM_ESPERA;
                // $model->estado= Renda::TYPE_PAGO;
-                $model->metodoPagamento = Renda::TYPE_MULTIBANCO;
+                $model->metodoPagamento = Renda::PAGAMENTO_MULTIBANCO;
                 $model->save();
             }
 
@@ -175,8 +175,8 @@ class RendaController extends Controller
 
         if($confere_valorPagar && $confere_chave_api && $confere_referencia && $confere_entidade ){ /*futuro upgrade -> $confere_autorizacao*/
 
-            $renda->estado= Renda::TYPE_PAGO;
-            $renda->metodoPagamento = Renda::TYPE_MULTIBANCO;
+            $renda->estado= Renda::ESTADO_PAGO;
+            $renda->metodoPagamento = Renda::PAGAMENTO_MULTIBANCO;
             $renda->valorPago = $valor_renda;
             $renda->valorDivida= 0;
             //$renda->id = Renda::find($rendaId);

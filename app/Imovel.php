@@ -12,11 +12,11 @@ use Cache;
 class Imovel extends Model implements HasMedia
 {
 
-    const TYPE_ARRENDADO = 1;
-    const TYPE_VAZIO = 2;
-    const TYPE_MANUTENÇÃO = 3;
-    const TYPE_SIM = 4;
-    const TYPE_NÃO = 5;
+    const ESTADO_ARRENDADO = 1;
+    const ESTADO_VAZIO = 2;
+    const ESTADO_MANUTENÇÃO = 3;
+    const BOOLEAN_SIM = 4;
+    const BOOLEAN_NÃO = 5;
 
     protected $table = "imoveis";
     //protected $primaryKey = 'contrato_id';
@@ -70,17 +70,17 @@ class Imovel extends Model implements HasMedia
     public static function getStateArray()
     {
         return [
-            self::TYPE_ARRENDADO =>  __('Arrendado'),
-            self::TYPE_VAZIO =>  __('Vazio'),
-            self::TYPE_MANUTENÇÃO =>  __('Manutenção')
+            self::ESTADO_ARRENDADO =>  __('Arrendado'),
+            self::ESTADO_VAZIO =>  __('Vazio'),
+            self::ESTADO_MANUTENÇÃO =>  __('Manutenção')
         ];
     }
 
     public static function getBooleanArray()
     {
         return [
-            self::TYPE_SIM =>  __('Sim'),
-            self::TYPE_NÃO =>  __('Não'),
+            self::BOOLEAN_SIM =>  __('Sim'),
+            self::BOOLEAN_NÃO =>  __('Não'),
         ];
     }
 

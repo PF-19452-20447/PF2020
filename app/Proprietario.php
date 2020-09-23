@@ -9,8 +9,8 @@ use Cache;
 
 class Proprietario extends Model
 {
-    const TYPE_PRINCIPAL = 1;
-    const TYPE_SECUNDÁRIO = 2;
+    const CAE_PRINCIPAL = 1;
+    const CAE_SECUNDÁRIO = 2;
     const TYPE_EMPRESA = 3;
     const TYPE_PARTICULAR = 4;
 
@@ -59,8 +59,8 @@ class Proprietario extends Model
     public static function getCAEArray()
     {
         return [
-            self::TYPE_PRINCIPAL =>  __('Principal'),
-            self::TYPE_SECUNDÁRIO =>  __('Secundário'),
+            self::CAE_PRINCIPAL =>  __('Principal'),
+            self::CAE_SECUNDÁRIO =>  __('Secundário'),
         ];
     }
 
@@ -131,7 +131,7 @@ class Proprietario extends Model
     }
 
     public function user(){
-        
+
         return $this->belongsTo('App\User');
     }
 
