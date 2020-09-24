@@ -23,6 +23,9 @@ view()->share('hideSubHeader', true);
                 <div class="kt-portlet__head-wrapper">
                     <div class="kt-portlet__head-actions">
                         @canany(['adminApp', 'adminFullApp', 'accessAsLandlord'])
+                        <a href="{{ route('rendas.create', $renda ?? '') }}" class="btn btn-success">
+                            {{ __('Create Income') }}
+                        </a>
                         <a href="{{ route('contratos.edit', $contrato) }}" class="btn btn-brand btn-elevate btn-icon-sm">
                             <i class="la la-edit"></i>
                             {{ __('Update') }}

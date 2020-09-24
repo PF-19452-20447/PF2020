@@ -76,6 +76,10 @@
 
          {!! Form::hidden('contrato_id', null) !!}
 
+         {!! Form::hidden('inquilino_id', null) !!}
+
+         {!! Form::hidden('proprietario_id', null) !!}
+
     </div>
     <div class="kt-portlet__foot">
         <div class="kt-form__actions">

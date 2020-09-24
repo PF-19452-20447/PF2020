@@ -12,7 +12,8 @@ use Notification;
 use App\Contrato;
 use App\Notifications\PaymentReceived;
 use App\Notifications\PaymentReceived as NotificationsPaymentReceived;
-
+use App\Proprietario;
+use App\Inquilino;
 
 class RendaController extends Controller
 {
@@ -41,11 +42,27 @@ class RendaController extends Controller
             $contrato = Contrato::findOrfail($request->get('contrato_id'));
         }
 
+        if($request->get('inquilino_id')){
+            $inquilino = Inquilino::findOrfail($request->get('inquilino_id'));
+        }
+
+        if($request->get('proprietario_id')){
+            $proprietario = Proprietario::findOrfail($request->get('proprietario_id'));
+        }
+
         $renda = new Renda();
         $renda->loadDefaultValues();
         if(isset($contrato)){
             $renda->valorPagar = $contrato->valorRenda;
             $renda->contrato_id = $contrato->id;
+        }
+
+        if(isset($inquilino)){
+            $renda->inquilino_id = $inquilino->id;
+        }
+
+        if(isset($proprietario)){
+            $renda->proprietario_id = $proprietario->id;
         }
 
        // $response = Eupago::generateReferenceMB($renda->id, $renda->valorPagar);
@@ -54,7 +71,7 @@ class RendaController extends Controller
             $response; //tem os dados devolvidos para eupago
             dd($response);
         }*/
-        
+
          return view('rendas.create', compact('renda'));
     }
 
@@ -285,7 +302,10 @@ class RendaController extends Controller
             'notas' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'dataRecibo' => 'nullable|date_format:Y-m-d',
             'entidade' => 'nullable|regex:/^\d+(\.\d{1,2})?$/',
-            'referencia' => 'nullable|regex:/^\d+(\.\d{1,2})?$/'
+            'referencia' => 'nullable|regex:/^\d+(\.\d{1,2})?$/',
+            'contrato_id' => 'nullable|regex:/^\d+(\.\d{1,2})?$/',
+            'inquilino_id' => 'nullable|regex:/^\d+(\.\d{1,2})?$/',
+            'proprietario_id' => 'nullable|regex:/^\d+(\.\d{1,2})?$/'
         ];
 
         return $request->validate($validate_array);

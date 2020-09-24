@@ -31,7 +31,7 @@ class RendaDataTable extends DataTable
                             <a class="btn btn-sm btn-clean btn-icon btn-icon-md" href="'. route('rendas.show', $renda) .'" title="'. __('View') .'"><i class="la la-eye"></i></a>
                             <a href="'. route('rendas.edit', $renda) .'" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="'. __('Edit') .'"><i class="la la-edit"></i></a>
                             <button class="btn btn-sm btn-clean btn-icon btn-icon-md delete-confirmation" data-destroy-form-id="destroy-form-'. $renda->id .'" data-delete-url="'. route('rendas.destroy', $renda) .'" onclick="destroyConfirmation(this)" title="'. __('Delete') .'"><i class="la la-trash"></i></button>
-                            <button class="btn btn-brand btn-elevate btn-icon-sm" type="submit">Send Notification</button>';
+                            ';
 
                 });
 

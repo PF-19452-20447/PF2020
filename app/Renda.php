@@ -37,7 +37,10 @@ class Renda extends Model
         'notas',
         'dataRecibo',
         'entidade',
-        'referencia'
+        'referencia',
+        'contrato_id',
+        'inquilino_id',
+        'proprietario_id'
     ];
 
     /**
@@ -121,8 +124,6 @@ class Renda extends Model
         $array = self::getMethodPaymentOptions();
         return $array[$this->metodoPagamento];
     }
-
-
 
     public function contrato()
     {

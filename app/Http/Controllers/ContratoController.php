@@ -35,9 +35,9 @@ class ContratoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-      /*  if($request->get('contrato_id')){
+     /*   if($request->get('contrato_id')){
             $renda = Renda::findOrfail($request->get('renda_id'));
         }*/
         //$inquilino = Inquilino::pluck('nome', 'id');
