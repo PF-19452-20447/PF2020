@@ -146,7 +146,7 @@
         </div>
         <div class="form-group {{ $errors->has('ficheiro_contrato') ? 'is-invalid' : '' }}">
             {!! Form::label('ficheiro_contrato', __('Contract file')) !!}<br>
-            {!! Form::file('ficheiro_contrato', null, ['class' => 'form-control '.($errors->has('ficheiro_contrato') ? 'is-invalid' : '')]) !!}
+            {!! Form::file('ficheiro_contrato', [($errors->has('ficheiro_contrato') ? 'is-invalid' : '')]) !!}
             @error('ficheiro_contrato')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror

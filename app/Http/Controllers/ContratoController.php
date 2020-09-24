@@ -183,7 +183,7 @@ class ContratoController extends Controller
             'rendasAvanco' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'inquilinos_list' => 'required|min:1',
             'imovel_id' => 'required',
-            'ficheiro_contrato'=>'nullable|file',
+            'ficheiro_contrato'=>'nullable|file|max:5000',
             'cont_delete'=>'nullable'
         ];
 

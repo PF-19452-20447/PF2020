@@ -168,7 +168,7 @@
 
         <div class="form-group">
             {!! Form::label('photos', __('Selected photos (can attach more than one)')) !!}<br>
-            {!! Form::file('photos[]', ['class' => 'form-control '.($errors->has('photos') ? 'is-invalid' : ''), 'multiple' => "multiple"]) !!}
+            {!! Form::file('photos[]', [($errors->has('photos') ? 'is-invalid' : ''), 'multiple' => "multiple"]) !!}
             @error('photos')
                 <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
