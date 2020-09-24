@@ -275,12 +275,12 @@ class RendaController extends Controller
          //nullable -> optional fields
 
         $validate_array = [
-            'valorPagar' => 'nullable|regex:/^\d+(\.\d{1,2})?$/',
-            'dataPagamento' => 'nullable|date_format:Y-m-d',
-            'metodoPagamento' => 'nullable|integer',
+            'valorPagar' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+            'dataPagamento' => 'required|date_format:Y-m-d',
+            'metodoPagamento' => 'required|integer',
             'valorPago' => 'nullable|regex:/^\d+(\.\d{1,2})?$/',
             'valorDivida' => 'nullable|regex:/^\d+(\.\d{1,2})?$/',
-            'estado' => 'nullable|integer',
+            'estado' => 'required|integer',
             'dataLimitePagamento' => 'nullable|date_format:Y-m-d',
             'notas' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'dataRecibo' => 'nullable|date_format:Y-m-d',

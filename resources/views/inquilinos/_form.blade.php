@@ -34,7 +34,7 @@
         </div>
         <div class="form-group">
             {!! Form::label('cc', __('CC')) !!}
-            {!! Form::number('cc', null, ['class' => 'form-control '.($errors->has('cc') ? 'is-invalid' : ''), 'min' => '1', 'required' => true ]) !!}
+            {!! Form::number('cc', null, ['class' => 'form-control '.($errors->has('cc') ? 'is-invalid' : ''), 'min' => '1', 'required' => false ]) !!}
             @error('cc')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
@@ -62,7 +62,7 @@
         </div>
         <div class="form-group">
             {!! Form::label('iban', __('IBAN')) !!}
-            {!! Form::text('iban', null, ['class' => 'form-control '.($errors->has('iban') ? 'is-invalid' : ''), 'min' => '1', 'type' => 'number', 'step' => 1, 'required' => true]) !!}
+            {!! Form::text('iban', null, ['class' => 'form-control '.($errors->has('iban') ? 'is-invalid' : ''), 'min' => '1', 'type' => 'number', 'step' => 1, 'required' => false]) !!}
             @error('iban')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
@@ -83,7 +83,7 @@
         </div>
         <div class="form-group">
             {!! Form::label('vencimento', __('Payment')) !!}
-            {!! Form::number('vencimento', null, ['class' => 'form-control '.($errors->has('vencimento') ? 'is-invalid' : ''), 'min' => '1', 'max' => '999', 'type' => 'number', 'step' => 1, 'required' => true]) !!}
+            {!! Form::number('vencimento', null, ['class' => 'form-control '.($errors->has('vencimento') ? 'is-invalid' : ''), 'min' => '1', 'max' => '999', 'type' => 'number', 'step' => 1, 'required' => false]) !!}
             @error('vencimento')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
@@ -97,7 +97,7 @@
         </div>
         <div class="form-group">
             {!! Form::label('notas', __('Grades')) !!}
-            {!! Form::text('notas', null, ['class' => 'form-control '.($errors->has('notas') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1, 'min' => 0, 'required' => true]) !!}
+            {!! Form::text('notas', null, ['class' => 'form-control '.($errors->has('notas') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1, 'min' => 0, 'required' => false]) !!}
             @error('notas')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
@@ -111,28 +111,28 @@
         </div>
         <div class="form-group">
             {!! Form::label('capitalSocial', __('Share capital')) !!}
-            {!! Form::number('capitalSocial', null, ['class' => 'form-control '.($errors->has('capitalSocial') ? 'is-invalid' : ''), 'min' => '1', 'max' => '8', 'type' => 'number', 'step' => 1, 'required' => true]) !!}
+            {!! Form::number('capitalSocial', null, ['class' => 'form-control '.($errors->has('capitalSocial') ? 'is-invalid' : ''), 'min' => '1', 'max' => '8', 'type' => 'number', 'step' => 1, 'required' => false]) !!}
             @error('capitalSocial')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
             {!! Form::label('setorActividade', __('Activity sector')) !!}
-            {!! Form::text('setorActividade', null, ['class' => 'form-control '.($errors->has('setorActividade') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1, 'min' => 0, 'required' => true]) !!}
+            {!! Form::text('setorActividade', null, ['class' => 'form-control '.($errors->has('setorActividade') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1, 'min' => 0, 'required' => false]) !!}
             @error('setorActividade')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
             {!! Form::label('certidaoPermanente', __('Permanent certificate')) !!}
-            {!! Form::text('certidaoPermanente', null, ['class' => 'form-control '.($errors->has('certidaoPermanente') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1, 'min' => 0, 'required' => true]) !!}
+            {!! Form::text('certidaoPermanente', null, ['class' => 'form-control '.($errors->has('certidaoPermanente') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1, 'min' => 0, 'required' => false]) !!}
             @error('certidaoPermanente')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
             {!! Form::label('numFuncionarios', __('Number of employees')) !!}
-            {!! Form::number('numFuncionarios', null, ['class' => 'form-control '.($errors->has('numFuncionarios') ? 'is-invalid' : ''), 'min' => '0', 'max' => '10', 'type' => 'number', 'step' => 1, 'required' => true]) !!}
+            {!! Form::number('numFuncionarios', null, ['class' => 'form-control '.($errors->has('numFuncionarios') ? 'is-invalid' : ''), 'min' => '0', 'max' => '10', 'type' => 'number', 'step' => 1, 'required' => false]) !!}
             @error('numFuncionarios')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror

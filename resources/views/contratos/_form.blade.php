@@ -12,28 +12,28 @@
     <div class="kt-portlet__body">
         <div class="form-group">
             {!! Form::label('valorRenda', __('Income value')) !!}
-            {!! Form::number('valorRenda', null, ['class' => 'form-control '.($errors->has('valorRenda') ? 'is-invalid' : ''), 'required' => true]) !!}
+            {!! Form::number('valorRenda', null, ['class' => 'form-control '.($errors->has('valorRenda') ? 'is-invalid' : ''), 'required' => false]) !!}
             @error('valorRenda')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
             {!! Form::label('tipoContrato', __('Type of contract')) !!}
-            {!! Form::text('tipoContrato', null, ['class' => 'form-control '.($errors->has('tipoContrato') ? 'is-invalid' : ''), 'type' => 'date', 'required' => true ]) !!}
+            {!! Form::text('tipoContrato', null, ['class' => 'form-control '.($errors->has('tipoContrato') ? 'is-invalid' : ''), 'type' => 'date', 'required' => false ]) !!}
             @error('tipoContrato')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
             {!! Form::label('inicioContrato', __('Begining of contract')) !!}
-            {!! Form::datetime('inicioContrato', null, ['class' => 'form-control '.($errors->has('inicioContrato') ? 'is-invalid' : ''), 'min' => '1', 'required' => true ]) !!}
+            {!! Form::datetime('inicioContrato', null, ['class' => 'form-control '.($errors->has('inicioContrato') ? 'is-invalid' : ''), 'min' => '1', 'required' => false ]) !!}
             @error('inicioContrato')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
             {!! Form::label('fimContrato', __('End of contract')) !!}
-            {!! Form::datetime('fimContrato', null, ['class' => 'form-control '.($errors->has('fimContrato') ? 'is-invalid' : ''), 'min' => '1', 'required' => true ]) !!}
+            {!! Form::datetime('fimContrato', null, ['class' => 'form-control '.($errors->has('fimContrato') ? 'is-invalid' : ''), 'min' => '1', 'required' => false ]) !!}
             @error('fimContrato')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
@@ -47,21 +47,21 @@
         </div>
         <div class="form-group">
             {!! Form::label('isencaoBeneficio', __('Exemption benefit')) !!}
-            {!! Form::text('isencaoBeneficio', null, ['class' => 'form-control '.($errors->has('isencaoBeneficio') ? 'is-invalid' : ''), 'min' => '1', 'type' => 'number', 'step' => 1, 'required' => true]) !!}
+            {!! Form::text('isencaoBeneficio', null, ['class' => 'form-control '.($errors->has('isencaoBeneficio') ? 'is-invalid' : ''), 'min' => '1', 'type' => 'number', 'step' => 1, 'required' => false]) !!}
             @error('isencaoBeneficio')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
             {!! Form::label('retencaoFonte', __('Source retention')) !!}
-            {!! Form::text('retencaoFonte', null, ['class' => 'form-control '.($errors->has('retencaoFonte') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1, 'min' => 0, 'required' => true]) !!}
+            {!! Form::text('retencaoFonte', null, ['class' => 'form-control '.($errors->has('retencaoFonte') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1, 'min' => 0, 'required' => false]) !!}
             @error('retencaoFonte')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
             {!! Form::label('dataLimitePagamento', __('Payment deadline')) !!}
-            {!! Form::datetime('dataLimitePagamento', null, ['class' => 'form-control '.($errors->has('dataLimitePagamento') ? 'is-invalid' : ''), 'min' => '1', 'type' => 'number', 'step' => 1, 'required' => true]) !!}
+            {!! Form::datetime('dataLimitePagamento', null, ['class' => 'form-control '.($errors->has('dataLimitePagamento') ? 'is-invalid' : ''), 'min' => '1', 'type' => 'number', 'step' => 1, 'required' => false]) !!}
             @error('dataLimitePagamento')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
@@ -75,14 +75,14 @@
         </div>
         <div class="form-group">
             {!! Form::label('encargos', __('Charges')) !!}
-            {!! Form::text('encargos', null, ['class' => 'form-control '.($errors->has('encargos') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1, 'min' => 0, 'required' => true]) !!}
+            {!! Form::text('encargos', null, ['class' => 'form-control '.($errors->has('encargos') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1, 'min' => 0, 'required' => false]) !!}
             @error('encargos')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
             {!! Form::label('caucao', __('Deposit')) !!}
-            {!! Form::number('caucao', null, ['class' => 'form-control '.($errors->has('caucao') ? 'is-invalid' : ''), 'min' => '1', 'max' => '999', 'type' => 'number', 'step' => 1, 'required' => true]) !!}
+            {!! Form::number('caucao', null, ['class' => 'form-control '.($errors->has('caucao') ? 'is-invalid' : ''), 'min' => '1', 'max' => '999', 'type' => 'number', 'step' => 1, 'required' => false]) !!}
             @error('caucao')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
@@ -96,7 +96,7 @@
         </div>
         <div class="form-group">
             {!! Form::label('rendasAvanco', __('Advancing rents')) !!}
-            {!! Form::text('rendasAvanco', null, ['class' => 'form-control '.($errors->has('rendasAvanco') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1,  'required' => true]) !!}
+            {!! Form::text('rendasAvanco', null, ['class' => 'form-control '.($errors->has('rendasAvanco') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1,  'required' => false]) !!}
             @error('rendasAvanco')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror

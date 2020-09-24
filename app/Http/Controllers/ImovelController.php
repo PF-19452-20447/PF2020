@@ -119,7 +119,7 @@ class ImovelController extends Controller
     public function uploadPhoto(Request $request)
 {
     $this->validate($request, [
-        'photos.*' => 'required|image|mimes:jpeg,png,bmp,tiff |max:4096',
+        'photos.*' => 'required|image|mimes:jpeg,png,bmp,tiff|max:4096',
     ]);
  // Now save your file to the storage and file details at database.
 }
@@ -175,7 +175,7 @@ class ImovelController extends Controller
             'terraco' => 'required|integer',
             'churrasqueira' => 'required|integer',
             'arCondicionado' => 'required|integer',
-            'photos.*'=>'nullable|image|mimes:jpeg,png,jpg,bmp,tiff |max:4096',
+            'photos.*'=>'nullable|image|mimes:jpeg,png,jpg,bmp,tiff|max:4096',
             'img_delete'=>'nullable',
         ];
         return $request->validate($validate_array);

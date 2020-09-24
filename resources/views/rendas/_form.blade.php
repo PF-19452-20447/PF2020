@@ -33,14 +33,14 @@
         </div>
         <div class="form-group">
             {!! Form::label('valorPago', __('Amount paid')) !!}
-            {!! Form::number('valorPago', null, ['class' => 'form-control '.($errors->has('valorPago') ?  'is-invalid' : ''), 'min' => '0',  'required' => true ]) !!}
+            {!! Form::number('valorPago', null, ['class' => 'form-control '.($errors->has('valorPago') ?  'is-invalid' : ''), 'min' => '0',  'required' => false ]) !!}
             @error('valorPago')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
             {!! Form::label('valorDivida', __('Debt amount')) !!}
-            {!! Form::number('valorDivida', null, ['class' => 'form-control '.($errors->has('valorDivida') ?  'is-invalid' : ''),  'step' => 1, 'min' => 1, 'required' => true]) !!}
+            {!! Form::number('valorDivida', null, ['class' => 'form-control '.($errors->has('valorDivida') ?  'is-invalid' : ''),  'step' => 1, 'min' => 1, 'required' => false]) !!}
             @error('valorDivida')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
@@ -54,21 +54,21 @@
         </div>
         <div class="form-group">
             {!! Form::label('dataLimitePagamento', __('Payment deadline')) !!}
-            {!! Form::date('dataLimitePagamento', null, ['class' => 'form-control '.($errors->has('dataLimitePagamento') ?  'is-invalid' : ''),  'step' => 1, 'required' => true]) !!}
+            {!! Form::date('dataLimitePagamento', null, ['class' => 'form-control '.($errors->has('dataLimitePagamento') ?  'is-invalid' : ''),  'step' => 1, 'required' => false]) !!}
             @error('dataLimitePagamento')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
             {!! Form::label('notas', __('Notes')) !!}
-            {!! Form::text('notas', null, ['class' => 'form-control '.($errors->has('notas') ?  'is-invalid' : ''),  'step' => 1, 'required' => true]) !!}
+            {!! Form::text('notas', null, ['class' => 'form-control '.($errors->has('notas') ?  'is-invalid' : ''),  'step' => 1, 'required' => false]) !!}
             @error('notas')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
             {!! Form::label('dataRecibo', __('Receipt date')) !!}
-            {!! Form::date('dataRecibo', null, ['class' => 'form-control '.($errors->has('dataRecibo') ? 'is-invalid' : ''),  'step' => 1, 'required' => true]) !!}
+            {!! Form::date('dataRecibo', null, ['class' => 'form-control '.($errors->has('dataRecibo') ? 'is-invalid' : ''),  'step' => 1, 'required' => false]) !!}
             @error('dataRecibo')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
