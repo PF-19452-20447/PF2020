@@ -54,7 +54,7 @@ class RendaController extends Controller
             $response; //tem os dados devolvidos para eupago
             dd($response);
         }*/
-
+        
          return view('rendas.create', compact('renda'));
     }
 

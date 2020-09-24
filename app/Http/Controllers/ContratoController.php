@@ -9,6 +9,7 @@ use App\Inquilino;
 use Illuminate\Http\Request;
 use Spatie\Permission\Traits\HasRoles;
 use DB;
+use App\Renda;
 
 class ContratoController extends Controller
 {
@@ -34,14 +35,23 @@ class ContratoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+      /*  if($request->get('contrato_id')){
+            $renda = Renda::findOrfail($request->get('renda_id'));
+        }*/
         //$inquilino = Inquilino::pluck('nome', 'id');
        // $inquilino = DB::table('inquilinos')->groupBy('nome')->get();
         $contrato = new Contrato();
         $contrato->loadDefaultValues();
         $selectedTenantes = [];
         //$selectedProperty = [];
+
+       /* if(isset($renda)){
+            $contrato->valorRenda = $renda->valorPagar;
+            $contrato->renda_id = $renda->id;
+        }*/
+
          return view('contratos.create', compact('contrato', 'selectedTenantes'));
 
     }
@@ -59,6 +69,9 @@ class ContratoController extends Controller
          //$validatedAttributes = $request->except('inquilino');
 
         if(($model = Contrato::create($validatedAttributes)) ) {
+            $model->metodoPagamento = Contrato::PAGAMENTO_MULTIBANCO;
+            $model->estado= Contrato::ESTADO_EM_ESPERA;
+            $model->save();
             $model->inquilinos()->attach($validatedAttributes['inquilinos_list']);
             if($request->hasFile('ficheiro_contrato')){
                 $model->addMedia($request->file('ficheiro_contrato'))->toMediaCollection('contract_files');
@@ -175,7 +188,7 @@ class ContratoController extends Controller
             'renovavel' => 'required|integer',
             'isencaoBeneficio' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'retencaoFonte' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
-            'dataLimitePagamento' => 'nullable|date_format:Y-m-d H:i:s',
+            'dataLimitePagamento' => 'nullable|date_format:Y-m-d H:i:s|after:fimContrato',
             'estado' => 'required|integer',
             'encargos' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'caucao' => 'nullable|regex:/^\d+(\.\d{1,2})?$/',
