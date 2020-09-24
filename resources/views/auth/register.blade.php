@@ -16,7 +16,7 @@
                 <form class="kt-form" method="POST" action="{{ route('register') }}">
                     @csrf
                 <div class="input-group">
-                    <input id="name" type="text" placeholder="{{ __('Name') }}" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                    <input id="name" type="text" placeholder="{{ __('Username') }}" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                     @error('name')
                     <div class="error invalid-feedback">{{ $message }}</div>
                     @enderror

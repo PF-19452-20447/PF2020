@@ -63,6 +63,7 @@ class ContratoController extends Controller
             if($request->hasFile('ficheiro_contrato')){
                 $model->addMedia($request->file('ficheiro_contrato'))->toMediaCollection('contract_files');
         }
+        
          //  $model->imovel()->attach($validatedAttributes['imovel_id']);
          //$imovel_id = $request->imovel_id;
             //flash('Role Added');

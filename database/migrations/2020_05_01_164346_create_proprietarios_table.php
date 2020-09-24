@@ -18,12 +18,12 @@ class CreateProprietariosTable extends Migration
             $table->string('nome');
             $table->date('dataNascimento');
             $table->char('nif', 32);
-            $table->char('cc', 16);
+            $table->char('cc', 16)->nullable();
             $table->string('email')->unique();
-            $table->char('telefone', 16);
+            $table->char('telefone', 16)->nullable();
             $table->string('morada');
             $table->char('iban', 64);
-            $table->integer('tipoParticularEmpresa');
+            $table->integer('tipoParticularEmpresa')->nullable();
             $table->integer('cae');
             $table->integer('capitalSocial');
             $table->string('setorActividade');

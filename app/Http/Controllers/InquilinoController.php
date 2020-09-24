@@ -20,6 +20,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Policies\InquilinoPolicy;
+use App\Proprietario;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Gate;
@@ -30,6 +31,7 @@ use Spatie\Permission\Traits\HasRoles;
 use Validation\Validator;
 use PDF;
 use Dompdf\Dompdf;
+use ProprietarioInquilino;
 
 class InquilinoController extends Controller
 {
@@ -103,6 +105,17 @@ class InquilinoController extends Controller
                     $inquilino->addMedia($photo)->toMediaCollection('images');
                  }
             }
+            //utilizador corrente
+            $user = Auth::user();
+            \Debugbar::error($user);
+            //só associa ao proprietáro se nao for administrador
+            if(!$user->can('adminApp') or !$user->can('adminFullApp')){
+
+                //procura o corrente o perfil do utilizador
+                $proprietario = Proprietario::where('user_id', $user->id);
+                $proprietario->inquilinos()->attach($inquilino->id);
+            }
+
             //flash('Role Added');
             return redirect(route('inquilinos.show', $inquilino));
         }else{
