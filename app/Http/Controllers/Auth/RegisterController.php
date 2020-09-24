@@ -85,7 +85,7 @@ class RegisterController extends Controller
             'morada' => $data['morada'],
             'user_id' => $user->id
         ]);
-        //\Debugbar::error($user);
+        $user->proprietario()->save($landlord);
         //Atribui o role de landlord
         $role = Role::where('name', 'Landlord')->first();
         $user->roles()->save($role);
