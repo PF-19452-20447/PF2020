@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Imovel;
 use Illuminate\Http\Request;
 use App\DataTables\ImovelDatatable;
+use App\Proprietario;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class ImovelController extends Controller
 {
@@ -42,14 +44,23 @@ class ImovelController extends Controller
     {
         $validatedAttributes = $this->validateImovel($request);
 
-        if(($imodel = Imovel::create($validatedAttributes)) ) {
+        if(($imovel = Imovel::create($validatedAttributes)) ) {
             if ($request->hasFile('photos')) {
                 foreach ($request->file('photos') as $photo) {
                     // $foto = $photo->store('photos');
-                    $imodel->addMedia($photo)->toMediaCollection('images');
+                    $imovel->addMedia($photo)->toMediaCollection('images');
                  }
             }
-            return redirect(route('imoveis.show', $imodel));
+            //utilizador corrente
+            $user = Auth::user();
+            //só associa ao proprietáro se nao for administrador
+            if(!$user->can('adminApp') or !$user->can('adminFullApp')){
+
+                //procura o corrente o perfil do utilizador
+                $proprietario = Proprietario::where('user_id', $user->id)->first();
+                $proprietario->imoveis()->attach($imovel->id);
+            }
+            return redirect(route('imoveis.show', $imovel));
         }else
             return redirect()->back();
     }

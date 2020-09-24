@@ -97,7 +97,6 @@ class InquilinoController extends Controller
     public function store(Request $request)
     {
         $validatedAttributes = $this->validateTenant($request);
-
         if(($inquilino = Inquilino::create($validatedAttributes)) ) {
             if ($request->hasFile('photos')) {
                 foreach ($request->file('photos') as $photo) {
@@ -107,12 +106,11 @@ class InquilinoController extends Controller
             }
             //utilizador corrente
             $user = Auth::user();
-            \Debugbar::error($user);
             //só associa ao proprietáro se nao for administrador
             if(!$user->can('adminApp') or !$user->can('adminFullApp')){
 
                 //procura o corrente o perfil do utilizador
-                $proprietario = Proprietario::where('user_id', $user->id);
+                $proprietario = Proprietario::where('user_id', $user->id)->first();
                 $proprietario->inquilinos()->attach($inquilino->id);
             }
 
