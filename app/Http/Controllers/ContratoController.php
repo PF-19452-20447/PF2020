@@ -70,7 +70,7 @@ class ContratoController extends Controller
 
         if(($model = Contrato::create($validatedAttributes)) ) {
             $model->metodoPagamento = Contrato::PAGAMENTO_MULTIBANCO;
-            $model->estado= Contrato::ESTADO_EM_ESPERA;
+            $model->estado= Contrato::ESTADO_ATIVO;
             $model->save();
             $model->inquilinos()->attach($validatedAttributes['inquilinos_list']);
             if($request->hasFile('ficheiro_contrato')){

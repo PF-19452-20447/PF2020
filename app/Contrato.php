@@ -12,17 +12,16 @@ use Spatie\MediaLibrary\HasMedia;
 class Contrato extends Model implements HasMedia
 {
 
-    const ESTADO_EM_ESPERA = 1;
-    const ESTADO_PAGO = 2;
-    const ESTADO_NAO_REMUNERADO = 3;
-    const ESTADO_PARCIAL = 4;
-    const PAGAMENTO_TRANSFERENCIA_BANCARIA = 5;
-    const PAGAMENTO_MULTIBANCO = 6;
-    const PAGAMENTO_MBWAY = 7;
-    const PAGAMENTO_DEBITO_DIRETO = 8;
-    const PAGAMENTO_CARTAO_CREDITO = 9;
-    const RENOVAVEL_SIM = 10;
-    const RENOVAVEL_NÃO = 11;
+    const ESTADO_ATIVO = 1;
+    const ESTADO_PENDENTE = 2;
+    const ESTADO_TERMINADO = 3;
+    const PAGAMENTO_TRANSFERENCIA_BANCARIA = 4;
+    const PAGAMENTO_MULTIBANCO = 5;
+    const PAGAMENTO_MBWAY = 6;
+    const PAGAMENTO_DEBITO_DIRETO = 7;
+    const PAGAMENTO_CARTAO_CREDITO = 8;
+    const RENOVAVEL_SIM = 9;
+    const RENOVAVEL_NÃO = 10;
 
 
   //  protected $table = 'contratos';
@@ -74,10 +73,9 @@ class Contrato extends Model implements HasMedia
     public static function getStateArray()
     {
         return [
-            self::ESTADO_EM_ESPERA =>  __('Em Espera'),
-            self::ESTADO_PAGO =>  __('Pago'),
-            self::ESTADO_NAO_REMUNERADO =>  __('Não Remunerado'),
-            self::ESTADO_PARCIAL =>  __('Parcial')
+            self::ESTADO_ATIVO =>  __('Ativo'),
+            self::ESTADO_PENDENTE =>  __('Pendente'),
+            self::ESTADO_TERMINADO =>  __('Terminado'),
         ];
     }
 
