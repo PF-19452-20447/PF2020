@@ -140,6 +140,6 @@ Route::get('service/renda/create','RendaController@create');
 Route::get('service/renda/update','RendaController@update');
 Route::get('service/renda/destroy','RendaController@destroy');
 
-
+Route::get('/translations')->name('translations');
 
 
