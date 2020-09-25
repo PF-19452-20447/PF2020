@@ -76,7 +76,7 @@ class ContratoController extends Controller
             if($request->hasFile('ficheiro_contrato')){
                 $model->addMedia($request->file('ficheiro_contrato'))->toMediaCollection('contract_files');
         }
-        
+
          //  $model->imovel()->attach($validatedAttributes['imovel_id']);
          //$imovel_id = $request->imovel_id;
             //flash('Role Added');
@@ -184,12 +184,12 @@ class ContratoController extends Controller
         $validate_array = [
             'valorRenda' => 'required|regex:/^\d+(\.\d{1,2})?$/',
             'tipoContrato' => 'required|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
-            'inicioContrato' => 'nullable|date_format:Y-m-d H:i:s|after:tomorrow',
-            'fimContrato' => 'nullable|date_format:Y-m-d H:i:s|after:inicioContrato',
+            'inicioContrato' => 'nullable|date_format:Y-m-d|after:tomorrow',
+            'fimContrato' => 'nullable|date_format:Y-m-d|after:inicioContrato',
             'renovavel' => 'required|integer',
             'isencaoBeneficio' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'retencaoFonte' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
-            'dataLimitePagamento' => 'nullable|date_format:Y-m-d H:i:s|after:fimContrato',
+            'dataLimitePagamento' => 'nullable|date_format:Y-m-d|after:fimContrato',
             'estado' => 'required|integer',
             'encargos' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'caucao' => 'nullable|regex:/^\d+(\.\d{1,2})?$/',
