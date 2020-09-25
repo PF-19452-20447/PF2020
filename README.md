@@ -35,6 +35,6 @@ If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Lar
  3. Copy .env.example as .env and replace database information + APP_KEY (for encryption).
  4. Run php artisan jwt:secret to generate jwt secret.
  5. Run php artisan migrate.
- 6. Run php artisan db:seed to create first user (admin@admin.pt - adminadmin)
+ 6. Run php artisan db:seed to create seed.
  7. Run php artisan serve to locally deploy the application.
 
