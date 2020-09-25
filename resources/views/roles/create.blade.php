@@ -31,7 +31,7 @@ view()->share('hideSubHeader', true);
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label>{{ __('Guard name') }}</label>
+                    <label>Guard name</label>
                     <input type="text" name="guard_name" class="form-control @error('guard_name') is-invalid @enderror"  placeholder="{{ __('Guard name') }}" value="{{old('guard_name', $role->guard_name ?? '')}}">
                     <span class="form-text text-muted">{{ __('Default value is "web".') }}</span>
                     @error('guard_name')

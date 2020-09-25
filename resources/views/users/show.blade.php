@@ -3,6 +3,7 @@
  *
  * @var $user \App\User
  */
+
 view()->share('pageTitle', $user->name);
 view()->share('hideSubHeader', true);
 ?>
@@ -15,7 +16,7 @@ view()->share('hideSubHeader', true);
         <div class="kt-portlet__head">
             <div class="kt-portlet__head-label">
                 <h3 class="kt-portlet__head-title">
-                    {{ $user->name }}
+                    {{ $user->proprietario->nome }}
                 </h3>
             </div>
         </div>
@@ -62,17 +63,12 @@ view()->share('hideSubHeader', true);
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Cell Number') }}</th>
-                                @if ($user->proprietario->telefone)
                                     <td>{{ $user->proprietario->telefone }}</td>
-                                @else
-                                    <td>Nenhum</td>
-                                @endif
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Address') }}</th>
                                 <td>{{ $user->proprietario->morada }}</td>
                             </tr>
-                            {{-- Intrduzir colapsable aqui! --}}
                             <tr>
                                 <th scope="row">{{ __('Indentity Number') }}</th>
                                 <td>{{ $user->proprietario->cc }}</td>
@@ -109,7 +105,6 @@ view()->share('hideSubHeader', true);
                                 <th scope="row">{{ __('Number of employees') }}</th>
                                 <td>{{ $user->proprietario->numFuncionarios }}</td>
                             </tr>
-
                         </tbody>
                     </table>
                 </div>

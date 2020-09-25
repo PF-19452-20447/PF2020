@@ -12,7 +12,7 @@ class ImoveisSeeder extends Seeder
      */
     public function run()
     {
-        Imovel::create([
+        $imovel = Imovel::create([
             'tipo'      => 'apartamento',
             'tipologia' => 'T3',
             'area' => '100',
@@ -36,5 +36,6 @@ class ImoveisSeeder extends Seeder
             'churrasqueira' => '4',
             'arCondicionado' => '4'
         ]);
+        App\Proprietario::find(1)->imoveis()->attach($imovel->id);
     }
 }

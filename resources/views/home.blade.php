@@ -29,27 +29,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <br></br>
+                <br/>
                 <div class="card-header">Dashboard</div>
-                    <br></br>
-                    <h4>Welcome to our application! {{-- Auth::user()->proprietario->imoveis->pluck('id') --}}
-                        <?php
-                       /* $user= Auth::user();
-                        $fiadores_ids = [];
-                        foreach($user->proprietario->inquilinos as $inquilino){
-                         $fiadores_ids = array_merge($fiadores_ids,  $inquilino->fiadores->pluck('id')->toArray());
-                         echo(json_encode($fiadores_ids).",");
-                          //  echo($inquilino->id.",");
-                         // echo(json_encode($inquilino->fiadores->pluck('id')).",");
-                          /*foreach($inquilino->fiadores as $fiador){
-                            // $fiadores_ids = array_merge($fiadores_ids,  $inquilino->fiadores->pluck('id')->toArray());
-                                echo($fiador->id.",");
-                              //echo(json_encode($inquilino->fiadores->pluck('id')).",");
-                            }*//*
-                        }*/
-
-                        ?>
-                        </h4>
+                    <br/>
+                    <center><h4> {{__('Welcome to our application')}} {{ explode(" ", Auth::user()->proprietario->nome)[0]}}!</h4></center>
 
 
                 <div class="card-body">
@@ -60,7 +43,7 @@
                     @endif
 
                     @auth
-                        {{ Auth::user()->name }}, you are logged in!
+                        {{ Auth::user()->name }}, {{__('you are logged in!')}}
                             <a  href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -80,40 +63,43 @@
                     @endcanany
                     @cannot(['adminApp','adminFullApp'])
                     @can('accessAsLandlord')
-                    <br></br>
+                    <br/>
                     <div class="card-header">
                         <div class="card-header">
-                            <h5>To start is simple, step 1,2,3</h5>
+                            <center><h5>{{ __('To start is simple, follow these steps') }}</h5></center>
                         </div>
+                        <h5>{{ __('Firstly') }}</h5>
                         <div id="numero1" class="card-body">
-                            <img src="images/number1.png " />
-                            <a class="btn" href="{{ route('imoveis.create') }}">
-                                Create Property
-                                <br></br>
-                                <p>Create a card for your property</p>
-                            </a>
+                            {{-- <img src="images/number1.png " /> --}}
+                            <center><a class="btn" href="{{ route('imoveis.create') }}">
+                                {{ __('Create Property') }}
+                                <br/>
+                                <p>{{ __('Create a card for your property') }}</p>
+                            </a></center>
 
                         </div>
 
-                        <br></br>
+                        <br/>
+                        <h5>{{__('Then')}}</h5>
                         <div id="numero2" class="card-body">
-                            <img src="images/number2.png " />
-                            <a class="btn" href="{{ route('inquilinos.create') }}">
-                                Create Tenant
-                                <br></br>
-                                <p>Create a card for your tenant</p>
-                            </a>
+                            {{-- <img src="images/number2.png " /> --}}
+                            <center><a class="btn" href="{{ route('inquilinos.create') }}">
+                                {{ __('Create Tenant') }}
+                                <br/>
+                                <p>{{ __('Create a card for your tenant') }}</p>
+                            </a></center>
 
                         </div>
 
-                        <br></br>
+                        <br/>
+                        <h5>{{__('Finaly')}}</h5>
                         <div id="numero3" class="card-body">
-                            <img src="images/number3.png " />
-                            <a class="btn" href="{{ route('contratos.create') }}">
-                                Create Contract
-                                <br></br>
-                                <p>Create a card for your contract</p>
-                            </a>
+                            {{-- <img src="images/number3.png " /> --}}
+                            <center><a class="btn" href="{{ route('contratos.create') }}">
+                                {{ __('Create Contract') }}
+                                <br/>
+                                <p>{{ __('Create a card for your contract') }}</p>
+                            </a></center>
 
                         </div>
 
@@ -133,30 +119,30 @@
                             <img src="images/contracts.png " />
                             <a class="btn" href="{{ route('contratos.index') }}">
                                 Contracts
-                                <br></br>
+                                <br/>
 
                             </a>
 
                         </div>
 
-                        <br></br>
+                        <br/>
                         <div id="numero2" class="card-body">
                             <img src="images/money.png " />
                             <a class="btn" href="{{ route('rendas.index') }}">
                                 Incomes
-                                <br></br>
+                                <br/>
 
                             </a>
 
                         </div>
 
-                        <br></br>
+                        <br/>
                         <div id="numero3" class="card-body">
                             <img src="images/house.png " />
                             <a class="btn" href="{{ route('imoveis.index') }}">
                                 Properties
-                                <br></br>
-                                
+                                <br/>
+
                             </a>
 
                         </div>
