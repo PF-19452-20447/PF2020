@@ -17,14 +17,14 @@ class ContratosSeeder extends Seeder
             'tipoContrato' => 'anual',
             'inicioContrato' => '2019-07-12 11:21:33',
             'fimContrato' => '2020-11-03 12:32:11',
-            'renovavel'     => '1',
+            'renovavel'     => '5',
             'isencaoBeneficio' => 'isencao ate 2 anos',
             'retencaoFonte' => 'Nao recebeu a totalidade do pagmento',
             'dataLimitePagamento' => '2020-11-02 11:00:00',
             'estado' => '2',
             'encargos' => 'encargo',
             'caucao' => '100',
-            'metodoPagamento' => '1',
+            'metodoPagamento' => '7',
             'rendasAvanco' => 'Nao tem rendas em avanço'
         ]);
     }

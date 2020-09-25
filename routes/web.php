@@ -101,6 +101,7 @@ Route::get('service/fiador/destroy', 'FiadorController@destroy');
 Route::resource('imoveis', 'ImovelController')->parameters([
     'imoveis' => 'imovel'
 ]);
+Route::post('imoveis/{imovel}','ImovelController@uploadPhoto');
 
 //permissoes e roles dos fiadores
 Route::get('service/imoveis/view', 'ImovelController@view');

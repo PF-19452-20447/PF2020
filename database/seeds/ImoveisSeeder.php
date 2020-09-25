@@ -21,20 +21,20 @@ class ImoveisSeeder extends Seeder
             'numCasaBanho' => '2',
             'descricao' => 'É um apartamento que se situa ao pé do mar',
             'estado' => '1',
-            'mobilado' => '1',
-            'fumar' => '0',
-            'animaisEstimacao' => '1',
+            'mobilado' => '4',
+            'fumar' => '4',
+            'animaisEstimacao' => '4',
             'outrosEquipamentos' => 'Estores electricos',
             'certificadoEnergetico' => 'Com certificado',
             'licencaHabitacao' => 'Com lincença',
             'notas' => 'Nada a acrescentar de momento',
-            'televisao' => '1',
-            'frigorifico' => '1',
-            'piscina' => '1',
-            'varanda' => '1',
-            'terraco' => '0',
-            'churrasqueira' => '0',
-            'arCondicionado' => '1'
+            'televisao' => '4',
+            'frigorifico' => '4',
+            'piscina' => '4',
+            'varanda' => '4',
+            'terraco' => '4',
+            'churrasqueira' => '4',
+            'arCondicionado' => '4'
         ]);
     }
 }

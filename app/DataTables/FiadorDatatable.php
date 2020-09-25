@@ -41,6 +41,15 @@ class FiadorDatatable extends DataTable
 
             });
 
+        }if(auth()->user()->can('adminApp')){
+            $datatable->addColumn('action', function ($fiador) {
+                return '<a class="btn btn-sm btn-clean btn-icon btn-icon-md" href="'. route('fiador.show', $fiador) .'" title="'. __('View') .'"><i class="la la-eye"></i></a>
+                <a href="'. route('fiador.edit', $fiador) .'" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="'. __('Edit') .'"><i class="la la-edit"></i></a>
+                <button class="btn btn-sm btn-clean btn-icon btn-icon-md delete-confirmation" data-destroy-form-id="destroy-form-'. $fiador->id .'" data-delete-url="'. route('fiador.destroy', $fiador) .'" onclick="destroyConfirmation(this)" title="'. __('Delete') .'"><i class="la la-trash"></i></button>
+                        ';
+
+            });
+
         }
         return $datatable;
     }

@@ -1,12 +1,38 @@
 @extends('layouts.app')
+<head>
+<style>
+    #numero1{
+        border: 2px solid	rgba(190,190,190,0.5);
+        border-radius: 5px;
+    }
+
+    .card-body{
+        background-color: white;
+    }
+
+    #numero2{
+        border: 2px solid	rgba(190,190,190,0.5);
+        border-radius: 5px;
+    }
+
+    #numero3{
+        border: 2px solid	rgba(190,190,190,0.5);
+        border-radius: 5px;
+    }
+
+</style>
+</head>
 
 @section('content')
+@canany(['adminApp', 'adminFullApp', 'accessAsTenant', 'accessAsLandlord'])
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
+                <br></br>
                 <div class="card-header">Dashboard</div>
-                    <h4>Welcome to our application {{-- Auth::user()->proprietario->imoveis->pluck('id') --}}
+                    <br></br>
+                    <h4>Welcome to our application! {{-- Auth::user()->proprietario->imoveis->pluck('id') --}}
                         <?php
                        /* $user= Auth::user();
                         $fiadores_ids = [];
@@ -24,6 +50,7 @@
 
                         ?>
                         </h4>
+
 
                 <div class="card-body">
                     @if (session('status'))
@@ -50,10 +77,97 @@
                             <a href="{{ route('register') }}">Register</a>
                         @endif
                     @endauth
+                    @endcanany
+                    @cannot(['adminApp','adminFullApp'])
+                    @can('accessAsLandlord')
+                    <br></br>
+                    <div class="card-header">
+                        <div class="card-header">
+                            <h5>To start is simple, step 1,2,3</h5>
+                        </div>
+                        <div id="numero1" class="card-body">
+                            <img src="images/number1.png " />
+                            <a class="btn" href="{{ route('imoveis.create') }}">
+                                Create Property
+                                <br></br>
+                                <p>Create a card for your property</p>
+                            </a>
 
+                        </div>
+
+                        <br></br>
+                        <div id="numero2" class="card-body">
+                            <img src="images/number2.png " />
+                            <a class="btn" href="{{ route('inquilinos.create') }}">
+                                Create Tenant
+                                <br></br>
+                                <p>Create a card for your tenant</p>
+                            </a>
+
+                        </div>
+
+                        <br></br>
+                        <div id="numero3" class="card-body">
+                            <img src="images/number3.png " />
+                            <a class="btn" href="{{ route('contratos.create') }}">
+                                Create Contract
+                                <br></br>
+                                <p>Create a card for your contract</p>
+                            </a>
+
+                        </div>
+
+                    </div>
+                    @endcan
+                    @endcannot
+
+                    <br>
+                    <br>
+                    @cannot(['accessAsLandlord', 'adminFullApp', 'adminApp'])
+                    @can(['accessAsTenant'])
+                    <div class="card-header">
+                        <div class="card-header">
+
+                        </div>
+                        <div id="numero1" class="card-body">
+                            <img src="images/contracts.png " />
+                            <a class="btn" href="{{ route('contratos.index') }}">
+                                Contracts
+                                <br></br>
+
+                            </a>
+
+                        </div>
+
+                        <br></br>
+                        <div id="numero2" class="card-body">
+                            <img src="images/money.png " />
+                            <a class="btn" href="{{ route('rendas.index') }}">
+                                Incomes
+                                <br></br>
+
+                            </a>
+
+                        </div>
+
+                        <br></br>
+                        <div id="numero3" class="card-body">
+                            <img src="images/house.png " />
+                            <a class="btn" href="{{ route('imoveis.index') }}">
+                                Properties
+                                <br></br>
+                                
+                            </a>
+
+                        </div>
+
+                    </div>
+                    @endcan
+                    @endcannot
                 </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
+

@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'pt',
 
     /*
     |--------------------------------------------------------------------------
@@ -178,6 +178,8 @@ return [
         /*Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,*/
         /*Lab404\Impersonate\ImpersonateServiceProvider::class,*/
         /*App\Providers\SettingServiceProvider::class*/
+        'Barryvdh\TranslationManager\ManagerServiceProvider',
+
 
     ],
 
@@ -232,6 +234,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Settings' => App\Facades\Setting::class,
+        'Eupago' => App\Facades\Eupago::class
 
     ],
 

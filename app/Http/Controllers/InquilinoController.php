@@ -20,6 +20,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Policies\InquilinoPolicy;
+use App\Proprietario;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Gate;
@@ -30,6 +31,7 @@ use Spatie\Permission\Traits\HasRoles;
 use Validation\Validator;
 use PDF;
 use Dompdf\Dompdf;
+use ProprietarioInquilino;
 
 class InquilinoController extends Controller
 {
@@ -95,7 +97,6 @@ class InquilinoController extends Controller
     public function store(Request $request)
     {
         $validatedAttributes = $this->validateTenant($request);
-
         if(($inquilino = Inquilino::create($validatedAttributes)) ) {
             if ($request->hasFile('photos')) {
                 foreach ($request->file('photos') as $photo) {
@@ -103,6 +104,16 @@ class InquilinoController extends Controller
                     $inquilino->addMedia($photo)->toMediaCollection('images');
                  }
             }
+            //utilizador corrente
+            $user = Auth::user();
+            //só associa ao proprietáro se nao for administrador
+            if(!$user->can('adminApp') or !$user->can('adminFullApp')){
+
+                //procura o corrente o perfil do utilizador
+                $proprietario = Proprietario::where('user_id', $user->id)->first();
+                $proprietario->inquilinos()->attach($inquilino->id);
+            }
+
             //flash('Role Added');
             return redirect(route('inquilinos.show', $inquilino));
         }else{
@@ -301,16 +312,16 @@ class InquilinoController extends Controller
             'nif' => ['required', 'alpha_num', 'max:32'],
             'cc' => ['required', 'alpha_num', 'max:16'],
             'email' => 'required|email|unique:users',
-            'telefone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:9',
+            'telefone' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|min:9',
             'morada' => 'required|string',
             'iban' => ['nullable', 'alpha_dash', 'max:64'],
             'tipoParticularEmpresa' => 'required|integer',
             'profissao' => 'required|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
-            'vencimento' => 'required|integer',
+            'vencimento' => 'nullable|integer',
             'tipoContrato' => 'required|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'notas' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
-            'cae' => 'required|integer',
-            'capitalSocial' => 'required|integer',
+            'cae' => 'nullable|integer',
+            'capitalSocial' => 'nullable|integer',
             'setorActividade' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'certidaoPermanente' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'numFuncionarios' => 'nullable|integer|min:0',

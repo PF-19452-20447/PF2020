@@ -27,22 +27,25 @@ class RendaDataTable extends DataTable
             //->editColumn('created_at', '{{ Carbon\Carbon::parse(created_at)->toDateTimeString() }}');
             if(auth()->user()->can('accessAsLandlord')){
                 $datatable->addColumn('action', function ($renda) {
-                    return '<a class="btn btn-sm btn-clean btn-icon btn-icon-md" href="'. route('rendas.show', $renda) .'" title="'. __('View') .'"><i class="la la-eye"></i></a>
+                    return '<form method="POST" action="/payments">
+                            <a class="btn btn-sm btn-clean btn-icon btn-icon-md" href="'. route('rendas.show', $renda) .'" title="'. __('View') .'"><i class="la la-eye"></i></a>
                             <a href="'. route('rendas.edit', $renda) .'" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="'. __('Edit') .'"><i class="la la-edit"></i></a>
-                            <button class="btn btn-sm btn-clean btn-icon btn-icon-md delete-confirmation" data-destroy-form-id="destroy-form-'. $renda->id .'" data-delete-url="'. route('rendas.destroy', $renda) .'" onclick="destroyConfirmation(this)" title="'. __('Delete') .'"><i class="la la-trash"></i></button>';
+                            <button class="btn btn-sm btn-clean btn-icon btn-icon-md delete-confirmation" data-destroy-form-id="destroy-form-'. $renda->id .'" data-delete-url="'. route('rendas.destroy', $renda) .'" onclick="destroyConfirmation(this)" title="'. __('Delete') .'"><i class="la la-trash"></i></button>
+                            <button class="btn btn-brand btn-elevate btn-icon-sm" type="submit">Send Notification</button>';
 
                 });
 
-            }elseif(auth()->user()->can('accessAsTenant')){
+            }
+            elseif(auth()->user()->can('accessAsTenant')){
                 $datatable->addColumn('action', function ($renda) {
-                    return  '<form method="POST" action="/payments">
+                    return  '<form method="POST" action="https://sandbox.eupago.pt/clientes/referencias/Multibanco">
                     <a class="btn btn-sm btn-clean btn-icon btn-icon-md" href="'. route('rendas.show', $renda) .'" title="'. __('View') .'"><i class="la la-eye"></i></a>
-                    <button class="btn btn-brand btn-elevate btn-icon-sm" type="submit">Make payment</button>
-                    
+                    <button class="btn btn-success" type="submit">Pay with card</button>
                             </form>
                                     ';
                 });
             }
+
             return $datatable;
     }
 

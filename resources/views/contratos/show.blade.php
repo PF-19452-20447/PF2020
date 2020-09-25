@@ -126,6 +126,14 @@ view()->share('hideSubHeader', true);
                                 <th scope="row">{{ __('Property selected') }}</th>
                                 <td>{{$contrato->imovel->morada}}</td>
                             </tr>
+                            <tr>
+                                <th scope="row">{{ __('Contract File(s)') }}</th>
+                                <td>
+                                    @foreach($contrato->getMedia('contract_files') as $cont)
+                                          <p id="cont{{$cont->id}}"><a href="{{$cont->getUrl()}}" download>{{$cont->file_name}}</a></p>
+                                    @endforeach
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

@@ -74,6 +74,7 @@
             @enderror
         </div>
 
+         {!! Form::hidden('contrato_id', null) !!}
 
     </div>
     <div class="kt-portlet__foot">

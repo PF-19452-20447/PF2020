@@ -60,6 +60,10 @@ class ContratoController extends Controller
 
         if(($model = Contrato::create($validatedAttributes)) ) {
             $model->inquilinos()->attach($validatedAttributes['inquilinos_list']);
+            if($request->hasFile('ficheiro_contrato')){
+                $model->addMedia($request->file('ficheiro_contrato'))->toMediaCollection('contract_files');
+        }
+        
          //  $model->imovel()->attach($validatedAttributes['imovel_id']);
          //$imovel_id = $request->imovel_id;
             //flash('Role Added');
@@ -113,6 +117,13 @@ class ContratoController extends Controller
         $contrato->fill($validatedAttributes);
         if($contrato->save()) {
             $contrato->inquilinos()->sync($validatedAttributes['inquilinos_list']);
+
+            foreach ($request->input('cont_delete', []) as $file_id) {
+                $contrato->getMedia('contract_files')->where('id', $file_id)->first()->delete();
+           }
+           if ($request->hasFile('ficheiro_contrato')) {
+                $contrato->addMedia($request->file('ficheiro_contrato'))->toMediaCollection('contract_files');
+           }
             //$contrato->imovel()->sync($validatedAttributes['imovel_id']);
             //$this->authorize('create', $inquilino);
             //flash('Role Added');
@@ -167,12 +178,14 @@ class ContratoController extends Controller
             'retencaoFonte' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'dataLimitePagamento' => 'required|date_format:Y-m-d H:i:s|after:inicioContrato',
             'estado' => 'required|integer',
-            'encargos' => 'required|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
-            'caucao' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+            'encargos' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
+            'caucao' => 'nullable|regex:/^\d+(\.\d{1,2})?$/',
             'metodoPagamento' => 'required|integer',
             'rendasAvanco' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'inquilinos_list' => 'required|min:1',
-            'imovel_id' => 'required'
+            'imovel_id' => 'required',
+            'ficheiro_contrato'=>'nullable|file',
+            'cont_delete'=>'nullable'
         ];
 
         return $request->validate($validate_array);

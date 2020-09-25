@@ -5,8 +5,11 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\LoadDefaults;
 use Cache;
+use File;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\HasMedia;
 
-class Contrato extends Model
+class Contrato extends Model implements HasMedia
 {
 
     const TYPE_EM_ESPERA = 1;
@@ -24,7 +27,7 @@ class Contrato extends Model
   //  protected $table = 'contratos';
     //protected $primaryKey = 'contrato_id';
 
-    use LoadDefaults;
+    use LoadDefaults, InteractsWithMedia;
 
     protected $guarded=['id'];
 
@@ -181,6 +184,10 @@ class Contrato extends Model
     public function rendas()
     {
         return $this->hasMany('App\Renda');
+    }
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('contract_files');
     }
 
 }
