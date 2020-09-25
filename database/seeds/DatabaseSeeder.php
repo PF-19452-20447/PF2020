@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(RolesSeeder::class);
+        $this->call(UsersSeeder::class);
         $this->call(ProprietariosSeeder::class);
         $this->call(InquilinosSeeder::class);
         $this->call(RendasSeeder::class);
@@ -27,8 +29,7 @@ class DatabaseSeeder extends Seeder
         $this->call(FinancasSeeder::class);
         $this->call(ImoveisSeeder::class);
         $this->call(FiadoresSeeder::class);
-        $this->call(RolesSeeder::class);
-        $this->call(UsersSeeder::class);
+
         $this->call(PermissionsSeeder::class);
 
         // Ask for db migration refresh, default is no

@@ -31,7 +31,7 @@ view()->share('hideSubHeader', true);
                                 <td>{{ $role->name }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">{{ __('Guard name') }}</th>
+                                <th scope="row">Guard name</th>
                                 <td>{{ $role->guard_name }}</td>
                             </tr>
                             <tr>

@@ -1,5 +1,4 @@
 <?php
-
 use App\Proprietario;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +11,16 @@ class ProprietariosSeeder extends Seeder
      */
     public function run()
     {
+        $landlord = Proprietario::create([
+            'nome' => 'Proprietário',
+            'email' => 'landlord@mail.com',
+            'dataNascimento' => '1999-02-21',
+            'nif' => '123456789',
+            'morada' => 'Rua do Proprietario',
+        ]);
+        //associa este perfil ao utilizador default
+        App\User::where('name','Landlord')->first()->proprietario()->save($landlord);
+
         Proprietario::create([
             'nome'      => 'Beatriz',
             'dataNascimento' => '1999-02-21',

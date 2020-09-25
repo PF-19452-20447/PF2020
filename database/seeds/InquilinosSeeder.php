@@ -16,7 +16,7 @@ class InquilinosSeeder extends Seeder
     public function run()
     {
 
-        Inquilino::create([
+        $inquilino = Inquilino::create([
             'nome'      => 'Daniela ',
             'dataNascimento' => '1998-02-27',
             'nif' => '234323456543',
@@ -37,6 +37,6 @@ class InquilinosSeeder extends Seeder
             'numFuncionarios' => '2'
 
         ]);
-
+        App\Proprietario::find(1)->inquilinos()->attach($inquilino->id);
     }
 }
