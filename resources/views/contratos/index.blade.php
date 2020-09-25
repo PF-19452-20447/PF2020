@@ -17,7 +17,7 @@
 				<i class="kt-font-brand flaticon2-user"></i>
 			</span>
                 <h3 class="kt-portlet__head-title">
-                    Contracts
+                    {{ __('Contracts') }}
                 </h3>
             </div>
             <div class="kt-portlet__head-toolbar">
@@ -29,7 +29,7 @@
                        @canany(['adminApp', 'accessAsLandlord'])
                        <a href="{{ route('contratos.create') }}" class="btn btn-brand btn-elevate btn-icon-sm">
                             <i class="la la-plus"></i>
-                            Create Contract
+                            {{ __('Create Contract') }}
                         </a>
                        @endcanany
                     </div>

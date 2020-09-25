@@ -103,7 +103,7 @@
         </div>
 
         <div class="form-group">
-            <label>Selected Tenants</label>
+            <label>{{ __('Selected Tenants') }}</label>
             <select class="form-control select2-multi {{ $errors->has('inquilinos_list') ? 'is-invalid' : '' }}" multiple="multiple" name ="inquilinos_list[]" id ="inquilinos" style="width: 50%" >
                 <?php
                 $user = Auth::user();
@@ -125,7 +125,7 @@
         </div>
 
         <div class="form-group">
-            <label>Selected Property</label>
+            <label>{{ __('Selected Property') }}</label>
             <select class="form-control {{ $errors->has('imovel_id') ? 'is-invalid' : '' }}" name ="imovel_id" id ="imoveis" style="width: 50%" >
                 <?php
                 $user = Auth::user();

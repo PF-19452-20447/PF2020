@@ -17,7 +17,7 @@
 				<i class="kt-font-brand flaticon2-user"></i>
 			</span>
                 <h3 class="kt-portlet__head-title">
-                    Tenants
+                    {{ __('Tenants') }}
                 </h3>
             </div>
             <div class="kt-portlet__head-toolbar">
@@ -29,7 +29,7 @@
                         @canany(['adminApp', 'accessAsLandlord', 'adminFullApp'])
                        <a href="{{ route('inquilinos.create') }}" class="btn btn-brand btn-elevate btn-icon-sm">
                             <i class="la la-plus"></i>
-                            Create Tenant
+                            {{ __('Create Tenant') }}
                         </a>
                        @endcanany
                     </div>

@@ -71,10 +71,10 @@
                                 @csrf
                             </form>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }}">{{ __('Login') }}</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <a href="{{ route('register') }}">{{ __('Register') }}</a>
                         @endif
                     @endauth
                     @endcanany
@@ -83,14 +83,14 @@
                     <br></br>
                     <div class="card-header">
                         <div class="card-header">
-                            <h5>To start is simple, step 1,2,3</h5>
+                            <h5>{{ __('To start is simple, step 1,2,3') }}</h5>
                         </div>
                         <div id="numero1" class="card-body">
                             <img src="images/number1.png " />
                             <a class="btn" href="{{ route('imoveis.create') }}">
-                                Create Property
+                                {{ __('Create Property') }}
                                 <br></br>
-                                <p>Create a card for your property</p>
+                                <p>{{ __('Create a card for your property') }}</p>
                             </a>
 
                         </div>
@@ -99,9 +99,9 @@
                         <div id="numero2" class="card-body">
                             <img src="images/number2.png " />
                             <a class="btn" href="{{ route('inquilinos.create') }}">
-                                Create Tenant
+                                {{ __('Create Tenant') }}
                                 <br></br>
-                                <p>Create a card for your tenant</p>
+                                <p>{{ __('Create a card for your tenant') }}</p>
                             </a>
 
                         </div>
@@ -110,9 +110,9 @@
                         <div id="numero3" class="card-body">
                             <img src="images/number3.png " />
                             <a class="btn" href="{{ route('contratos.create') }}">
-                                Create Contract
+                                {{ __('Create Contract') }}
                                 <br></br>
-                                <p>Create a card for your contract</p>
+                                <p>{{ __('Create a card for your contract') }}</p>
                             </a>
 
                         </div>
@@ -132,7 +132,7 @@
                         <div id="numero1" class="card-body">
                             <img src="images/contracts.png " />
                             <a class="btn" href="{{ route('contratos.index') }}">
-                                Contracts
+                                {{ __('Contracts') }}
                                 <br></br>
 
                             </a>
@@ -143,7 +143,7 @@
                         <div id="numero2" class="card-body">
                             <img src="images/money.png " />
                             <a class="btn" href="{{ route('rendas.index') }}">
-                                Incomes
+                                {{ __('Incomes') }}
                                 <br></br>
 
                             </a>
@@ -154,7 +154,7 @@
                         <div id="numero3" class="card-body">
                             <img src="images/house.png " />
                             <a class="btn" href="{{ route('imoveis.index') }}">
-                                Properties
+                                {{ __('Properties') }}
                                 <br></br>
                                 
                             </a>

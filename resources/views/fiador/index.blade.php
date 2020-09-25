@@ -17,7 +17,7 @@
 				<i class="kt-font-brand flaticon2-user"></i>
 			</span>
                 <h3 class="kt-portlet__head-title">
-                    Guarantors
+                    {{ __('Guarantors') }}
                 </h3>
             </div>
             <div class="kt-portlet__head-toolbar">
@@ -29,7 +29,7 @@
                        @canany(['adminApp','accessAsTenant'])
                        <a href="{{ route('fiador.create') }}" class="btn btn-brand btn-elevate btn-icon-sm">
                             <i class="la la-plus"></i>
-                            Create Guarantor
+                            {{ __('Create Guarantor') }}
                         </a>
                         @endcan
                     </div>
