@@ -35,7 +35,8 @@ class Proprietario extends Model
         'capitalSocial',
         'setorActividade',
         'certidaoPermanente',
-        'numFuncionarios'
+        'numFuncionarios',
+        'user_id'
     ];
 
 

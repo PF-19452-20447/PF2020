@@ -24,7 +24,7 @@ view()->share('hideSubHeader', true);
             <div class="kt-portlet__head-wrapper">
                 <div class="kt-portlet__head-actions">
                     @if(auth()->user()->is($user))
-                    <a href="{{ route('users.edit', $user) }}" class="btn btn-brand btn-elevate btn-icon-sm">
+                    <a href="{{ route('proprietarios.edit', $user->proprietario) }}" class="btn btn-brand btn-elevate btn-icon-sm">
                         <i class="la la-edit"></i>
                         {{ __('Update') }}
                     </a>
@@ -45,7 +45,7 @@ view()->share('hideSubHeader', true);
                                 <td><img src="{{ $user->getFirstMediaUrl('avatar') }}" width="120"></td>
                             </tr>
                             <tr>
-                                <th scope="row">{{ __('Name') }}</th>
+                                <th scope="row">{{ __('Username') }}</th>
                                 <td>{{ $user->name }}</td>
                             </tr>
                             <tr>
@@ -53,24 +53,61 @@ view()->share('hideSubHeader', true);
                                 <td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
                             </tr>
                             <tr>
-                                <th scope="row">{{ __('Roles') }}</th>
-                                <td>{{ $user->roles_label }}</td>
+                                <th scope="row">{{ __('Full Name') }}</th>
+                                <td>{{ $user->proprietario->nome }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">{{ __('Override Permissions') }}</th>
-                                <td>{{ $user->permissions_label }}</td>
+                                <th scope="row">{{ __('Date of Birth') }}</th>
+                                <td>{{ $user->proprietario->dataNascimento }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">{{ __('Email verified at') }}</th>
-                                <td>{{$user->email_verified_at }}</td>
+                                <th scope="row">{{ __('Cell Number') }}</th>
+                                @if ($user->proprietario->telefone)
+                                    <td>{{ $user->proprietario->telefone }}</td>
+                                @else
+                                    <td>Nenhum</td>
+                                @endif
                             </tr>
                             <tr>
-                                <th scope="row">{{ __('Created at') }}</th>
-                                <td>{{$user->created_at}}</td>
+                                <th scope="row">{{ __('Address') }}</th>
+                                <td>{{ $user->proprietario->morada }}</td>
+                            </tr>
+                            {{-- Intrduzir colapsable aqui! --}}
+                            <tr>
+                                <th scope="row">{{ __('Indentity Number') }}</th>
+                                <td>{{ $user->proprietario->cc }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">{{ __('Updated at') }}</th>
-                                <td>{{$user->updated_at}}</td>
+                                <th scope="row">{{ __('Tax Number') }}</th>
+                                <td>{{ $user->proprietario->nif }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">{{ __('IBAN') }}</th>
+                                <td>{{ $user->proprietario->iban }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">{{ __('Company Type') }}</th>
+                                <td>{{ $user->proprietario->tipoParticularEmpresa }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">{{ __('CAE') }}</th>
+                                <td>{{ $user->proprietario->cae }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">{{ __('Share capital') }}</th>
+                                <td>{{ $user->proprietario->capitalSocial }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">{{ __('Activity sector') }}</th>
+                                <td>{{ $user->proprietario->setorActividade }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">{{ __('Permanent certificate') }}</th>
+                                <td>{{ $user->proprietario->certidaoPermanente }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">{{ __('Number of employees') }}</th>
+                                <td>{{ $user->proprietario->numFuncionarios }}</td>
                             </tr>
 
                         </tbody>

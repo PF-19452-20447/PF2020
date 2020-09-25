@@ -43,7 +43,8 @@ class Inquilino extends Model implements HasMedia
         'capitalSocial' ,
         'setorActividade' ,
         'certidaoPermanente',
-        'numFuncionarios'
+        'numFuncionarios',
+        ''
     ];
 
     /**
