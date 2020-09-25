@@ -50,7 +50,7 @@ view()->share('hideSubHeader', true);
                         Column::make('Telephone'),
                         Column::make('Address'),
                         Column::make('IBAN'),
-                        Column::make('Particular type of company'),
+                       // Column::make('Particular type of company'),
                         //Column::make('created_at'),
                         //Column::make('updated_at'),-->
 

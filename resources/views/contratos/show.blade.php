@@ -54,7 +54,7 @@ view()->share('hideSubHeader', true);
                         Column::make('dataLimitePagamento'),
                         Column::make('estado'),
                         Column::make('caucao'),
-                        Column::make('metodoPagamento'),
+                        //Column::make('metodoPagamento'),
                         //Column::make('created_at'),
                         //Column::make('updated_at'),-->
                             <tr>

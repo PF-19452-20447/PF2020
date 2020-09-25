@@ -106,8 +106,8 @@ class UserDataTable extends DataTable
             Column::make('id'),
             Column::make('name'),
             Column::make('email'),
-            Column::make('email_verified_at'), // ->title('teste')
-            Column::make('created_at'),
+           // Column::make('email_verified_at'), // ->title('teste')
+           // Column::make('created_at'),
             Column::make('role')->orderable(false),
             //Column::make('first_name'),
             //Column::make('intro')->orderable(false),

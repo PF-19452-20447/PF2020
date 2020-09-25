@@ -89,7 +89,6 @@ class ImovelDatatable extends DataTable
                         'tipologia' => [ 'title' => 'Typology' ],
                         'area' => ['title' => 'Area'],
                         'morada' => ['title' => 'Address'],
-                        'estado' => ['title' => 'State'],
                         'action' => ['title' => 'Action'],
                     ])
                     ->minifiedAjax()
@@ -113,8 +112,7 @@ class ImovelDatatable extends DataTable
             'tipo',
             'tipologia',
             'area',
-            'morada',
-            'estado'
+            'morada'
             //Column::make('id'),
             //Column::make('tipo'),
             //Column::make('tipologia'),

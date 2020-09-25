@@ -70,7 +70,6 @@ class InquilinoDataTable extends DataTable
                         'telefone' => ['title' => 'Telephone'],
                         'morada' => ['title' => 'Address'],
                         'iban' => ['title' => 'Iban'],
-                        'tipoParticularEmpresa' => ['title' => 'Particular type of company'],
                         'action' => ['title' => 'Action'],
                     ])
                     ->minifiedAjax()
@@ -95,7 +94,6 @@ class InquilinoDataTable extends DataTable
             'telefone',
             'morada',
             'iban',
-            'tipoParticularEmpresa',
             'action'
 
             //Column::make('id'),

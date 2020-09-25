@@ -83,7 +83,6 @@ class ContratoDataTable extends DataTable
                         'tipoContrato' => [ 'title' => 'Type of contract' ],
                         'dataLimitePagamento' => ['title' => 'Payment deadline'],
                         'caucao' => ['title' => 'Deposit'],
-                        'metodoPagamento' => ['title' => 'Payment method'],
                         'action' => ['title' => 'Action'],
                     ])
                     ->minifiedAjax()
@@ -107,8 +106,7 @@ class ContratoDataTable extends DataTable
             'tipoContrato',
             'dataLimitePagamento',
             'estado',
-            'caucao',
-            'metodoPagamento',
+            'caucao',   
             'action'
            // Column::make('id'),
            // Column::make('valorRenda'),
