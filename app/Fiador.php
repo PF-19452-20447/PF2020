@@ -36,7 +36,6 @@ class Fiador extends Model
         'iban' ,
         'tipoParticularEmpresa',
         'cae' ,
-        'capitalSocial' ,
         'setorActividade' ,
         'certidaoPermanente',
         'numFuncionarios'

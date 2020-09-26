@@ -32,7 +32,6 @@ class Proprietario extends Model
         'iban',
         'tipoParticularEmpresa',
         'cae',
-        'capitalSocial',
         'setorActividade',
         'certidaoPermanente',
         'numFuncionarios',

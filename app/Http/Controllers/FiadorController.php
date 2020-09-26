@@ -136,7 +136,6 @@ class FiadorController extends Controller
             'iban' => ['required', 'alpha_dash', 'max:64'],
             'tipoParticularEmpresa' => 'required|integer',
             'cae' => 'required|integer',
-            'capitalSocial' => 'nullable|integer',
             'setorActividade' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'certidaoPermanente' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'numFuncionarios' => 'nullable|integer|min:0'
