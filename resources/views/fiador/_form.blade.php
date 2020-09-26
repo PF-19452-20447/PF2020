@@ -81,13 +81,6 @@
             @enderror
         </div>
         <div class="form-group">
-            {!! Form::label('capitalSocial', __('Share capital')) !!}
-            {!! Form::number('capitalSocial', null, ['class' => 'form-control '.($errors->has('capitalSocial') ? 'is-invalid' : ''), 'min' => '1', 'max' => '8', 'type' => 'number', 'step' => 1, 'required' => false]) !!}
-            @error('capitalSocial')
-            <div class="error invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
-        <div class="form-group">
             {!! Form::label('setorActividade', __('Activity sector')) !!}
             {!! Form::text('setorActividade', null, ['class' => 'form-control '.($errors->has('setorActividade') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1, 'min' => 0, 'required' => false]) !!}
             @error('setorActividade')

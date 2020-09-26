@@ -100,10 +100,6 @@ view()->share('hideSubHeader', true);
                                 <td>{{ $inquilino ->profissao }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">{{ __('Pay') }}</th>
-                                <td>{{ $inquilino ->vencimento }}</td>
-                            </tr>
-                            <tr>
                                 <th scope="row">{{ __('Type of contract') }}</th>
                                 <td>{{ $inquilino ->tipoContrato }}</td>
                             </tr>
@@ -114,10 +110,6 @@ view()->share('hideSubHeader', true);
                             <tr>
                                 <th scope="row">{{ __('CAE') }}</th>
                                 <td>{{ $inquilino ->CAELabel }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">{{ __('Share capital') }}</th>
-                                <td>{{ $inquilino ->capitalSocial }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Activity sector') }}</th>

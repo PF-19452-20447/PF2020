@@ -99,10 +99,6 @@ view()->share('hideSubHeader', true);
                                 <td>{{ $fiador ->CAELabel }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">{{ __('Share capital') }}</th>
-                                <td>{{ $fiador ->capitalSocial }}</td>
-                            </tr>
-                            <tr>
                                 <th scope="row">{{ __('Activity sector') }}</th>
                                 <td>{{ $fiador ->setorActividade }}</td>
                             </tr>
