@@ -20,6 +20,9 @@ class Inquilino extends Model implements HasMedia
     const SETOR_PRIMARIO = 5;
     const SETOR_SECUNDARIO = 6;
     const SETOR_TERCIARIO = 7;
+    const CONTRATO_ANUAL = 8;
+    const CONTRATO_SEMESTRAL = 9;
+    const CONTRATO_MENSAL = 10;
 
     protected $table='inquilinos';
 
@@ -76,6 +79,19 @@ class Inquilino extends Model implements HasMedia
      * Return an array with the values of type field
      * @return array
      */
+    public static function getTipoContratoArray()
+    {
+        return [
+            self::CONTRATO_ANUAL =>  __('Yearly'),
+            self::CONTRATO_SEMESTRAL =>  __('Six Month'),
+            self::CONTRATO_MENSAL => __('Monthly')
+        ];
+    }
+
+    /**
+     * Return an array with the values of type field
+     * @return array
+     */
     public static function getSetorAtividadeArray()
     {
         return [
@@ -106,6 +122,16 @@ class Inquilino extends Model implements HasMedia
         return static::getCAEArray();
     }
 
+     /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public function getTipoContratoOptions()
+    {
+        return static::getTipoContratoArray();
+    }
+
+
       /**
      * Return an array with the values of type field
      * @return array
@@ -133,6 +159,16 @@ class Inquilino extends Model implements HasMedia
     {
         $array = self::getCAEOptions();
         return $array[$this->cae];
+    }
+
+    /**
+     * Return the first name of the user
+     * @return mixed|string
+     */
+    public function getTipoContratoLabelAttribute()
+    {
+        $array = self::getTipoContratoOptions();
+        return $array[$this->tipoContrato];
     }
 
     /**
