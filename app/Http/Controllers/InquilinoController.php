@@ -323,7 +323,7 @@ class InquilinoController extends Controller
             'setorActividade' => 'nullable|integer',
             'certidaoPermanente' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'numFuncionarios' => 'nullable|integer|min:0',
-            'photos.*'=>'nullable|file',
+            'photos.*'=>'nullable|image|mimes:jpeg,png,jpg,bmp,tiff|max:4096',
             'img_delete'=>'nullable'
         ];
 
