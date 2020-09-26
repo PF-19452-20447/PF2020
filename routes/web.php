@@ -143,3 +143,4 @@ Route::get('service/renda/destroy','RendaController@destroy');
 Route::get('/translations')->name('translations');
 
 
+

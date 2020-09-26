@@ -17,6 +17,9 @@ class Inquilino extends Model implements HasMedia
     const CAE_SECUNDÁRIO = 2;
     const TYPE_EMPRESA = 3;
     const TYPE_PARTICULAR = 4;
+    const SETOR_PRIMARIO = 5;
+    const SETOR_SECUNDARIO = 6;
+    const SETOR_TERCIARIO = 7;
 
     protected $table='inquilinos';
 
@@ -42,7 +45,6 @@ class Inquilino extends Model implements HasMedia
         'setorActividade' ,
         'certidaoPermanente',
         'numFuncionarios',
-        ''
     ];
 
     /**
@@ -74,6 +76,19 @@ class Inquilino extends Model implements HasMedia
      * Return an array with the values of type field
      * @return array
      */
+    public static function getSetorAtividadeArray()
+    {
+        return [
+            self::SETOR_PRIMARIO =>  __('Primary'),
+            self::SETOR_SECUNDARIO =>  __('Secondary'),
+            self::SETOR_TERCIARIO =>  __('Third'),
+        ];
+    }
+
+    /**
+     * Return an array with the values of type field
+     * @return array
+     */
     public static function getTipoParticularEmpresaArray()
     {
         return [
@@ -90,6 +105,16 @@ class Inquilino extends Model implements HasMedia
     {
         return static::getCAEArray();
     }
+
+      /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public function getSetorAtividadeOptions()
+    {
+        return static::getSetorAtividadeArray();
+    }
+
 
      /**
      * Return an array with the values of type field
@@ -108,6 +133,16 @@ class Inquilino extends Model implements HasMedia
     {
         $array = self::getCAEOptions();
         return $array[$this->cae];
+    }
+
+    /**
+     * Return the first name of the user
+     * @return mixed|string
+     */
+    public function getSetorAtividadeLabelAttribute()
+    {
+        $array = self::getSetorAtividadeOptions();
+        return $array[$this->setorActividade];
     }
 
     /**
