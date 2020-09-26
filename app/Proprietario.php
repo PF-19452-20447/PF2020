@@ -13,6 +13,9 @@ class Proprietario extends Model
     const CAE_SECUNDÁRIO = 2;
     const TYPE_EMPRESA = 3;
     const TYPE_PARTICULAR = 4;
+    const SETOR_PRIMARIO = 5;
+    const SETOR_SECUNDARIO = 6;
+    const SETOR_TERCIARIO = 7;
 
     //protected $table= 'proprietarios';
 
@@ -47,8 +50,8 @@ class Proprietario extends Model
     protected static function booted()
     {
         static::saved(function ($model) {
-            Cache::forget('inquilino-params');
-            Cache::forget('inquilino-options');
+            Cache::forget('proprietario-params');
+            Cache::forget('proprietario-options');
         });
     }
 
@@ -63,6 +66,20 @@ class Proprietario extends Model
             self::CAE_SECUNDÁRIO =>  __('Secundário'),
         ];
     }
+
+    /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public static function getSetorAtividadeArray()
+    {
+        return [
+            self::SETOR_PRIMARIO =>  __('Primary'),
+            self::SETOR_SECUNDARIO =>  __('Secondary'),
+            self::SETOR_TERCIARIO =>  __('Third'),
+        ];
+    }
+
 
     /**
      * Return an array with the values of type field
@@ -89,6 +106,16 @@ class Proprietario extends Model
      * Return an array with the values of type field
      * @return array
      */
+    public function getSetorAtividadeOptions()
+    {
+        return static::getSetorAtividadeArray();
+    }
+
+
+     /**
+     * Return an array with the values of type field
+     * @return array
+     */
     public function getTipoParticularEmpresaOptions()
     {
         return static::getTipoParticularEmpresaArray();
@@ -103,6 +130,18 @@ class Proprietario extends Model
         $array = self::getCAEOptions();
         return $array[$this->cae];
     }
+
+
+    /**
+     * Return the first name of the user
+     * @return mixed|string
+     */
+    public function getSetorAtividadeLabelAttribute()
+    {
+        $array = self::getSetorAtividadeOptions();
+        return $array[$this->setorActividade];
+    }
+    
 
     /**
      * Return the first name of the user
