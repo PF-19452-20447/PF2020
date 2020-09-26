@@ -70,8 +70,8 @@ class Inquilino extends Model implements HasMedia
     public static function getCAEArray()
     {
         return [
-            self::CAE_PRINCIPAL =>  __('Principal'),
-            self::CAE_SECUNDÁRIO =>  __('Secundário'),
+            self::CAE_PRINCIPAL =>  __('Main'),
+            self::CAE_SECUNDÁRIO =>  __('Secondary'),
         ];
     }
 
@@ -108,8 +108,8 @@ class Inquilino extends Model implements HasMedia
     public static function getTipoParticularEmpresaArray()
     {
         return [
-            self::TYPE_EMPRESA =>  __('Empresa'),
-            self::TYPE_PARTICULAR =>  __('Particular')
+            self::TYPE_EMPRESA =>  __('Company'),
+            self::TYPE_PARTICULAR =>  __('Private')
         ];
     }
 
