@@ -12,6 +12,9 @@ class Fiador extends Model
     const CAE_SECUNDÁRIO = 2;
     const TYPE_EMPRESA = 3;
     const TYPE_PARTICULAR = 4;
+    const SETOR_PRIMARIO = 5;
+    const SETOR_SECUNDARIO = 6;
+    const SETOR_TERCIARIO = 7;
 
     protected $table = "fiadores";
 
@@ -49,10 +52,24 @@ class Fiador extends Model
     protected static function booted()
     {
         static::saved(function ($model) {
-            Cache::forget('inquilino-params');
-            Cache::forget('inquilino-options');
+            Cache::forget('fiador-params');
+            Cache::forget('fiador-options');
         });
     }
+
+    /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public static function getSetorAtividadeArray()
+    {
+        return [
+            self::SETOR_PRIMARIO =>  __('Primary'),
+            self::SETOR_SECUNDARIO =>  __('Secondary'),
+            self::SETOR_TERCIARIO =>  __('Third'),
+        ];
+    }
+
 
   /**
      * Return an array with the values of type field
@@ -87,6 +104,17 @@ class Fiador extends Model
         return static::getCAEArray();
     }
 
+
+      /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public function getSetorAtividadeOptions()
+    {
+        return static::getSetorAtividadeArray();
+    }
+
+
      /**
      * Return an array with the values of type field
      * @return array
@@ -95,6 +123,17 @@ class Fiador extends Model
     {
         return static::getTipoParticularEmpresaArray();
     }
+
+    /**
+     * Return the first name of the user
+     * @return mixed|string
+     */
+    public function getSetorAtividadeLabelAttribute()
+    {
+        $array = self::getSetorAtividadeOptions();
+        return $array[$this->setorActividade];
+    }
+
 
     /**
      * Return the first name of the user

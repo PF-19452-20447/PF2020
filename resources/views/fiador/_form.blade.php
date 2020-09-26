@@ -82,7 +82,7 @@
         </div>
         <div class="form-group">
             {!! Form::label('setorActividade', __('Activity sector')) !!}
-            {!! Form::text('setorActividade', null, ['class' => 'form-control '.($errors->has('setorActividade') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1, 'min' => 0, 'required' => false]) !!}
+            {!! Form::select('setorActividade', \App\Fiador::getSetorAtividadeArray(), null, ['class' => 'form-control '.($errors->has('setorActividade') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1, 'min' => 0, 'required' => false]) !!}
             @error('setorActividade')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
