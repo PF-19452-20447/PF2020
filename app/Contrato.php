@@ -22,6 +22,9 @@ class Contrato extends Model implements HasMedia
     const PAGAMENTO_CARTAO_CREDITO = 8;
     const RENOVAVEL_SIM = 9;
     const RENOVAVEL_NÃO = 10;
+    const CONTRATO_ANUAL = 11;
+    const CONTRATO_SEMESTRAL = 12;
+    const CONTRATO_MENSAL = 13;
 
 
   //  protected $table = 'contratos';
@@ -61,8 +64,8 @@ class Contrato extends Model implements HasMedia
     protected static function booted()
     {
         static::saved(function ($model) {
-            Cache::forget('renda-params');
-            Cache::forget('renda-options');
+            Cache::forget('contrato-params');
+            Cache::forget('contrato-options');
         });
     }
 
@@ -73,9 +76,22 @@ class Contrato extends Model implements HasMedia
     public static function getStateArray()
     {
         return [
-            self::ESTADO_ATIVO =>  __('Ativo'),
-            self::ESTADO_PENDENTE =>  __('Pendente'),
-            self::ESTADO_TERMINADO =>  __('Terminado'),
+            self::ESTADO_ATIVO =>  __('Active'),
+            self::ESTADO_PENDENTE =>  __('Pending'),
+            self::ESTADO_TERMINADO =>  __('Ended'),
+        ];
+    }
+
+    /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public static function getTipoContratoArray()
+    {
+        return [
+            self::CONTRATO_ANUAL =>  __('Yearly'),
+            self::CONTRATO_SEMESTRAL =>  __('Six Month'),
+            self::CONTRATO_MENSAL => __('Monthly')
         ];
     }
 
@@ -88,11 +104,11 @@ class Contrato extends Model implements HasMedia
     public static function getMethodPaymentArray()
     {
         return [
-            self::PAGAMENTO_TRANSFERENCIA_BANCARIA =>  __('Transferência Bancária'),
-            self::PAGAMENTO_MULTIBANCO =>  __('Multibanco'),
+            self::PAGAMENTO_TRANSFERENCIA_BANCARIA =>  __('Bank Transfer'),
+            self::PAGAMENTO_MULTIBANCO =>  __('ATM'),
             self::PAGAMENTO_MBWAY =>  __('Mb Way'),
-            self::PAGAMENTO_DEBITO_DIRETO =>  __('Débito Direto'),
-            self::PAGAMENTO_CARTAO_CREDITO =>  __('Cartão de Crédito')
+            self::PAGAMENTO_DEBITO_DIRETO =>  __('Direct Debt'),
+            self::PAGAMENTO_CARTAO_CREDITO =>  __('Credit Card')
         ];
     }
 
@@ -103,8 +119,8 @@ class Contrato extends Model implements HasMedia
     public static function getRenewableArray()
     {
         return [
-            self::RENOVAVEL_SIM =>  __('Sim'),
-            self::RENOVAVEL_NÃO =>  __('Não'),
+            self::RENOVAVEL_SIM =>  __('Yes'),
+            self::RENOVAVEL_NÃO =>  __('No'),
         ];
     }
 
@@ -117,6 +133,16 @@ class Contrato extends Model implements HasMedia
     {
         return static::getMethodPaymentArray();
     }
+
+     /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public function getTipoContratoOptions()
+    {
+        return static::getTipoContratoArray();
+    }
+
 
      /**
      * Return an array with the values of type field
@@ -147,6 +173,17 @@ class Contrato extends Model implements HasMedia
         $array = self::getStateOptions();
         return $array[$this->estado];
     }
+
+     /**
+     * Return the first name of the user
+     * @return mixed|string
+     */
+    public function getTipoContratoLabelAttribute()
+    {
+        $array = self::getTipoContratoOptions();
+        return $array[$this->tipoContrato];
+    }
+    
 
     /**
      * Return the first name of the user
@@ -184,7 +221,7 @@ class Contrato extends Model implements HasMedia
     {
         return $this->hasMany('App\Renda');
     }
-    
+
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('contract_files');

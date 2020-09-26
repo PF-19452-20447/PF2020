@@ -183,7 +183,7 @@ class ContratoController extends Controller
 
         $validate_array = [
             'valorRenda' => 'nullable|integer',
-            'tipoContrato' => 'required|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
+            'tipoContrato' => 'required|integer',
             'inicioContrato' => 'nullable|date_format:Y-m-d|after:tomorrow',
             'fimContrato' => 'nullable|date_format:Y-m-d|after:inicioContrato',
             'renovavel' => 'required|integer',
