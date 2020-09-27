@@ -12,14 +12,14 @@
     <div class="kt-portlet__body">
         <div class="form-group">
             {!! Form::label('tipo', __('Type')) !!}
-            {!! Form::text('tipo', null, ['class' => 'form-control '.($errors->has('tipo') ? 'is-invalid' : ''), 'required' => true]) !!}
+            {!! Form::select('tipo', \App\Imovel::getTypeArray(), null, ['class' => 'form-control '.($errors->has('tipo') ? 'is-invalid' : ''), 'required' => true]) !!}
             @error('tipo')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
             {!! Form::label('tipologia', __('Topology')) !!}
-            {!! Form::text('tipologia', null, ['class' => 'form-control '.($errors->has('tipologia') ? 'is-invalid' : ''), 'required' => true]) !!}
+            {!! Form::select('tipologia', \App\Imovel::getTypologyArray(), null, ['class' => 'form-control '.($errors->has('tipologia') ? 'is-invalid' : ''), 'required' => true]) !!}
             @error('tipologia')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror

@@ -17,6 +17,13 @@ class Imovel extends Model implements HasMedia
     const ESTADO_MANUTENÇÃO = 3;
     const BOOLEAN_SIM = 4;
     const BOOLEAN_NÃO = 5;
+    const TYPE_APARTAMENTO = 6;
+    const TYPE_MORADIA = 7;
+    const TIPOLOGIA_T1 = 8;
+    const TIPOLOGIA_T2 = 9;
+    const TIPOLOGIA_T3 = 10;
+    const TIPOLOGIA_T4 = 11;
+    const TIPOLOGIA_T5 = 12;
 
     protected $table = "imoveis";
     //protected $primaryKey = 'contrato_id';
@@ -67,21 +74,59 @@ class Imovel extends Model implements HasMedia
      * Return an array with the values of type field
      * @return array
      */
+    public static function getTypologyArray()
+    {
+        return [
+            self::TIPOLOGIA_T1 =>  __('T1'),
+            self::TIPOLOGIA_T2 =>  __('T2'),
+            self::TIPOLOGIA_T3 =>  __('T3'),
+            self::TIPOLOGIA_T4 =>  __('T4'),
+            self::TIPOLOGIA_T5 =>  __('T5')
+        ];
+    }
+
+    /**
+     * Return an array with the values of type field
+     * @return array
+     */
     public static function getStateArray()
     {
         return [
-            self::ESTADO_ARRENDADO =>  __('Arrendado'),
-            self::ESTADO_VAZIO =>  __('Vazio'),
-            self::ESTADO_MANUTENÇÃO =>  __('Manutenção')
+            self::ESTADO_ARRENDADO =>  __('Leased'),
+            self::ESTADO_VAZIO =>  __('Empty'),
+            self::ESTADO_MANUTENÇÃO =>  __('Maintenance')
         ];
     }
+
+    /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public static function getTypeArray()
+    {
+        return [
+            self::TYPE_APARTAMENTO =>  __('Apartment'),
+            self::TYPE_MORADIA =>  __('House')
+        ];
+    }
+
 
     public static function getBooleanArray()
     {
         return [
-            self::BOOLEAN_SIM =>  __('Sim'),
-            self::BOOLEAN_NÃO =>  __('Não'),
+            self::BOOLEAN_SIM =>  __('Yes'),
+            self::BOOLEAN_NÃO =>  __('No'),
         ];
+    }
+
+     /**
+     * Return the first name of the user
+     * @return mixed|string
+     */
+    public function getTipologiaLabelAttribute()
+    {
+        $array = self::getTypologyOptions();
+        return $array[$this->tipologia];
     }
 
      /**
@@ -94,6 +139,16 @@ class Imovel extends Model implements HasMedia
         return $array[$this->estado];
     }
 
+        /**
+     * Return the first name of the user
+     * @return mixed|string
+     */
+    public function getTipoLabelAttribute()
+    {
+        $array = self::getTypeOptions();
+        return $array[$this->tipo];
+    }
+
      /**
      * Return an array with the values of type field
      * @return array
@@ -103,6 +158,15 @@ class Imovel extends Model implements HasMedia
         return static::getStateArray();
     }
 
+
+    /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public function getTypeOptions()
+    {
+        return static::getTypeArray();
+    }
 
     /**
      * Return the first name of the user
@@ -213,6 +277,15 @@ class Imovel extends Model implements HasMedia
     public function getBooleanOptions()
     {
         return static::getBooleanArray();
+    }
+
+      /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public function getTypologyOptions()
+    {
+        return static::getTypologyArray();
     }
 
 

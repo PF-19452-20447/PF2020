@@ -50,11 +50,11 @@ view()->share('hideSubHeader', true);
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Type') }}</th>
-                                <td>{{ $imovel ->tipo }}</td>
+                                <td>{{ $imovel ->tipoLabel }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Topology') }}</th>
-                                <td>{{ $imovel ->tipologia }}</td>
+                                <td>{{ $imovel ->tipologiaLabel }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Area') }}</th>

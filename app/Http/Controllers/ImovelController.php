@@ -164,7 +164,7 @@ class ImovelController extends Controller
          //nullable -> optional fields
 
         $validate_array = [
-            'tipo' => 'required|string|nullable',
+            'tipo' => 'required|string',
             'tipologia' => 'required|string',
             'area' => 'required|integer',
             'morada' => 'required|string',
