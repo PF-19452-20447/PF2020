@@ -183,7 +183,7 @@ class Contrato extends Model implements HasMedia
         $array = self::getTipoContratoOptions();
         return $array[$this->tipoContrato];
     }
-    
+
 
     /**
      * Return the first name of the user
