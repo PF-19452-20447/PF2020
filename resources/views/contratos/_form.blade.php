@@ -132,7 +132,7 @@
                 if(!empty($user->proprietario)){
                     foreach($user->proprietario->imoveis as $imovel){
                 ?>
-                         <option value="{{ $imovel->id }}" @if (old('imovel_id') == $imovel->id) selected="selected" @endif >
+                         <option value="{{ $imovel->id }}" {{ $imovel->id == $contrato->imovel_id ? 'selected' : '' }} >
                             {{$imovel->morada}}
                          </option>
                          <?php
