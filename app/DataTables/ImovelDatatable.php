@@ -84,12 +84,12 @@ class ImovelDatatable extends DataTable
         return $this->builder()
                     ->setTableId('imovel-table')
                     ->columns([
-                        'id' => ['title' => 'Id'],
-                        'tipo' => [ 'title' => 'Type' ],
-                        'tipologia' => [ 'title' => 'Typology' ],
-                        'area' => ['title' => 'Area'],
-                        'morada' => ['title' => 'Address'],
-                        'action' => ['title' => 'Action'],
+                        'id' => ['title' => __('Id')],
+                        'tipo' => [ 'title' => __('Type') ],
+                        'tipologia' => [ 'title' => __('Typology') ],
+                        'area' => ['title' => __('Area')],
+                        'morada' => ['title' => __('Address')],
+                        'action' => ['title' => __('Action')],
                     ])
                     ->minifiedAjax()
                     ->dom("<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>rtip") // Bfrtip

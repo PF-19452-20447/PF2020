@@ -78,12 +78,12 @@ class ContratoDataTable extends DataTable
         return $this->builder()
                     ->setTableId('contrato-table')
                     ->columns([
-                        'id' => ['title' => 'Id'],
-                        'valorRenda' => [ 'title' => 'Income value' ],
-                        'tipoContrato' => [ 'title' => 'Type of contract' ],
-                        'dataLimitePagamento' => ['title' => 'Payment deadline'],
-                        'caucao' => ['title' => 'Deposit'],
-                        'action' => ['title' => 'Action'],
+                        'id' => ['title' => __('Id')],
+                        'valorRenda' => [ 'title' => __('Income value') ],
+                        'tipoContrato' => [ 'title' => __('Type of contract') ],
+                        'dataLimitePagamento' => ['title' => __('Payment deadline')],
+                        'caucao' => ['title' => __('Deposit')],
+                        'action' => ['title' => __('Action')],
                     ])
                     ->minifiedAjax()
                     ->dom("<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>rtip") // Bfrtip

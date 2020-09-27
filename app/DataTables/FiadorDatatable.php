@@ -95,13 +95,13 @@ class FiadorDatatable extends DataTable
         return $this->builder()
                     ->setTableId('fiador-table')
                     ->columns([
-                        'id' => ['title' => 'Id'],
-                        'nome' => [ 'title' => 'Name' ],
-                        'email' => [ 'title' => 'Email' ],
-                        'telefone' => ['title' => 'Telephone'],
-                        'morada' => ['title' => 'Address'],
-                        'iban' => ['title' => 'Iban'],
-                        'action' => ['title' => 'Action']
+                        'id' => ['title' => __('Id')],
+                        'nome' => [ 'title' => __('Name') ],
+                        'email' => [ 'title' => __('Email') ],
+                        'telefone' => ['title' => __('Telephone')],
+                        'morada' => ['title' => __('Address')],
+                        'iban' => ['title' => __('Iban')],
+                        'action' => ['title' => __('Action')]
                     ])
                     ->minifiedAjax()
                     ->dom("<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>rtip") // Bfrtip

@@ -54,7 +54,14 @@ class SettingDataTable extends DataTable
     {
         return $this->builder()
             ->setTableId('settings-table')
-            ->columns($this->getColumns())
+            //->columns($this->getColumns())
+            ->columns([
+                'type' => ['title' => __('Type')],
+                'group' => ['title' => __('Group')],
+                'name' => ['title' => __('Name')],
+                'value' => ['title' => __('Value')],
+                'action' => ['title' => __('Action')]
+            ])
             ->minifiedAjax()
             ->dom("<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>rtip") // Bfrtip
             ->orderBy(1)

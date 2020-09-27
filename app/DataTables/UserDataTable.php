@@ -79,7 +79,14 @@ class UserDataTable extends DataTable
     {
         return $this->builder()
                     ->setTableId('users-table')
-                    ->columns($this->getColumns())
+                    ->columns([
+                        'id' => ['title' => __('Id')],
+                        'name' => ['title' => __('Name')],
+                        'email' => ['title' => __('Email')],
+                        'role' => ['title' => __('Roles')],
+                        'action' => ['title' => __('Action')]
+                    ])
+                    //->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom("<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>rtip") // Bfrtip
                     ->orderBy(1)
