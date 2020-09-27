@@ -130,6 +130,7 @@ class ContratoController extends Controller
         $contrato->fill($validatedAttributes);
         if($contrato->save()) {
             $contrato->inquilinos()->sync($validatedAttributes['inquilinos_list']);
+            $contrato->imovel()->sync($validatedAttributes['imovel_id']);
 
             foreach ($request->input('cont_delete', []) as $file_id) {
                 $contrato->getMedia('contract_files')->where('id', $file_id)->first()->delete();
@@ -184,8 +185,8 @@ class ContratoController extends Controller
         $validate_array = [
             'valorRenda' => 'nullable|integer',
             'tipoContrato' => 'required|integer',
-            'inicioContrato' => 'nullable|date_format:Y-m-d|after:tomorrow',
-            'fimContrato' => 'nullable|date_format:Y-m-d|after:inicioContrato',
+            'inicioContrato' => 'nullable|date_format:Y-m-d H:i:s|after:tomorrow',
+            'fimContrato' => 'nullable|date_format:Y-m-d H:i:s|after:inicioContrato',
             'renovavel' => 'required|integer',
             'isencaoBeneficio' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'retencaoFonte' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
