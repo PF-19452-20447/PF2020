@@ -177,7 +177,7 @@ class ImovelController extends Controller
             'animaisEstimacao' => 'required|integer',
             'outrosEquipamentos' => 'nullable|string',
             'certificadoEnergetico' => 'nullable|string',
-            'licencaHabitacao' => 'nullable|string',
+            'licencaHabitacao' => 'nullable|integer',
             'notas' => 'nullable|string',
             'televisao' => 'required|integer',
             'frigorifico' => 'required|integer',

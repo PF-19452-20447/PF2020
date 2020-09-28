@@ -307,7 +307,7 @@ class InquilinoController extends Controller
         //nullable -> optional fields
 
         $validate_array = [
-            'nome' => 'required|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/|max:255',
+            'nome' => 'required|string',
             'dataNascimento' => 'required|date_format:Y-m-d|before:today|nullable',
             'nif' => ['required', 'alpha_num', 'max:32'],
             'cc' => ['required', 'alpha_num', 'max:16'],

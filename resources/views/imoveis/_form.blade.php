@@ -75,7 +75,7 @@
         </div>
         <div class="form-group">
             {!! Form::label('licencaHabitacao', __('Habitation License')) !!}
-            {!! Form::text('licencaHabitacao', null, ['class' => 'form-control '.($errors->has('licencaHabitacao') ? 'is-invalid' : ''), 'required' => false]) !!}
+            {!! Form::number('licencaHabitacao', null, ['class' => 'form-control '.($errors->has('licencaHabitacao') ? 'is-invalid' : ''), 'required' => false]) !!}
             @error('licencaHabitacao')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
