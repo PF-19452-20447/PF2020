@@ -96,7 +96,7 @@
         </div>
         <div class="form-group">
             {!! Form::label('rendasAvanco', __('Advancing rents')) !!}
-            {!! Form::text('rendasAvanco', null, ['class' => 'form-control '.($errors->has('rendasAvanco') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1,  'required' => false]) !!}
+            {!! Form::select('rendasAvanco',  \App\Contrato::getRendasAvancoArray(), null, ['class' => 'form-control '.($errors->has('rendasAvanco') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1,  'required' => false]) !!}
             @error('rendasAvanco')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror

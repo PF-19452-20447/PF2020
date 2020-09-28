@@ -40,6 +40,7 @@ class Imovel extends Model implements HasMedia
     const CERTIFICADO_F = 26;
     const CERTIFICADO_G = 27;
     const CERTIFICADO_ISENTO = 28;
+    const CERTIFICADO_NA = 29;
 
 
     protected $table = "imoveis";
@@ -158,7 +159,8 @@ class Imovel extends Model implements HasMedia
             self::CERTIFICADO_E => __('E'),
             self::CERTIFICADO_F => __('F'),
             self::CERTIFICADO_G => __('G'),
-            self::CERTIFICADO_ISENTO => __('Isento')
+            self::CERTIFICADO_ISENTO => __('Isento'),
+            self::CERTIFICADO_NA => __('N/A')
         ];
     }
 

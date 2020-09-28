@@ -27,6 +27,19 @@ class Contrato extends Model implements HasMedia
     const CONTRATO_MENSAL = 13;
     const RETENCAO_SIM = 14;
     const RETENCAO_NÃO = 15;
+    const RENDAS_0 = 16;
+    const RENDAS_1 = 17;
+    const RENDAS_2 = 18;
+    const RENDAS_3 = 19;
+    const RENDAS_4 = 20;
+    const RENDAS_5 = 21;
+    const RENDAS_6 = 22;
+    const RENDAS_7 = 23;
+    const RENDAS_8 = 24;
+    const RENDAS_9 = 25;
+    const RENDAS_10 = 26;
+    const RENDAS_11 = 27;
+    const RENDAS_12 = 28;
 
 
   //  protected $table = 'contratos';
@@ -81,6 +94,31 @@ class Contrato extends Model implements HasMedia
             self::ESTADO_ATIVO =>  __('Active'),
             self::ESTADO_PENDENTE =>  __('Pending'),
             self::ESTADO_TERMINADO =>  __('Ended'),
+        ];
+    }
+
+
+     /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public static function getRendasAvancoArray()
+    {
+        return [
+            self::RENDAS_0 =>  __('0'),
+            self::RENDAS_1 =>  __('1'),
+            self::RENDAS_2 =>  __('2'),
+            self::RENDAS_3 =>  __('3'),
+            self::RENDAS_4 =>  __('4'),
+            self::RENDAS_5 =>  __('5'),
+            self::RENDAS_6 =>  __('6'),
+            self::RENDAS_7 =>  __('7'),
+            self::RENDAS_8 =>  __('8'),
+            self::RENDAS_9 =>  __('9'),
+            self::RENDAS_10 =>  __('10'),
+            self::RENDAS_11 =>  __('11'),
+            self::RENDAS_12 =>  __('12')
+
         ];
     }
 
@@ -148,6 +186,18 @@ class Contrato extends Model implements HasMedia
         return static::getMethodPaymentArray();
     }
 
+
+     /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public function getRendasAvancoOptions()
+    {
+        return static::getRendasAvancoArray();
+    }
+
+
+
      /**
      * Return an array with the values of type field
      * @return array
@@ -197,6 +247,19 @@ class Contrato extends Model implements HasMedia
         $array = self::getStateOptions();
         return $array[$this->estado];
     }
+
+
+    /**
+     * Return the first name of the user
+     * @return mixed|string
+     */
+    public function getRendasAvancoLabelAttribute()
+    {
+        $array = self::getRendasAvancoOptions();
+        return $array[$this->rendasAvanco];
+    }
+
+
 
      /**
      * Return the first name of the user

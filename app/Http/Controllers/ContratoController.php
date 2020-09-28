@@ -200,7 +200,7 @@ class ContratoController extends Controller
             'encargos' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'caucao' => 'nullable|integer',
             'metodoPagamento' => 'required|integer',
-            'rendasAvanco' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
+            'rendasAvanco' => 'nullable|integer',
             'inquilinos_list' => 'required|min:1',
             'fiadores_list' => 'required|min:1',
             'imovel_id' => 'required',
