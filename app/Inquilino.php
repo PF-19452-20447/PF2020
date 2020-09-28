@@ -17,6 +17,12 @@ class Inquilino extends Model implements HasMedia
     const CAE_SECUNDÁRIO = 2;
     const TYPE_EMPRESA = 3;
     const TYPE_PARTICULAR = 4;
+    const SETOR_PRIMARIO = 5;
+    const SETOR_SECUNDARIO = 6;
+    const SETOR_TERCIARIO = 7;
+    const CONTRATO_ANUAL = 8;
+    const CONTRATO_SEMESTRAL = 9;
+    const CONTRATO_MENSAL = 10;
 
     protected $table='inquilinos';
 
@@ -36,15 +42,12 @@ class Inquilino extends Model implements HasMedia
         'iban' ,
         'tipoParticularEmpresa',
         'profissao',
-        'vencimento',
         'tipoContrato' ,
         'notas',
         'cae' ,
-        'capitalSocial' ,
         'setorActividade' ,
         'certidaoPermanente',
         'numFuncionarios',
-        ''
     ];
 
     /**
@@ -67,8 +70,34 @@ class Inquilino extends Model implements HasMedia
     public static function getCAEArray()
     {
         return [
-            self::CAE_PRINCIPAL =>  __('Principal'),
-            self::CAE_SECUNDÁRIO =>  __('Secundário'),
+            self::CAE_PRINCIPAL =>  __('Main'),
+            self::CAE_SECUNDÁRIO =>  __('Secondary'),
+        ];
+    }
+
+    /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public static function getTipoContratoArray()
+    {
+        return [
+            self::CONTRATO_ANUAL =>  __('Yearly'),
+            self::CONTRATO_SEMESTRAL =>  __('Six Month'),
+            self::CONTRATO_MENSAL => __('Monthly')
+        ];
+    }
+
+    /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public static function getSetorAtividadeArray()
+    {
+        return [
+            self::SETOR_PRIMARIO =>  __('Primary'),
+            self::SETOR_SECUNDARIO =>  __('Secondary'),
+            self::SETOR_TERCIARIO =>  __('Third'),
         ];
     }
 
@@ -79,8 +108,8 @@ class Inquilino extends Model implements HasMedia
     public static function getTipoParticularEmpresaArray()
     {
         return [
-            self::TYPE_EMPRESA =>  __('Empresa'),
-            self::TYPE_PARTICULAR =>  __('Particular')
+            self::TYPE_EMPRESA =>  __('Company'),
+            self::TYPE_PARTICULAR =>  __('Private')
         ];
     }
 
@@ -92,6 +121,26 @@ class Inquilino extends Model implements HasMedia
     {
         return static::getCAEArray();
     }
+
+     /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public function getTipoContratoOptions()
+    {
+        return static::getTipoContratoArray();
+    }
+
+
+      /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public function getSetorAtividadeOptions()
+    {
+        return static::getSetorAtividadeArray();
+    }
+
 
      /**
      * Return an array with the values of type field
@@ -110,6 +159,26 @@ class Inquilino extends Model implements HasMedia
     {
         $array = self::getCAEOptions();
         return $array[$this->cae];
+    }
+
+    /**
+     * Return the first name of the user
+     * @return mixed|string
+     */
+    public function getTipoContratoLabelAttribute()
+    {
+        $array = self::getTipoContratoOptions();
+        return $array[$this->tipoContrato];
+    }
+
+    /**
+     * Return the first name of the user
+     * @return mixed|string
+     */
+    public function getSetorAtividadeLabelAttribute()
+    {
+        $array = self::getSetorAtividadeOptions();
+        return $array[$this->setorActividade];
     }
 
     /**

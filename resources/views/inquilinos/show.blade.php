@@ -50,7 +50,7 @@ view()->share('hideSubHeader', true);
                         Column::make('Telephone'),
                         Column::make('Address'),
                         Column::make('IBAN'),
-                        Column::make('Particular type of company'),
+                       // Column::make('Particular type of company'),
                         //Column::make('created_at'),
                         //Column::make('updated_at'),-->
 
@@ -100,12 +100,8 @@ view()->share('hideSubHeader', true);
                                 <td>{{ $inquilino ->profissao }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">{{ __('Pay') }}</th>
-                                <td>{{ $inquilino ->vencimento }}</td>
-                            </tr>
-                            <tr>
                                 <th scope="row">{{ __('Type of contract') }}</th>
-                                <td>{{ $inquilino ->tipoContrato }}</td>
+                                <td>{{ $inquilino ->TipoContratoLabel }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Grades') }}</th>
@@ -116,12 +112,8 @@ view()->share('hideSubHeader', true);
                                 <td>{{ $inquilino ->CAELabel }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">{{ __('Share capital') }}</th>
-                                <td>{{ $inquilino ->capitalSocial }}</td>
-                            </tr>
-                            <tr>
                                 <th scope="row">{{ __('Activity sector') }}</th>
-                                <td>{{ $inquilino ->setorActividade }}</td>
+                                <td>{{ $inquilino ->SetorAtividadeLabel }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Permanent certificate') }}</th>

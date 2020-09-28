@@ -64,10 +64,10 @@ class Renda extends Model
     public static function getStateArray()
     {
         return [
-            self::ESTADO_EM_ESPERA =>  __('Em Espera'),
-            self::ESTADO_PAGO =>  __('Pago'),
-            self::ESTADO_NAO_REMUNERADO =>  __('Não Remunerado'),
-            self::ESTADO_PARCIAL =>  __('Parcial')
+            self::ESTADO_EM_ESPERA =>  __('On Hold'),
+            self::ESTADO_PAGO =>  __('Paid'),
+            self::ESTADO_NAO_REMUNERADO =>  __('Unpaid'),
+            self::ESTADO_PARCIAL =>  __('Partial')
         ];
     }
 
@@ -78,11 +78,11 @@ class Renda extends Model
     public static function getMethodPaymentArray()
     {
         return [
-            self::PAGAMENTO_TRANSFERENCIA_BANCARIA =>  __('Transferência Bancária'),
-            self::PAGAMENTO_MULTIBANCO =>  __('Multibanco'),
+            self::PAGAMENTO_TRANSFERENCIA_BANCARIA =>  __('Bank Transfer'),
+            self::PAGAMENTO_MULTIBANCO =>  __('ATM'),
             self::PAGAMENTO_MBWAY =>  __('Mb Way'),
-            self::PAGAMENTO_DEBITO_DIRETO =>  __('Débito Direto'),
-            self::PAGAMENTO_CARTAO_CREDITO =>  __('Cartão de Crédito')
+            self::PAGAMENTO_DEBITO_DIRETO =>  __('Direct Debit'),
+            self::PAGAMENTO_CARTAO_CREDITO =>  __('Credit Card')
         ];
     }
 

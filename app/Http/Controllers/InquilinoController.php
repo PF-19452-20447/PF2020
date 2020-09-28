@@ -317,15 +317,13 @@ class InquilinoController extends Controller
             'iban' => ['nullable', 'alpha_dash', 'max:64'],
             'tipoParticularEmpresa' => 'required|integer',
             'profissao' => 'required|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
-            'vencimento' => 'nullable|integer',
-            'tipoContrato' => 'required|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
+            'tipoContrato' => 'required|integer',
             'notas' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'cae' => 'nullable|integer',
-            'capitalSocial' => 'nullable|integer',
-            'setorActividade' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
+            'setorActividade' => 'nullable|integer',
             'certidaoPermanente' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'numFuncionarios' => 'nullable|integer|min:0',
-            'photos.*'=>'nullable|file',
+            'photos.*'=>'nullable|image|mimes:jpeg,png,jpg,bmp,tiff|max:4096',
             'img_delete'=>'nullable'
         ];
 

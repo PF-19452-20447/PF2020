@@ -19,7 +19,7 @@
         </div>
         <div class="form-group">
             {!! Form::label('tipoContrato', __('Type of contract')) !!}
-            {!! Form::text('tipoContrato', null, ['class' => 'form-control '.($errors->has('tipoContrato') ? 'is-invalid' : ''), 'type' => 'date', 'required' => false ]) !!}
+            {!! Form::select('tipoContrato', \App\Contrato::getTipoContratoArray(), null, ['class' => 'form-control '.($errors->has('tipoContrato') ? 'is-invalid' : ''), 'type' => 'date', 'required' => false ]) !!}
             @error('tipoContrato')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
@@ -132,7 +132,7 @@
                 if(!empty($user->proprietario)){
                     foreach($user->proprietario->imoveis as $imovel){
                 ?>
-                         <option value="{{ $imovel->id }}" @if (old('imovel_id') == $imovel->id) selected="selected" @endif >
+                         <option value="{{ $imovel->id }}" {{ $imovel->id == $contrato->imovel_id ? 'selected' : '' }} >
                             {{$imovel->morada}}
                          </option>
                          <?php

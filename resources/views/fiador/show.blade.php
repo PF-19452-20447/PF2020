@@ -51,7 +51,7 @@ view()->share('hideSubHeader', true);
                         Column::make('Telephone'),
                         Column::make('Address'),
                         Column::make('IBAN'),
-                        Column::make('Particular type of company'),
+                        //Column::make('Particular type of company'),
                         //Column::make('created_at'),
                         //Column::make('updated_at'),-->
                             <tr>
@@ -99,12 +99,8 @@ view()->share('hideSubHeader', true);
                                 <td>{{ $fiador ->CAELabel }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">{{ __('Share capital') }}</th>
-                                <td>{{ $fiador ->capitalSocial }}</td>
-                            </tr>
-                            <tr>
                                 <th scope="row">{{ __('Activity sector') }}</th>
-                                <td>{{ $fiador ->setorActividade }}</td>
+                                <td>{{ $fiador ->SetorAtividadeLabel }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Permanent certificate') }}</th>

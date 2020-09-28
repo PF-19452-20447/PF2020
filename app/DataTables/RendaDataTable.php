@@ -96,13 +96,13 @@ class RendaDataTable extends DataTable
         return $this->builder()
                     ->setTableId('renda-table')
                     ->columns([
-                        'id' => ['title' => 'Id'],
-                        'valorPagar' => [ 'title' => 'Payable amount' ],
-                        'dataPagamento' => [ 'title' => 'Payment Date' ],
-                        'metodoPagamento' => ['title' => 'Payment method'],
-                        'dataLimitePagamento' => ['title' => 'Payment deadline'],
-                        'dataRecibo' => ['title' => 'Receipt date'],
-                        'action' => ['title' => 'Action'],
+                        'id' => ['title' => __('Id')],
+                        'valorPagar' => [ 'title' => __('Payable amount') ],
+                        'dataPagamento' => [ 'title' => __('Payment Date') ],
+                        'metodoPagamento' => ['title' => __('Payment Method')],
+                        'valorDivida' => ['title' => __('Debt amount')],
+                        'estado' => ['title' => __('State')],
+                        'action' => ['title' => __('Action')]
                     ])
                     ->minifiedAjax()
                     ->dom("<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>rtip") // Bfrtip
@@ -124,9 +124,8 @@ class RendaDataTable extends DataTable
             'valorPagar',
             'dataPagamento',
             'metodoPagamento',
+            'valorDivida',
             'estado',
-            'dataLimitePagamento',
-            'dataRecibo',
 
           //  Column::make('id'),
             //Column::make('valorPagar'),

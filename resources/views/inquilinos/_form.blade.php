@@ -82,15 +82,8 @@
             @enderror
         </div>
         <div class="form-group">
-            {!! Form::label('vencimento', __('Payment')) !!}
-            {!! Form::number('vencimento', null, ['class' => 'form-control '.($errors->has('vencimento') ? 'is-invalid' : ''), 'min' => '1', 'max' => '999', 'type' => 'number', 'step' => 1, 'required' => false]) !!}
-            @error('vencimento')
-            <div class="error invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
-        <div class="form-group">
             {!! Form::label('tipoContrato', __('Type of contract')) !!}
-            {!! Form::text('tipoContrato', null, ['class' => 'form-control '.($errors->has('tipoContrato') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1, 'min' => 0, 'required' => true]) !!}
+            {!! Form::select('tipoContrato', \App\Inquilino::getTipoContratoArray(), null, ['class' => 'form-control '.($errors->has('tipoContrato') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1, 'min' => 0, 'required' => true]) !!}
             @error('tipoContrato')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
@@ -110,15 +103,8 @@
             @enderror
         </div>
         <div class="form-group">
-            {!! Form::label('capitalSocial', __('Share capital')) !!}
-            {!! Form::number('capitalSocial', null, ['class' => 'form-control '.($errors->has('capitalSocial') ? 'is-invalid' : ''), 'min' => '1', 'max' => '8', 'type' => 'number', 'step' => 1, 'required' => false]) !!}
-            @error('capitalSocial')
-            <div class="error invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
-        <div class="form-group">
             {!! Form::label('setorActividade', __('Activity sector')) !!}
-            {!! Form::text('setorActividade', null, ['class' => 'form-control '.($errors->has('setorActividade') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1, 'min' => 0, 'required' => false]) !!}
+            {!! Form::select('setorActividade', \App\Inquilino::getSetorAtividadeArray(), null, ['class' => 'form-control '.($errors->has('setorActividade') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1, 'min' => 0, 'required' => false]) !!}
             @error('setorActividade')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror

@@ -22,6 +22,9 @@ class ContratoDataTable extends DataTable
         $datatable =datatables()
             ->eloquent($query)
            ->editColumn('created_at', '{!! date(\'d-m-Y H:i:s\', strtotime($created_at)) !!}');
+          /* ->editColumn('tipoContrato', function ($model) {
+            return  $model->TipoContratoLabel;
+            });*/
             //->editColumn('created_at', '{{ Carbon\Carbon::parse(created_at)->toDateTimeString() }}');
             if(auth()->user()->can('accessAsLandlord')){
                 $datatable->addColumn('action', function ($contrato) {
@@ -37,7 +40,6 @@ class ContratoDataTable extends DataTable
                            ';
 
                 });
-
 
             }
             return $datatable;
@@ -78,13 +80,12 @@ class ContratoDataTable extends DataTable
         return $this->builder()
                     ->setTableId('contrato-table')
                     ->columns([
-                        'id' => ['title' => 'Id'],
-                        'valorRenda' => [ 'title' => 'Income value' ],
-                        'tipoContrato' => [ 'title' => 'Type of contract' ],
-                        'dataLimitePagamento' => ['title' => 'Payment deadline'],
-                        'caucao' => ['title' => 'Deposit'],
-                        'metodoPagamento' => ['title' => 'Payment method'],
-                        'action' => ['title' => 'Action'],
+                        'id' => ['title' => __('Id')],
+                        'valorRenda' => [ 'title' => __('Income value') ],
+                        'tipoContrato' => [ 'title' => __('Type of contract') ],
+                        'dataLimitePagamento' => ['title' => __('Payment deadline')],
+                        'caucao' => ['title' => __('Deposit')],
+                        'action' => ['title' => __('Action')],
                     ])
                     ->minifiedAjax()
                     ->dom("<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>rtip") // Bfrtip
@@ -108,7 +109,6 @@ class ContratoDataTable extends DataTable
             'dataLimitePagamento',
             'estado',
             'caucao',
-            'metodoPagamento',
             'action'
            // Column::make('id'),
            // Column::make('valorRenda'),

@@ -48,7 +48,7 @@ view()->share('hideSubHeader', true);
                         Column::make('id'),
                         Column::make('valorPagar'),
                         Column::make('dataPagamento'),
-                        Column::make('metodoPagamento'),
+                       // Column::make('metodoPagamento'),
                         Column::make('estado'),
                         Column::make('dataLimitePagamento'),
                         Column::make('dataRecibo'),
