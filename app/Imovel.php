@@ -24,6 +24,11 @@ class Imovel extends Model implements HasMedia
     const TIPOLOGIA_T3 = 10;
     const TIPOLOGIA_T4 = 11;
     const TIPOLOGIA_T5 = 12;
+    const TIPOLOGIA_T6 = 13;
+    const TIPOLOGIA_T7 = 14;
+    const TIPOLOGIA_T8 = 15;
+    const TIPOLOGIA_T9 = 16;
+    const TIPOLOGIA_T10 = 17;
 
     protected $table = "imoveis";
     //protected $primaryKey = 'contrato_id';
@@ -81,7 +86,12 @@ class Imovel extends Model implements HasMedia
             self::TIPOLOGIA_T2 =>  __('T2'),
             self::TIPOLOGIA_T3 =>  __('T3'),
             self::TIPOLOGIA_T4 =>  __('T4'),
-            self::TIPOLOGIA_T5 =>  __('T5')
+            self::TIPOLOGIA_T5 =>  __('T5'),
+            self::TIPOLOGIA_T6 =>  __('T6'),
+            self::TIPOLOGIA_T7 =>  __('T7'),
+            self::TIPOLOGIA_T8 =>  __('T8'),
+            self::TIPOLOGIA_T9 =>  __('T9'),
+            self::TIPOLOGIA_T10 =>  __('T10 or higher')
         ];
     }
 
