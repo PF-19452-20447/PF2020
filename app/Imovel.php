@@ -19,16 +19,28 @@ class Imovel extends Model implements HasMedia
     const BOOLEAN_NÃO = 5;
     const TYPE_APARTAMENTO = 6;
     const TYPE_MORADIA = 7;
-    const TIPOLOGIA_T1 = 8;
-    const TIPOLOGIA_T2 = 9;
-    const TIPOLOGIA_T3 = 10;
-    const TIPOLOGIA_T4 = 11;
-    const TIPOLOGIA_T5 = 12;
-    const TIPOLOGIA_T6 = 13;
-    const TIPOLOGIA_T7 = 14;
-    const TIPOLOGIA_T8 = 15;
-    const TIPOLOGIA_T9 = 16;
-    const TIPOLOGIA_T10 = 17;
+    const TIPOLOGIA_T0 = 8;
+    const TIPOLOGIA_T1 = 9;
+    const TIPOLOGIA_T2 = 10;
+    const TIPOLOGIA_T3 = 11;
+    const TIPOLOGIA_T4 = 12;
+    const TIPOLOGIA_T5 = 13;
+    const TIPOLOGIA_T6 = 14;
+    const TIPOLOGIA_T7 = 15;
+    const TIPOLOGIA_T8 = 16;
+    const TIPOLOGIA_T9 = 17;
+    const TIPOLOGIA_T10 = 18;
+    const CERTIFICADO_AA = 19;
+    const CERTIFICADO_A = 20;
+    const CERTIFICADO_B = 21;
+    const CERTIFICADO_BB = 22;
+    const CERTIFICADO_C = 23;
+    const CERTIFICADO_D = 24;
+    const CERTIFICADO_E = 25;
+    const CERTIFICADO_F = 26;
+    const CERTIFICADO_G = 27;
+    const CERTIFICADO_ISENTO = 28;
+
 
     protected $table = "imoveis";
     //protected $primaryKey = 'contrato_id';
@@ -82,6 +94,7 @@ class Imovel extends Model implements HasMedia
     public static function getTypologyArray()
     {
         return [
+            self::TIPOLOGIA_T0 =>  __('T0'),
             self::TIPOLOGIA_T1 =>  __('T1'),
             self::TIPOLOGIA_T2 =>  __('T2'),
             self::TIPOLOGIA_T3 =>  __('T3'),
@@ -129,6 +142,26 @@ class Imovel extends Model implements HasMedia
         ];
     }
 
+      /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public static function getCertificadoEnergeticoArray()
+    {
+        return [
+            self::CERTIFICADO_AA => __('A+'),
+            self::CERTIFICADO_A => __('A'),
+            self::CERTIFICADO_B => __('B'),
+            self::CERTIFICADO_BB => __('B-'),
+            self::CERTIFICADO_C => __('C'),
+            self::CERTIFICADO_D => __('D'),
+            self::CERTIFICADO_E => __('E'),
+            self::CERTIFICADO_F => __('F'),
+            self::CERTIFICADO_G => __('G'),
+            self::CERTIFICADO_ISENTO => __('Isento')
+        ];
+    }
+
      /**
      * Return the first name of the user
      * @return mixed|string
@@ -138,6 +171,17 @@ class Imovel extends Model implements HasMedia
         $array = self::getTypologyOptions();
         return $array[$this->tipologia];
     }
+
+     /**
+     * Return the first name of the user
+     * @return mixed|string
+     */
+    public function getCertificadoEnergeticoLabelAttribute()
+    {
+        $array = self::getCertificadoEnergeticoOptions();
+        return $array[$this->certificadoEnergetico];
+    }
+
 
      /**
      * Return the first name of the user
@@ -167,6 +211,16 @@ class Imovel extends Model implements HasMedia
     {
         return static::getStateArray();
     }
+
+      /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public function getCertificadoEnergeticoOptions()
+    {
+        return static::getCertificadoEnergeticoArray();
+    }
+
 
 
     /**

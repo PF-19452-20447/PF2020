@@ -68,7 +68,7 @@
         </div>
         <div class="form-group">
             {!! Form::label('certificadoEnergetico', __('Energy Certificate')) !!}
-            {!! Form::text('certificadoEnergetico', null, ['class' => 'form-control '.($errors->has('certificadoEnergetico') ? 'is-invalid' : ''), 'required' => false]) !!}
+            {!! Form::select('certificadoEnergetico', \App\Imovel::getCertificadoEnergeticoArray(), null, ['class' => 'form-control '.($errors->has('certificadoEnergetico') ? 'is-invalid' : ''), 'required' => false]) !!}
             @error('certificadoEnergetico')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
