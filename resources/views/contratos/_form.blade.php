@@ -54,7 +54,7 @@
         </div>
         <div class="form-group">
             {!! Form::label('retencaoFonte', __('Source retention')) !!}
-            {!! Form::text('retencaoFonte', null, ['class' => 'form-control '.($errors->has('retencaoFonte') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1, 'min' => 0, 'required' => false]) !!}
+            {!! Form::select('retencaoFonte', \App\Contrato::getRetencaoFonteArray(), null, ['class' => 'form-control '.($errors->has('retencaoFonte') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1, 'min' => 0, 'required' => false]) !!}
             @error('retencaoFonte')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror

@@ -68,7 +68,7 @@
             @enderror
         </div>
         <div class="form-group">
-            {!! Form::label('tipoParticularEmpresa', __('Particular Type of company')) !!}
+            {!! Form::label('tipoParticularEmpresa', __('Type of Tenant')) !!}
             {!! Form::select('tipoParticularEmpresa', \App\Inquilino::getTipoParticularEmpresaArray() , null , ['class' => 'form-control '.($errors->has('tipoParticularEmpresa') ? 'is-invalid' : ''), 'required' => true]) !!}
             @error('tipoParticularEmpresa')
             <div class="error invalid-feedback">{{ $message }}</div>

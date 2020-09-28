@@ -194,7 +194,7 @@ class ContratoController extends Controller
             'fimContrato' => 'nullable|date_format:Y-m-d H:i:s|after:inicioContrato',
             'renovavel' => 'required|integer',
             'isencaoBeneficio' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
-            'retencaoFonte' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
+            'retencaoFonte' => 'required|integer',
             'dataLimitePagamento' => 'nullable|date_format:Y-m-d H:i:s|after:fimContrato',
             'estado' => 'required|integer',
             'encargos' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',

@@ -25,6 +25,8 @@ class Contrato extends Model implements HasMedia
     const CONTRATO_ANUAL = 11;
     const CONTRATO_SEMESTRAL = 12;
     const CONTRATO_MENSAL = 13;
+    const RETENCAO_SIM = 14;
+    const RETENCAO_NÃO = 15;
 
 
   //  protected $table = 'contratos';
@@ -79,6 +81,18 @@ class Contrato extends Model implements HasMedia
             self::ESTADO_ATIVO =>  __('Active'),
             self::ESTADO_PENDENTE =>  __('Pending'),
             self::ESTADO_TERMINADO =>  __('Ended'),
+        ];
+    }
+
+      /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public static function getRetencaoFonteArray()
+    {
+        return [
+            self::RETENCAO_SIM =>  __('Yes'),
+            self::RETENCAO_NÃO =>  __('No'),
         ];
     }
 
@@ -165,6 +179,16 @@ class Contrato extends Model implements HasMedia
 
 
     /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public function getRetencaoFonteOptions()
+    {
+        return static::getRetencaoFonteArray();
+    }
+
+
+    /**
      * Return the first name of the user
      * @return mixed|string
      */
@@ -193,6 +217,16 @@ class Contrato extends Model implements HasMedia
     {
         $array = self::getRenewableOptions();
         return $array[$this->renovavel];
+    }
+
+    /**
+     * Return the first name of the user
+     * @return mixed|string
+     */
+    public function getRetencaoFonteLabelAttribute()
+    {
+        $array = self::getRetencaoFonteOptions();
+        return $array[$this->retencaoFonte];
     }
 
     /**

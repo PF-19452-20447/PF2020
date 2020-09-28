@@ -25,7 +25,7 @@
             @enderror
         </div>
         <div class="form-group">
-            {!! Form::label('area', __('Area m2')) !!}
+            {!! Form::label('area', __('Area m²')) !!}
             {!! Form::number('area', null, ['class' => 'form-control '.($errors->has('area') ? 'is-invalid' : ''), 'min' => '1', 'type' => 'number', 'required' => true]) !!}
             @error('area')
                 <div class="error invalid-feedback">{{ $message }}</div>

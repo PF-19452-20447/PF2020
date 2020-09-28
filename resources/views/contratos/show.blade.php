@@ -83,7 +83,7 @@ view()->share('hideSubHeader', true);
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Source retention') }}</th>
-                                <td>{{ $contrato ->retencaoFonte }}</td>
+                                <td>{{ $contrato ->RetencaoFonteLabel }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Payment deadline') }}</th>

@@ -57,7 +57,7 @@ view()->share('hideSubHeader', true);
                                 <td>{{ $imovel ->tipologiaLabel }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">{{ __('Area') }}</th>
+                                <th scope="row">{{ __('Area m²') }}</th>
                                 <td>{{ $imovel ->area }}</td>
                             </tr>
                             <tr>
