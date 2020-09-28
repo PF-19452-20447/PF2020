@@ -56,8 +56,8 @@
                         <span class="kt-menu__link-text">{{ __('Dashboard') }}</span>
                     </a>
                 </li>
-                
-                @canany(['adminApp', 'adminFullApp', 'accessAsLandlord', 'accessAsTenant'])
+
+                @canany(['adminApp', 'adminFullApp'])
                 <li class="kt-menu__item {{ request()->routeIs('translations') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
                     <a href="{{ route('translations') }}" class="kt-menu__link ">
                         <span class="kt-menu__link-icon">
