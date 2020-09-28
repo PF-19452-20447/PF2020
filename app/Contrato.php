@@ -217,6 +217,11 @@ class Contrato extends Model implements HasMedia
         return $this->belongsToMany('App\Inquilino', 'contrato_inquilinos');
     }
 
+    public function fiadores()
+    {
+        return $this->belongsToMany('App\Fiador', 'contrato_fiadores');
+    }
+
     public function rendas()
     {
         return $this->hasMany('App\Renda');

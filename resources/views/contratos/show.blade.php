@@ -126,6 +126,10 @@ view()->share('hideSubHeader', true);
                                 <td>{{$contrato->inquilinos->pluck('nome')}}</td>
                             </tr>
                             <tr>
+                                <th scope="row">{{ __('Guarantors selected') }}</th>
+                                <td>{{$contrato->fiadores->pluck('nome')}}</td>
+                            </tr>
+                            <tr>
                                 <th scope="row">{{ __('Property selected') }}</th>
                                 <td>{{$contrato->imovel->morada}}</td>
                             </tr>

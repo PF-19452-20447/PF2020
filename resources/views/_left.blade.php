@@ -245,7 +245,7 @@
                                 </a>
                             </li>
                             @endcanany
-                            @canany(['adminApp', 'accessAsTenant'])
+                            @canany(['adminApp', 'accessAsTenant', 'accessAsLandlord'])
                             <li class="kt-menu__item {{ request()->routeIs('fiador.create') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
                                 <a href="{{ route('fiador.create') }}" class="kt-menu__link ">
                                     <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>

@@ -22,7 +22,7 @@ view()->share('hideSubHeader', true);
             <div class="kt-portlet__head-toolbar">
                 <div class="kt-portlet__head-wrapper">
                     <div class="kt-portlet__head-actions">
-                        @canany(['adminApp', 'adminFullApp', 'accessAsTenant'])
+                        @canany(['adminApp', 'adminFullApp', 'accessAsTenant', 'accessAsLandlord'])
                         <a href="{{ route('fiador.edit', $fiador) }}" class="btn btn-brand btn-elevate btn-icon-sm">
                             <i class="la la-edit"></i>
                             {{ __('Update') }}
@@ -129,7 +129,7 @@ view()->share('hideSubHeader', true);
 @endcanany
 @endsection
 @push('scripts')
-@canany(['adminApp', 'adminFullApp', 'accessAsTenant'])
+@canany(['adminApp', 'adminFullApp', 'accessAsTenant', 'accessAsLandlord'])
     <script>
         function destroyConfirmation(e){
             swal.fire({
