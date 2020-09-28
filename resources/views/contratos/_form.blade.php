@@ -46,8 +46,8 @@
             @enderror
         </div>
         <div class="form-group">
-            {!! Form::label('isencaoBeneficio', __('Exemption benefit')) !!}
-            {!! Form::text('isencaoBeneficio', null, ['class' => 'form-control '.($errors->has('isencaoBeneficio') ? 'is-invalid' : ''), 'min' => '1', 'type' => 'number', 'step' => 1, 'required' => false]) !!}
+            {!! Form::hidden('isencaoBeneficio', __('Exemption benefit')) !!}
+            {!! Form::hidden('isencaoBeneficio', null, ['class' => 'form-control '.($errors->has('isencaoBeneficio') ? 'is-invalid' : ''), 'min' => '1', 'type' => 'number', 'step' => 1, 'required' => false]) !!}
             @error('isencaoBeneficio')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
