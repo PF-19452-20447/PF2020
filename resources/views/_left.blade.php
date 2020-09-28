@@ -366,7 +366,7 @@
                                 <rect fill="#000000" opacity="0.3" x="16" y="14" width="4" height="2" rx="1"/>
                             </g>
                         </svg><!--end::Svg Icon--></span>
-                        <span class="kt-menu__link-text">{{ __('Incomes') }}</span>
+                        <span class="kt-menu__link-text">{{ __('Incomes Payment') }}</span>
                         <i class="kt-menu__ver-arrow la la-angle-right"></i>
                     </a>
                     <div class="kt-menu__submenu ">
@@ -374,14 +374,14 @@
                         <ul class="kt-menu__subnav">
                             <li class="kt-menu__item kt-menu__item--parent" aria-haspopup="true">
                                 <span class="kt-menu__link">
-                                    <span class="kt-menu__link-text">{{ __('Incomes') }}</span>
+                                    <span class="kt-menu__link-text">{{ __('Incomes Payment') }}</span>
                                 </span>
                             </li>
                             @canany(['accessAsTenant', 'accessAsLandlord', 'adminApp', 'adminFullApp'])
                             <li class="kt-menu__item {{ request()->routeIs('rendas.index') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
                                 <a href="{{ route('rendas.index') }}" class="kt-menu__link">
                                     <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
-                                    <span class="kt-menu__link-text">{{ __('List incomes') }}</span>
+                                    <span class="kt-menu__link-text">{{ __('List Incomes Payment') }}</span>
                                 </a>
                             </li>
                             @endcanany
@@ -389,7 +389,7 @@
                             <li class="kt-menu__item {{ request()->routeIs('rendas.create') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
                                 <a href="{{ route('rendas.create') }}" class="kt-menu__link ">
                                     <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
-                                    <span class="kt-menu__link-text">{{ __('Create incomes') }}</span>
+                                    <span class="kt-menu__link-text">{{ __('Create Incomes Payment') }}</span>
                                 </a>
                             </li>
                             @endcanany
