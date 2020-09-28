@@ -80,7 +80,6 @@ class ContratoDataTable extends DataTable
         return $this->builder()
                     ->setTableId('contrato-table')
                     ->columns([
-                        'id' => ['title' => __('Id')],
                         'valorRenda' => [ 'title' => __('Income value') ],
                         'tipoContrato' => [ 'title' => __('Type of contract') ],
                         'dataLimitePagamento' => ['title' => __('Payment deadline')],

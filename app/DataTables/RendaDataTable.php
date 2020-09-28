@@ -96,7 +96,7 @@ class RendaDataTable extends DataTable
         return $this->builder()
                     ->setTableId('renda-table')
                     ->columns([
-                        'id' => ['title' => __('Id')],
+                       // 'id' => ['title' => __('Id')],
                         'valorPagar' => [ 'title' => __('Payable amount') ],
                         'dataPagamento' => [ 'title' => __('Payment Date') ],
                         'metodoPagamento' => ['title' => __('Payment Method')],

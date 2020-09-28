@@ -97,7 +97,6 @@ class FiadorDatatable extends DataTable
         return $this->builder()
                     ->setTableId('fiador-table')
                     ->columns([
-                        'id' => ['title' => __('Id')],
                         'nome' => [ 'title' => __('Name') ],
                         'email' => [ 'title' => __('Email') ],
                         'telefone' => ['title' => __('Telephone')],

@@ -84,7 +84,7 @@ class ImovelDatatable extends DataTable
         return $this->builder()
                     ->setTableId('imovel-table')
                     ->columns([
-                        'id' => ['title' => __('Id')],
+                       // 'id' => ['title' => __('Id')],
                         'tipo' => [ 'title' => __('Type') ],
                         'tipologia' => [ 'title' => __('Typology') ],
                         'area' => ['title' => __('Area')],
