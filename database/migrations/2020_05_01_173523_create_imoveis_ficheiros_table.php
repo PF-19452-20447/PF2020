@@ -16,9 +16,9 @@ class CreateImoveisFicheirosTable extends Migration
         Schema::create('imoveis_ficheiros', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('imovel_id')->nullable();
-            $table->foreign('imovel_id')->references('id')->on('imoveis');
+            $table->foreign('imovel_id')->references('id')->on('imoveis')->onDelete('cascade');
             $table->unsignedBigInteger('ficheiro_id')->nullable();
-            $table->foreign('ficheiro_id')->references('id')->on('ficheiros');
+            $table->foreign('ficheiro_id')->references('id')->on('ficheiros')->onDelete('cascade');
             $table ->rememberToken();
             $table->timestamps();
         });

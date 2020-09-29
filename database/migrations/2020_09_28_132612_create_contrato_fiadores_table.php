@@ -16,9 +16,9 @@ class CreateContratoFiadoresTable extends Migration
         Schema::create('contrato_fiadores', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('contrato_id')->nullable();
-            $table->foreign('contrato_id')->references('id')->on('contratos');
+            $table->foreign('contrato_id')->references('id')->on('contratos')->onDelete('cascade');
             $table->unsignedBigInteger('fiador_id')->nullable();
-            $table->foreign('fiador_id')->references('id')->on('fiadores');
+            $table->foreign('fiador_id')->references('id')->on('fiadores')->onDelete('cascade');
             $table->timestamps();
         });
     }

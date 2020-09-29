@@ -115,6 +115,7 @@ class FiadorController extends Controller
      */
     public function destroy(Fiador $fiador)
     {
+        $fiador->contratos()->sync([]);
         $fiador->delete();
         return redirect(route('fiador.index'));
         //
