@@ -60,8 +60,8 @@
             @enderror
         </div>
         <div class="form-group">
-            {!! Form::label('diaLimitePagamento', __('Payment deadline')) !!}
-            {!! Form::number('diaLimitePagamento', null, ['class' => 'form-control '.($errors->has('diaLimitePagamento') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1, 'required' => false]) !!}
+            {!! Form::label('diaLimitePagamento', __('Payment Deadline Day')) !!}
+            {!! Form::select('diaLimitePagamento',  \App\Contrato::getDiaLimitePagamentoArray(), null, ['class' => 'form-control '.($errors->has('diaLimitePagamento') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1, 'required' => false]) !!}
             @error('diaLimitePagamento')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror

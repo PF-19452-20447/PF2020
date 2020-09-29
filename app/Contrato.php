@@ -40,6 +40,38 @@ class Contrato extends Model implements HasMedia
     const RENDAS_10 = 26;
     const RENDAS_11 = 27;
     const RENDAS_12 = 28;
+    const DIA_1 = 29;
+    const DIA_2 = 30;
+    const DIA_3 = 31;
+    const DIA_4 = 32;
+    const DIA_5 = 33;
+    const DIA_6 = 34;
+    const DIA_7 = 35;
+    const DIA_8 = 36;
+    const DIA_9 = 37;
+    const DIA_10 = 38;
+    const DIA_11 = 39;
+    const DIA_12 = 40;
+    const DIA_13 = 41;
+    const DIA_14 = 42;
+    const DIA_15 = 43;
+    const DIA_16 = 44;
+    const DIA_17 = 45;
+    const DIA_18 = 46;
+    const DIA_19 = 47;
+    const DIA_20 = 48;
+    const DIA_21 = 49;
+    const DIA_22 = 50;
+    const DIA_23 = 51;
+    const DIA_24 = 52;
+    const DIA_25 = 53;
+    const DIA_26 = 54;
+    const DIA_27 = 55;
+    const DIA_28 = 56;
+    const DIA_29 = 57;
+    const DIA_30 = 58;
+    const DIA_31 = 59;
+
 
 
   //  protected $table = 'contratos';
@@ -122,6 +154,48 @@ class Contrato extends Model implements HasMedia
         ];
     }
 
+     /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public static function getDiaLimitePagamentoArray()
+    {
+        return [
+            self::DIA_1 =>  __('1'),
+            self::DIA_2 =>  __('2'),
+            self::DIA_3 =>  __('3'),
+            self::DIA_4 =>  __('4'),
+            self::DIA_5 =>  __('5'),
+            self::DIA_6 =>  __('6'),
+            self::DIA_7 =>  __('7'),
+            self::DIA_8 =>  __('8'),
+            self::DIA_9 =>  __('9'),
+            self::DIA_10 =>  __('10'),
+            self::DIA_11 =>  __('11'),
+            self::DIA_12 =>  __('12'),
+            self::DIA_13 =>  __('13'),
+            self::DIA_14 =>  __('14'),
+            self::DIA_15 =>  __('15'),
+            self::DIA_16 =>  __('16'),
+            self::DIA_17 =>  __('17'),
+            self::DIA_18 =>  __('18'),
+            self::DIA_19 =>  __('19'),
+            self::DIA_20 =>  __('20'),
+            self::DIA_21 =>  __('21'),
+            self::DIA_22 =>  __('22'),
+            self::DIA_23 =>  __('23'),
+            self::DIA_24 =>  __('24'),
+            self::DIA_25 =>  __('25'),
+            self::DIA_26 =>  __('26'),
+            self::DIA_27 =>  __('27'),
+            self::DIA_28 =>  __('28'),
+            self::DIA_29 =>  __('29'),
+            self::DIA_30 =>  __('30'),
+            self::DIA_31 =>  __('31')
+
+        ];
+    }
+
       /**
      * Return an array with the values of type field
      * @return array
@@ -186,6 +260,15 @@ class Contrato extends Model implements HasMedia
         return static::getMethodPaymentArray();
     }
 
+     /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public function getDiaLimitePagamentoOptions()
+    {
+        return static::getDiaLimitePagamentoArray();
+    }
+
 
      /**
      * Return an array with the values of type field
@@ -246,6 +329,16 @@ class Contrato extends Model implements HasMedia
     {
         $array = self::getStateOptions();
         return $array[$this->estado];
+    }
+
+      /**
+     * Return the first name of the user
+     * @return mixed|string
+     */
+    public function getDiaLimitePagamentoLabelAttribute()
+    {
+        $array = self::getDiaLimitePagamentoOptions();
+        return $array[$this->diaLimitePagamento];
     }
 
 

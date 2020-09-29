@@ -27,6 +27,7 @@ class RendaDataTable extends DataTable
            ->editColumn('estado', function ($model) {
             return  $model->stateLabel;
             });
+
            //->editColumn('created_at', '{{ Carbon\Carbon::parse(created_at)->toDateTimeString() }}');
             if(auth()->user()->can('accessAsLandlord')){
                 $datatable->addColumn('action', function ($renda) {
@@ -102,7 +103,8 @@ class RendaDataTable extends DataTable
                        // 'id' => ['title' => __('Id')],
                         'valorPagar' => [ 'title' => __('Payable amount') ],
                         'dataPagamento' => [ 'title' => __('Payment Date') ],
-                        'metodoPagamento' => ['title' => __('Payment Method')],
+                        'valorPago' => ['title' => __('Amount Paid')],
+                       // 'metodoPagamento' => ['title' => __('Payment Method')],
                         'valorDivida' => ['title' => __('Debt amount')],
                         'estado' => ['title' => __('State')],
                         'action' => ['title' => __('Action')]
@@ -126,7 +128,8 @@ class RendaDataTable extends DataTable
             'id',
             'valorPagar',
             'dataPagamento',
-            'metodoPagamento',
+            'valorPago',
+            //'metodoPagamento',
             'valorDivida',
             'estado',
 

@@ -86,8 +86,8 @@ view()->share('hideSubHeader', true);
                                 <td>{{ $contrato ->RetencaoFonteLabel }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">{{ __('Payment deadline') }}</th>
-                                <td>{{ $contrato ->diaLimitePagamento }}</td>
+                                <th scope="row">{{ __('Payment Deadline Day') }}</th>
+                                <td>{{ $contrato ->diaLimitePagamentoLabel }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('State') }}</th>
