@@ -15,12 +15,12 @@ class RendasSeeder extends Seeder
         Renda::create([
             'valorPagar' => '10000',
             'dataPagamento' => '2019-11-02',
-            'metodoPagamento' => '5',
+            'metodoPagamento' => '6',
             'valorPago' => '50000',
             'valorDivida' => '5000',
             'estado' => '1',
-            'dataLimitePagamento' => '2019-11-02',
-            'notas' => 'Nao ha notas',
+            'diaLimitePagamento' => '2019-11-02',
+            'notas' => 'Nao tem notas adicionais',
             'dataRecibo' => '2019-11-04'
         ]);
     }

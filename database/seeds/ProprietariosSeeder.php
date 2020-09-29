@@ -18,16 +18,14 @@ class ProprietariosSeeder extends Seeder
             'nif' => '23453234',
             'cc' => '234565432',
             'email'     => 'beatriz@gmail.com',
-            'telefone' => '243223456543',
+            'telefone' => '243223456',
             'morada' => 'Rua da Beatriz',
-            'iban' => '7654876543',
-            'tipoParticularEmpresa' => '4',
+            'iban' => 'pt507654876543',
+            'tipoParticularEmpresa' => '3',
             'cae' => '2',
-            'capitalSocial' => '1',
-            'setorActividade' => 'Professora',
-            'certidaoPermanente' => 'certidao',
-            'numFuncionarios' => '4'
-
+            'setorActividade' => '6',
+            'certidaoPermanente' => '23451',
+            'numFuncionarios' => '2'
 
         ]);
     }
