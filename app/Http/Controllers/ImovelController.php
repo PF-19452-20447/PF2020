@@ -144,6 +144,7 @@ class ImovelController extends Controller
      */
     public function destroy(Imovel $imovel)
     {
+        $imovel->proprietarios()->sync([]);
         $imovel->delete();
 
         return redirect()->route('imoveis.index')

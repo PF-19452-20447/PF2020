@@ -161,6 +161,7 @@ class ContratoController extends Controller
      */
     public function destroy(Contrato $contrato)
     {
+        $contrato->inquilinos()->sync([]);
         $contrato->delete();
         return redirect()->route('contratos.index')
                         ->with('success','Contract deleted successfully');

@@ -30,8 +30,8 @@ Auth::routes(['verify' => true]);
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('rendas', 'PaymentsController@create')->middleware('auth');
-Route::get('payments', 'PaymentsController@store')->name('payments.store')->middleware('auth');
+//Route::get('rendas', 'PaymentsController@create')->middleware('auth');
+//Route::get('payments', 'PaymentsController@store')->name('payments.store')->middleware('auth');
 Route::get('notifications', 'UserNotificationsController@show')->middleware('auth');
 
 //only users autenticated and with email verified can access the following routes

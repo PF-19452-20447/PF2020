@@ -283,6 +283,7 @@ class RendaController extends Controller
      */
     public function destroy(Renda $renda)
     {
+       // $renda->proprietario()->sync([]);
         $renda->delete();
         return redirect()->route('rendas.index')
                         ->with('success','Income deleted successfully');
