@@ -23,8 +23,11 @@ class RendaDataTable extends DataTable
     {
         $datatable =datatables()
             ->eloquent($query)
-           ->editColumn('created_at', '{!! date(\'d-m-Y H:i:s\', strtotime($created_at)) !!}');
-            //->editColumn('created_at', '{{ Carbon\Carbon::parse(created_at)->toDateTimeString() }}');
+           ->editColumn('created_at', '{!! date(\'d-m-Y H:i:s\', strtotime($created_at)) !!}')
+           ->editColumn('estado', function ($model) {
+            return  $model->stateLabel;
+            });
+           //->editColumn('created_at', '{{ Carbon\Carbon::parse(created_at)->toDateTimeString() }}');
             if(auth()->user()->can('accessAsLandlord')){
                 $datatable->addColumn('action', function ($renda) {
                     return '
