@@ -321,7 +321,7 @@ class InquilinoController extends Controller
             'notas' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'cae' => 'nullable|integer',
             'setorActividade' => 'nullable|integer',
-            'certidaoPermanente' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
+            'certidaoPermanente' => 'nullable|integer',
             'numFuncionarios' => 'nullable|integer|min:0',
             'photos.*'=>'nullable|image|mimes:jpeg,png,jpg,bmp,tiff|max:4096',
             'img_delete'=>'nullable'

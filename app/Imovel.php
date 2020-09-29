@@ -19,28 +19,30 @@ class Imovel extends Model implements HasMedia
     const BOOLEAN_NÃO = 5;
     const TYPE_APARTAMENTO = 6;
     const TYPE_MORADIA = 7;
-    const TIPOLOGIA_T0 = 8;
-    const TIPOLOGIA_T1 = 9;
-    const TIPOLOGIA_T2 = 10;
-    const TIPOLOGIA_T3 = 11;
-    const TIPOLOGIA_T4 = 12;
-    const TIPOLOGIA_T5 = 13;
-    const TIPOLOGIA_T6 = 14;
-    const TIPOLOGIA_T7 = 15;
-    const TIPOLOGIA_T8 = 16;
-    const TIPOLOGIA_T9 = 17;
-    const TIPOLOGIA_T10 = 18;
-    const CERTIFICADO_AA = 19;
-    const CERTIFICADO_A = 20;
-    const CERTIFICADO_B = 21;
-    const CERTIFICADO_BB = 22;
-    const CERTIFICADO_C = 23;
-    const CERTIFICADO_D = 24;
-    const CERTIFICADO_E = 25;
-    const CERTIFICADO_F = 26;
-    const CERTIFICADO_G = 27;
-    const CERTIFICADO_ISENTO = 28;
-    const CERTIFICADO_NA = 29;
+    const TYPE_LOJAS = 8;
+    const TYPE_PREDIOS = 9;
+    const TIPOLOGIA_T0 = 10;
+    const TIPOLOGIA_T1 = 11;
+    const TIPOLOGIA_T2 = 12;
+    const TIPOLOGIA_T3 = 13;
+    const TIPOLOGIA_T4 = 14;
+    const TIPOLOGIA_T5 = 15;
+    const TIPOLOGIA_T6 = 16;
+    const TIPOLOGIA_T7 = 17;
+    const TIPOLOGIA_T8 = 18;
+    const TIPOLOGIA_T9 = 19;
+    const TIPOLOGIA_T10 = 20;
+    const CERTIFICADO_AA = 21;
+    const CERTIFICADO_A = 22;
+    const CERTIFICADO_B = 23;
+    const CERTIFICADO_BB = 24;
+    const CERTIFICADO_C = 25;
+    const CERTIFICADO_D = 26;
+    const CERTIFICADO_E = 27;
+    const CERTIFICADO_F = 28;
+    const CERTIFICADO_G = 29;
+    const CERTIFICADO_ISENTO = 30;
+    const CERTIFICADO_NA = 31;
 
 
     protected $table = "imoveis";
@@ -130,7 +132,9 @@ class Imovel extends Model implements HasMedia
     {
         return [
             self::TYPE_APARTAMENTO =>  __('Apartment'),
-            self::TYPE_MORADIA =>  __('House')
+            self::TYPE_MORADIA =>  __('House'),
+            self::TYPE_LOJAS => __('Shop'),
+            self::TYPE_PREDIOS => __('Buildings')
         ];
     }
 
