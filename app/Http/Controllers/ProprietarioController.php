@@ -140,7 +140,7 @@ class ProprietarioController extends Controller
             'tipoParticularEmpresa' => 'nullable|integer',
             'cae' => 'nullable|integer',
             'setorActividade' => 'nullable|integer',
-            'certidaoPermanente' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
+            'certidaoPermanente' => 'nullable|integer',
             'numFuncionarios' => 'nullable|integer|min:0'
         ];
 

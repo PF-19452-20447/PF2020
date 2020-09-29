@@ -88,8 +88,8 @@
             @enderror
         </div>
         <div class="form-group">
-            {!! Form::label('certidaoPermanente', __('Permanent certificate')) !!}
-            {!! Form::text('certidaoPermanente', null, ['class' => 'form-control '.($errors->has('certidaoPermanente') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1, 'min' => 0, 'required' => false]) !!}
+            {!! Form::label('certidaoPermanente', __('Permanent Certificate')) !!}
+            {!! Form::select('certidaoPermanente', \App\Proprietario::getCertidaoPermanenteArray(), null, ['class' => 'form-control '.($errors->has('certidaoPermanente') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1, 'min' => 0, 'required' => false]) !!}
             @error('certidaoPermanente')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror

@@ -93,7 +93,7 @@ view()->share('hideSubHeader', true);
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Permanent certificate') }}</th>
-                                <td>{{ $proprietario->certidaoPermanente }}</td>
+                                <td>{{ $proprietario->CertidaoPermanenteLabel }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Number of employees') }}</th>
