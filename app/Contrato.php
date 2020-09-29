@@ -22,9 +22,9 @@ class Contrato extends Model implements HasMedia
     const PAGAMENTO_CARTAO_CREDITO = 8;
     const RENOVAVEL_SIM = 9;
     const RENOVAVEL_NÃO = 10;
-    const CONTRATO_ANUAL = 11;
-    const CONTRATO_SEMESTRAL = 12;
-    const CONTRATO_MENSAL = 13;
+    const CONTRATO_HABITACIONAL = 11;
+    const CONTRATO_HABITACIONALNAO = 12;
+    const CONTRATO_NAOHABITACIONAL = 13;
     const RETENCAO_SIM = 14;
     const RETENCAO_NÃO = 15;
     const RENDAS_0 = 16;
@@ -141,9 +141,9 @@ class Contrato extends Model implements HasMedia
     public static function getTipoContratoArray()
     {
         return [
-            self::CONTRATO_ANUAL =>  __('Yearly'),
-            self::CONTRATO_SEMESTRAL =>  __('Six Month'),
-            self::CONTRATO_MENSAL => __('Monthly')
+            self::CONTRATO_HABITACIONAL =>  __('Permanent Housing'),
+            self::CONTRATO_HABITACIONALNAO =>  __('Non-permanent Housing'),
+            self::CONTRATO_NAOHABITACIONAL => __('Non-Housing')
         ];
     }
 
