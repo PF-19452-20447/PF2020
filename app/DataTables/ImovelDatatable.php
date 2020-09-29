@@ -20,8 +20,11 @@ class ImovelDatatable extends DataTable
     {
         $datatable =datatables()
         ->eloquent($query)
-       ->editColumn('created_at', '{!! date(\'d-m-Y H:i:s\', strtotime($created_at)) !!}');
-        //->editColumn('created_at', '{{ Carbon\Carbon::parse(created_at)->toDateTimeString() }}');
+       ->editColumn('created_at', '{!! date(\'d-m-Y H:i:s\', strtotime($created_at)) !!}')
+       ->editColumn('tipo', function ($model) {
+        return  $model->tipoLabel;
+    });
+       //->editColumn('created_at', '{{ Carbon\Carbon::parse(created_at)->toDateTimeString() }}');
         if(auth()->user()->can('accessAsLandlord')){
             $datatable->addColumn('action', function ($imovel) {
                 return '<a class="btn btn-sm btn-clean btn-icon btn-icon-md" href="'. route('imoveis.show', $imovel) .'" title="'. __('View') .'"><i class="la la-eye"></i></a>

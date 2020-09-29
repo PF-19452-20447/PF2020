@@ -61,7 +61,7 @@ class Contrato extends Model implements HasMedia
         'renovavel' ,
         'isencaoBeneficio',
         'retencaoFonte',
-        'dataLimitePagamento' ,
+        'diaLimitePagamento' ,
         'estado',
         'encargos',
         'caucao',

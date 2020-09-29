@@ -82,7 +82,7 @@ class ContratoDataTable extends DataTable
                     ->columns([
                         'valorRenda' => [ 'title' => __('Income value') ],
                         'tipoContrato' => [ 'title' => __('Type of contract') ],
-                        'dataLimitePagamento' => ['title' => __('Payment deadline')],
+                        'diaLimitePagamento' => ['title' => __('Payment deadline')],
                         'caucao' => ['title' => __('Deposit')],
                         'action' => ['title' => __('Action')],
                     ])
@@ -105,7 +105,7 @@ class ContratoDataTable extends DataTable
             'id',
             'valorRenda',
             'tipoContrato',
-            'dataLimitePagamento',
+            'diaLimitePagamento',
             'estado',
             'caucao',
             'action'

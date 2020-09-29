@@ -26,14 +26,14 @@
         </div>
         <div class="form-group">
             {!! Form::label('inicioContrato', __('Begining of contract')) !!}
-            {!! Form::datetime('inicioContrato', null, ['class' => 'form-control '.($errors->has('inicioContrato') ? 'is-invalid' : ''), 'min' => '1', 'required' => false ]) !!}
+            {!! Form::date('inicioContrato', null, ['class' => 'form-control '.($errors->has('inicioContrato') ? 'is-invalid' : ''), 'type' => 'date', 'required' => false ]) !!}
             @error('inicioContrato')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
             {!! Form::label('fimContrato', __('End of contract')) !!}
-            {!! Form::datetime('fimContrato', null, ['class' => 'form-control '.($errors->has('fimContrato') ? 'is-invalid' : ''), 'min' => '1', 'required' => false ]) !!}
+            {!! Form::date('fimContrato', null, ['class' => 'form-control '.($errors->has('fimContrato') ? 'is-invalid' : ''), 'type' => 'date', 'required' => false ]) !!}
             @error('fimContrato')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
@@ -60,9 +60,9 @@
             @enderror
         </div>
         <div class="form-group">
-            {!! Form::label('dataLimitePagamento', __('Payment deadline')) !!}
-            {!! Form::datetime('dataLimitePagamento', null, ['class' => 'form-control '.($errors->has('dataLimitePagamento') ? 'is-invalid' : ''), 'min' => '1', 'type' => 'number', 'step' => 1, 'required' => false]) !!}
-            @error('dataLimitePagamento')
+            {!! Form::label('diaLimitePagamento', __('Payment deadline')) !!}
+            {!! Form::number('diaLimitePagamento', null, ['class' => 'form-control '.($errors->has('diaLimitePagamento') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1, 'required' => false]) !!}
+            @error('diaLimitePagamento')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>

@@ -297,6 +297,8 @@ class InquilinoController extends Controller
     }*/
 
        // $inquilino = Inquilino::findOrfail($id);
+
+       $inquilino->contratos()->sync([]);
         $inquilino->delete();
         return redirect()->route('inquilinos.index')
                         ->with('success','Inquilino deleted successfully');

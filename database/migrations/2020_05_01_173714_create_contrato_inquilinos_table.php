@@ -16,9 +16,9 @@ class CreateContratoInquilinosTable extends Migration
         Schema::create('contrato_inquilinos', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('contrato_id')->nullable();
-            $table->foreign('contrato_id')->references('id')->on('contratos');
+            $table->foreign('contrato_id')->references('id')->on('contratos')->onDelete('cascade');
             $table->unsignedBigInteger('inquilino_id')->nullable();
-            $table->foreign('inquilino_id')->references('id')->on('inquilinos');
+            $table->foreign('inquilino_id')->references('id')->on('inquilinos')->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
         });

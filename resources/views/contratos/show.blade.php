@@ -51,7 +51,7 @@ view()->share('hideSubHeader', true);
                         Column::make('id'),
                         Column::make('valorRenda'),
                         Column::make('tipoContrato'),
-                        Column::make('dataLimitePagamento'),
+                        Column::make('diaLimitePagamento'),
                         Column::make('estado'),
                         Column::make('caucao'),
                         //Column::make('metodoPagamento'),
@@ -87,7 +87,7 @@ view()->share('hideSubHeader', true);
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Payment deadline') }}</th>
-                                <td>{{ $contrato ->dataLimitePagamento }}</td>
+                                <td>{{ $contrato ->diaLimitePagamento }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('State') }}</th>
