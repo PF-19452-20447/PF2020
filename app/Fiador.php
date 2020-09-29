@@ -15,6 +15,9 @@ class Fiador extends Model
     const SETOR_PRIMARIO = 5;
     const SETOR_SECUNDARIO = 6;
     const SETOR_TERCIARIO = 7;
+    const CERTIDAO_HABITACIONAL = 8;
+    const CERTIDAO_HABITACIONALNAO = 9;
+    const CERTIDAO_NAOHABITACIONAL = 10;
 
     protected $table = "fiadores";
 
@@ -95,6 +98,30 @@ class Fiador extends Model
         ];
     }
 
+
+      /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public static function getCertidaoPermanenteArray()
+    {
+        return [
+            self::CERTIDAO_HABITACIONAL =>  __('Permanent Housing'),
+            self::CERTIDAO_HABITACIONALNAO =>  __('Non-permanent Housing'),
+            self::CERTIDAO_NAOHABITACIONAL => __('Non-Housing')
+        ];
+    }
+
+      /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public function getCertidaoPermanenteOptions()
+    {
+        return static::getCertidaoPermanenteArray();
+    }
+
+
      /**
      * Return an array with the values of type field
      * @return array
@@ -122,6 +149,16 @@ class Fiador extends Model
     public function getTipoParticularEmpresaOptions()
     {
         return static::getTipoParticularEmpresaArray();
+    }
+
+    /**
+     * Return the first name of the user
+     * @return mixed|string
+     */
+    public function getCertidaoPermanenteLabelAttribute()
+    {
+        $array = self::getcertidaoPermanenteOptions();
+        return $array[$this->certidaoPermanente];
     }
 
     /**
