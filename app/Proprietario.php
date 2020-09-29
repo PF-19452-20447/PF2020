@@ -16,9 +16,6 @@ class Proprietario extends Model
     const SETOR_PRIMARIO = 5;
     const SETOR_SECUNDARIO = 6;
     const SETOR_TERCIARIO = 7;
-    const CERTIDAO_HABITACIONAL = 8;
-    const CERTIDAO_HABITACIONALNAO = 9;
-    const CERTIDAO_NAOHABITACIONAL = 10;
 
 
     //protected $table= 'proprietarios';
@@ -71,19 +68,6 @@ class Proprietario extends Model
         ];
     }
 
-     /**
-     * Return an array with the values of type field
-     * @return array
-     */
-    public static function getCertidaoPermanenteArray()
-    {
-        return [
-            self::CERTIDAO_HABITACIONAL =>  __('Permanent Housing'),
-            self::CERTIDAO_HABITACIONALNAO =>  __('Non-permanent Housing'),
-            self::CERTIDAO_NAOHABITACIONAL => __('Non-Housing')
-        ];
-    }
-
 
 
     /**
@@ -111,16 +95,6 @@ class Proprietario extends Model
             self::TYPE_PARTICULAR =>  __('Private')
         ];
     }
-
-        /**
-     * Return an array with the values of type field
-     * @return array
-     */
-    public function getCertidaoPermanenteOptions()
-    {
-        return static::getCertidaoPermanenteArray();
-    }
-
 
 
      /**
@@ -182,17 +156,6 @@ class Proprietario extends Model
         $array = self::getTipoParticularEmpresaOptions();
         return $array[$this->tipoParticularEmpresa];
     }
-
-    /**
-     * Return the first name of the user
-     * @return mixed|string
-     */
-    public function getCertidaoPermanenteLabelAttribute()
-    {
-        $array = self::getcertidaoPermanenteOptions();
-        return $array[$this->certidaoPermanente];
-    }
-    
 
     public function inquilinos()
     {

@@ -23,9 +23,6 @@ class Inquilino extends Model implements HasMedia
     const CONTRATO_ANUAL = 8;
     const CONTRATO_SEMESTRAL = 9;
     const CONTRATO_MENSAL = 10;
-    const CERTIDAO_HABITACIONAL = 11;
-    const CERTIDAO_HABITACIONALNAO = 12;
-    const CERTIDAO_NAOHABITACIONAL = 13;
 
     protected $table='inquilinos';
 
@@ -91,21 +88,6 @@ class Inquilino extends Model implements HasMedia
         ];
     }
 
-      /**
-     * Return an array with the values of type field
-     * @return array
-     */
-    public static function getCertidaoPermanenteArray()
-    {
-        return [
-            self::CERTIDAO_HABITACIONAL =>  __('Permanent Housing'),
-            self::CERTIDAO_HABITACIONALNAO =>  __('Non-permanent Housing'),
-            self::CERTIDAO_NAOHABITACIONAL => __('Non-Housing')
-        ];
-    }
-
-
-
     /**
      * Return an array with the values of type field
      * @return array
@@ -139,16 +121,6 @@ class Inquilino extends Model implements HasMedia
     {
         return static::getCAEArray();
     }
-
-       /**
-     * Return an array with the values of type field
-     * @return array
-     */
-    public function getCertidaoPermanenteOptions()
-    {
-        return static::getCertidaoPermanenteArray();
-    }
-
 
      /**
      * Return an array with the values of type field
@@ -188,17 +160,6 @@ class Inquilino extends Model implements HasMedia
         $array = self::getCAEOptions();
         return $array[$this->cae];
     }
-
-    /**
-     * Return the first name of the user
-     * @return mixed|string
-     */
-    public function getCertidaoPermanenteLabelAttribute()
-    {
-        $array = self::getcertidaoPermanenteOptions();
-        return $array[$this->certidaoPermanente];
-    }
-
 
     /**
      * Return the first name of the user
