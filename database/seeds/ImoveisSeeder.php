@@ -13,7 +13,7 @@ class ImoveisSeeder extends Seeder
     public function run()
     {
 
-        Imovel::create([
+        $imovel = Imovel::create([
             'tipo'      => '6',
             'tipologia' => '12',
             'area' => '100',

@@ -19,7 +19,7 @@ class RendasSeeder extends Seeder
             'valorPago' => '50000',
             'valorDivida' => '5000',
             'estado' => '1',
-            'diaLimitePagamento' => '2019-11-02',
+            'dataLimitePagamento' => '2019-11-02',
             'notas' => 'Nao tem notas adicionais',
             'dataRecibo' => '2019-11-04'
         ]);

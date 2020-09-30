@@ -28,6 +28,6 @@ class FiadoresSeeder extends Seeder
             'certidaoPermanente' => '234521',
             'numFuncionarios' => '1'
         ]);
-        App\Proprietario::find(1)->fiadores()->attach($fiador->id);
+        App\Proprietario::find(1)->fiadores()->save($fiador);
     }
 }
