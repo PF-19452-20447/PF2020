@@ -144,6 +144,7 @@ class ImovelController extends Controller
      */
     public function destroy(Imovel $imovel)
     {
+        $imovel->proprietarios()->sync([]);
         $imovel->delete();
 
         return redirect()->route('imoveis.index')
@@ -177,7 +178,7 @@ class ImovelController extends Controller
             'animaisEstimacao' => 'required|integer',
             'outrosEquipamentos' => 'nullable|string',
             'certificadoEnergetico' => 'nullable|string',
-            'licencaHabitacao' => 'nullable|string',
+            'licencaHabitacao' => 'nullable|integer',
             'notas' => 'nullable|string',
             'televisao' => 'required|integer',
             'frigorifico' => 'required|integer',

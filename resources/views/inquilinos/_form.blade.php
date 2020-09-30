@@ -68,8 +68,8 @@
             @enderror
         </div>
         <div class="form-group">
-            {!! Form::label('tipoParticularEmpresa', __('Particular Type of company')) !!}
-            {!! Form::select('tipoParticularEmpresa', \App\Inquilino::getTipoParticularEmpresaArray() , null , ['class' => 'form-control '.($errors->has('tipoParticularEmpresa') ? 'is-invalid' : ''), 'required' => true]) !!}
+            {!! Form::label('tipoParticularEmpresa', __('Type of Tenant')) !!}
+            {!! Form::select('tipoParticularEmpresa', \App\Inquilino::getTipoParticularEmpresaArray() , null , ['class' => 'form-control '.($errors->has('tipoParticularEmpresa') ? 'is-invalid' : ''), 'required' => true, 'onchange' => 'if(this.value == 3){$(".empresa").removeClass("d-none")}else{$(".empresa").addClass("d-none")}' ]) !!}
             @error('tipoParticularEmpresa')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
@@ -95,28 +95,28 @@
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-        <div class="form-group">
+        <div class="form-group empresa {{  $inquilino->tipoParticularEmpresa === App\Inquilino::TYPE_PARTICULAR ? 'd-none': '' }}">
             {!! Form::label('cae', __('CAE')) !!}
             {!! Form::select('cae', \App\Inquilino::getCAEArray() , null , ['class' => 'form-control '.($errors->has('cae') ? 'is-invalid' : ''), 'required' => true]) !!}
             @error('cae')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-        <div class="form-group">
+        <div class="form-group empresa {{  $inquilino->tipoParticularEmpresa === App\Inquilino::TYPE_PARTICULAR ? 'd-none': '' }}">
             {!! Form::label('setorActividade', __('Activity sector')) !!}
             {!! Form::select('setorActividade', \App\Inquilino::getSetorAtividadeArray(), null, ['class' => 'form-control '.($errors->has('setorActividade') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1, 'min' => 0, 'required' => false]) !!}
             @error('setorActividade')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-        <div class="form-group">
+        <div class="form-group empresa {{  $inquilino->tipoParticularEmpresa === App\Inquilino::TYPE_PARTICULAR ? 'd-none': '' }}">
             {!! Form::label('certidaoPermanente', __('Permanent certificate')) !!}
-            {!! Form::text('certidaoPermanente', null, ['class' => 'form-control '.($errors->has('certidaoPermanente') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1, 'min' => 0, 'required' => false]) !!}
+            {!! Form::number('certidaoPermanente', null, ['class' => 'form-control '.($errors->has('certidaoPermanente') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1, 'min' => 0, 'required' => false]) !!}
             @error('certidaoPermanente')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-        <div class="form-group">
+        <div class="form-group empresa {{  $inquilino->tipoParticularEmpresa === App\Inquilino::TYPE_PARTICULAR ? 'd-none': '' }}">
             {!! Form::label('numFuncionarios', __('Number of employees')) !!}
             {!! Form::number('numFuncionarios', null, ['class' => 'form-control '.($errors->has('numFuncionarios') ? 'is-invalid' : ''), 'min' => '0', 'max' => '10', 'type' => 'number', 'step' => 1, 'required' => false]) !!}
             @error('numFuncionarios')

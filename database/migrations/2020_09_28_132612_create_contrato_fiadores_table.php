@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContratoInquilinosTable extends Migration
+class CreateContratoFiadoresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateContratoInquilinosTable extends Migration
      */
     public function up()
     {
-        Schema::create('contrato_inquilinos', function (Blueprint $table) {
+        Schema::create('contrato_fiadores', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('contrato_id')->nullable();
             $table->foreign('contrato_id')->references('id')->on('contratos')->onDelete('cascade');
-            $table->unsignedBigInteger('inquilino_id')->nullable();
-            $table->foreign('inquilino_id')->references('id')->on('inquilinos')->onDelete('cascade');
-            $table->rememberToken();
+            $table->unsignedBigInteger('fiador_id')->nullable();
+            $table->foreign('fiador_id')->references('id')->on('fiadores')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateContratoInquilinosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contrato_inquilinos');
+        Schema::dropIfExists('contrato_fiadores');
     }
 }

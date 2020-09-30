@@ -13,19 +13,19 @@ class ContratosSeeder extends Seeder
     public function run()
     {
         Contrato::create([
-            'valorRenda' => '100000',
-            'tipoContrato' => 'anual',
-            'inicioContrato' => '2019-07-12 11:21:33',
-            'fimContrato' => '2020-11-03 12:32:11',
-            'renovavel'     => '5',
-            'isencaoBeneficio' => 'isencao ate 2 anos',
-            'retencaoFonte' => 'Nao recebeu a totalidade do pagmento',
-            'dataLimitePagamento' => '2020-11-02 11:00:00',
-            'estado' => '2',
-            'encargos' => 'encargo',
+            'valorRenda' => '100',
+            'tipoContrato' => '12',
+            'inicioContrato' => '2019-07-12',
+            'fimContrato' => '2020-11-03',
+            'renovavel'     => '9',
+            //'isencaoBeneficio' => 'isencao ate 2 anos',
+            'retencaoFonte' => '15',
+            'diaLimitePagamento' => '29',
+            'estado' => '1',
+            'encargos' => 'nao tem encargos',
             'caucao' => '100',
-            'metodoPagamento' => '7',
-            'rendasAvanco' => 'Nao tem rendas em avanço'
+            'metodoPagamento' => '5',
+            'rendasAvanco' => '19'
         ]);
     }
 }

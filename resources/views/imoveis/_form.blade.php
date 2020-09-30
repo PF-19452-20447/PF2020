@@ -25,7 +25,7 @@
             @enderror
         </div>
         <div class="form-group">
-            {!! Form::label('area', __('Area m2')) !!}
+            {!! Form::label('area', __('Area m²')) !!}
             {!! Form::number('area', null, ['class' => 'form-control '.($errors->has('area') ? 'is-invalid' : ''), 'min' => '1', 'type' => 'number', 'required' => true]) !!}
             @error('area')
                 <div class="error invalid-feedback">{{ $message }}</div>
@@ -68,14 +68,14 @@
         </div>
         <div class="form-group">
             {!! Form::label('certificadoEnergetico', __('Energy Certificate')) !!}
-            {!! Form::text('certificadoEnergetico', null, ['class' => 'form-control '.($errors->has('certificadoEnergetico') ? 'is-invalid' : ''), 'required' => false]) !!}
+            {!! Form::select('certificadoEnergetico', \App\Imovel::getCertificadoEnergeticoArray(), null, ['class' => 'form-control '.($errors->has('certificadoEnergetico') ? 'is-invalid' : ''), 'required' => false]) !!}
             @error('certificadoEnergetico')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
             {!! Form::label('licencaHabitacao', __('Habitation License')) !!}
-            {!! Form::text('licencaHabitacao', null, ['class' => 'form-control '.($errors->has('licencaHabitacao') ? 'is-invalid' : ''), 'required' => false]) !!}
+            {!! Form::number('licencaHabitacao', null, ['class' => 'form-control '.($errors->has('licencaHabitacao') ? 'is-invalid' : ''), 'required' => false]) !!}
             @error('licencaHabitacao')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror

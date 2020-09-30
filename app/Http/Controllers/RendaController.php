@@ -199,6 +199,7 @@ class RendaController extends Controller
             //$renda->id = Renda::find($rendaId);
             $date = preg_replace('/:/', ' ', $CallBack_dataLimitePagamento, 1);
             $renda->dataPagamento = $date;
+            $renda->dataRecibo = $date;
            // $renda->dataPagamento= now();
             //$renda->valorPagar= $valor_renda;
             //$renda->entidade= $entidade;
@@ -282,6 +283,7 @@ class RendaController extends Controller
      */
     public function destroy(Renda $renda)
     {
+       // $renda->proprietario()->sync([]);
         $renda->delete();
         return redirect()->route('rendas.index')
                         ->with('success','Income deleted successfully');

@@ -16,9 +16,9 @@ class CreateProprietariosImoveisTable extends Migration
         Schema::create('proprietarios_imoveis', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('proprietario_id')->nullable();
-            $table->foreign('proprietario_id')->references('id')->on('proprietarios');
+            $table->foreign('proprietario_id')->references('id')->on('proprietarios')->onDelete('cascade');
             $table->unsignedBigInteger('imovel_id')->nullable();
-            $table->foreign('imovel_id')->references('id')->on('imoveis');
+            $table->foreign('imovel_id')->references('id')->on('imoveis')->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
         });

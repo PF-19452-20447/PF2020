@@ -22,9 +22,56 @@ class Contrato extends Model implements HasMedia
     const PAGAMENTO_CARTAO_CREDITO = 8;
     const RENOVAVEL_SIM = 9;
     const RENOVAVEL_NÃO = 10;
-    const CONTRATO_ANUAL = 11;
-    const CONTRATO_SEMESTRAL = 12;
-    const CONTRATO_MENSAL = 13;
+    const CONTRATO_HABITACIONAL = 11;
+    const CONTRATO_HABITACIONALNAO = 12;
+    const CONTRATO_NAOHABITACIONAL = 13;
+    const RETENCAO_SIM = 14;
+    const RETENCAO_NÃO = 15;
+    const RENDAS_0 = 16;
+    const RENDAS_1 = 17;
+    const RENDAS_2 = 18;
+    const RENDAS_3 = 19;
+    const RENDAS_4 = 20;
+    const RENDAS_5 = 21;
+    const RENDAS_6 = 22;
+    const RENDAS_7 = 23;
+    const RENDAS_8 = 24;
+    const RENDAS_9 = 25;
+    const RENDAS_10 = 26;
+    const RENDAS_11 = 27;
+    const RENDAS_12 = 28;
+    const DIA_1 = 29;
+    const DIA_2 = 30;
+    const DIA_3 = 31;
+    const DIA_4 = 32;
+    const DIA_5 = 33;
+    const DIA_6 = 34;
+    const DIA_7 = 35;
+    const DIA_8 = 36;
+    const DIA_9 = 37;
+    const DIA_10 = 38;
+    const DIA_11 = 39;
+    const DIA_12 = 40;
+    const DIA_13 = 41;
+    const DIA_14 = 42;
+    const DIA_15 = 43;
+    const DIA_16 = 44;
+    const DIA_17 = 45;
+    const DIA_18 = 46;
+    const DIA_19 = 47;
+    const DIA_20 = 48;
+    const DIA_21 = 49;
+    const DIA_22 = 50;
+    const DIA_23 = 51;
+    const DIA_24 = 52;
+    const DIA_25 = 53;
+    const DIA_26 = 54;
+    const DIA_27 = 55;
+    const DIA_28 = 56;
+    const DIA_29 = 57;
+    const DIA_30 = 58;
+    const DIA_31 = 59;
+
 
 
   //  protected $table = 'contratos';
@@ -46,7 +93,7 @@ class Contrato extends Model implements HasMedia
         'renovavel' ,
         'isencaoBeneficio',
         'retencaoFonte',
-        'dataLimitePagamento' ,
+        'diaLimitePagamento' ,
         'estado',
         'encargos',
         'caucao',
@@ -82,6 +129,85 @@ class Contrato extends Model implements HasMedia
         ];
     }
 
+
+     /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public static function getRendasAvancoArray()
+    {
+        return [
+            self::RENDAS_0 =>  __('0'),
+            self::RENDAS_1 =>  __('1'),
+            self::RENDAS_2 =>  __('2'),
+            self::RENDAS_3 =>  __('3'),
+            self::RENDAS_4 =>  __('4'),
+            self::RENDAS_5 =>  __('5'),
+            self::RENDAS_6 =>  __('6'),
+            self::RENDAS_7 =>  __('7'),
+            self::RENDAS_8 =>  __('8'),
+            self::RENDAS_9 =>  __('9'),
+            self::RENDAS_10 =>  __('10'),
+            self::RENDAS_11 =>  __('11'),
+            self::RENDAS_12 =>  __('12')
+
+        ];
+    }
+
+     /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public static function getDiaLimitePagamentoArray()
+    {
+        return [
+            self::DIA_1 =>  __('1'),
+            self::DIA_2 =>  __('2'),
+            self::DIA_3 =>  __('3'),
+            self::DIA_4 =>  __('4'),
+            self::DIA_5 =>  __('5'),
+            self::DIA_6 =>  __('6'),
+            self::DIA_7 =>  __('7'),
+            self::DIA_8 =>  __('8'),
+            self::DIA_9 =>  __('9'),
+            self::DIA_10 =>  __('10'),
+            self::DIA_11 =>  __('11'),
+            self::DIA_12 =>  __('12'),
+            self::DIA_13 =>  __('13'),
+            self::DIA_14 =>  __('14'),
+            self::DIA_15 =>  __('15'),
+            self::DIA_16 =>  __('16'),
+            self::DIA_17 =>  __('17'),
+            self::DIA_18 =>  __('18'),
+            self::DIA_19 =>  __('19'),
+            self::DIA_20 =>  __('20'),
+            self::DIA_21 =>  __('21'),
+            self::DIA_22 =>  __('22'),
+            self::DIA_23 =>  __('23'),
+            self::DIA_24 =>  __('24'),
+            self::DIA_25 =>  __('25'),
+            self::DIA_26 =>  __('26'),
+            self::DIA_27 =>  __('27'),
+            self::DIA_28 =>  __('28'),
+            self::DIA_29 =>  __('29'),
+            self::DIA_30 =>  __('30'),
+            self::DIA_31 =>  __('31')
+
+        ];
+    }
+
+      /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public static function getRetencaoFonteArray()
+    {
+        return [
+            self::RETENCAO_SIM =>  __('Yes'),
+            self::RETENCAO_NÃO =>  __('No'),
+        ];
+    }
+
     /**
      * Return an array with the values of type field
      * @return array
@@ -89,9 +215,9 @@ class Contrato extends Model implements HasMedia
     public static function getTipoContratoArray()
     {
         return [
-            self::CONTRATO_ANUAL =>  __('Yearly'),
-            self::CONTRATO_SEMESTRAL =>  __('Six Month'),
-            self::CONTRATO_MENSAL => __('Monthly')
+            self::CONTRATO_HABITACIONAL =>  __('Permanent Housing'),
+            self::CONTRATO_HABITACIONALNAO =>  __('Non-permanent Housing'),
+            self::CONTRATO_NAOHABITACIONAL => __('Non-Housing')
         ];
     }
 
@@ -138,6 +264,27 @@ class Contrato extends Model implements HasMedia
      * Return an array with the values of type field
      * @return array
      */
+    public function getDiaLimitePagamentoOptions()
+    {
+        return static::getDiaLimitePagamentoArray();
+    }
+
+
+     /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public function getRendasAvancoOptions()
+    {
+        return static::getRendasAvancoArray();
+    }
+
+
+
+     /**
+     * Return an array with the values of type field
+     * @return array
+     */
     public function getTipoContratoOptions()
     {
         return static::getTipoContratoArray();
@@ -165,6 +312,16 @@ class Contrato extends Model implements HasMedia
 
 
     /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public function getRetencaoFonteOptions()
+    {
+        return static::getRetencaoFonteArray();
+    }
+
+
+    /**
      * Return the first name of the user
      * @return mixed|string
      */
@@ -173,6 +330,29 @@ class Contrato extends Model implements HasMedia
         $array = self::getStateOptions();
         return $array[$this->estado];
     }
+
+      /**
+     * Return the first name of the user
+     * @return mixed|string
+     */
+    public function getDiaLimitePagamentoLabelAttribute()
+    {
+        $array = self::getDiaLimitePagamentoOptions();
+        return $array[$this->diaLimitePagamento];
+    }
+
+
+    /**
+     * Return the first name of the user
+     * @return mixed|string
+     */
+    public function getRendasAvancoLabelAttribute()
+    {
+        $array = self::getRendasAvancoOptions();
+        return $array[$this->rendasAvanco];
+    }
+
+
 
      /**
      * Return the first name of the user
@@ -199,6 +379,16 @@ class Contrato extends Model implements HasMedia
      * Return the first name of the user
      * @return mixed|string
      */
+    public function getRetencaoFonteLabelAttribute()
+    {
+        $array = self::getRetencaoFonteOptions();
+        return $array[$this->retencaoFonte];
+    }
+
+    /**
+     * Return the first name of the user
+     * @return mixed|string
+     */
     public function getMethodPaymentLabelAttribute()
     {
         $array = self::getMethodPaymentOptions();
@@ -215,6 +405,11 @@ class Contrato extends Model implements HasMedia
     public function inquilinos()
     {
         return $this->belongsToMany('App\Inquilino', 'contrato_inquilinos');
+    }
+
+    public function fiadores()
+    {
+        return $this->belongsToMany('App\Fiador', 'contrato_fiadores');
     }
 
     public function rendas()

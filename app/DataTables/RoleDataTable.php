@@ -55,7 +55,7 @@ class RoleDataTable extends DataTable
         return $this->builder()
                     ->setTableId('role-table')
                     ->columns([
-                        'id' => ['title' => __('Id')],
+                       // 'id' => ['title' => __('Id')],
                         'name' => ['title' => __('Name')],
                         'guard_name' => ['title' => __('Guard Name')],
                         'created_at' => ['title' => __('Created At')],

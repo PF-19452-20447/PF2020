@@ -22,7 +22,7 @@ view()->share('hideSubHeader', true);
             <div class="kt-portlet__head-toolbar">
                 <div class="kt-portlet__head-wrapper">
                     <div class="kt-portlet__head-actions">
-                        @canany(['adminApp', 'adminFullApp', 'accessAsTenant'])
+                        @canany(['adminApp', 'adminFullApp', 'accessAsTenant', 'accessAsLandlord'])
                         <a href="{{ route('fiador.edit', $fiador) }}" class="btn btn-brand btn-elevate btn-icon-sm">
                             <i class="la la-edit"></i>
                             {{ __('Update') }}
@@ -92,24 +92,30 @@ view()->share('hideSubHeader', true);
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Particular type of company') }}</th>
-                                <td>{{ $fiador ->TipoParticularEmpresaLabel }}</td>
+                                <td>{{ $fiador ->tipoParticularEmpresaLabel }}</td>
                             </tr>
-                            <tr>
-                                <th scope="row">{{ __('CAE') }}</th>
-                                <td>{{ $fiador ->CAELabel }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">{{ __('Activity sector') }}</th>
-                                <td>{{ $fiador ->SetorAtividadeLabel }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">{{ __('Permanent certificate') }}</th>
-                                <td>{{ $fiador ->certidaoPermanente }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">{{ __('Number of employees') }}</th>
-                                <td>{{ $fiador ->numFuncionarios }}</td>
-                            </tr>
+
+                            @if($fiador->tipoParticularEmpresa === App\Fiador::TYPE_EMPRESA)
+
+                                <tr>
+                                    <th scope="row">{{ __('CAE') }}</th>
+                                    <td>{{ $fiador ->CAELabel }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">{{ __('Activity sector') }}</th>
+                                    <td>{{ $fiador ->SetorAtividadeLabel }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">{{ __('Permanent certificate') }}</th>
+                                    <td>{{ $fiador ->certidaoPermanente }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">{{ __('Number of employees') }}</th>
+                                    <td>{{ $fiador ->numFuncionarios }}</td>
+                                </tr>
+
+                            @endif
+
                             <tr>
                                 <th scope="row">{{ __('Created at') }}</th>
                                 <td>{{$fiador ->created_at}}</td>
@@ -129,7 +135,7 @@ view()->share('hideSubHeader', true);
 @endcanany
 @endsection
 @push('scripts')
-@canany(['adminApp', 'adminFullApp', 'accessAsTenant'])
+@canany(['adminApp', 'adminFullApp', 'accessAsTenant', 'accessAsLandlord'])
     <script>
         function destroyConfirmation(e){
             swal.fire({

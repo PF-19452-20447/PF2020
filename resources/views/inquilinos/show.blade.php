@@ -92,8 +92,8 @@ view()->share('hideSubHeader', true);
                                 <td>{{ $inquilino ->iban }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">{{ __('Particular type of company') }}</th>
-                                <td>{{ $inquilino ->TipoParticularEmpresaLabel }}</td>
+                                <th scope="row">{{ __('Type of Tenant') }}</th>
+                                <td>{{ $inquilino ->tipoParticularEmpresaLabel }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Career') }}</th>
@@ -107,22 +107,28 @@ view()->share('hideSubHeader', true);
                                 <th scope="row">{{ __('Grades') }}</th>
                                 <td>{{ $inquilino ->notas }}</td>
                             </tr>
-                            <tr>
-                                <th scope="row">{{ __('CAE') }}</th>
-                                <td>{{ $inquilino ->CAELabel }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">{{ __('Activity sector') }}</th>
-                                <td>{{ $inquilino ->SetorAtividadeLabel }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">{{ __('Permanent certificate') }}</th>
-                                <td>{{ $inquilino ->certidaoPermanente }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">{{ __('Number of employees') }}</th>
-                                <td>{{ $inquilino ->numFuncionarios }}</td>
-                            </tr>
+                            @if($inquilino->tipoParticularEmpresa === App\Inquilino::TYPE_EMPRESA)
+                                <tr>
+
+                                    <th scope="row">{{ __('CAE') }}</th>
+                                    <td>{{ $inquilino ->CAELabel }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">{{ __('Activity sector') }}</th>
+                                    <td>{{ $inquilino ->SetorAtividadeLabel }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">{{ __('Permanent certificate') }}</th>
+                                    <td>{{ $inquilino ->certidaoPermanente }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">{{ __('Number of employees') }}</th>
+                                    <td>{{ $inquilino ->numFuncionarios }}</td>
+                                </tr>
+
+                            @endif
+
+
                             <tr>
                                 <th scope="row">{{ __('Created at') }}</th>
                                 <td>{{$inquilino ->created_at}}</td>

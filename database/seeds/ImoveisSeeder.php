@@ -12,21 +12,22 @@ class ImoveisSeeder extends Seeder
      */
     public function run()
     {
-        $imovel = Imovel::create([
-            'tipo'      => 'apartamento',
-            'tipologia' => 'T3',
+
+        Imovel::create([
+            'tipo'      => '6',
+            'tipologia' => '12',
             'area' => '100',
             'morada' => 'Rua Agostinho Sá',
-            'numQuartos'     => '3',
+            'numQuartos' => '3',
             'numCasaBanho' => '2',
             'descricao' => 'É um apartamento que se situa ao pé do mar',
             'estado' => '1',
             'mobilado' => '4',
             'fumar' => '4',
-            'animaisEstimacao' => '4',
+            'animaisEstimacao' => '5',
             'outrosEquipamentos' => 'Estores electricos',
-            'certificadoEnergetico' => 'Com certificado',
-            'licencaHabitacao' => 'Com lincença',
+            'certificadoEnergetico' => '22',
+            'licencaHabitacao' => '232431',
             'notas' => 'Nada a acrescentar de momento',
             'televisao' => '4',
             'frigorifico' => '4',

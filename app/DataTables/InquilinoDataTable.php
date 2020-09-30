@@ -23,7 +23,8 @@ class InquilinoDataTable extends DataTable
         $datatable =datatables()
             ->eloquent($query)
            ->editColumn('created_at', '{!! date(\'d-m-Y H:i:s\', strtotime($created_at)) !!}');
-            //->editColumn('created_at', '{{ Carbon\Carbon::parse(created_at)->toDateTimeString() }}');
+           
+           //->editColumn('created_at', '{{ Carbon\Carbon::parse(created_at)->toDateTimeString() }}');
             if(auth()->user()->can('accessAsLandlord')){
                 $datatable->addColumn('action', function ($inquilino) {
                     return '<a class="btn btn-sm btn-clean btn-icon btn-icon-md" href="'. route('inquilinos.show', $inquilino) .'" title="'. __('View') .'"><i class="la la-eye"></i></a>
@@ -64,12 +65,12 @@ class InquilinoDataTable extends DataTable
         return $this->builder()
                     ->setTableId('inquilino-table')
                     ->columns([
-                        'id' => ['title' => __('Id')],
+                    //    'id' => ['title' => __('Id')],
                         'nome' => [ 'title' => __('Name') ],
                         'email' => [ 'title' => __('Email') ],
                         'telefone' => ['title' => __('Telephone')],
                         'morada' => ['title' => __('Address')],
-                        'iban' => ['title' => __('Iban')],
+                      //  'iban' => ['title' => __('Iban')],
                         'action' => ['title' => __('Action')],
                     ])
                     ->minifiedAjax()

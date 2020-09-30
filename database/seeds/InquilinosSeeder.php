@@ -16,25 +16,23 @@ class InquilinosSeeder extends Seeder
     public function run()
     {
 
-        $inquilino = Inquilino::create([
-            'nome'      => 'Daniela ',
+        Inquilino::create([
+            'nome' => 'Daniela',
             'dataNascimento' => '1998-02-27',
-            'nif' => '234323456543',
+            'nif' => '234323456',
             'cc' => '234532456',
-            'email'     => 'daniela@gmail.com',
-            'telefone' => '34532345',
+            'email' => 'daniela@gmail.com',
+            'telefone' => '915323445',
             'morada' => 'Rua da daniela',
-            'iban' => '2343434',
-            'tipoParticularEmpresa' => '3',
+            'iban' => 'pt50373673322343434',
+            'tipoParticularEmpresa' => '4',
             'profissao' => 'Engenheira',
-            'vencimento' => '2',
-            'tipoContrato' => 'anual',
+            'tipoContrato' => '9',
             'notas' => 'nada a acrescentar',
             'cae' => '1',
-            'capitalSocial' => '3',
-            'setorActividade' => 'Engenharia',
-            'certidaoPermanente' => 'certidao',
-            'numFuncionarios' => '2'
+            'setorActividade' => '5',
+            'certidaoPermanente' => '5325256',
+            'numFuncionarios' => '3'
 
         ]);
         App\Proprietario::find(1)->inquilinos()->attach($inquilino->id);

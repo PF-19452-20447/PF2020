@@ -73,12 +73,12 @@ class ProprietarioDataTable extends DataTable
         return $this->builder()
                     ->setTableId('proprietario-table')
                     ->columns([
-                        'id' => ['title' => __('Id')],
+                       // 'id' => ['title' => __('Id')],
                         'nome' => [ 'title' => __('Name') ],
                         'email' => [ 'title' => __('Email') ],
                         'telefone' => ['title' => __('Telephone')],
                         'morada' => ['title' => __('Address')],
-                        'iban' => ['title' => __('Iban')],
+                       // 'iban' => ['title' => __('Iban')],
                         'action' => ['title' => __('Action')],
                     ])
                     ->minifiedAjax()

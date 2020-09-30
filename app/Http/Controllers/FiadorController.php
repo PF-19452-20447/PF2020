@@ -115,6 +115,7 @@ class FiadorController extends Controller
      */
     public function destroy(Fiador $fiador)
     {
+        $fiador->contratos()->sync([]);
         $fiador->delete();
         return redirect(route('fiador.index'));
         //
@@ -137,7 +138,7 @@ class FiadorController extends Controller
             'tipoParticularEmpresa' => 'required|integer',
             'cae' => 'required|integer',
             'setorActividade' => 'nullable|integer',
-            'certidaoPermanente' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
+            'certidaoPermanente' => 'nullable|integer',
             'numFuncionarios' => 'nullable|integer|min:0'
         ];
 

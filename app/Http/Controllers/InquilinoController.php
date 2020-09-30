@@ -297,6 +297,8 @@ class InquilinoController extends Controller
     }*/
 
        // $inquilino = Inquilino::findOrfail($id);
+
+       $inquilino->contratos()->sync([]);
         $inquilino->delete();
         return redirect()->route('inquilinos.index')
                         ->with('success','Inquilino deleted successfully');
@@ -307,7 +309,7 @@ class InquilinoController extends Controller
         //nullable -> optional fields
 
         $validate_array = [
-            'nome' => 'required|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/|max:255',
+            'nome' => 'required|string',
             'dataNascimento' => 'required|date_format:Y-m-d|before:today|nullable',
             'nif' => ['required', 'alpha_num', 'max:32'],
             'cc' => ['required', 'alpha_num', 'max:16'],
@@ -321,7 +323,7 @@ class InquilinoController extends Controller
             'notas' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'cae' => 'nullable|integer',
             'setorActividade' => 'nullable|integer',
-            'certidaoPermanente' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
+            'certidaoPermanente' => 'nullable|integer',
             'numFuncionarios' => 'nullable|integer|min:0',
             'photos.*'=>'nullable|image|mimes:jpeg,png,jpg,bmp,tiff|max:4096',
             'img_delete'=>'nullable'

@@ -51,7 +51,7 @@ view()->share('hideSubHeader', true);
                         Column::make('id'),
                         Column::make('valorRenda'),
                         Column::make('tipoContrato'),
-                        Column::make('dataLimitePagamento'),
+                        Column::make('diaLimitePagamento'),
                         Column::make('estado'),
                         Column::make('caucao'),
                         //Column::make('metodoPagamento'),
@@ -82,16 +82,12 @@ view()->share('hideSubHeader', true);
                                 <td>{{ $contrato ->RenewableLabel }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">{{ __('Exemption benefit') }}</th>
-                                <td>{{ $contrato ->isencaoBeneficio }}</td>
-                            </tr>
-                            <tr>
                                 <th scope="row">{{ __('Source retention') }}</th>
-                                <td>{{ $contrato ->retencaoFonte }}</td>
+                                <td>{{ $contrato ->RetencaoFonteLabel }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">{{ __('Payment deadline') }}</th>
-                                <td>{{ $contrato ->dataLimitePagamento }}</td>
+                                <th scope="row">{{ __('Payment Deadline Day') }}</th>
+                                <td>{{ $contrato ->diaLimitePagamentoLabel }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('State') }}</th>
@@ -111,7 +107,7 @@ view()->share('hideSubHeader', true);
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Advancing rents') }}</th>
-                                <td>{{ $contrato ->rendasAvanco }}</td>
+                                <td>{{ $contrato ->RendasAvancoLabel }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Created at') }}</th>
@@ -124,6 +120,10 @@ view()->share('hideSubHeader', true);
                             <tr>
                                 <th scope="row">{{ __('Tenants selected') }}</th>
                                 <td>{{$contrato->inquilinos->pluck('nome')}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">{{ __('Guarantors selected') }}</th>
+                                <td>{{$contrato->fiadores->pluck('nome')}}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Property selected') }}</th>

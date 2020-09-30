@@ -17,6 +17,7 @@ class Proprietario extends Model
     const SETOR_SECUNDARIO = 6;
     const SETOR_TERCIARIO = 7;
 
+
     //protected $table= 'proprietarios';
 
     use LoadDefaults;
@@ -67,6 +68,8 @@ class Proprietario extends Model
         ];
     }
 
+
+
     /**
      * Return an array with the values of type field
      * @return array
@@ -92,6 +95,7 @@ class Proprietario extends Model
             self::TYPE_PARTICULAR =>  __('Private')
         ];
     }
+
 
      /**
      * Return an array with the values of type field
@@ -141,7 +145,7 @@ class Proprietario extends Model
         $array = self::getSetorAtividadeOptions();
         return $array[$this->setorActividade];
     }
-    
+
 
     /**
      * Return the first name of the user

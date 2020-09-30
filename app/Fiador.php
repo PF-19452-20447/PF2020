@@ -162,6 +162,11 @@ class Fiador extends Model
         return $this->belongsTo('App\Inquilino', 'foreign_key');
     }
 
+    public function contratos (){
+
+        return $this->belongsToMany('App\Contrato', 'contrato_fiadores');
+    }
+
     public function inquilino () {
         return $this->hasOne('App\Inquilino');
     }

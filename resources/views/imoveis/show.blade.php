@@ -57,7 +57,7 @@ view()->share('hideSubHeader', true);
                                 <td>{{ $imovel ->tipologiaLabel }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">{{ __('Area') }}</th>
+                                <th scope="row">{{ __('Area m²') }}</th>
                                 <td>{{ $imovel ->area }}</td>
                             </tr>
                             <tr>
@@ -94,7 +94,7 @@ view()->share('hideSubHeader', true);
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Energy certificate') }}</th>
-                                <td>{{ $imovel ->certificadoEnergetico }}</td>
+                                <td>{{ $imovel ->CertificadoEnergeticoLabel }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Habitation License') }}</th>

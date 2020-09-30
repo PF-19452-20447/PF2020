@@ -21,10 +21,10 @@ class ContratoDataTable extends DataTable
     {
         $datatable =datatables()
             ->eloquent($query)
-           ->editColumn('created_at', '{!! date(\'d-m-Y H:i:s\', strtotime($created_at)) !!}');
-          /* ->editColumn('tipoContrato', function ($model) {
-            return  $model->TipoContratoLabel;
-            });*/
+           ->editColumn('created_at', '{!! date(\'d-m-Y H:i:s\', strtotime($created_at)) !!}')
+           ->editColumn('tipoContrato', function ($model) {
+            return  $model->tipoContratoLabel;
+            });
             //->editColumn('created_at', '{{ Carbon\Carbon::parse(created_at)->toDateTimeString() }}');
             if(auth()->user()->can('accessAsLandlord')){
                 $datatable->addColumn('action', function ($contrato) {
@@ -80,10 +80,9 @@ class ContratoDataTable extends DataTable
         return $this->builder()
                     ->setTableId('contrato-table')
                     ->columns([
-                        'id' => ['title' => __('Id')],
                         'valorRenda' => [ 'title' => __('Income value') ],
                         'tipoContrato' => [ 'title' => __('Type of contract') ],
-                        'dataLimitePagamento' => ['title' => __('Payment deadline')],
+                        'diaLimitePagamento' => ['title' => __('Payment Deadline Day')],
                         'caucao' => ['title' => __('Deposit')],
                         'action' => ['title' => __('Action')],
                     ])
@@ -106,7 +105,7 @@ class ContratoDataTable extends DataTable
             'id',
             'valorRenda',
             'tipoContrato',
-            'dataLimitePagamento',
+            'diaLimitePagamento',
             'estado',
             'caucao',
             'action'
