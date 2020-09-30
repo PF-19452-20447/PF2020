@@ -141,7 +141,7 @@ class Proprietario extends Model
         $array = self::getSetorAtividadeOptions();
         return $array[$this->setorActividade];
     }
-    
+
 
     /**
      * Return the first name of the user
@@ -174,5 +174,7 @@ class Proprietario extends Model
         return $this->belongsTo('App\User');
     }
 
-
+    public function fiadores(){
+        return $this->hasMany('App\Fiador');
+    }
 }

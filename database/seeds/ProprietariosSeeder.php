@@ -32,7 +32,6 @@ class ProprietariosSeeder extends Seeder
             'iban' => '7654876543',
             'tipoParticularEmpresa' => '4',
             'cae' => '2',
-            'capitalSocial' => '1',
             'setorActividade' => 'Professora',
             'certidaoPermanente' => 'certidao',
             'numFuncionarios' => '4'

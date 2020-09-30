@@ -23,11 +23,11 @@ class FiadoresSeeder extends Seeder
             'iban' => '6543465432',
             'tipoParticularEmpresa' => '3',
             'cae' => '1',
-            'capitalSocial' => '3',
             'setorActividade' => 'Agricultura',
             'certidaoPermanente' => 'certidao',
             'numFuncionarios' => '2'
 
         ]);
+        
     }
 }

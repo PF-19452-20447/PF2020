@@ -27,11 +27,9 @@ class InquilinosSeeder extends Seeder
             'iban' => '2343434',
             'tipoParticularEmpresa' => '3',
             'profissao' => 'Engenheira',
-            'vencimento' => '2',
             'tipoContrato' => 'anual',
             'notas' => 'nada a acrescentar',
             'cae' => '1',
-            'capitalSocial' => '3',
             'setorActividade' => 'Engenharia',
             'certidaoPermanente' => 'certidao',
             'numFuncionarios' => '2'

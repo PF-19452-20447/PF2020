@@ -56,7 +56,7 @@
                         <span class="kt-menu__link-text">{{ __('Dashboard') }}</span>
                     </a>
                 </li>
-                
+
                 @canany(['adminApp', 'adminFullApp', 'accessAsLandlord', 'accessAsTenant'])
                 <li class="kt-menu__item {{ request()->routeIs('translations') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
                     <a href="{{ route('translations') }}" class="kt-menu__link ">
@@ -76,6 +76,7 @@
 
                 @canany(['adminApp', 'adminFullApp', 'accessAsLandlord', 'accessAsTenant'])
                 {{-- Botão Utilizador / User button --}}
+                @if(Auth::user()->proprietario)
                 <li class="kt-menu__item {{ request()->routeIs('users.*') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
                     <a href="{{ route('users.profile')}}" class="kt-menu__link">
                         <span class="kt-menu__link-icon">
@@ -90,7 +91,7 @@
                         <span class="kt-menu__link-text">{{ __('My Profile') }}</span>
                     </a>
                 </li>
-
+                @endif
                 @endcanany
 
 
