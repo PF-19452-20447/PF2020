@@ -15,8 +15,9 @@ class AddInquilinoIdToFiadoresTable extends Migration
     {
         Schema::table('fiadores', function (Blueprint $table) {
             $table->unsignedBigInteger('inquilino_id')->nullable();
-
             $table->foreign('inquilino_id')->references('id')->on('inquilinos');
+            $table->unsignedBigInteger('proprietario_id')->nullable();
+            $table->foreign('proprietario_id')->references('id')->on('proprietarios');
         });
     }
 

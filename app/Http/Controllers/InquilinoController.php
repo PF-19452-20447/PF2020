@@ -107,8 +107,7 @@ class InquilinoController extends Controller
             //utilizador corrente
             $user = Auth::user();
             //só associa ao proprietáro se nao for administrador
-            if(!$user->can('adminApp') or !$user->can('adminFullApp')){
-
+            if($user->hasRole("Landlord")){
                 //procura o corrente o perfil do utilizador
                 $proprietario = Proprietario::where('user_id', $user->id)->first();
                 $proprietario->inquilinos()->attach($inquilino->id);

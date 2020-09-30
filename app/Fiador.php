@@ -159,7 +159,7 @@ class Fiador extends Model
 
     public function proprietarios()
     {
-        return $this->belongsTo('App\Inquilino', 'foreign_key');
+        return $this->belongsTo('App\Proprietario', 'foreign_key');
     }
 
     public function contratos (){

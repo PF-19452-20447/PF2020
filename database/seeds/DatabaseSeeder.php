@@ -29,7 +29,6 @@ class DatabaseSeeder extends Seeder
         $this->call(FinancasSeeder::class);
         $this->call(ImoveisSeeder::class);
         $this->call(FiadoresSeeder::class);
-
         $this->call(PermissionsSeeder::class);
 
         // Ask for db migration refresh, default is no

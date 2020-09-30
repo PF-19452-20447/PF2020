@@ -12,7 +12,8 @@ class FiadoresSeeder extends Seeder
      */
     public function run()
     {
-        Fiador::create([
+
+        $fiador = Fiador::create([
             'nome' => 'Rui',
             'dataNascimento' => '1992-02-11',
             'nif' => '234568765',
@@ -26,7 +27,7 @@ class FiadoresSeeder extends Seeder
             'setorActividade' => '6',
             'certidaoPermanente' => '234521',
             'numFuncionarios' => '1'
-
         ]);
+        App\Proprietario::find(1)->fiadores()->attach($fiador->id);
     }
 }

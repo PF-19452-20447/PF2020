@@ -12,6 +12,8 @@ use Illuminate\Validation\Rule;
 use App\Http\Controllers\FormatsMessages;
 use App\Http\Controllers\ValidatesAttributes;
 use Validation\Validator;
+use App\Proprietario;
+use Illuminate\Support\Facades\Auth;
 
 
 class FiadorController extends Controller
@@ -55,7 +57,14 @@ class FiadorController extends Controller
 
 
         if(($model = Fiador::create($validatedAttributes)) ) {
-            //flash('Role Added');
+            //utilizador corrente
+            $user = Auth::user();
+            //só associa ao proprietáro se nao for administrador
+            if($user->hasRole("Landlord")){
+                //procura o corrente o perfil do utilizador
+                $proprietario = Proprietario::where('user_id', $user->id)->first();
+                $proprietario->fiadores()->attach($model->id);
+            }
             return redirect(route('fiador.show', $model));
         }else
             return redirect()->back();
@@ -99,7 +108,7 @@ class FiadorController extends Controller
         $validatedAttributes = $this->validateFiador($request, $fiador);
         $fiador->fill($validatedAttributes);
         if($fiador->save()) {
-            //flash('Role Added');
+
             return redirect(route('fiador.show', $fiador));
         }else{
             return redirect()->back();

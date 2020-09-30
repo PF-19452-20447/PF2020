@@ -178,5 +178,7 @@ class Proprietario extends Model
         return $this->belongsTo('App\User');
     }
 
-
+    public function fiadores(){
+        return $this->hasMany('App\Fiador');
+    }
 }

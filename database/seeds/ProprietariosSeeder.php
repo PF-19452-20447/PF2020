@@ -35,7 +35,6 @@ class ProprietariosSeeder extends Seeder
             'setorActividade' => '6',
             'certidaoPermanente' => '23451',
             'numFuncionarios' => '2'
-
         ]);
     }
 }
