@@ -92,24 +92,30 @@ view()->share('hideSubHeader', true);
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Particular type of company') }}</th>
-                                <td>{{ $fiador ->TipoParticularEmpresaLabel }}</td>
+                                <td>{{ $fiador ->tipoParticularEmpresaLabel }}</td>
                             </tr>
-                            <tr>
-                                <th scope="row">{{ __('CAE') }}</th>
-                                <td>{{ $fiador ->CAELabel }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">{{ __('Activity sector') }}</th>
-                                <td>{{ $fiador ->SetorAtividadeLabel }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">{{ __('Permanent certificate') }}</th>
-                                <td>{{ $fiador ->certidaoPermanente }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">{{ __('Number of employees') }}</th>
-                                <td>{{ $fiador ->numFuncionarios }}</td>
-                            </tr>
+
+                            @if($fiador->tipoParticularEmpresa === App\Fiador::TYPE_EMPRESA)
+
+                                <tr>
+                                    <th scope="row">{{ __('CAE') }}</th>
+                                    <td>{{ $fiador ->CAELabel }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">{{ __('Activity sector') }}</th>
+                                    <td>{{ $fiador ->SetorAtividadeLabel }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">{{ __('Permanent certificate') }}</th>
+                                    <td>{{ $fiador ->certidaoPermanente }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">{{ __('Number of employees') }}</th>
+                                    <td>{{ $fiador ->numFuncionarios }}</td>
+                                </tr>
+
+                            @endif
+
                             <tr>
                                 <th scope="row">{{ __('Created at') }}</th>
                                 <td>{{$fiador ->created_at}}</td>

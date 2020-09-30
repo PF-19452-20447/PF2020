@@ -121,13 +121,14 @@ view()->share('hideSubHeader', true);
                                     <th scope="row">{{ __('Permanent certificate') }}</th>
                                     <td>{{ $inquilino ->certidaoPermanente }}</td>
                                 </tr>
+                                <tr>
+                                    <th scope="row">{{ __('Number of employees') }}</th>
+                                    <td>{{ $inquilino ->numFuncionarios }}</td>
+                                </tr>
 
                             @endif
 
-                            <tr>
-                                <th scope="row">{{ __('Number of employees') }}</th>
-                                <td>{{ $inquilino ->numFuncionarios }}</td>
-                            </tr>
+
                             <tr>
                                 <th scope="row">{{ __('Created at') }}</th>
                                 <td>{{$inquilino ->created_at}}</td>
