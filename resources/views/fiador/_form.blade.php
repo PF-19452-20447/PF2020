@@ -68,7 +68,7 @@
         </div>
         <div class="form-group">
             {!! Form::label('tipoParticularEmpresa', __('Particular Type of company')) !!}
-            {!! Form::select('tipoParticularEmpresa', \App\Fiador::getTipoParticularEmpresaArray() , null , ['class' => 'form-control '.($errors->has('tipoParticularEmpresa') ? 'is-invalid' : ''), 'required' => true]) !!}
+            {!! Form::select('tipoParticularEmpresa', \App\Fiador::getTipoParticularEmpresaArray() , null , ['class' => 'form-control '.($errors->has('tipoParticularEmpresa') ? 'is-invalid' : ''), 'required' => true, 'onchange' => 'if(this.value == 3){$(".empresa").removeClass("d-none")}else{$(".empresa").addClass("d-none")}']) !!}
             @error('tipoParticularEmpresa')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
