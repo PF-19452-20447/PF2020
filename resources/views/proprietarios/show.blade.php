@@ -83,22 +83,27 @@ view()->share('hideSubHeader', true);
                                 <th scope="row">{{ __('Particular type of company') }}</th>
                                 <td>{{ $proprietario->TipoParticularEmpresaLabel }}</td>
                             </tr>
-                            <tr>
-                                <th scope="row">{{ __('CAE') }}</th>
-                                <td>{{ $proprietario->CAELabel }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">{{ __('Activity sector') }}</th>
-                                <td>{{ $proprietario->SetorAtividadeLabel }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">{{ __('Permanent certificate') }}</th>
-                                <td>{{ $proprietario->certidaoPermanente }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">{{ __('Number of employees') }}</th>
-                                <td>{{ $proprietario->numFuncionarios }}</td>
-                            </tr>
+                            @if($proprietario->tipoParticularEmpresa === App\Proprietario::TYPE_EMPRESA)
+
+                                <tr>
+                                    <th scope="row">{{ __('CAE') }}</th>
+                                    <td>{{ $proprietario ->CAELabel }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">{{ __('Activity sector') }}</th>
+                                    <td>{{ $proprietario ->SetorAtividadeLabel }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">{{ __('Permanent certificate') }}</th>
+                                    <td>{{ $proprietario ->certidaoPermanente }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">{{ __('Number of employees') }}</th>
+                                    <td>{{ $proprietario ->numFuncionarios }}</td>
+                                </tr>
+
+                            @endif
+
                             <tr>
                                 <th scope="row">{{ __('Created at') }}</th>
                                 <td>{{$proprietario->created_at}}</td>
