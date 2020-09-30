@@ -23,8 +23,11 @@ class ImovelDatatable extends DataTable
        ->editColumn('created_at', '{!! date(\'d-m-Y H:i:s\', strtotime($created_at)) !!}')
        ->editColumn('tipo', function ($model) {
         return  $model->tipoLabel;
-    });
+    })
 
+    ->editColumn('tipologia', function ($model) {
+        return  $model->tipologiaLabel;
+    });
        //->editColumn('created_at', '{{ Carbon\Carbon::parse(created_at)->toDateTimeString() }}');
         if(auth()->user()->can('accessAsLandlord')){
             $datatable->addColumn('action', function ($imovel) {
