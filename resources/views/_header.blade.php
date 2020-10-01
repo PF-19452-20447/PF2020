@@ -681,9 +681,7 @@
                     <div class="kt-user-card__name">
                         {{ auth()->user()->name }}
                     </div>
-                    <div class="kt-user-card__badge">
-                        <span class="btn btn-success btn-sm btn-bold btn-font-md">23 messages</span>
-                    </div>
+                    
                 </div>
 
                 <!--end: Head -->

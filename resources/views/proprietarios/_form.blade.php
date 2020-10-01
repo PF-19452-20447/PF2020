@@ -73,28 +73,28 @@
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-        <div class="form-group">
+        <div class="form-group empresa {{  $proprietario->tipoParticularEmpresa === App\Proprietario::TYPE_PARTICULAR ? 'd-none': '' }}">
             {!! Form::label('cae', __('CAE')) !!}
             {!! Form::select('cae', \App\Proprietario::getCAEArray() , null , ['class' => 'form-control '.($errors->has('cae') ? 'is-invalid' : ''), 'required' => true]) !!}
             @error('cae')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-        <div class="form-group">
+        <div class="form-group empresa {{  $proprietario->tipoParticularEmpresa === App\Proprietario::TYPE_PARTICULAR ? 'd-none': '' }}">
             {!! Form::label('setorActividade', __('Activity sector')) !!}
             {!! Form::select('setorActividade', \App\Proprietario::getSetorAtividadeArray(), null, ['class' => 'form-control '.($errors->has('setorActividade') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1, 'min' => 0, 'required' => false]) !!}
             @error('setorActividade')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-        <div class="form-group">
+        <div class="form-group empresa {{  $proprietario->tipoParticularEmpresa === App\Proprietario::TYPE_PARTICULAR ? 'd-none': '' }}">
             {!! Form::label('certidaoPermanente', __('Permanent certificate')) !!}
             {!! Form::number('certidaoPermanente', null, ['class' => 'form-control '.($errors->has('certidaoPermanente') ? 'is-invalid' : ''), 'type' => 'number', 'step' => 1, 'min' => 0, 'required' => false]) !!}
             @error('certidaoPermanente')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-        <div class="form-group">
+        <div class="form-group empresa {{  $proprietario->tipoParticularEmpresa === App\Proprietario::TYPE_PARTICULAR ? 'd-none': '' }}">
             {!! Form::label('numFuncionarios', __('Number of employees')) !!}
             {!! Form::number('numFuncionarios', null, ['class' => 'form-control '.($errors->has('numFuncionarios') ? 'is-invalid' : ''), 'min' => '0', 'max' => '10', 'type' => 'number', 'step' => 1, 'required' => false]) !!}
             @error('numFuncionarios')
