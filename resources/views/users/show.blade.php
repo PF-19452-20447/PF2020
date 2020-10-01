@@ -65,7 +65,7 @@ view()->share('hideSubHeader', true);
                                 @if ($user->proprietario->telefone)
                                     <td>{{ $user->proprietario->telefone }}</td>
                                 @else
-                                    <td>Nenhum</td>
+                                    <td>__('Nenhum')</td>
                                 @endif
                             </tr>
                             <tr>
@@ -92,10 +92,6 @@ view()->share('hideSubHeader', true);
                             <tr>
                                 <th scope="row">{{ __('CAE') }}</th>
                                 <td>{{ $user->proprietario->cae }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">{{ __('Share capital') }}</th>
-                                <td>{{ $user->proprietario->capitalSocial }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Activity sector') }}</th>
