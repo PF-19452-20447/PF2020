@@ -12,7 +12,7 @@ class ContratosSeeder extends Seeder
      */
     public function run()
     {
-        Contrato::create([
+        $contracto = Contrato::create([
             'valorRenda' => '100',
             'tipoContrato' => '12',
             'inicioContrato' => '2019-07-12',
@@ -27,5 +27,7 @@ class ContratosSeeder extends Seeder
             'metodoPagamento' => '5',
             'rendasAvanco' => '19'
         ]);
+
+        App\Imovel::find(1)->contrato()->save($contracto);
     }
 }

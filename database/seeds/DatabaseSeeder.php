@@ -23,12 +23,12 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersSeeder::class);
         $this->call(ProprietariosSeeder::class);
         $this->call(InquilinosSeeder::class);
-        $this->call(RendasSeeder::class);
-        $this->call(FicheirosSeeder::class);
-        $this->call(ContratosSeeder::class);
-        $this->call(FinancasSeeder::class);
         $this->call(ImoveisSeeder::class);
         $this->call(FiadoresSeeder::class);
+        $this->call(ContratosSeeder::class);
+        $this->call(RendasSeeder::class);
+        $this->call(FicheirosSeeder::class);
+        $this->call(FinancasSeeder::class);
         $this->call(PermissionsSeeder::class);
 
         // Ask for db migration refresh, default is no
