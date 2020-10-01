@@ -125,7 +125,7 @@
                     </div>
 
                     <br/>
-                    <h5>{{__('Finaly')}}</h5>
+                    <h5>{{__('Finally')}}</h5>
                     <div id="numero3" class="card-body">
 
                         {{-- <img src="images/number3.png " /> --}}

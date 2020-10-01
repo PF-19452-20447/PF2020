@@ -63,7 +63,7 @@ class FiadorController extends Controller
             if($user->hasRole("Landlord")){
                 //procura o corrente o perfil do utilizador
                 $proprietario = Proprietario::where('user_id', $user->id)->first();
-                $proprietario->fiadores()->attach($model->id);
+                $proprietario->fiadores()->save($model);
             }
             return redirect(route('fiador.show', $model));
         }else

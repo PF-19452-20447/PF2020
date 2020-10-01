@@ -16,7 +16,7 @@ view()->share('hideSubHeader', true);
         <div class="kt-portlet__head">
             <div class="kt-portlet__head-label">
                 <h3 class="kt-portlet__head-title">
-                    {{ $imovel->tipo }}
+                    {{ $imovel->morada }}
                 </h3>
             </div>
         </div>

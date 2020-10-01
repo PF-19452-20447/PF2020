@@ -68,12 +68,12 @@ class FiadorDatatable extends DataTable
         if($user->can('adminApp'))
             return $model->newQuery();
         elseif($user->can('accessAsLandlord')){
-            //return $model->newQuery()->whereIn('id', $user->proprietario->inquilinos->fiadores->pluck('id'));
-            $fiadores_ids = [];
-            foreach($user->proprietario->inquilinos as $inquilino){
-                $fiadores_ids = array_merge($fiadores_ids,  $inquilino->fiadores->pluck('id')->toArray());
+            return $model->newQuery()->whereIn('id', $user->proprietario->fiadores->pluck('id'));
+            // $fiadores_ids = [];
+            // foreach($user->proprietario->inquilinos as $inquilino){
+            //     $fiadores_ids = array_merge($fiadores_ids,  $inquilino->fiadores->pluck('id')->toArray());
 
-            }
+            // }
             return $model->newQuery()->whereIn('id', $fiadores_ids);
 
         }
