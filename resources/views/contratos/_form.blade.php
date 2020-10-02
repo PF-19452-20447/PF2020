@@ -129,8 +129,8 @@
             <select class="form-control select2-multi {{ $errors->has('fiadores_list') ? 'is-invalid' : '' }}" multiple="multiple" name ="fiadores_list[]" id ="fiadores" style="width: 50%" >
                 <?php
                 $user = Auth::user();
-                if(!empty($user->inquilino)){
-                    foreach($user->inquilino->fiadores as $fiador){
+                if(!empty($user->proprietario)){
+                    foreach($user->proprietario->fiadores as $fiador){
                 ?>
                          <option value="{{ $fiador->id }}" {{ in_array($fiador->id, $selectedGuarantors) ? 'selected': ''}}>
                             {{$fiador->nome}}

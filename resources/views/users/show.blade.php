@@ -16,7 +16,11 @@ view()->share('hideSubHeader', true);
         <div class="kt-portlet__head">
             <div class="kt-portlet__head-label">
                 <h3 class="kt-portlet__head-title">
+                    @if($user->proprietario)
                     {{ $user->proprietario->nome }}
+                    @else
+                    {{ $user->name }}
+                    @endif
                 </h3>
             </div>
         </div>
@@ -53,6 +57,7 @@ view()->share('hideSubHeader', true);
                                 <th scope="row">{{ __('Email') }}</th>
                                 <td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
                             </tr>
+                            @if($user->proprietario)
                             <tr>
                                 <th scope="row">{{ __('Full Name') }}</th>
                                 <td>{{ $user->proprietario->nome }}</td>
@@ -105,6 +110,7 @@ view()->share('hideSubHeader', true);
                                 <th scope="row">{{ __('Number of employees') }}</th>
                                 <td>{{ $user->proprietario->numFuncionarios }}</td>
                             </tr>
+                            @endif
                         </tbody>
                     </table>
                 </div>
