@@ -6,15 +6,16 @@ Breadcrumbs::for('home', function ($trail) {
 });
 
 // Home > User
+
 Breadcrumbs::for('users.index', function ($trail) {
     $trail->parent('home');
-    $trail->push(__('Users'), route('users.index'));
+    if(!Auth::user()->hasRole('Landlord')){
+    $trail->push(__('Users'), route('users.index'));}
 });
 Breadcrumbs::for('users.create', function ($trail) {
     $trail->parent('users.index');
     $trail->push(__('Create'), route('users.create'));
 });
-
 Breadcrumbs::for('users.show', function ($trail, $user) {
     $trail->parent('users.index');
     $trail->push($user->name, route('users.show', $user));
