@@ -11,6 +11,7 @@ use App\IBAN;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\FormatsMessages;
 use App\Http\Controllers\ValidatesAttributes;
+use App\Inquilino;
 use Validation\Validator;
 use App\Proprietario;
 use Illuminate\Support\Facades\Auth;
@@ -55,7 +56,6 @@ class FiadorController extends Controller
         $validatedAttributes = $this->validateFiador($request);
        // $this->validate($request, ['iban' => 'regex:/^[a-zA-Z0-9\s]+$/']);
 
-
         if(($model = Fiador::create($validatedAttributes)) ) {
             //utilizador corrente
             $user = Auth::user();
@@ -65,6 +65,8 @@ class FiadorController extends Controller
                 $proprietario = Proprietario::where('user_id', $user->id)->first();
                 $proprietario->fiadores()->save($model);
             }
+            Inquilino::find($validatedAttributes['inquilino_id'])->first()->fiadores()->save($model);
+
             return redirect(route('fiador.show', $model));
         }else
             return redirect()->back();
@@ -148,7 +150,8 @@ class FiadorController extends Controller
             'cae' => 'required|integer',
             'setorActividade' => 'nullable|integer',
             'certidaoPermanente' => 'nullable|integer',
-            'numFuncionarios' => 'nullable|integer|min:0'
+            'numFuncionarios' => 'nullable|integer|min:0',
+            'inquilino_id' => 'nullable'
         ];
 
 

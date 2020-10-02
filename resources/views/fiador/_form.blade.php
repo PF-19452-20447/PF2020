@@ -101,7 +101,26 @@
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-
+        <div class="form-group">
+            <label>{{ __('Selected Tenants') }}</label>
+            <select class="form-control {{ $errors->has('inquilino_id') ? 'is-invalid' : '' }}" name ="inquilino_id" id ="imoveis" style="width: 50%" >
+                <?php
+                $user = Auth::user();
+                if(!empty($user->proprietario)){
+                    foreach($user->proprietario->inquilinos as $inquilino){
+                ?>
+                         <option value="{{ $inquilino->id }}" {{ $inquilino->id == $fiador->inquilino_id ? 'selected' : '' }} >
+                            {{$inquilino->nome}}
+                         </option>
+                         <?php
+                     }
+                 }
+                ?>
+            </select>
+            @error('inquilino_id')
+                <div class="error invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
 
     </div>
     <div class="kt-portlet__foot">
