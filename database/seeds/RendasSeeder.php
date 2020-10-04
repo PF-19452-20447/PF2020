@@ -12,8 +12,11 @@ class RendasSeeder extends Seeder
      */
     public function run()
     {
-        Renda::create([
-            'valorPagar' => '10000',
+        $contrato = App\Contrato::find(1);
+        $inquilino = App\Inquilino::find(1);
+        $proprietario = App\Proprietario::find(1);
+        $renda = Renda::create([
+            'valorPagar' => $contrato->valorRenda,
             'dataPagamento' => '2019-11-02',
             'metodoPagamento' => '6',
             'valorPago' => '50000',
@@ -23,5 +26,8 @@ class RendasSeeder extends Seeder
             'notas' => 'Nao tem notas adicionais',
             'dataRecibo' => '2019-11-04'
         ]);
+        $contrato->rendas()->save($renda);
+        $inquilino->rendas()->save($renda);
+        $proprietario->rendas()->save($renda);
     }
 }

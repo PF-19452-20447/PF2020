@@ -133,7 +133,7 @@ class ProprietarioController extends Controller
             'dataNascimento' => 'required|date_format:Y-m-d|before:today|nullable',
             'nif' => ['required', 'alpha_num', 'max:32'],
             'cc' => ['nullable', 'alpha_num', 'max:16'],
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email',
             'telefone' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|min:9',
             'morada' => 'required|string',
             'iban' => ['nullable', 'alpha_dash', 'max:64'],

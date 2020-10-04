@@ -18,7 +18,6 @@ class ContratosSeeder extends Seeder
             'inicioContrato' => '2019-07-12',
             'fimContrato' => '2020-11-03',
             'renovavel'     => '9',
-            //'isencaoBeneficio' => 'isencao ate 2 anos',
             'retencaoFonte' => '15',
             'diaLimitePagamento' => '29',
             'estado' => '1',
@@ -27,7 +26,11 @@ class ContratosSeeder extends Seeder
             'metodoPagamento' => '5',
             'rendasAvanco' => '19'
         ]);
-
+        $contracto->metodoPagamento = Contrato::PAGAMENTO_MULTIBANCO;
+        $contracto->estado= Contrato::ESTADO_ATIVO;
+        $contracto->save();
+        $contracto->inquilinos()->attach(1);
+        $contracto->fiadores()->attach(1);
         App\Imovel::find(1)->contrato()->save($contracto);
     }
 }
