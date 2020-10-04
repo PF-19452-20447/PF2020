@@ -136,7 +136,7 @@ class ProprietarioController extends Controller
             'email' => 'required|email',
             'telefone' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|min:9',
             'morada' => 'required|string',
-            'iban' => ['nullable', 'alpha_dash', 'max:64'],
+            'iban' => ['nullable', 'alpha_dash', 'max:64', 'regex:/^[A-Z]{2}[0-9]{2}(?:[ ]?[0-9]{4}){4}(?!(?:[ ]?[0-9]){3})(?:[ ]?[0-9]{1,2})?$'],
             'tipoParticularEmpresa' => 'nullable|integer',
             'cae' => 'nullable|integer',
             'setorActividade' => 'nullable|integer',
