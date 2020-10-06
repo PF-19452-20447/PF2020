@@ -25,19 +25,21 @@ view()->share('hideSubHeader', true);
             </div>
         </div>
         @canany(['accessAsLandlord', 'accessAsTenant'])
-        <div class="kt-portlet__head-toolbar">
-            <div class="kt-portlet__head-wrapper">
-                <div class="kt-portlet__head-actions">
-                    @if(auth()->user()->is($user))
-                    <a href="{{ route('proprietarios.edit', $user->proprietario) }}" class="btn btn-brand btn-elevate btn-icon-sm">
-                        <i class="la la-edit"></i>
-                        {{ __('Update') }}
-                    </a>
-                    @endif
-                    {!! Form::close() !!}
+            @if(auth()->user()->hasRole(['adminApp', 'adminFullApp']))
+                <div class="kt-portlet__head-toolbar">
+                    <div class="kt-portlet__head-wrapper">
+                        <div class="kt-portlet__head-actions">
+                            @if(auth()->user()->is($user))
+                            <a href="{{ route('proprietarios.edit', $user->proprietario) }}" class="btn btn-brand btn-elevate btn-icon-sm">
+                                <i class="la la-edit"></i>
+                                {{ __('Update') }}
+                            </a>
+                            @endif
+                            {!! Form::close() !!}
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+            @endif
         @endcanany
         <div class="kt-portlet__body">
             <!--begin::Section-->

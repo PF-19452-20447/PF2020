@@ -86,11 +86,11 @@ Breadcrumbs::for('settings.edit', function ($trail, $model) {
 // Home > Inquilinos
 Breadcrumbs::for('inquilinos.index', function ($trail) {
     $trail->parent('home');
-    $trail->push('Tenants', route('inquilinos.index'));
+    $trail->push(__('Tenants'), route('inquilinos.index'));
 });
 Breadcrumbs::for('inquilinos.create', function ($trail) {
     $trail->parent('inquilinos.index');
-    $trail->push('Create', route('inquilinos.create'));
+    $trail->push(__('Create'), route('inquilinos.create'));
 });
 Breadcrumbs::for('inquilinos.show', function ($trail, $model) {
     $trail->parent('inquilinos.index');
