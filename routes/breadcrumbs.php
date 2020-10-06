@@ -48,7 +48,9 @@ Breadcrumbs::for('roles.edit', function ($trail, $model) {
 // Home > Proprietários (Landlords)
 Breadcrumbs::for('proprietarios.index', function ($trail) {
     $trail->parent('home');
-    $trail->push('Landlords', route('proprietarios.index'));
+    if(!Auth::user()->hasRole('Landlord')){
+
+    $trail->push('Landlords', route('proprietarios.index'));  }
 });
 Breadcrumbs::for('proprietarios.create', function ($trail) {
     $trail->parent('proprietarios.index');

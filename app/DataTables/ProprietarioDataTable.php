@@ -40,7 +40,16 @@ class ProprietarioDataTable extends DataTable
             });
 
 
+        }elseif(auth()->user()->can('accessAsLandlord')){
+            $datatable->addColumn('action', function ($proprietario) {
+                return '<a class="btn btn-sm btn-clean btn-icon btn-icon-md" href="'. route('proprietarios.show', $proprietario) .'" title="'. __('View') .'"><i class="la la-eye"></i></a>
+                       ';
+
+            });
+
+
         }
+
          return $datatable;
     }
 
