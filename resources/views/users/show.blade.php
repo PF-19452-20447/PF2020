@@ -95,10 +95,6 @@ view()->share('hideSubHeader', true);
                                 <td>{{ $user->proprietario->cae }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">{{ __('Share capital') }}</th>
-                                <td>{{ $user->proprietario->capitalSocial }}</td>
-                            </tr>
-                            <tr>
                                 <th scope="row">{{ __('Activity sector') }}</th>
                                 <td>{{ $user->proprietario->setorActividade }}</td>
                             </tr>
