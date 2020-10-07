@@ -290,11 +290,7 @@
 
                 <!--begin: Navigation -->
                 <div class="kt-notification">
-                    @if(Auth::user()->hasRole(["Admin","SuperAdmin"]))
-                    <a href="{{ route('users.edit', Auth::user()) }}" class="kt-notification__item">
-                    @else
                     <a href="{{ route('users.profile', Auth::user())}}" class="kt-notification__item">
-                    @endif
                         <div class="kt-notification__item-icon">
                             <i class="flaticon2-calendar-3 kt-font-success"></i>
                         </div>
