@@ -23,3 +23,16 @@ view()->share('hideSubHeader', true);
         @include('proprietarios._form')
     </div>
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('js/ktavatarsingle.js') }}"></script>
+    <script>
+        /*function removeCurrentImage(e){
+            $('#delete-image-input').val(1);
+            $('#avatar-holder').css('background-image', 'url(/images/default_user.jpg)');
+            $(e).remove();
+            var avatar = KTAvatarSingle.avatar();
+            avatar.src = 'url(/images/default_user.jpg)';
+        }*/
+    </script>
+@endpush

@@ -65,7 +65,7 @@ class ProprietarioController extends Controller
         $validatedAttributes = $this->validateProprietario($request);
 
         if(($model = Proprietario::create($validatedAttributes)) ) {
-            //flash('Role Added');
+
             return redirect(route('proprietarios.show', $model));
         }else{
             return redirect()->back();
@@ -108,7 +108,13 @@ class ProprietarioController extends Controller
         $validatedAttributes = $this->validateProprietario($request, $proprietario);
         $proprietario->fill($validatedAttributes);
         if($proprietario->save()) {
-            //flash('Role Added');
+
+            if($request->hasFile('image') && $request->file('image')->isValid()){
+                $proprietario->user->addMediaFromRequest('image')->toMediaCollection('avatar');
+            }elseif($request->filled('delete_image')){ // if the image was replaced above it will automatically delete this so don't run again
+                $proprietario->user->getFirstMedia('avatar')->delete();
+            }
+
             return redirect(route('proprietarios.show', $proprietario));
         }else{
             return redirect()->back();

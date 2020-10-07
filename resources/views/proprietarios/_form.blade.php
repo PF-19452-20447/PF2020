@@ -7,9 +7,27 @@
  */
 ?>
 
- {!! Form::model($proprietario ?? '', ['route' => Route::currentRouteName() == 'proprietarios.create' ? ['proprietarios.store'] : ['proprietarios.update', $proprietario ?? ''], 'method' => Route::currentRouteName() == 'proprietarios.create' ? 'post' : 'put', 'class' => "kt-form"]) !!}
+ {!! Form::model($proprietario ?? '', ['route' => Route::currentRouteName() == 'proprietarios.create' ? ['proprietarios.store'] : ['proprietarios.update', $proprietario ?? ''], 'enctype' => "multipart/form-data",'method' => Route::currentRouteName() == 'proprietarios.create' ? 'post' : 'put', 'class' => "kt-form"]) !!}
 
     <div class="kt-portlet__body">
+        <div class="form-group row">
+            <div class="col">
+                <div class="kt-avatar kt-avatar--outline {{ $proprietario->user->hasMedia('avatar') ? 'kt-avatar--changed' : ''}}" id="kt_avatar_single" data-default-image="/images/default_user.jpg" data-delete-input-id="delete-image-input">
+                    <div id="avatar-holder" class="kt-avatar__holder" style="background-image: url({{ $proprietario->user->getFirstMediaUrl('avatar') }})"></div>
+                    <label class="kt-avatar__upload" data-toggle="kt-tooltip" title="" data-original-title="{{ __('Change image') }}">
+                        <i class="fa fa-pen"></i>
+                        <input id="user-avatar" type="file" name="image" accept=".png, .jpg, .jpeg">
+                    </label>
+                    <span class="kt-avatar__cancel" data-toggle="kt-tooltip" title="" data-original-title="{{ __('Cancel image') }}">
+                        <i class="fa fa-times"></i>
+                    </span>
+                </div>
+                @if($proprietario->user->hasMedia('avatar') )
+                    <input id="delete-image-input" type="hidden" name="delete_image" value="{{ old('delete_image') }}">
+                @endif
+                <span class="form-text text-muted">{{ __('Allowed file types: png, jpg, jpeg.') }}</span>
+            </div>
+        </div>
         <div class="form-group">
             {!! Form::label('nome', __('Name')) !!}
             {!! Form::text('nome', null, ['class' => 'form-control '.($errors->has('nome') ? 'is-invalid' : ''), 'type' => 'date', 'required' => true]) !!}
