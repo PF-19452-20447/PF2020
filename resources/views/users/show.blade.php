@@ -23,8 +23,7 @@ view()->share('hideSubHeader', true);
                     @endif
                 </h3>
             </div>
-        </div>
-        @canany('accessAsLandlord')
+            @canany('accessAsLandlord')
                 <div class="kt-portlet__head-toolbar">
                     <div class="kt-portlet__head-wrapper">
                         <div class="kt-portlet__head-actions">
@@ -44,6 +43,8 @@ view()->share('hideSubHeader', true);
                     </div>
                 </div>
         @endcanany
+        </div>
+
         <div class="kt-portlet__body">
             <!--begin::Section-->
             <div class="kt-section">

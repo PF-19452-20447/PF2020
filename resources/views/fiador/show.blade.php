@@ -115,15 +115,12 @@ view()->share('hideSubHeader', true);
                                 </tr>
 
                             @endif
-
+                            @if($fiador->inquilino_id)
                             <tr>
-                                <th scope="row">{{ __('Created at') }}</th>
-                                <td>{{$fiador ->created_at}}</td>
+                                <th scope="row">{{ __('Tenant') }}</th>
+                                <td>{{App\Inquilino::find($fiador->inquilino_id)->nome}}</td>
                             </tr>
-                            <tr>
-                                <th scope="row">{{ __('Updated at') }}</th>
-                                <td>{{$fiador ->updated_at}}</td>
-                            </tr>
+                            @endif
                         </tbody>
                     </table>
                 </div>

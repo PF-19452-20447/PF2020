@@ -43,6 +43,12 @@ view()->share('hideSubHeader', true);
                 <div class="kt-section__content">
                     <table class="table table-striped">
                         <tbody>
+                            @if($proprietario->user)
+                            <tr>
+                                <th scope="row">{{ __('Image') }}</th>
+                                <td><img src="{{ $proprietario->user->getFirstMediaUrl('avatar') }}" width="120"></td>
+                            </tr>
+                            @endif
                             <tr>
                                 <th scope="row">{{ __('ID') }}</th>
                                 <td>{{ $proprietario->id }}</td>
