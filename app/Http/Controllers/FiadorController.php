@@ -65,7 +65,7 @@ class FiadorController extends Controller
                 $proprietario = Proprietario::where('user_id', $user->id)->first();
                 $proprietario->fiadores()->save($model);
             }
-            Inquilino::find($validatedAttributes['inquilino_id'])->first()->fiadores()->save($model);
+            Inquilino::find($validatedAttributes['inquilino_id'])->fiadores()->save($model);
 
             return redirect(route('fiador.show', $model));
         }else
@@ -110,6 +110,11 @@ class FiadorController extends Controller
         $validatedAttributes = $this->validateFiador($request, $fiador);
         $fiador->fill($validatedAttributes);
         if($fiador->save()) {
+            if($validatedAttributes['inquilino_id'] != $fiador->inquilino_id){
+                $inquilino = Inquilino::find($validatedAttributes['inquilino_id']);
+                $fiador->inquilino()->associate($inquilino);
+                $fiador->save();
+            }
 
             return redirect(route('fiador.show', $fiador));
         }else{

@@ -168,7 +168,7 @@ class Fiador extends Model
     }
 
     public function inquilino () {
-        return $this->hasOne('App\Inquilino');
+        return $this->belongsTo('App\Inquilino');
     }
 
 
