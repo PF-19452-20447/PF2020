@@ -106,16 +106,22 @@
             <select class="form-control {{ $errors->has('inquilino_id') ? 'is-invalid' : '' }}" name ="inquilino_id" id ="imoveis" style="width: 50%" >
                 <?php
                 $user = Auth::user();
-                if(!empty($user->proprietario)){
-                    foreach($user->proprietario->inquilinos as $inquilino){
                 ?>
+                @if(!empty($user->proprietario)){
+                    @foreach($user->proprietario->inquilinos as $inquilino)
                          <option value="{{ $inquilino->id }}" {{ $inquilino->id == $fiador->inquilino_id ? 'selected' : '' }} >
                             {{$inquilino->nome}}
                          </option>
-                         <?php
-                     }
-                 }
-                ?>
+                    @endforeach
+                @else
+                    @foreach(App\Inquilino::all() as $inquilino)
+                         <option value="{{ $inquilino->id }}" {{ $inquilino->id == $fiador->inquilino_id ? 'selected' : '' }} >
+                            {{$inquilino->nome}}
+                         </option>
+
+                    @endforeach
+                @endif
+
             </select>
             @error('inquilino_id')
                 <div class="error invalid-feedback">{{ $message }}</div>
