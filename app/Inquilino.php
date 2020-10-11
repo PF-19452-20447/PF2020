@@ -226,5 +226,12 @@ class Inquilino extends Model implements HasMedia
             ->useFallbackPath(public_path('/images/default_user.jpg'));
     }
 
-
+    public static function boot() {
+        parent::boot();
+        self::deleting(function($inquilino) { // before delete() method call this
+             $inquilino->fiadores()->each(function($fiador) {
+                $fiador->delete(); // <-- direct deletion
+             });
+        });
+    }
 }
