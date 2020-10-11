@@ -44,7 +44,7 @@ class UserPolicy
      * @param  \App\User  $user
      * @return mixed
      */
-    public function create(User $user, User $model)
+    public function create(User $user)
     {
         return $user->can('adminApp');
     }

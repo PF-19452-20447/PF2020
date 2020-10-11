@@ -6,12 +6,14 @@ use App\Http\Controllers\Traits\Authorizable;
 use App\Permission;
 use App\Role;
 use App\User;
+use App\Proprietario;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use App\DataTables\UserDataTable;
 use App\Inquilino;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -63,7 +65,19 @@ class UserController extends Controller
             if ($request->hasFile('image') && $request->file('image')->isValid()) {
                 $user->addMediaFromRequest('image')->toMediaCollection('avatar');
             }
-
+            //Se o utilizador for do role proprietário crialhe um perfil base
+            if($request['roles'][0] == '3'){
+                if($landlord = Proprietario::create([
+                    'nome' => $userAttributes['name'],
+                    'email' => $userAttributes['email'],
+                    'dataNascimento' => Carbon::now()->subDays(1),
+                    'nif' => 123123123,
+                    'morada' => 'Rua do '. $userAttributes['name'],
+                    'user_id' => $user->id
+                ])){
+                    $user->proprietario()->save($landlord);
+                }
+            }
             return redirect(route('users.show', $user));
         }else{
             return redirect(route('users.index'));
