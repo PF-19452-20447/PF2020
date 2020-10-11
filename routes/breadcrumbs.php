@@ -150,7 +150,7 @@ Breadcrumbs::for('contratos.create', function ($trail) {
 });
 Breadcrumbs::for('contratos.show', function ($trail, $model) {
     $trail->parent('contratos.index');
-    $trail->push($model->tipoContrato, route('contratos.show', $model));
+    $trail->push($model->id, route('contratos.show', $model));
 });
 Breadcrumbs::for('contratos.edit', function ($trail, $model) {
     $trail->parent('contratos.show', $model);
@@ -168,7 +168,7 @@ Breadcrumbs::for('rendas.create', function ($trail) {
 });
 Breadcrumbs::for('rendas.show', function ($trail, $model) {
     $trail->parent('rendas.index');
-    $trail->push($model->valorPagar, route('rendas.show', $model));
+    $trail->push($model->id, route('rendas.show', $model));
 });
 Breadcrumbs::for('rendas.edit', function ($trail, $model) {
     $trail->parent('rendas.show', $model);
