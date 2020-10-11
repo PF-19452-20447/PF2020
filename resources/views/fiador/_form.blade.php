@@ -113,7 +113,7 @@
                             {{$inquilino->nome}}
                          </option>
                     @endforeach
-                @else
+                @elseif($user->hasRole(['Admin', 'SuperAdmin']))
                     @foreach(App\Inquilino::all() as $inquilino)
                          <option value="{{ $inquilino->id }}" {{ $inquilino->id == $fiador->inquilino_id ? 'selected' : '' }} >
                             {{$inquilino->nome}}
