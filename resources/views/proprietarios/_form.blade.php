@@ -10,6 +10,7 @@
  {!! Form::model($proprietario ?? '', ['route' => Route::currentRouteName() == 'proprietarios.create' ? ['proprietarios.store'] : ['proprietarios.update', $proprietario ?? ''], 'enctype' => "multipart/form-data",'method' => Route::currentRouteName() == 'proprietarios.create' ? 'post' : 'put', 'class' => "kt-form"]) !!}
 
     <div class="kt-portlet__body">
+        @if(Route::currentRouteName() != "proprietarios.create")
         <div class="form-group row">
             <div class="col">
                 <div class="kt-avatar kt-avatar--outline {{ $proprietario->user->hasMedia('avatar') ? 'kt-avatar--changed' : ''}}" id="kt_avatar_single" data-default-image="/images/default_user.jpg" data-delete-input-id="delete-image-input">
@@ -28,6 +29,7 @@
                 <span class="form-text text-muted">{{ __('Allowed file types: png, jpg, jpeg.') }}</span>
             </div>
         </div>
+        @endif
         <div class="form-group">
             {!! Form::label('nome', __('Name')) !!}
             {!! Form::text('nome', null, ['class' => 'form-control '.($errors->has('nome') ? 'is-invalid' : ''), 'type' => 'date', 'required' => true]) !!}
@@ -84,6 +86,7 @@
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
+
         <div class="form-group">
             {!! Form::label('tipoParticularEmpresa', __('Particular Type of company')) !!}
             {!! Form::select('tipoParticularEmpresa', \App\Proprietario::getTipoParticularEmpresaArray() , null , ['class' => 'form-control '.($errors->has('tipoParticularEmpresa') ? 'is-invalid' : ''), 'required' => true, 'onchange' => 'if(this.value == 3){$(".empresa").removeClass("d-none")}else{$(".empresa").addClass("d-none")}']) !!}
@@ -91,6 +94,8 @@
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
+
+        @if(Route::currentRouteName() != "proprietarios.create")
         <div class="form-group empresa {{  $proprietario->tipoParticularEmpresa === App\Proprietario::TYPE_PARTICULAR ? 'd-none': '' }}">
             {!! Form::label('cae', __('CAE')) !!}
             {!! Form::select('cae', \App\Proprietario::getCAEArray() , null , ['class' => 'form-control '.($errors->has('cae') ? 'is-invalid' : ''), 'required' => true]) !!}
@@ -119,6 +124,7 @@
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
+        @endif
     </div>
 
 
