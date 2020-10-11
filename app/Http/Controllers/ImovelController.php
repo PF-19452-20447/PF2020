@@ -144,6 +144,10 @@ class ImovelController extends Controller
      */
     public function destroy(Imovel $imovel)
     {
+        //dd($imovel->proprietario);
+        if($imovel->proprietario){
+            $imovel->proprietario->imoveis()->detatch();
+        }
         $imovel->proprietarios()->sync([]);
         $imovel->delete();
 

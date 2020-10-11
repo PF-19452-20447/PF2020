@@ -422,4 +422,13 @@ class Contrato extends Model implements HasMedia
         $this->addMediaCollection('contract_files');
     }
 
+    public static function boot() {
+        parent::boot();
+        self::deleting(function($contrato) { // before delete() method call this
+            $contrato->rendas()->each(function($renda) {
+                $renda->delete(); // <-- direct deletion
+            });
+        });
+    }
+
 }

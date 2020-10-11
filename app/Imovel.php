@@ -391,4 +391,12 @@ class Imovel extends Model implements HasMedia
             ->useFallbackPath(public_path('/images/default_user.jpg'));
     }
 
+    public static function boot() {
+        parent::boot();
+        self::deleting(function($imovel) { // before delete() method call this
+             $imovel->contrato()->each(function($contrato) {
+                $contrato->delete(); // <-- direct deletion
+             });
+        });
+    }
 }

@@ -107,17 +107,20 @@
             <select class="form-control select2-multi {{ $errors->has('inquilinos_list') ? 'is-invalid' : '' }}" multiple="multiple" name ="inquilinos_list[]" id ="inquilinos" style="width: 50%" >
                 <?php
                 $user = Auth::user();
-                if(!empty($user->proprietario)){
-                    foreach($user->proprietario->inquilinos as $inquilino){
                 ?>
+                @if(!empty($user->proprietario)){
+                    @foreach($user->proprietario->inquilinos as $inquilino){
                          <option value="{{ $inquilino->id }}" {{ in_array($inquilino->id, $selectedTenantes) ? 'selected': ''}}>
                             {{$inquilino->nome}}
                          </option>
-
-                         <?php
-                     }
-                 }
-                ?>
+                    @endforeach
+                @elseif($user->hasRole(['Admin', 'SuperAdmin']))
+                    @foreach(App\Inquilino::all() as $inquilino)
+                        <option value="{{ $inquilino->id }}" {{ in_array($inquilino->id, $selectedTenantes) ? 'selected': ''}}>
+                            {{$inquilino->nome}}
+                        </option>
+                    @endforeach
+                @endif
             </select>
             @error('inquilinos_list')
                 <div class="error invalid-feedback">{{ $message }}</div>
@@ -129,17 +132,20 @@
             <select class="form-control select2-multi {{ $errors->has('fiadores_list') ? 'is-invalid' : '' }}" multiple="multiple" name ="fiadores_list[]" id ="fiadores" style="width: 50%" >
                 <?php
                 $user = Auth::user();
-                if(!empty($user->proprietario)){
-                    foreach($user->proprietario->fiadores as $fiador){
                 ?>
+                @if(!empty($user->proprietario)){
+                    @foreach($user->proprietario->fiadores as $fiador){
                          <option value="{{ $fiador->id }}" {{ in_array($fiador->id, $selectedGuarantors) ? 'selected': ''}}>
                             {{$fiador->nome}}
                          </option>
-
-                         <?php
-                     }
-                 }
-                ?>
+                    @endforeach
+                @elseif($user->hasRole(['Admin', 'SuperAdmin']))
+                    @foreach(App\Fiador::all() as $fiador)
+                        <option value="{{ $fiador->id }}" {{ in_array($fiador->id, $selectedGuarantors) ? 'selected': ''}}>
+                        {{$fiador->nome}}
+                        </option>
+                    @endforeach
+                @endif
             </select>
             @error('fiadores_list')
                 <div class="error invalid-feedback">{{ $message }}</div>
@@ -151,16 +157,20 @@
             <select class="form-control {{ $errors->has('imovel_id') ? 'is-invalid' : '' }}" name ="imovel_id" id ="imoveis" style="width: 50%" >
                 <?php
                 $user = Auth::user();
-                if(!empty($user->proprietario)){
-                    foreach($user->proprietario->imoveis as $imovel){
                 ?>
+                @if(!empty($user->proprietario)){
+                    @foreach($user->proprietario->imoveis as $imovel){
                          <option value="{{ $imovel->id }}" {{ $imovel->id == $contrato->imovel_id ? 'selected' : '' }} >
                             {{$imovel->morada}}
                          </option>
-                         <?php
-                     }
-                 }
-                ?>
+                    @endforeach
+                @elseif($user->hasRole(['Admin', 'SuperAdmin']))
+                @foreach(App\Imovel::all() as $imovel){
+                    <option value="{{ $imovel->id }}" {{ $imovel->id == $contrato->imovel_id ? 'selected' : '' }} >
+                       {{$imovel->morada}}
+                    </option>
+               @endforeach
+                @endif
             </select>
             @error('imovel_id')
                 <div class="error invalid-feedback">{{ $message }}</div>
