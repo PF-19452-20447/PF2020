@@ -99,7 +99,7 @@
                 <br/>
                 @if(Auth::user()->hasRole("Landlord"))
                 <div class="card-header">
-                    <h5>{{ __('To start it\'s simple, follow these steps:') }}</h5>
+                    <h5>{{ __('To start it's simple, follow these steps:') }}</h5>
                     <h5>{{ __('Firstly') }}</h5>
                     <div id="numero1" class="card-body">
 
@@ -145,22 +145,22 @@
             <div class="flex-container">
                 {{-- users card --}}
                 <div class="card flex-item">
-                    <a href="{{ route('users.index') }}"><h5 class="card-header">{{_('Users')}}</h5></a>
+                    <a href="{{ route('users.index') }}"><h5 class="card-header">{{__('Users')}}</h5></a>
                 <p>{{__('Users registered')}}: {{ App\User::all()->count()}}  </p>
                 </div>
                 {{-- landlord cards --}}
                 <div class="card flex-item">
-                    <a href="{{ route('proprietarios.index') }}"><h5 class="card-header">{{_('Landlords')}}</h5></a>
+                    <a href="{{ route('proprietarios.index') }}"><h5 class="card-header">{{__('Landlords')}}</h5></a>
                     <p>{{__('Landlord profiles')}}: {{ App\Proprietario::all()->count()}}</p>
                 </div>
                 {{-- tenant cards --}}
                 <div class="card flex-item">
-                    <a href="{{ route('inquilinos.index') }}"><h5 class="card-header">{{_('Tenant')}}</h5></a>
+                    <a href="{{ route('inquilinos.index') }}"><h5 class="card-header">{{__('Tenant')}}</h5></a>
                     <p>{{__('Tenant cards')}}: {{ App\Inquilino::all()->count()}} </p>
                 </div>
                 {{-- guarantor cards --}}
                 <div class="card flex-item">
-                    <a href="{{ route('fiador.index') }}"><h5 class="card-header">{{_('Guarantor')}}</h5></a>
+                    <a href="{{ route('fiador.index') }}"><h5 class="card-header">{{__('Guarantor')}}</h5></a>
                     <p>{{__('Guarantor cards')}}: {{ App\Fiador::all()->count()}} </p>
                 </div>
             </div>
@@ -168,17 +168,17 @@
             <div class="flex-container">
                 {{-- preperty card --}}
                 <div class="card flex-item">
-                    <a href="{{ route('imoveis.index') }}"><h5 class="card-header">{{_('Property')}}</h5></a>
+                    <a href="{{ route('imoveis.index') }}"><h5 class="card-header">{{__('Property')}}</h5></a>
                 <p>{{__('Properties registered')}}: {{ App\Imovel::all()->count()}}  </p>
                 </div>
                 {{-- contract cards --}}
                 <div class="card flex-item">
-                    <a href="{{ route('contratos.index') }}"><h5 class="card-header">{{_('Contracts')}}</h5></a>
+                    <a href="{{ route('contratos.index') }}"><h5 class="card-header">{{__('Contracts')}}</h5></a>
                     <p>{{__('Contracts signed')}}: {{ App\Contrato::all()->count()}} </p>
                 </div>
                 {{-- rent cards --}}
                 <div class="card flex-item">
-                    <a href="{{ route('rendas.index') }}"><h5 class="card-header">{{_('Rent')}}</h5></a>
+                    <a href="{{ route('rendas.index') }}"><h5 class="card-header">{{__('Rent')}}</h5></a>
                     <p>{{__('Rents generated')}}: {{ App\Renda::all()->count()}} </p>
                 </div>
             </div>
