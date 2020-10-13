@@ -159,5 +159,13 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
 
     }
 
+    public static function boot() {
+        parent::boot();
+        self::deleting(function($imovel) { // before delete() method call this
+             $imovel->proprietario()->each(function($proprietario) {
+                $proprietario->delete(); // <-- direct deletion
+             });
+        });
+    }
 
 }

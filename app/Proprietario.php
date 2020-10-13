@@ -181,4 +181,19 @@ class Proprietario extends Model
     public function fiadores(){
         return $this->hasMany('App\Fiador');
     }
+
+    public static function boot() {
+        parent::boot();
+        self::deleting(function($proprietario) { // before delete() method call this
+             $proprietario->rendas()->each(function($rendas) {
+                $rendas->delete(); // <-- direct deletion
+             });
+             $proprietario->inquilinos()->each(function($inquilinos) {
+                $inquilinos->delete(); // <-- direct deletion
+             });
+             $proprietario->imoveis()->each(function($imoveis) {
+                $imoveis->delete(); // <-- direct deletion
+             });
+        });
+    }
 }

@@ -11,6 +11,7 @@
 
     <div class="kt-portlet__body">
         @if(Route::currentRouteName() != "proprietarios.create")
+        @if($proprietario->user)
         <div class="form-group row">
             <div class="col">
                 <div class="kt-avatar kt-avatar--outline {{ $proprietario->user->hasMedia('avatar') ? 'kt-avatar--changed' : ''}}" id="kt_avatar_single" data-default-image="/images/default_user.jpg" data-delete-input-id="delete-image-input">
@@ -29,6 +30,7 @@
                 <span class="form-text text-muted">{{ __('Allowed file types: png, jpg, jpeg.') }}</span>
             </div>
         </div>
+        @endif
         @endif
         <div class="form-group">
             {!! Form::label('nome', __('Name')) !!}
