@@ -315,7 +315,7 @@ class InquilinoController extends Controller
             'email' => 'required|email|unique:users',
             'telefone' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|min:9',
             'morada' => 'required|string',
-            'iban' => ['nullable', 'alpha_dash', 'max:64'],
+            'iban' => ['nullable', 'alpha_dash', 'max:64', 'regex:/^(PT|pt|Pt|pT)(?:[ ]?[0-9]){23}$/'],
             'tipoParticularEmpresa' => 'required|integer',
             'profissao' => 'required|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'tipoContrato' => 'required|integer',
