@@ -88,9 +88,9 @@ view()->share('hideSubHeader', true);
                     });
                     jQuery.ajax({
                         url: _this.data('delete-url'),
-                        type: 'DELETE',
+                        type: 'POST',
                         dataType: 'json',
-                        data: {method: '_DELETE', submit: true}
+                        data: {_method: 'DELETE', submit: true}
                     }).always(function (data) {
                         jQuery('#users-table').DataTable().draw(false);
                     });

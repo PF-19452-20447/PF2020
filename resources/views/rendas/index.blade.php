@@ -8,7 +8,7 @@
 @endpush
 
 @section('content')
-    
+
     <!--begin::Portlet-->
     <div class="kt-portlet kt-portlet--mobile">
         <div class="kt-portlet__head kt-portlet__head--lg">
@@ -79,9 +79,9 @@
                     });
                     jQuery.ajax({
                         url: _this.data('delete-url'),
-                        type: 'DELETE',
+                        type: 'POST',
                         dataType: 'json',
-                        data: {method: '_DELETE', submit: true}
+                        data: {_method: 'DELETE', submit: true}
                     }).always(function (data) {
                         jQuery('#renda-table').DataTable().draw(false);
                     });

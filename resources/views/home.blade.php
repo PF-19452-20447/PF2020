@@ -99,7 +99,7 @@
                 <br/>
                 @if(Auth::user()->hasRole("Landlord"))
                 <div class="card-header">
-                    <h5>{{ __('To start it's simple, follow these steps:') }}</h5>
+                    <h5>{{ __('To start it\'s simple, follow these steps:') }}</h5>
                     <h5>{{ __('Firstly') }}</h5>
                     <div id="numero1" class="card-body">
 
