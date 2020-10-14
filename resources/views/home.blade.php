@@ -125,6 +125,18 @@
                     </div>
 
                     <br/>
+                    <h5>{{__('And then')}}</h5>
+                    <div id="numero2" class="card-body">
+                        {{-- <img src="images/number2.png " /> --}}
+                        <center><a class="btn" href="{{ route('fiador.create') }}">
+                            <img class="homeIco" src="images/person.png " />
+                            <p>{{ __('Create a card for your guarantor') }}</p>
+                        </a></center>
+
+
+                    </div>
+
+                    <br/>
                     <h5>{{__('Finally')}}</h5>
                     <div id="numero3" class="card-body">
 

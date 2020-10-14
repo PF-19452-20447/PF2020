@@ -50,7 +50,7 @@ Breadcrumbs::for('proprietarios.index', function ($trail) {
     $trail->parent('home');
     if(!Auth::user()->hasRole('Landlord')){
 
-    $trail->push('Landlords', route('proprietarios.index'));  }
+    $trail->push(__('Landlords'), route('proprietarios.index'));  }
 });
 Breadcrumbs::for('proprietarios.create', function ($trail) {
     $trail->parent('proprietarios.index');

@@ -90,18 +90,19 @@ view()->share('hideSubHeader', true);
                                 <td>{{ $proprietario->TipoParticularEmpresaLabel }}</td>
                             </tr>
                             @if($proprietario->tipoParticularEmpresa && $proprietario->tipoParticularEmpresa === App\Proprietario::TYPE_EMPRESA)
-
                                 <tr>
                                     <th scope="row">{{ __('CAE') }}</th>
-                                    <td>{{ $proprietario ->CAELabel }}</td>
+
+                                    <td>@if($proprietario ->cae){{ $proprietario->CAELabel }}@endif</td>
+
                                 </tr>
                                 <tr>
                                     <th scope="row">{{ __('Activity sector') }}</th>
-                                    <td>{{ $proprietario ->SetorAtividadeLabel }}</td>
+                                    <td>@if($proprietario ->setorAtividade){{ $proprietario->SetorAtividadeLabel }}@endif</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">{{ __('Permanent certificate') }}</th>
-                                    <td>{{ $proprietario ->certidaoPermanente }}</td>
+                                    <td>{{ $proprietario->certidaoPermanente }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">{{ __('Number of employees') }}</th>
