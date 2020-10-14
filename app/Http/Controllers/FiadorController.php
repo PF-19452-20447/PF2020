@@ -150,7 +150,7 @@ class FiadorController extends Controller
             'email' => 'required|email|unique:users',
             'telefone' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|min:9',
             'morada' => 'required|string',
-            'iban' => ['required', 'alpha_dash', 'max:64','regex:/^(PT|pt|Pt|pT)(?:[ ]?[0-9]){23}$/'],
+            'iban' => ['required', 'max:64','regex:/^(PT|pt|Pt|pT)(?:[ ]?[0-9]){23}$/'],
             'tipoParticularEmpresa' => 'required|integer',
             'cae' => 'required|integer',
             'setorActividade' => 'nullable|integer',
