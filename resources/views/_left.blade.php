@@ -386,14 +386,14 @@
                                 </a>
                             </li>
                             @endcanany
-                            @canany(['adminApp', 'adminFullApp', 'accessAsLandlord'])
+                            {{-- @canany(['adminApp', 'adminFullApp', 'accessAsLandlord'])
                             <li class="kt-menu__item {{ request()->routeIs('rendas.create') ? "kt-menu__item--active" : "" }}" aria-haspopup="true">
                                 <a href="{{ route('rendas.create') }}" class="kt-menu__link ">
                                     <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
                                     <span class="kt-menu__link-text">{{ __('Create Incomes Payment') }}</span>
                                 </a>
                             </li>
-                            @endcanany
+                            @endcanany --}}
                         </ul>
                     </div>
                 </li>
