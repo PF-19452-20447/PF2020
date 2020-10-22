@@ -138,6 +138,7 @@ view()->share('hideSubHeader', true);
                             </tr>
 
                             <tr>
+                                @if(!empty($imovel->hasMedia('images')))
                                 <th scope="row">{{ __('Images') }}</th>
 
                                     <td>
@@ -148,8 +149,7 @@ view()->share('hideSubHeader', true);
                                         @endforeach
 
                                     </td>
-
-
+                                @endif
                             </tr>
                         </tbody>
                     </table>
