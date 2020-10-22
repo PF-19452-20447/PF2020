@@ -12,6 +12,26 @@
     <div class="kt-portlet__body">
 
         <div class="form-group">
+            {!! Form::label('photos', __('Image')) !!}<br>
+            {!! Form::file('photos[]', null, ['class' => 'form-control '.($errors->has('photos') ? 'is-invalid' : ''), 'multiple' => true]) !!}
+            @error('photos')
+                <div class="error invalid-feedback">{{ $message }}</div>
+            @enderror
+
+            @foreach($inquilino->getMedia('images') as $image)
+                <div id="image-holder{{$image->id}}">
+                    <br>
+                    <br>
+                    <button class="btn btn-danger" onClick="removeImg(this)" type="button" data-id="{{$image->id}}">Delete</button>
+                    <img src="{{$image->getUrl()}}" id="img{{$image->id}}" class="rounded" style="width:120px">
+                </div>
+            @endforeach
+
+            <br><br>
+            <div id="hidden_inputs"></div>
+        </div>
+
+        <div class="form-group">
             {!! Form::label('nome', __('Name')) !!}
             {!! Form::text('nome', null, ['class' => 'form-control '.($errors->has('nome') ? 'is-invalid' : ''), 'required' => true]) !!}
             @error('nome')
@@ -122,25 +142,6 @@
             @error('numFuncionarios')
             <div class="error invalid-feedback">{{ $message }}</div>
             @enderror
-        </div>
-        <div class="form-group">
-            {!! Form::label('photos', __('Image')) !!}<br>
-            {!! Form::file('photos[]', null, ['class' => 'form-control '.($errors->has('photos') ? 'is-invalid' : ''), 'multiple' => true]) !!}
-            @error('photos')
-                <div class="error invalid-feedback">{{ $message }}</div>
-            @enderror
-
-            @foreach($inquilino->getMedia('images') as $image)
-                <div id="image-holder{{$image->id}}">
-                    <br>
-                    <br>
-                    <button class="btn btn-danger" onClick="removeImg(this)" type="button" data-id="{{$image->id}}">Delete</button>
-                    <img src="{{$image->getUrl()}}" id="img{{$image->id}}" class="rounded" style="width:120px">
-                </div>
-            @endforeach
-
-            <br><br>
-            <div id="hidden_inputs"></div>
         </div>
     </div>
 

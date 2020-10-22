@@ -82,6 +82,8 @@ return [
 
     'locale' => 'pt',
 
+    //change the language to translate.
+
     /*
     |--------------------------------------------------------------------------
     | Application Fallback Locale
