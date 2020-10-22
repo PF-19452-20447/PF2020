@@ -86,7 +86,7 @@ view()->share('hideSubHeader', true);
                                 <td>{{ $proprietario->iban }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">{{ __('Particular type of company') }}</th>
+                                <th scope="row">{{ __('Type of Landlord') }}</th>
                                 <td>{{ $proprietario->TipoParticularEmpresaLabel }}</td>
                             </tr>
                             @if($proprietario->tipoParticularEmpresa && $proprietario->tipoParticularEmpresa === App\Proprietario::TYPE_EMPRESA)

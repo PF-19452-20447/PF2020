@@ -14,6 +14,7 @@ use App\Notifications\PaymentReceived;
 use App\Notifications\PaymentReceived as NotificationsPaymentReceived;
 use App\Proprietario;
 use App\Inquilino;
+use App\Http\Controllers\Date;
 
 class RendaController extends Controller
 {
@@ -200,6 +201,7 @@ class RendaController extends Controller
             $date = preg_replace('/:/', ' ', $CallBack_dataLimitePagamento, 1);
             $renda->dataPagamento = $date;
             $renda->dataRecibo = $date;
+           
            // $renda->dataPagamento= now();
             //$renda->valorPagar= $valor_renda;
             //$renda->entidade= $entidade;
@@ -300,7 +302,7 @@ class RendaController extends Controller
             'valorPago' => 'nullable|regex:/^\d+(\.\d{1,2})?$/',
             'valorDivida' => 'nullable|regex:/^\d+(\.\d{1,2})?$/',
             'estado' => 'required|integer',
-            'dataLimitePagamento' => 'nullable|date_format:Y-m-d',
+            'dataLimitePagamento' => 'nullable|date_format:Y-m-d|after:tomorrow',
             'notas' => 'nullable|regex:/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/',
             'dataRecibo' => 'nullable|date_format:Y-m-d',
             'entidade' => 'nullable|regex:/^\d+(\.\d{1,2})?$/',

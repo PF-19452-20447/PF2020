@@ -91,7 +91,7 @@ view()->share('hideSubHeader', true);
                                 <td>{{ $fiador ->iban }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">{{ __('Particular type of company') }}</th>
+                                <th scope="row">{{ __('Type of Guarantor') }}</th>
                                 <td>{{ $fiador ->tipoParticularEmpresaLabel }}</td>
                             </tr>
 
