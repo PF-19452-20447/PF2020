@@ -103,7 +103,7 @@ view()->share('hideSubHeader', true);
                                 </tr>
                                 <tr>
                                     <th scope="row">{{ __('Activity sector') }}</th>
-                                    <td>{{ $fiador ->SetorAtividadeLabel }}</td>
+                                    <td>{{ $fiador ->setorAtividadeLabel }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">{{ __('Permanent certificate') }}</th>
