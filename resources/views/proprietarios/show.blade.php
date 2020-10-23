@@ -87,7 +87,7 @@ view()->share('hideSubHeader', true);
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Type of Landlord') }}</th>
-                                <td>{{ $proprietario->TipoParticularEmpresaLabel }}</td>
+                                <td>{{ $proprietario->tipoParticularEmpresaLabel }}</td>
                             </tr>
                             @if($proprietario->tipoParticularEmpresa && $proprietario->tipoParticularEmpresa === App\Proprietario::TYPE_EMPRESA)
                                 <tr>
@@ -98,7 +98,7 @@ view()->share('hideSubHeader', true);
                                 </tr>
                                 <tr>
                                     <th scope="row">{{ __('Activity sector') }}</th>
-                                    <td>@if($proprietario ->setorAtividade){{ $proprietario->SetorAtividadeLabel }}@endif</td>
+                                    <td> @if($proprietario ->setorAtividade){{ $proprietario->setorAtividadeLabel }}@endif</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">{{ __('Permanent certificate') }}</th>
