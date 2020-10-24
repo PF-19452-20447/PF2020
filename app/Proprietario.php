@@ -68,18 +68,6 @@ class Proprietario extends Model
         ];
     }
 
-    /**
-     * Return an array with the values of type field
-     * @return array
-     */
-    public static function getTipoParticularEmpresaArray()
-    {
-        return [
-            self::TYPE_EMPRESA =>  __('Company'),
-            self::TYPE_PARTICULAR =>  __('Private')
-        ];
-    }
-
 
 
     /**
@@ -96,7 +84,17 @@ class Proprietario extends Model
     }
 
 
-
+    /**
+     * Return an array with the values of type field
+     * @return array
+     */
+    public static function getTipoParticularEmpresaArray()
+    {
+        return [
+            self::TYPE_EMPRESA =>  __('Company'),
+            self::TYPE_PARTICULAR =>  __('Private')
+        ];
+    }
 
 
      /**
@@ -134,7 +132,7 @@ class Proprietario extends Model
     public function getCAELabelAttribute()
     {
         $array = self::getCAEOptions();
-        return !empty($array[$this->cae]) ? $array[$this->cae] : "";
+        return $array[$this->cae];
     }
 
 
@@ -145,7 +143,7 @@ class Proprietario extends Model
     public function getSetorAtividadeLabelAttribute()
     {
         $array = self::getSetorAtividadeOptions();
-        return !empty($array[$this->setorActividade]) ? $array[$this->setorActividade] : "";
+        return $array[$this->setorActividade];
     }
 
 
@@ -156,7 +154,7 @@ class Proprietario extends Model
     public function getTipoParticularEmpresaLabelAttribute()
     {
         $array = self::getTipoParticularEmpresaOptions();
-        return !empty($array[$this->tipoParticularEmpresa]) ? $array[$this->tipoParticularEmpresa] : "";
+        return $array[$this->tipoParticularEmpresa];
     }
 
     public function inquilinos()

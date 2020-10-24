@@ -115,7 +115,7 @@ view()->share('hideSubHeader', true);
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Type of contract') }}</th>
-                                <td>{{ $inquilino ->tipoContratoLabel }}</td>
+                                <td>{{ $inquilino ->TipoContratoLabel }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">{{ __('Grades') }}</th>
@@ -129,7 +129,7 @@ view()->share('hideSubHeader', true);
                                 </tr>
                                 <tr>
                                     <th scope="row">{{ __('Activity sector') }}</th>
-                                    <td>{{ $inquilino ->setorAtividadeLabel }}</td>
+                                    <td>{{ $inquilino ->SetorAtividadeLabel }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">{{ __('Permanent certificate') }}</th>
