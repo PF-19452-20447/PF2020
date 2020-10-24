@@ -101,6 +101,10 @@ view()->share('hideSubHeader', true);
                                 <td>{{ $imovel ->licencaHabitacao }}</td>
                             </tr>
                             <tr>
+                                <th scope="row">{{ __('Notes') }}</th>
+                                <td>{{$imovel ->notas }}</td>
+                            </tr>
+                            <tr>
                                 <th scope="row">{{ __('TV') }}</th>
                                 <td>{{$imovel ->TelevisaoLabel }}</td>
                             </tr>
@@ -131,10 +135,6 @@ view()->share('hideSubHeader', true);
                             <tr>
                                 <th scope="row">{{ __('Other Equipment') }}</th>
                                 <td>{{ $imovel ->outrosEquipamentos }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">{{ __('Notes') }}</th>
-                                <td>{{$imovel ->notas }}</td>
                             </tr>
 
                             <tr>
