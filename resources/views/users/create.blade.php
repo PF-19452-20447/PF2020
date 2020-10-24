@@ -22,7 +22,7 @@ view()->share('hideSubHeader', true);
         <form class="kt-form" method="POST" action="{{route('users.store')}}" enctype="multipart/form-data">
             @csrf
             <div class="kt-portlet__body">
-                <div class="form-group row">
+                {{-- <div class="form-group row">
                     <div class="col">
                         <div class="kt-avatar kt-avatar--outline" id="kt_avatar_single">
                             <div id="avatar-holder" class="kt-avatar__holder" style="background-image: url('/images/default_user.jpg')"></div>
@@ -36,7 +36,7 @@ view()->share('hideSubHeader', true);
                         </div>
                         <span class="form-text text-muted">{{ __('Allowed file types: png, jpg, jpeg.') }}</span>
                     </div>
-                </div>
+                </div> --}}
                 <div class="form-group">
                     <label>{{ __('Name') }}</label>
                     <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="{{ __('Name') }}" value="{{old('name', $user->name ?? '' )}}" required>
